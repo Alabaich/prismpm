@@ -45,6 +45,17 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'medium_image',
+            [
+                'label' => esc_html__( '1366x768 Image', 'elementor-addon' ),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+            ]
+        );
+
         // Control: Tablet Image
         $this->add_control(
             'tablet_image',
@@ -176,10 +187,12 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
             <img 
                 src="<?php echo $desktop_image; ?>" 
                 srcset="<?php echo $phone_image; ?> 480w, 
-                        <?php echo $tablet_image; ?> 768w, 
-                        <?php echo $desktop_image; ?> 1200w" 
+                    <?php echo $tablet_image; ?> 768w, 
+                    <?php echo $medium_image; ?> 1366w, 
+                    <?php echo $desktop_image; ?> 1920w" 
                 sizes="(max-width: 480px) 100vw, 
                        (max-width: 768px) 100vw, 
+                       (max-width: 1366px) 100vw, 
                        100vw"
                 alt="Hero Image" 
                 class="hero-image">
