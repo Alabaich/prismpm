@@ -127,7 +127,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .total-services {
                 display: flex;
                 flex-direction: column;
-                gap: 50px;
+                gap: 25px;
                 text-align: center;
             }
 
@@ -154,7 +154,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 20px;
+                gap: 5px;
             }
 
             .service-block {
@@ -171,14 +171,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
             .service-block .icon-wrapper {
                 margin-bottom: 10px;
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
             .service-block .icon-wrapper i,
             .service-block .icon-wrapper svg {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
                 color: #000;
                 fill: #000;
             }
