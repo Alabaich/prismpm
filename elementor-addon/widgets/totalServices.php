@@ -70,6 +70,18 @@ class Elementor_totalServices extends \Elementor\Widget_Base
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
+            'icon',
+            [
+                'label' => esc_html__('Icon', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'solid',
+                ],
+            ]
+        );
+
+        $repeater->add_control(
             'service_title',
             [
                 'label' => esc_html__('Service Title', 'elementor-addon'),
@@ -115,7 +127,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .total-services {
                 display: flex;
                 flex-direction: column;
-                gap: 50px;
+                gap: 25px;
                 text-align: center;
             }
 
@@ -135,14 +147,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
             .section-header p {
                 font-size: 1rem;
-                padding: 0% 10% 0% 10%
+                padding: 0% 10% 0% 10%;
             }
 
             .services-list {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 20px;
+                gap: 5px;
             }
 
             .service-block {
@@ -155,6 +167,19 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 text-align: left;
                 box-sizing: border-box;
                 gap: var(--gap);
+            }
+
+            .service-block .icon-wrapper {
+                margin-bottom: 10px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .service-block .icon-wrapper i,
+            .service-block .icon-wrapper svg {
+                width: 20px;
+                height: 20px;
+                color: #093d5f;
             }
 
             .service-block h2 {
@@ -195,7 +220,12 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
                     <div class="service-block">
-                        <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
+                        <div class="serviceIconAndTitle">
+                            <div class="icon-wrapper">
+                                <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
+                            </div>
+                            <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
+                        </div>
                         <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
                     </div>
                 <?php endforeach; ?>
@@ -204,3 +234,4 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 <?php
     }
 }
+?>
