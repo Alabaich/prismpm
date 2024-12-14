@@ -150,7 +150,6 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         .hero-banner {
             position: relative;
             width: 100%;
-            height: 100vh;
             overflow: hidden;
         }
 
@@ -227,6 +226,30 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
             .hero-banner .hero-text h1 {
                 font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1600px) {
+            .hero-banner {
+                max-height: 1000px; /* For screens 1600px+ */
+            }
+        }
+
+        @media (max-width: 1366px) {
+            .hero-banner {
+                max-height: 714px; /* For screens 1366px+ */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                max-height: 310px; /* For tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-banner {
+                max-height: 225px; /* For phones */
             }
         }
         </style>
