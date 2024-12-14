@@ -164,6 +164,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 padding: 20px;
                 text-align: center;
                 box-sizing: border-box;
+                gap: var(--gap);
             }
 
             .service-block .icon-wrapper {
