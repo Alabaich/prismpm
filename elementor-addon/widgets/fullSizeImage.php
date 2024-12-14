@@ -141,6 +141,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
     
         $desktop_image = esc_url( $settings['desktop_image']['url'] );
         $tablet_image = esc_url( $settings['tablet_image']['url'] );
+        $medium_image = esc_url( $settings['medium_image']['url'] );
         $phone_image = esc_url( $settings['phone_image']['url'] );
         $logo_image = esc_url( $settings['logo_image']['url'] );
         $title_text = esc_html( $settings['title_text'] );
