@@ -14,7 +14,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        return 'eicon-code';
+        return '0xe805';
     }
 
     public function get_categories()
@@ -70,18 +70,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
-            'icon',
-            [
-                'label' => esc_html__('Icon', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-star',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-
-        $repeater->add_control(
             'service_title',
             [
                 'label' => esc_html__('Service Title', 'elementor-addon'),
@@ -109,10 +97,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                     [
                         'service_title' => esc_html__('Service 1', 'elementor-addon'),
                         'service_description' => esc_html__('Description for service 1.', 'elementor-addon'),
-                    ],
-                    [
-                        'service_title' => esc_html__('Service 2', 'elementor-addon'),
-                        'service_description' => esc_html__('Description for service 2.', 'elementor-addon'),
                     ],
                 ],
                 'title_field' => '{{{ service_title }}}',
@@ -161,24 +145,22 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 align-items: flex-start;
                 width: calc((100% / 3) - 20px);
                 max-width: none;
-                /* Remove max-width limitation */
                 padding: 20px;
                 text-align: left;
                 box-sizing: border-box;
                 gap: var(--gap);
             }
 
-            .service-block .icon-wrapper {
-                margin-bottom: 5px;
-            }
-
             .service-block h2 {
-                padding: 0px 0px 5px 0px;
-                border-style: solid;
                 width: 100%;
-                color: #093d5f;
+                border-style: solid;
                 text-align: left;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 30px;
+                font-weight: normal;
+                padding: 0px 0px 5px 0px;
                 border-width: 0px 0px 1px 0px;
+                color: #093d5f;
                 border-color: #093d5f;
             }
 
@@ -199,14 +181,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
         <div class="total-services">
             <div class="section-header">
                 <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($settings['title']); ?></h2>
-                <p class="elementor-widget-container elementor-motion-effects-element"><?php echo esc_html($settings['subtitle']); ?></p>
+                <p class="elementor-widget-container elementor-motion-effects-element">
+                    <?php echo wp_kses_post($settings['subtitle']); ?>
+                </p>
+
             </div>
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
                     <div class="service-block">
-                        <div class="icon-wrapper">
-                            <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
-                        </div>
                         <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
                         <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
                     </div>
