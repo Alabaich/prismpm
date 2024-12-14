@@ -173,6 +173,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 margin-bottom: 10px;
                 width: 25px;
                 height: 25px;
+                color: #093d5f;
             }
 
             .service-block .icon-wrapper i,
