@@ -158,11 +158,12 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block {
                 display: flex;
                 flex-direction: column;
-                align-items: start;
-                flex: 1 1 calc(33.333% - 20px);
-                max-width: 400px;
+                align-items: flex-start;
+                width: calc((100% / 3) - 20px);
+                max-width: none;
+                /* Remove max-width limitation */
                 padding: 20px;
-                text-align: center;
+                text-align: left;
                 box-sizing: border-box;
                 gap: var(--gap);
             }
@@ -184,6 +185,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block p {
                 font-size: 1rem;
                 color: #555;
+                margin-top: 20px;
             }
 
             @media screen and (max-width: 600px) {
