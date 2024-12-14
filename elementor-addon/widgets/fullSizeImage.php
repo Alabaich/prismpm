@@ -146,64 +146,84 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $logo_image = esc_url( $settings['logo_image']['url'] );
         $title_text = esc_html( $settings['title_text'] );
         ?>
-        <style>
-            .hero-banner {
-                position: relative;
-                width: 100%;
-                height: 100vh;
-                overflow: hidden;
-            }
-    
-            .hero-banner img.hero-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-    
-            .hero-banner .hero-text {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                color: #fff;
-            }
-    
-            .hero-banner .hero-text h1 {
-                font-size: 3rem;
-                font-weight: bold;
-                margin: 0;
-            }
-    
-            .hero-banner .hero-logo {
-                max-width: 150px;
-                margin: 0 auto 20px;
-            }
-
-            @media (max-width: 1600px) {
-            .hero-banner {
-                max-height: 1000px; /* For screens 1600px+ */
-            }
+    <style>
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
         }
 
+        .hero-banner img.hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right center;
+        }
+
+        .hero-banner .hero-logo {
+            position: absolute;
+            right: 30%;
+            bottom: 10%;
+            max-width: 200px;
+            transition: transform 0.2s ease-out;
+            z-index: 10;
+        }
+
+        .hero-banner .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 9;
+        }
+
+        .hero-banner .hero-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 1366px) {
-            .hero-banner {
-                max-height: 714px; /* For screens 1366px+ */
+            .hero-banner .hero-logo {
+                max-width: 150px;
+                right: 20%;
+                bottom: 8%;
+            }
+
+            .hero-banner .hero-text h1 {
+                font-size: 2.5rem;
             }
         }
 
         @media (max-width: 768px) {
-            .hero-banner {
-                max-height: 310px; /* For tablets */
+            .hero-banner .hero-logo {
+                max-width: 100px;
+                right: 15%;
+                bottom: 5%;
+            }
+
+            .hero-banner .hero-text h1 {
+                font-size: 2rem;
             }
         }
 
         @media (max-width: 480px) {
-            .hero-banner {
-                max-height: 225px; /* For phones */
+            .hero-banner .hero-logo {
+                max-width: 80px;
+                right: 10%;
+                bottom: 5%;
+            }
+
+            .hero-banner .hero-text h1 {
+                font-size: 1.5rem;
             }
         }
         </style>
@@ -221,11 +241,22 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
                        100vw"
                 alt="Hero Image" 
                 class="hero-image">
-            <div class="hero-text">
-                <img src="<?php echo $logo_image; ?>" alt="Logo" class="hero-logo">
+                
+            <img src="<?php echo $logo_image; ?>" alt="Logo" class="hero-logo" id="parallax-logo">
+
+            <div class="hero-text">  
                 <h1><?php echo $title_text; ?></h1>
             </div>
         </div>
+
+        <script>
+        // Parallax Effect for Logo
+        document.addEventListener("scroll", function() {
+            const logo = document.getElementById("parallax-logo");
+            const scrollPosition = window.scrollY;
+            logo.style.transform = `translateY(${scrollPosition * -0.3}px)`; // Adjust parallax speed
+        });
+    </script>
         <?php
     }
     
