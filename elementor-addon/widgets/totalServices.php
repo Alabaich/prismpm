@@ -195,7 +195,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 border-color: #093d5f;
             }
 
-            .service-block .serviceIconAndTitle {
+            .serviceIconAndTitle {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
