@@ -186,7 +186,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block h2 {
                 width: 100%;
                 border-style: solid;
-                text-align: center;
+                text-align: left;
                 font-family: "Graphik Medium", Sans-serif;
                 font-size: 30px;
                 font-weight: normal;
@@ -200,7 +200,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                align-items: center;
             }
 
             .service-block p {
@@ -212,6 +211,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             @media screen and (max-width: 600px) {
                 .service-block {
                     width: 100%;
+                }
+
+                .section-header h2 {
+                    font-size: 30px;
+                }
+
+                .section-header p {
+                    padding: 0% 5% 0% 5%;
                 }
             }
         </style>
