@@ -137,12 +137,15 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             }
 
             .section-header h2 {
-                font-size: 2rem;
+                font-family: "Graphik Light", Sans-serif;
+                font-size: 50px;
+                font-weight: normal;
+                color: var(--e-global-color-primary);
             }
 
             .section-header p {
                 font-size: 1rem;
-                color: #666;
+                padding: 0% 10% 0% 10%
             }
 
             .services-list {
@@ -155,22 +158,23 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block {
                 display: flex;
                 flex-direction: column;
-                align-items: left;
+                align-items: start;
                 width: 350px;
                 padding: 20px;
-                border: 1px solid #ddd;
                 text-align: center;
             }
 
             .service-block .icon-wrapper {
-                margin-bottom: 15px;
+                margin-bottom: 5px;
             }
 
             .service-block h2 {
                 padding: 0px 0px 5px 0px;
                 border-style: solid;
+                width: 100%;
+                text-align: left;
                 border-width: 0px 0px 1px 0px;
-                border-color: var(--e-global-color-primary);
+                border-color: #093d5f;
             }
 
             .service-block p {
