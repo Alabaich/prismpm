@@ -152,13 +152,15 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             }
 
             .service-block h2 {
-                padding: 0px 0px 5px 0px;
-                border-style: solid;
                 width: 100%;
-                color: #093d5f;
-                font-family: "Graphik Light", Sans-serif;
+                border-style: solid;
                 text-align: left;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 30px;
+                font-weight: normal;
+                padding: 0px 0px 5px 0px;
                 border-width: 0px 0px 1px 0px;
+                color: #093d5f;
                 border-color: #093d5f;
             }
 
