@@ -171,14 +171,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
             .service-block .icon-wrapper {
                 margin-bottom: 10px;
-                width: 20px;
-                height: 20px;
+                width: 25px;
+                height: 25px;
             }
 
             .service-block .icon-wrapper i,
             .service-block .icon-wrapper svg {
-                width: 20px;
-                height: 20px;
+                width: 25px;
+                height: 25px;
                 color: #093d5f;
             }
 
