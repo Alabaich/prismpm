@@ -126,23 +126,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <div class="total-services">
-            <div class="section-header">
-                <h2><?php echo esc_html($settings['title']); ?></h2>
-                <p><?php echo esc_html($settings['subtitle']); ?></p>
-            </div>
-            <div class="services-list">
-                <?php foreach ($settings['services_list'] as $service) : ?>
-                    <div class="service-block">
-                        <div class="icon-wrapper">
-                            <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
-                        </div>
-                        <h2 class="service-title"> <?php echo esc_html($service['service_title']); ?> </h2>
-                        <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
 
         <style>
             .total-services {
@@ -172,8 +155,8 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                width: 400px;
+                align-items: left;
+                width: 350px;
                 padding: 20px;
                 border: 1px solid #ddd;
                 text-align: center;
@@ -184,10 +167,10 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             }
 
             .service-block h2 {
-                font-size: 1.25rem;
-                margin: 2px 0;
-                border-bottom: 1px solid #ddd;
-                padding-bottom: 2px;
+                padding: 0px 0px 5px 0px;
+                border-style: solid;
+                border-width: 0px 0px 1px 0px;
+                border-color: var(--e-global-color-primary);
             }
 
             .service-block p {
@@ -201,6 +184,25 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 }
             }
         </style>
+
+
+        <div class="total-services">
+            <div class="section-header">
+                <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($settings['title']); ?></h2>
+                <p class="elementor-widget-container elementor-motion-effects-element"><?php echo esc_html($settings['subtitle']); ?></p>
+            </div>
+            <div class="services-list">
+                <?php foreach ($settings['services_list'] as $service) : ?>
+                    <div class="service-block">
+                        <div class="icon-wrapper">
+                            <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
+                        </div>
+                        <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
+                        <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
 <?php
     }
 }
