@@ -111,84 +111,77 @@ class Elementor_totalServices extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
 ?>
 
-<style>
-        .total-services {
-            text-align: center;
-        }
-
-        .section-header {
-            margin-bottom: 20px;
-        }
-
-        .section-header h2 {
-            font-family: "Graphik Light", Sans-serif;
-            font-size: 50px;
-            font-weight: normal;
-            color: #093d5f;
-        }
-
-        .section-header p {
-            font-size: 1rem;
-            padding: 0% 10% 0% 10%
-        }
-
-        .services-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .service-block {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: calc((100% / 3) - 20px);
-            max-width: none;
-            padding: 20px;
-            text-align: left;
-            box-sizing: border-box;
-            gap: var(--gap);
-        }
-
-        .service-block .icon-wrapper {
-            margin-bottom: 5px;
-        }
-
-        .service-block .icon-wrapper i,
-        .service-block .icon-wrapper svg {
-            color: #000; 
-            fill: #000; 
-        }
-
-        .service-block h2 {
-            padding: 0px 0px 5px 0px;
-            border-style: solid;
-            width: 100%;
-            color: #093d5f;
-            text-align: left;
-            border-width: 0px 0px 1px 0px;
-            border-color: #093d5f;
-        }
-
-        .service-block p {
-            font-size: 1rem;
-            color: #555;
-            margin-top: 20px;
-        }
-
-        @media screen and (max-width: 600px) {
-            .service-block {
-                width: 100%;
+        <style>
+            .total-services {
+                text-align: center;
             }
-        }
-    </style>
+
+            .section-header {
+                margin-bottom: 20px;
+            }
+
+            .section-header h2 {
+                font-family: "Graphik Light", Sans-serif;
+                font-size: 50px;
+                font-weight: normal;
+                color: #093d5f;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+                padding: 0% 10% 0% 10%
+            }
+
+            .services-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .service-block {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: calc((100% / 3) - 20px);
+                max-width: none;
+                padding: 20px;
+                text-align: left;
+                box-sizing: border-box;
+                gap: var(--gap);
+            }
+
+            .service-block h2 {
+                padding: 0px 0px 5px 0px;
+                border-style: solid;
+                width: 100%;
+                color: #093d5f;
+                text-align: left;
+                border-width: 0px 0px 1px 0px;
+                border-color: #093d5f;
+            }
+
+            .service-block p {
+                font-size: 1rem;
+                color: #555;
+                margin-top: 20px;
+            }
+
+            @media screen and (max-width: 600px) {
+                .service-block {
+                    width: 100%;
+                }
+            }
+        </style>
 
 
         <div class="total-services">
             <div class="section-header">
                 <h2 class="elementor-heading-title elementor-size-default"><?php echo esc_html($settings['title']); ?></h2>
-                <p class="elementor-widget-container elementor-motion-effects-element"><?php echo esc_html($settings['subtitle']); ?></p>
+                <p class="elementor-widget-container elementor-motion-effects-element">
+                    <?php echo wp_kses_post($settings['subtitle']); ?>
+                </p>
+
             </div>
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
