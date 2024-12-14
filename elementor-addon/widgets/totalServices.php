@@ -185,7 +185,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block h2 {
                 width: 100%;
                 border-style: solid;
-                text-align: left;
+                text-align: center;
                 font-family: "Graphik Medium", Sans-serif;
                 font-size: 30px;
                 font-weight: normal;
@@ -193,6 +193,13 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 border-width: 0px 0px 1px 0px;
                 color: #093d5f;
                 border-color: #093d5f;
+            }
+
+            .service-block .serviceIconAndTitle {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
             }
 
             .service-block p {
