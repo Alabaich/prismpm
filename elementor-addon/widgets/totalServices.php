@@ -156,6 +156,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 border-style: solid;
                 width: 100%;
                 color: #093d5f;
+                font-family: "Graphik Light", Sans-serif;
                 text-align: left;
                 border-width: 0px 0px 1px 0px;
                 border-color: #093d5f;
