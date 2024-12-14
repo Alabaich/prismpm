@@ -168,7 +168,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
             position: absolute;
             right: 27%;
             bottom: 15%;
-            max-width: 400px;
+            max-width: 360px;
             transition: transform 0.2s ease-out;
             z-index: 10;
         }
