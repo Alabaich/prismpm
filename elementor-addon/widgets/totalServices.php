@@ -171,15 +171,16 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
             .service-block .icon-wrapper {
                 margin-bottom: 10px;
-                width: 20px;
-                height: 20px;
+                width: 25px;
+                height: 25px;
             }
 
             .service-block .icon-wrapper i,
             .service-block .icon-wrapper svg {
-                width: 20px;
-                height: 20px;
+                width: 25px;
+                height: 25px;
                 color: #093d5f;
+                fill: #093d5f;
             }
 
             .service-block h2 {
@@ -195,6 +196,12 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 border-color: #093d5f;
             }
 
+            .serviceIconAndTitle {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
             .service-block p {
                 font-size: 1rem;
                 color: #555;
@@ -204,6 +211,14 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             @media screen and (max-width: 600px) {
                 .service-block {
                     width: 100%;
+                }
+
+                .section-header h2 {
+                    font-size: 30px;
+                }
+
+                .section-header p {
+                    padding: 0% 5% 0% 5%;
                 }
             }
         </style>
