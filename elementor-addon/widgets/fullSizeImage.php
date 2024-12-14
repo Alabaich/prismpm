@@ -150,6 +150,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         .hero-banner {
             position: relative;
             width: 100%;
+            height: 1000px;
             overflow: hidden;
         }
 
