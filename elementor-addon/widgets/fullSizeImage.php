@@ -182,6 +182,30 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
                 max-width: 150px;
                 margin: 0 auto 20px;
             }
+
+            @media (max-width: 1600px) {
+            .hero-banner {
+                max-height: 1000px; /* For screens 1600px+ */
+            }
+        }
+
+        @media (max-width: 1366px) {
+            .hero-banner {
+                max-height: 714px; /* For screens 1366px+ */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                max-height: 310px; /* For tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-banner {
+                max-height: 225px; /* For phones */
+            }
+        }
         </style>
     
         <div class="hero-banner">
