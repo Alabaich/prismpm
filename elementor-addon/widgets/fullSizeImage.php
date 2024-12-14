@@ -187,11 +187,11 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         <div class="hero-banner">
             <img 
                 src="<?php echo $desktop_image; ?>" 
-                srcset="<?php echo $phone_image; ?> 480w, 
+                srcset="<?php echo $phone_image; ?> 576w, 
                     <?php echo $tablet_image; ?> 768w, 
                     <?php echo $medium_image; ?> 1366w, 
                     <?php echo $desktop_image; ?> 1920w" 
-                sizes="(max-width: 480px) 100vw, 
+                sizes="(max-width: 576px) 100vw, 
                        (max-width: 768px) 100vw, 
                        (max-width: 1366px) 100vw, 
                        100vw"
