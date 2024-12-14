@@ -14,7 +14,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        return 'eicon-code';
+        return '0xe805';
     }
 
     public function get_categories()
@@ -70,18 +70,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
-            'icon',
-            [
-                'label' => esc_html__('Icon', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-star',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-
-        $repeater->add_control(
             'service_title',
             [
                 'label' => esc_html__('Service Title', 'elementor-addon'),
@@ -109,10 +97,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                     [
                         'service_title' => esc_html__('Service 1', 'elementor-addon'),
                         'service_description' => esc_html__('Description for service 1.', 'elementor-addon'),
-                    ],
-                    [
-                        'service_title' => esc_html__('Service 2', 'elementor-addon'),
-                        'service_description' => esc_html__('Description for service 2.', 'elementor-addon'),
                     ],
                 ],
                 'title_field' => '{{{ service_title }}}',
@@ -209,9 +193,6 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
                     <div class="service-block">
-                        <div class="icon-wrapper">
-                            <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
-                        </div>
                         <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
                         <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
                     </div>
