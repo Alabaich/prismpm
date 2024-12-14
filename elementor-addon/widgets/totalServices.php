@@ -140,7 +140,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 font-family: "Graphik Light", Sans-serif;
                 font-size: 50px;
                 font-weight: normal;
-                color: var(--e-global-color-primary);
+                color: #093d5f;
             }
 
             .section-header p {
@@ -159,9 +159,11 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 align-items: start;
-                width: 350px;
+                flex: 1 1 calc(33.333% - 20px);
+                max-width: 400px;
                 padding: 20px;
                 text-align: center;
+                box-sizing: border-box;
             }
 
             .service-block .icon-wrapper {
@@ -172,6 +174,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 padding: 0px 0px 5px 0px;
                 border-style: solid;
                 width: 100%;
+                color: #093d5f;
                 text-align: left;
                 border-width: 0px 0px 1px 0px;
                 border-color: #093d5f;
