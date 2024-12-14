@@ -113,11 +113,17 @@ class Elementor_totalServices extends \Elementor\Widget_Base
 
         <style>
             .total-services {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
                 text-align: center;
             }
 
             .section-header {
                 margin-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
             }
 
             .section-header h2 {
@@ -184,8 +190,8 @@ class Elementor_totalServices extends \Elementor\Widget_Base
                 <p class="elementor-widget-container elementor-motion-effects-element">
                     <?php echo wp_kses_post($settings['subtitle']); ?>
                 </p>
-
             </div>
+
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
                     <div class="service-block">
