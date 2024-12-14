@@ -179,8 +179,7 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             .service-block .icon-wrapper svg {
                 width: 20px;
                 height: 20px;
-                color: #000;
-                fill: #000;
+                color: #093d5f;
             }
 
             .service-block h2 {
@@ -221,10 +220,12 @@ class Elementor_totalServices extends \Elementor\Widget_Base
             <div class="services-list">
                 <?php foreach ($settings['services_list'] as $service) : ?>
                     <div class="service-block">
-                        <div class="icon-wrapper">
-                            <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
+                        <div class="serviceIconAndTitle">
+                            <div class="icon-wrapper">
+                                <?php \Elementor\Icons_Manager::render_icon($service['icon'], ['aria-hidden' => 'true']); ?>
+                            </div>
+                            <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
                         </div>
-                        <h2 class="elementor-heading-title elementor-size-default"> <?php echo esc_html($service['service_title']); ?> </h2>
                         <p class="service-description"> <?php echo esc_html($service['service_description']); ?> </p>
                     </div>
                 <?php endforeach; ?>
