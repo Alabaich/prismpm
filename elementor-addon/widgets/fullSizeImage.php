@@ -180,6 +180,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
     background: rgba(8, 62, 95, 0.75);
     padding: 15px;
     z-index: 9;
+    max-width: 50%;
 }
 
 
