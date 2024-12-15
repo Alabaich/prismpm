@@ -206,6 +206,9 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
     bottom: 0;
 }
 
+.hero-banner .hero-text {
+    left: 0;
+}
 
     .hero-banner .hero-text h1 {
         font-size: 1rem;
