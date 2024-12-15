@@ -196,6 +196,9 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 }
 
 @media (max-width: 768px) {
+    .hero-banner .hero-logo {
+    bottom: 0;
+}
 
 
     .hero-banner .hero-text h1 {
