@@ -18,6 +18,7 @@ function register_hello_world_widget( $widgets_manager ) {
 
     $widgets_manager->register( new \Elementor_switchSideImage() );
     $widgets_manager->register( new \Elementor_totalServices() );
+    $widgets_manager->register( new \Elementor_fullSizeImage() );
     $widgets_manager->register( new \Elementor_applyCTAButton() );
 
 
