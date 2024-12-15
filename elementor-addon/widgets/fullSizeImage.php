@@ -187,6 +187,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 .hero-banner .hero-text h1 {
     font-size: 3rem;
     font-weight: bold;
+    text-align: start;
     margin: 0;
     line-height: 1.2;
 }
