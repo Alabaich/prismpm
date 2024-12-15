@@ -163,6 +163,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 .hero-banner .hero-logo {
     position: absolute;
     right: 0;
+    bottom: 25px;
     width: auto;
     height: 100%;
     transition: transform 0.2s ease-out;
