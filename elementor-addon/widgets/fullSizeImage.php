@@ -151,6 +151,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
     position: relative;
     width: 100%;
     overflow: hidden;
+    aspect-ratio: 1920 / 996;
 }
 
 .hero-banner img.hero-image {
