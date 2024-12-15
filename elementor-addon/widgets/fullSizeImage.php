@@ -174,13 +174,14 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
     position: absolute;
     top: 50%;
     left: 15px;
-    transform: translateX(-50%);
+    transform: translateY(-50%);
     text-align: center;
     color: #fff;
     background: rgba(8, 62, 95, 0.75);
     padding: 15px;
     z-index: 9;
 }
+
 
 .hero-banner .hero-text h1 {
     font-size: 3rem;
