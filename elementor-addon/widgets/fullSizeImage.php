@@ -186,7 +186,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
 
 .hero-banner .hero-text h1 {
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 400;
     text-align: start;
     margin: 0;
@@ -197,7 +197,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 @media (max-width: 1366px) {
 
     .hero-banner .hero-text h1 {
-        font-size: 2rem;
+        font-size: 1.25rem;
     }
 }
 
@@ -208,7 +208,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
 
     .hero-banner .hero-text h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -216,7 +216,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
 
     .hero-banner .hero-text h1 {
-        font-size: 1rem;
+        font-size: 0.75rem;
     }
 }
 
