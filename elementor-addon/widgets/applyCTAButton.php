@@ -81,6 +81,7 @@ class Elementor_applyCTAButton extends \Elementor\Widget_Base {
 
             .apply-cta-button:hover {
                 background: #072C45; /* Slightly darker on hover */
+                color: #fff;
             }
 
             .apply-cta-button i {
