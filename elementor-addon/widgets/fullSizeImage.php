@@ -243,13 +243,16 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         </div>
 
         <script>
-        // Parallax Effect for Logo
-        document.addEventListener("scroll", function() {
-            const logo = document.getElementById("parallax-logo");
-            const scrollPosition = window.scrollY;
-            logo.style.transform = `translateY(${scrollPosition * -0.3}px)`; // Adjust parallax speed
-        });
-    </script>
+document.addEventListener("scroll", function() {
+    const logo = document.getElementById("parallax-logo");
+    const title = document.getElementById("parallax-title");
+    const scrollPosition = window.scrollY;
+
+    // Adjust the multiplier as desired for different parallax speeds
+    logo.style.transform = `translateY(${scrollPosition * -0.3}px)`;
+    title.style.transform = `translateY(${scrollPosition * -0.2}px)`;
+});
+</script>
         <?php
     }
     
