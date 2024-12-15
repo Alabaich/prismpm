@@ -173,10 +173,12 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 .hero-banner .hero-text {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 15px;
+    transform: translateX(-50%);
     text-align: center;
     color: #fff;
+    background: rgba(8, 62, 95, 0.75);
+    padding: 15px;
     z-index: 9;
 }
 
@@ -191,7 +193,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 @media (max-width: 1366px) {
 
     .hero-banner .hero-text h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 }
 
@@ -202,7 +204,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
 
     .hero-banner .hero-text h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -210,7 +212,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 
 
     .hero-banner .hero-text h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
