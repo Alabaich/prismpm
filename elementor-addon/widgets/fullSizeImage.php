@@ -147,126 +147,92 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $title_text = esc_html( $settings['title_text'] );
         ?>
     <style>
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            height: 1000px;
-            overflow: hidden;
-        }
+.hero-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 
-        .hero-banner img.hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: right center;
-        }
+.hero-banner img.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-        .hero-banner .hero-logo {
-            position: absolute;
-            right: 27%;
-            bottom: 15%;
-            max-width: 360px;
-            transition: transform 0.2s ease-out;
-            z-index: 10;
-        }
+/* Positioning adjustments for logo and text */
+.hero-banner .hero-logo {
+    position: absolute;
+    right: 27%;
+    bottom: 15%;
+    max-width: 360px;
+    transition: transform 0.2s ease-out;
+    z-index: 10;
+}
 
-        .hero-banner .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #fff;
-            z-index: 9;
-        }
+.hero-banner .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 9;
+}
 
-        .hero-banner .hero-text h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 0;
-            line-height: 1.2;
-        }
+.hero-banner .hero-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+}
 
-        /* Responsive Adjustments */
-        @media (max-width: 1366px) {
-            .hero-banner .hero-logo {
-                max-width: 150px;
-                right: 20%;
-                bottom: 8%;
-                max-width: 300px;
-            }
 
-            .hero-banner .hero-text h1 {
-                font-size: 2.5rem;
-            }
-        }
+@media (max-width: 1366px) {
+    .hero-banner .hero-logo {
+        max-width: 300px;
+        right: 20%;
+        bottom: 8%;
+    }
 
-        @media (max-width: 768px) {
-            .hero-banner .hero-logo {
-                max-width: 100px;
-                right: 15%;
-                bottom: 5%;
-                max-width: 200px;
-            }
+    .hero-banner .hero-text h1 {
+        font-size: 2.5rem;
+    }
+}
 
-            .hero-banner .hero-text h1 {
-                font-size: 2rem;
-            }
-        }
+@media (max-width: 768px) {
+    .hero-banner .hero-logo {
+        max-width: 200px;
+        right: 15%;
+        bottom: 5%;
+    }
 
-        @media (max-width: 480px) {
-            .hero-banner .hero-logo {
-                max-width: 80px;
-                right: 10%;
-                bottom: 5%;
-                max-width: 150px;
-            }
+    .hero-banner .hero-text h1 {
+        font-size: 2rem;
+    }
+}
 
-            .hero-banner .hero-text h1 {
-                font-size: 1.5rem;
-            }
-        }
+@media (max-width: 480px) {
+    .hero-banner .hero-logo {
+        max-width: 150px;
+        right: 10%;
+        bottom: 5%;
+    }
 
-        @media (max-width: 1600px) {
-            .hero-banner {
-                height: 1000px;
-                max-height: 1000px; /* For screens 1600px+ */
-            }
-        }
+    .hero-banner .hero-text h1 {
+        font-size: 1.5rem;
+    }
+}
 
-        @media (max-width: 1366px) {
-            .hero-banner {
-                height: 714px;
-
-                max-height: 714px; /* For screens 1366px+ */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-banner {
-                height: 310px;
-                max-height: 310px; /* For tablets */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-banner {
-                height: 225px;
-            }
-        }
         </style>
     
         <div class="hero-banner">
             <img 
                 src="<?php echo $desktop_image; ?>" 
-                srcset="<?php echo $phone_image; ?> 576w, 
+                srcset="<?php echo $phone_image; ?> 600w, 
                     <?php echo $tablet_image; ?> 768w, 
                     <?php echo $medium_image; ?> 1366w, 
                     <?php echo $desktop_image; ?> 1920w" 
-                sizes="(max-width: 576px) 100vw, 
+                sizes="(max-width: 600px) 100vw, 
                        (max-width: 768px) 100vw, 
                        (max-width: 1366px) 100vw, 
                        100vw"
