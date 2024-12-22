@@ -79,6 +79,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 display: flex;
                 flex-wrap: nowrap;
                 gap: 20px;
+                padding: 25px 5%;
+                width: 100%;
             }
     
             .property-links {
@@ -128,8 +130,10 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     fadeAnimation: true,
                 });
     
-                // Add OpenStreetMap tile layer
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                // Use Carto Positron tile layer
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>',
+                    subdomains: 'abcd',
                     maxZoom: 19,
                 }).addTo(map);
     
@@ -162,6 +166,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
         <?php
     }
+    
     
 }
 
