@@ -80,14 +80,14 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 flex-wrap: nowrap;
                 gap: 20px;
             }
-
+    
             .property-links {
                 width: 30%;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
             }
-
+    
             .property-links button {
                 padding: 10px;
                 background-color: #08405F;
@@ -96,18 +96,18 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 cursor: pointer;
                 text-align: left;
             }
-
+    
             .property-links button:hover {
                 background-color: #062D42;
             }
-
+    
             .map-container {
                 width: 70%;
                 height: 400px;
                 border: 1px solid #ccc;
             }
         </style>
-
+    
         <div class="property-map-container">
             <div class="property-links">
                 <?php foreach ($settings['property_list'] as $index => $property) : ?>
@@ -118,26 +118,43 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             </div>
             <div id="property-map" class="map-container"></div>
         </div>
-
+    
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const map = L.map('property-map').setView([0, 0], 13); // Default map center
+                const map = L.map('property-map', {
+                    zoom: 13,
+                    center: [0, 0],
+                    scrollWheelZoom: false,
+                    fadeAnimation: true,
+                });
+    
+                // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                 }).addTo(map);
-
+    
+                // Add a single marker and reuse it for smooth transition
+                const marker = L.marker([0, 0]).addTo(map);
+    
                 const buttons = document.querySelectorAll(".property-link");
                 buttons.forEach(button => {
                     button.addEventListener("click", function () {
                         const lat = parseFloat(this.getAttribute("data-lat"));
                         const lng = parseFloat(this.getAttribute("data-lng"));
-                        map.setView([lat, lng], 15);
-                        L.marker([lat, lng]).addTo(map);
+                        
+                        // Smooth panning to the new position
+                        map.flyTo([lat, lng], 15, {
+                            animate: true,
+                            duration: 1.5, // Duration of the animation
+                        });
+    
+                        // Update marker position without re-adding it
+                        marker.setLatLng([lat, lng]);
                     });
                 });
             });
         </script>
-
+    
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -145,5 +162,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
         <?php
     }
+    
 }
 
