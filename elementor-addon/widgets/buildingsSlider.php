@@ -131,17 +131,58 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 
             const splide = new Splide('.splide', {
-                type: 'loop',
-                drag: 'free',
-                focus: 'center',
+                type   : 'loop',
+                drag   : 'free',
+                focus  : 'center',
                 perPage: 3,
                 autoScroll: {
                     speed: 1,
+                },
+                breakpoints: {
+                    768: {
+                        perPage: 1,  // Show 1 slide per page on smaller screens
+                    },
                 },
             });
 
             splide.mount();
         </script>
+
+        <style>
+            /* Optional: Add custom styles for the slider */
+            .splide__list {
+                display: flex;
+                gap: 20px;
+            }
+
+            .splide__slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+
+            .building-slide {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+
+            .building-info {
+                margin-top: 10px;
+            }
+
+            .button {
+                margin-top: 10px;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+        </style>
 
         <?php
     }
