@@ -107,7 +107,30 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         if (empty($settings['slides'])) {
             return;
         }
+
+        // Add Splide CSS and JS inline
         ?>
+        <style>
+            /* Splide CSS */
+            @import url('https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.2/splide.min.css');
+        </style>
+        <script>
+            // Add Splide JS
+            document.addEventListener('DOMContentLoaded', function () {
+                var script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.2/splide.min.js';
+                script.onload = function () {
+                    var splide = new Splide('.splide', {
+                        type: 'loop',
+                        perPage: 3,
+                        focus: 'center',
+                    });
+                    splide.mount();
+                };
+                document.head.appendChild(script);
+            });
+        </script>
+
         <div class="splide buildings-slider">
             <div class="splide__track">
                 <ul class="splide__list">
@@ -146,15 +169,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 </ul>
             </div>
         </div>
-
-        <script>
-            var splide = new Splide( '.splide', {
-                type   : 'loop',
-                perPage: 3,
-                focus  : 'center',
-            } );
-            splide.mount();
-        </script>
 
         <?php
     }
