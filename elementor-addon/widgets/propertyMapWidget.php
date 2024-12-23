@@ -121,61 +121,38 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .property-links {
-    width: 49%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.property-link {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 15px;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    color: #999; /* Default inactive text color */
-}
-
-.property-link.active {
-    color: #093D5F;
-    border-color: #093D5F;
-}
-
-.property-link.active .property-icon {
-    color: #093D5F; /* Active icon color */
-}
-
-.property-link .property-icon {
-    flex-shrink: 0;
-    width: 30px;
-    height: 40px;
-    color: #999; /* Inactive icon color */
-    transition: color 0.3s;
-}
-
-.property-link .property-text {
-    flex: 1;
-}
-
-.property-link h6 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: inherit; /* Inherit color from the parent span */
-    transition: color 0.3s;
-}
-
-.property-link p {
-    margin: 5px 0 0;
-    font-size: 14px;
-    color: inherit; /* Inherit color from the parent span */
-    transition: color 0.3s;
-}
-
+                width: 49%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            .property-links .property-link {
+                display: block;
+                padding: 10px;
+                cursor: pointer;
+                background-color: transparent;
+                border: 1px solid transparent;
+                border-radius: 5px;
+                text-align: left;
+                transition: background-color 0.3s, border-color 0.3s;
+            }
+    
+            .property-links .property-link:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+                border-color: #ccc;
+            }
+    
+            .property-links .property-link strong {
+                font-size: 16px;
+                font-weight: bold;
+            }
+    
+            .property-links .property-link p {
+                margin: 5px 0 0;
+                font-size: 14px;
+                color: #666;
+            }
     
             .mapContainer {
                 width: 49%;
@@ -335,21 +312,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             iconAnchor: [15, 40],
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-    const buttons = document.querySelectorAll(".property-link");
-
-    buttons.forEach((button) => {
-        button.addEventListener("click", function () {
-            // Remove active class from all buttons
-            buttons.forEach((btn) => btn.classList.remove("active"));
-
-            // Add active class to the clicked button
-            this.classList.add("active");
-        });
-    });
-});
-
-
         const activeTitle = document.querySelector(".property-info-title");
         const activeAddress = document.querySelector(".property-info-address");
         const activeImage = document.querySelector(".property-info-image");
@@ -415,8 +377,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         });
     });
 </script>
-
-
 
     
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
