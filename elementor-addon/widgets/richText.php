@@ -178,7 +178,6 @@ class Elementor_richText extends \Elementor\Widget_Base
             }
 
             .richText p {
-                padding: 0% 10% 0% 10%;
                 font-family: "Graphik Light", Sans-serif;
                 font-size: 16px;
                 font-weight: 400;
@@ -202,8 +201,7 @@ class Elementor_richText extends \Elementor\Widget_Base
             .buttonWrapper .btn {
                 padding: 10px 20px;
                 text-decoration: none;
-                color: white;
-                border-radius: 5px;
+                color: #093D5F;
                 display: inline-block;
             }
         </style>
