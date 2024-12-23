@@ -274,16 +274,14 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                                         <rect class="st0" width="92.088" height="92.088"/>
                                         <polygon class="st0" points="46.044,122.036 31.947,97.621 17.851,73.205 46.044,73.205 74.237,73.205 60.14,97.621"/>
                                     </g>
-                                    <g/><g/><g/><g/><g/><g/>
                                     <text
                                         x="50%"
-                                        y="50%"
+                                        y="40%"
                                         text-anchor="middle"
                                         dominant-baseline="middle"
                                         fill="#FFFFFF"
-                                        font-size="16"
-                                        font-weight="bold"
-                                        font-family="Arial">
+                                        font-size="48"
+                                        font-family="inherit">
                                         <?php echo $index + 1; ?>
                                     </text>
                                 </svg>
