@@ -28,28 +28,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
 
         $repeater = new \Elementor\Repeater();
 
-        $repeater->add_control(
-            'slide_image',
-            [
-                'label' => esc_html__('Image', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $repeater->add_control(
-            'image_alt',
-            [
-                'label' => esc_html__('Image Alt Text', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => '',
-                'placeholder' => esc_html__('Enter alt text for image', 'elementor-addon'),
-            ]
-        );
-
+        // Неизменяемые заголовки
         $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
+        
+        // Для каждого фиксированного заголовка создаем поле
         foreach ($fixed_titles as $title) {
             $repeater->add_control(
                 strtolower($title) . '_text',
@@ -62,6 +44,19 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             );
         }
 
+        // Добавляем поле для изображения (если нужно)
+        $repeater->add_control(
+            'slide_image',
+            [
+                'label' => esc_html__('Image', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+            ]
+        );
+
+        // Добавляем поле для текста кнопки
         $repeater->add_control(
             'button_text',
             [
@@ -71,6 +66,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             ]
         );
 
+        // Добавляем URL для кнопки
         $repeater->add_control(
             'button_url',
             [
@@ -80,6 +76,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             ]
         );
 
+        // Добавляем контрол для репитера
         $this->add_control(
             'slides',
             [
@@ -87,7 +84,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [],
-                'title_field' => '{{{ building_text }}}',
+                'title_field' => '{{{ building_text }}}', // Это будет выводить значение "Building" из каждого слайда
             ]
         );
 
@@ -97,6 +94,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
+        // Если слайды пустые, ничего не выводим
         if (empty($settings['slides'])) {
             return;
         }
@@ -113,6 +111,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                                 class="slider-image"
                             />
                         <?php endif; ?>
+
                         <div class="slider-content">
                             <?php
                             $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
@@ -126,6 +125,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                                 <?php endif;
                             endforeach;
                             ?>
+
                             <?php if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])): ?>
                                 <div class="slider-button">
                                     <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="btn">
@@ -138,67 +138,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 <?php endforeach; ?>
             </ul>
         </div>
-
-        <!-- Slick Slider CSS -->
-        <style type="text/css">
-            .slick-slide img {
-                width: 100%;
-                height: auto;
-            }
-            .buildings-list {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-            .slider-content {
-                padding: 20px;
-                background-color: #fff;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .slider-button a {
-                padding: 10px 20px;
-                background-color: #0073e6;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-            }
-            .slider-button a:hover {
-                background-color: #005bb5;
-            }
-        </style>
-
-        <!-- Slick Slider JS -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-        <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $('.buildings-list').slick({
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
-                });
-            });
-        </script>
-
         <?php
     }
 }
+?>
