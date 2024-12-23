@@ -274,7 +274,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-description="<?php echo esc_attr($property['property_description']); ?>" 
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
                               data-images='<?php echo json_encode($property['property_images']); ?>'
-                              data-url="<?php echo esc_url($property['property_url']['url']); ?>"
+                              data-url="<?php echo isset($property['property_url']['url']) ? esc_url($property['property_url']['url']) : ''; ?>"
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
                             
                             <!-- Inner container to hold icon + text -->
@@ -409,18 +409,20 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     const activeImage = document.querySelector(".property-info-image");
     const activeLink = document.querySelector(".property-info-link");
 
+    // Update title, address, and image
     activeTitle.textContent = title;
     activeAddress.textContent = address;
-
     activeImage.innerHTML = imageUrl
         ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
         : '<p>No Image Available</p>';
 
+    // Update link
     if (activeLink) {
         activeLink.href = url || '#';
         activeLink.style.display = url ? 'block' : 'none';
     }
 };
+
 
     
                 buttons.forEach((button, index) => {
