@@ -1,23 +1,29 @@
 <?php
 
-class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
-    public function get_name() {
+class Elementor_BuildingsSlider extends \Elementor\Widget_Base
+{
+    public function get_name()
+    {
         return 'buildings_slider';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Buildings Slider', 'elementor-addon');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-slider-3d';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['basic'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->start_controls_section(
             'slider_content_section',
             [
@@ -29,7 +35,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
         $repeater = new \Elementor\Repeater();
 
         $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
-        
+
         foreach ($fixed_titles as $title) {
             $repeater->add_control(
                 strtolower($title) . '_text',
@@ -85,14 +91,15 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
         if (empty($settings['slides'])) {
             return;
         }
 
-        ?>
+?>
         <style>
             .buildings-slider {
                 max-width: 1200px;
@@ -111,7 +118,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
 
             .building-item {
                 width: 100% !important;
+                /* Устанавливаем фиксированную ширину для каждого элемента */
                 box-sizing: border-box;
+                flex-shrink: 0;
+                /* Чтобы элементы не сжимались */
             }
 
             .slider-image {
@@ -155,11 +165,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 <?php foreach ($settings['slides'] as $slide): ?>
                     <li class="building-item">
                         <?php if (!empty($slide['slide_image']['url'])): ?>
-                            <img 
-                                src="<?php echo esc_url($slide['slide_image']['url']); ?>" 
-                                alt="<?php echo esc_attr($slide['image_alt']); ?>" 
-                                class="slider-image"
-                            />
+                            <img
+                                src="<?php echo esc_url($slide['slide_image']['url']); ?>"
+                                alt="<?php echo esc_attr($slide['image_alt']); ?>"
+                                class="slider-image" />
                         <?php endif; ?>
 
                         <div class="slider-content">
@@ -169,10 +178,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                                 $key = strtolower($title) . '_text';
                                 if (!empty($slide[$key])): ?>
                                     <div class="slider-text-block">
-                                        <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong> 
+                                        <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong>
                                         <?php echo esc_html($slide[$key]); ?>
                                     </div>
-                                <?php endif;
+                            <?php endif;
                             endforeach;
                             ?>
 
@@ -195,17 +204,16 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 $('.buildings-list').slick({
-                    slidesToShow: 3, 
-                    slidesToScroll: 1, 
-                    autoplay: true, 
-                    autoplaySpeed: 3000, 
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
                     prevArrow: '<button type="button" class="slick-prev">Previous</button>',
                     nextArrow: '<button type="button" class="slick-next">Next</button>',
-                    responsive: [
-                        {
+                    responsive: [{
                             breakpoint: 1024,
                             settings: {
-                                slidesToShow: 2, 
+                                slidesToShow: 2,
                                 slidesToScroll: 1
                             }
                         },
@@ -220,7 +228,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 });
             });
         </script>
-        <?php
+<?php
     }
 }
 
