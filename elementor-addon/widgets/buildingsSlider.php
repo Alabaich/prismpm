@@ -108,68 +108,98 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             return;
         }
 
-        // Add Splide CSS and JS inline
-        ?>
+?>
+        <div class="buildings-slider">
+            <ul class="buildings-list">
+                <?php foreach ($settings['slides'] as $slide): ?>
+                    <li class="building-item">
+                        <?php if (!empty($slide['slide_image']['url'])): ?>
+                            <img
+                                src="<?php echo esc_url($slide['slide_image']['url']); ?>"
+                                alt="<?php echo esc_attr($slide['image_alt']); ?>"
+                                class="slider-image" />
+                        <?php endif; ?>
+                        <div class="slider-content">
+                            <?php
+                            $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
+                            foreach ($fixed_titles as $title):
+                                $key = strtolower($title) . '_text';
+                                if (!empty($slide[$key])): ?>
+                                    <div class="slider-text-block">
+                                        <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong>
+                                        <?php echo esc_html($slide[$key]); ?>
+                                    </div>
+                            <?php endif;
+                            endforeach;
+                            ?>
+                            <?php if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])): ?>
+                                <div class="slider-button">
+                                    <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="btn">
+                                        <?php echo esc_html($slide['button_text']); ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
         <style>
-            /* Splide CSS */
-            @import url('https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.2/splide.min.css');
+            /* Slick Slider Styles */
+            .buildings-slider .slick-slide {
+                position: relative;
+            }
+
+            .buildings-slider .slider-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            .buildings-slider .slider-button .btn {
+                background-color: #0073e6;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            .buildings-slider .slider-button .btn:hover {
+                background-color: #005bb5;
+            }
         </style>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
         <script>
-            // Add Splide JS
-            document.addEventListener('DOMContentLoaded', function () {
-                var script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.2/splide.min.js';
-                script.onload = function () {
-                    var splide = new Splide('.splide', {
-                        type: 'loop',
-                        perPage: 3,
-                        focus: 'center',
-                    });
-                    splide.mount();
-                };
-                document.head.appendChild(script);
+            jQuery(document).ready(function($) {
+                // Initialize Slick Slider
+                $('.buildings-list').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    arrows: true,
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }, ]
+                });
             });
         </script>
 
-        <div class="splide buildings-slider">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <?php foreach ($settings['slides'] as $slide): ?>
-                        <li class="splide__slide slider-item">
-                            <?php if (!empty($slide['slide_image']['url'])): ?>
-                                <img 
-                                    src="<?php echo esc_url($slide['slide_image']['url']); ?>" 
-                                    alt="<?php echo esc_attr($slide['image_alt']); ?>" 
-                                    class="slider-image"
-                                />
-                            <?php endif; ?>
-                            <div class="slider-content">
-                                <?php
-                                $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
-                                foreach ($fixed_titles as $title):
-                                    $key = strtolower($title) . '_text';
-                                    if (!empty($slide[$key])): ?>
-                                        <div class="slider-text-block">
-                                            <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong> 
-                                            <?php echo esc_html($slide[$key]); ?>
-                                        </div>
-                                    <?php endif;
-                                endforeach;
-                                ?>
-                                <?php if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])): ?>
-                                    <div class="slider-button">
-                                        <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="btn">
-                                            <?php echo esc_html($slide['button_text']); ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </div>
-
-        <?php
+<?php
     }
 }
