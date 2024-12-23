@@ -151,7 +151,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 display: flex;
                 flex-direction: row; /* or column if you prefer vertical stacking */
                 align-items: center;
-                gap: 10px;
+                gap: 20px;
             }
     
             /* The icon (circle with number) */
