@@ -223,6 +223,12 @@ class Elementor_richText extends \Elementor\Widget_Base
                 border-color: #093D5F;
             }
 
+            @media (max-width: 768px) {
+                .richText h1 {
+                    font-size: 30px;
+                }
+            }
+
             @media (max-width: 480px) {
                 .richText h1 {
                     font-size: 30px;
