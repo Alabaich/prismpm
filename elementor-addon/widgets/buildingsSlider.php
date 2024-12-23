@@ -116,12 +116,16 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 overflow: hidden;
             }
 
+            .slick-track {
+                width: 350px !important;
+                display: flex;
+                gap: 25px;
+            }
+
             .building-item {
                 width: 100% !important;
-                /* Устанавливаем фиксированную ширину для каждого элемента */
                 box-sizing: border-box;
                 flex-shrink: 0;
-                /* Чтобы элементы не сжимались */
             }
 
             .slider-image {
