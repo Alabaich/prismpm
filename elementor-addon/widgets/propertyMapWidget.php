@@ -121,38 +121,57 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .property-links {
-                width: 49%;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-    
-            .property-links .property-link {
-                display: block;
-                padding: 10px;
-                cursor: pointer;
-                background-color: transparent;
-                border: 1px solid transparent;
-                border-radius: 5px;
-                text-align: left;
-                transition: background-color 0.3s, border-color 0.3s;
-            }
-    
-            .property-links .property-link:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-                border-color: #ccc;
-            }
-    
-            .property-links .property-link strong {
-                font-size: 16px;
-                font-weight: bold;
-            }
-    
-            .property-links .property-link p {
-                margin: 5px 0 0;
-                font-size: 14px;
-                color: #666;
-            }
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.property-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    color: #999; /* Default inactive color */
+}
+
+.property-link.active {
+    color: #093D5F;
+    border-color: #093D5F;
+}
+
+.property-link.active .property-icon {
+    color: #093D5F; /* Active color for the icon */
+}
+
+.property-link .property-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 40px;
+    color: #999; /* Inactive icon color */
+    transition: color 0.3s;
+}
+
+.property-link h6 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: inherit; /* Inherit color from the parent span */
+    transition: color 0.3s;
+}
+
+.property-link p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: inherit; /* Inherit color from the parent span */
+    transition: color 0.3s;
+}
+
     
             .mapContainer {
                 width: 49%;
@@ -212,20 +231,31 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <div class="propertiesContainer">
             <h3>Discover Our Rental Properties</h3>
             <div class="property-map-container">
-                <div class="property-links">
-                    <?php foreach ($settings['property_list'] as $index => $property) : ?>
-                        <span class="property-link" 
-                              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
-                              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
-                              data-description="<?php echo esc_attr($property['property_description']); ?>" 
-                              data-address="<?php echo esc_attr($property['property_address']); ?>" 
-                              data-images='<?php echo json_encode($property['property_images']); ?>'
-                              <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
-                            <strong><?php echo esc_html($property['property_name']); ?></strong>
-                            <p><?php echo esc_html($property['property_description']); ?></p>
-                        </span>
-                    <?php endforeach; ?>
-                </div>
+            <div class="property-links">
+    <?php foreach ($settings['property_list'] as $index => $property) : ?>
+        <span class="property-link <?php echo $index === 0 ? 'active' : ''; ?>" 
+              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
+              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
+              data-description="<?php echo esc_attr($property['property_description']); ?>" 
+              data-address="<?php echo esc_attr($property['property_address']); ?>" 
+              data-images='<?php echo json_encode($property['property_images']); ?>'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40" fill="none" class="property-icon">
+                <g clip-path="url(#clip0_57_2)">
+                    <path d="M30 0H0V30.1838H30V0Z" fill="currentColor"/>
+                    <path d="M15 40L10.4079 31.9974L5.81516 23.9948H15H24.1848L19.5921 31.9974L15 40Z" fill="currentColor"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_57_2">
+                        <rect width="30" height="40" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+            <h6 class="property-title"><?php echo esc_html($property['property_name']); ?></h6>
+            <p class="property-description"><?php echo esc_html($property['property_description']); ?></p>
+        </span>
+    <?php endforeach; ?>
+</div>
+
                 <div class="mapContainer">
                     <div id="property-map" class="map-container"></div>
                     <div class="property-info-block">
