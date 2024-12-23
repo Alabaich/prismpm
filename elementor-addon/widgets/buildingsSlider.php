@@ -147,21 +147,15 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             </div>
         </div>
 
-        <!-- Include Splide CSS and JS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/css/splide.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/js/splide.min.js"></script>
-
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var splide = new Splide('.splide', {
-                    type   : 'loop',          // Loop through slides
-                    perPage: 3,               // Number of slides to show per page
-                    perMove: 1,               // Move 1 slide per time
-                });
-
-                splide.mount();
-            });
+            var splide = new Splide( '.splide', {
+                type   : 'loop',
+                perPage: 3,
+                focus  : 'center',
+            } );
+            splide.mount();
         </script>
+
         <?php
     }
 }
