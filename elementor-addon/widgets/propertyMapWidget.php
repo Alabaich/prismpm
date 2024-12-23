@@ -401,8 +401,10 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const buttons = document.querySelectorAll(".property-link");
                 const markers = [];
     
+
                 const updatePropertyInfo = (title, address, imageUrl, linkUrl) => {
-                    console.log(linkUrl)
+    console.log("URL passed to updatePropertyInfo:", linkUrl); // Debugging output
+
     const activeTitle = document.querySelector(".property-info-title");
     const activeAddress = document.querySelector(".property-info-address");
     const activeImage = document.querySelector(".property-info-image");
@@ -411,58 +413,52 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     // Update title, address, and image
     activeTitle.textContent = title;
     activeAddress.textContent = address;
+
     activeImage.innerHTML = imageUrl
         ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
         : '<p>No Image Available</p>';
 
-    // Update link
+    // Ensure the URL is valid
     if (activeLink) {
-        activeLink.href = linkUrl || '#';
+        activeLink.href = typeof linkUrl === 'string' && linkUrl.trim() !== '' ? linkUrl : '#';
         activeLink.style.display = linkUrl ? 'block' : 'none';
     }
 };
 
 
     
-                buttons.forEach((button, index) => {
-                    const lat = parseFloat(button.getAttribute("data-lat"));
-                    const lng = parseFloat(button.getAttribute("data-lng"));
-                    // Now we look for <h6> instead of <strong>
-                    const title = button.querySelector("h6").textContent;
-                    const address = button.getAttribute("data-address");
-                    const images = JSON.parse(button.getAttribute("data-images"));
-                    const firstImage = images && images[0] ? images[0].url : null;
+buttons.forEach((button, index) => {
+    const lat = parseFloat(button.getAttribute("data-lat"));
+    const lng = parseFloat(button.getAttribute("data-lng"));
+    const title = button.querySelector("h6").textContent;
+    const address = button.getAttribute("data-address");
+    const images = JSON.parse(button.getAttribute("data-images"));
+    const firstImage = images && images[0] ? images[0].url : null;
 
-                    const linkUrl = button.getAttribute("data-url");
+    const linkUrl = button.getAttribute("data-url") || ''; // Ensure a string is retrieved
 
-button.addEventListener("click", () => {
-    updatePropertyInfo(title, address, firstImage, linkUrl);
+    button.addEventListener("click", () => {
+        updatePropertyInfo(title, address, firstImage, linkUrl);
+    });
+
+    const marker = L.marker([lat, lng], {
+        icon: index === 0 ? activeIcon : inactiveIcon,
+    }).addTo(map);
+
+    marker.on("click", () => {
+        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+        updatePropertyInfo(title, address, firstImage, linkUrl); // Use validated URL
+        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
+    });
+
+    markers.push(marker);
+
+    if (index === 0) {
+        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+        updatePropertyInfo(title, address, firstImage, linkUrl);
+    }
 });
-    
-                    const marker = L.marker([lat, lng], {
-                        icon: index === 0 ? activeIcon : inactiveIcon,
-                    }).addTo(map);
-    
-                    marker.on("click", () => {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
-    
-                    markers.push(marker);
-    
-                    if (index === 0) {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                    }
-    
-                    button.addEventListener("click", () => {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
-                });
-            });
+
         </script>
     
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
