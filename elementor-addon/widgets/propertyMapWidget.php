@@ -136,10 +136,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 border-radius: 5px;
                 text-align: left;
                 transition: background-color 0.3s, border-color 0.3s;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
             }
     
             .property-links .property-link:hover {
@@ -225,33 +221,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
                               data-images='<?php echo json_encode($property['property_images']); ?>'
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
-                              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 53.008 70.247" style="enable-background:new 0 0 53.008 70.247;" xml:space="preserve">
-<g>
-	<rect style="fill:#083E5F;" width="53.008" height="53.008"/>
-	<polygon style="fill:#083E5F;" points="26.504,70.247 18.39,56.193 10.275,42.139 26.504,42.139 42.733,42.139 34.618,56.193  "/>
-</g>
-<g id="Group_165_00000079456985974355619680000000723066802891853475_" transform="translate(32.313)">
-	<path id="Path_1802_00000054257242555282270560000005141572564971228607_" style="fill:#FFFFFF;" d="M-5.822,38.108h-11.4   l11.507-7.41L5.365,36.1h5.441L4.102,24.486L-5.822,7.312l-9.911,17.174l-9.911,17.174h17.959l3.539-3.539h-1.676V38.108z    M1.215,25.976L1.215,25.976l4.004,6.931l-9.631-4.683V16.225l5.614,9.724L1.215,25.976z M-12.833,25.95l5.614-9.724v12.105   l-11.121,7.157L-12.833,25.95z"/>
-	<path id="Path_1803_00000125601528014637803720000011345230273618210699_" style="fill:#FFFFFF;" d="M11.963,38.108l-3.738,0.013   h-9.724l-3.539,3.539h19.063L11.963,38.108z"/>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-                              <span>
-                              <h6><?php echo esc_html($property['property_name']); ?></h6>
-                              <p><?php echo esc_html($property['property_description']); ?></p>
-                              </span>
-
+                            <strong><?php echo esc_html($property['property_name']); ?></strong>
+                            <p><?php echo esc_html($property['property_description']); ?></p>
                         </span>
                     <?php endforeach; ?>
                 </div>
