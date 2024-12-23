@@ -147,6 +147,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             </div>
         </div>
 
+        <!-- Include Splide CSS and JS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/css/splide.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/js/splide.min.js"></script>
+
         <style>
             .buildings-slider {
                 margin: 20px auto;
@@ -158,6 +162,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 border: 1px solid #ddd;
                 border-radius: 8px;
                 text-align: center;
+                box-sizing: border-box;
             }
             .slider-image {
                 max-width: 100%;
@@ -187,22 +192,20 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             }
         </style>
 
-        <!-- Include Splide CSS and JS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/css/splide.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/js/splide.min.js"></script>
-
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var splide = new Splide('.buildings-slider', {
-                    perPage: 3,
-                    rewind: true,
-                    gap: '1rem',
+                    type       : 'slide',     // Make sure the slider type is 'slide'
+                    perPage    : 3,            // Number of items per page
+                    rewind     : true,         // Loop the slider
+                    gap        : '1rem',       // Gap between items
+                    focus      : 'center',     // Focus the center item
                     breakpoints: {
                         768: {
-                            perPage: 1,
+                            perPage: 1,        // Show 1 slide per page for mobile devices
                         },
                         1024: {
-                            perPage: 2,
+                            perPage: 2,        // Show 2 slides per page for tablets
                         },
                     },
                 });
