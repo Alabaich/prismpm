@@ -149,11 +149,23 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
 
             .button {
                 margin-top: 10px;
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: #fff;
                 text-decoration: none;
-                border-radius: 5px;
+                padding: 10px 20px;
+                color: #fff;
+                background-color: #093D5F;
+                display: inline-block;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 12px;
+                font-weight: normal;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                font-size: 16px;
+            }
+
+            .button:hover {
+                background-color: #fff;
+                color: #093D5F;
+                border-color: #093D5F;
             }
         </style>
 
@@ -162,7 +174,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 <div class="building-block">
                     <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
                     <div class="building-info">
-                        <h3><?php echo esc_html($slide['building_text']); ?></h3>
+                        <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
                         <p><strong>Units:</strong> <?php echo esc_html($slide['units_text']); ?></p>
