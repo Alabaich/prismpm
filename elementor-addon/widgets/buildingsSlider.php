@@ -100,81 +100,30 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         }
 ?>
 
-        <div class="splide">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <?php foreach ($settings['slides'] as $slide): ?>
-                        <li class="splide__slide">
-                            <div class="building-slide">
-                                <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
-                                <div class="building-info">
-                                    <h3><?php echo esc_html($slide['building_text']); ?></h3>
-                                    <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
-                                    <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
-                                    <p><strong>Units:</strong> <?php echo esc_html($slide['units_text']); ?></p>
-                                    <p><strong>Completed:</strong> <?php echo esc_html($slide['completed_text']); ?></p>
-                                    <?php if (!empty($slide['button_url']['url'])): ?>
-                                        <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button">
-                                            <?php echo esc_html($slide['button_text']); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </div>
-
-        <script type="module">
-            import Splide from '@splidejs/splide';
-            import {
-                AutoScroll
-            } from '@splidejs/splide-extension-auto-scroll';
-
-            const splide = new Splide('.splide', {
-                type: 'loop',
-                drag: 'free',
-                focus: 'center',
-                perPage: 3,
-                autoScroll: {
-                    speed: 1,
-                },
-                breakpoints: {
-                    768: {
-                        perPage: 1, // Show 1 slide per page on smaller screens
-                    },
-                },
-            });
-
-            splide.mount();
-        </script>
-
         <style>
-            /* Optional: Add custom styles for the slider */
-            .splide__list {
-                display: flex;
-                gap: 100px;
-            }
-
-            .splide__slide {
+            .building-blocks-container {
                 display: flex;
                 justify-content: center;
-                align-items: center;
-                width: 100%;
+                flex-wrap: wrap;
+                gap: 20px;
+                align-items: flex-start;
             }
 
-            .building-slide {
+            .building-block {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                max-width: 300px;
                 width: 100%;
+                box-sizing: border-box;
             }
 
-            .building-slide img {
-                height: 300px;
+            .building-block img {
                 width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: cover;
             }
 
             .building-info {
@@ -198,6 +147,26 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 border-radius: 5px;
             }
         </style>
+
+        <div class="building-blocks-container">
+            <?php foreach ($settings['slides'] as $slide): ?>
+                <div class="building-block">
+                    <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
+                    <div class="building-info">
+                        <h3><?php echo esc_html($slide['building_text']); ?></h3>
+                        <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
+                        <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
+                        <p><strong>Units:</strong> <?php echo esc_html($slide['units_text']); ?></p>
+                        <p><strong>Completed:</strong> <?php echo esc_html($slide['completed_text']); ?></p>
+                        <?php if (!empty($slide['button_url']['url'])): ?>
+                            <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button">
+                                <?php echo esc_html($slide['button_text']); ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
 <?php
     }
