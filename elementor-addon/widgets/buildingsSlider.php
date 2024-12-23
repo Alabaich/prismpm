@@ -107,6 +107,8 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 flex-wrap: wrap;
                 gap: 70px;
                 align-items: flex-start;
+                padding: 0px 15px;
+                width: 100%;
             }
 
             .building-block {
@@ -167,6 +169,20 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 background-color: #fff;
                 color: #093D5F;
                 border-color: #093D5F;
+            }
+
+            @media screen and (max-width: 600px) {
+                .building-block img {
+                    max-height: 250px;
+                }
+
+                .building-info p {
+                    font-size: 18px;
+                }
+
+                .building-blocks-container {
+                    gap: 25px;
+                }
             }
         </style>
 
