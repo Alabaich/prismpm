@@ -111,6 +111,12 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 padding: 100px 5%;
                 width: 100%;
             }
+
+            .propertiesContainer h3{
+                font-family: "Graphik Light", Sans-serif;
+    font-size: 50px;
+    font-weight: normal;
+            }
             
             .property-map-container {
                 display: flex;
