@@ -296,51 +296,73 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const markers = [];
 
                 // Helper function to update active property info
-                const updatePropertyInfo = (title, address, imageUrl) => {
-                    activeTitle.textContent = title;
-                    activeAddress.textContent = address;
-                    activeImage.innerHTML = imageUrl
-                        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
-                        : '<p>No Image Available</p>';
-                };
+                const updatePropertyInfo = (title, address, imageUrl, images) => {
+    // Update title and address
+    activeTitle.textContent = title;
+    activeAddress.textContent = address;
+    activeImage.innerHTML = imageUrl
+        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
+        : '<p>No Image Available</p>';
+
+    // Update the images under the map
+    const propertyImages = document.querySelector(".property-info .property-images");
+    propertyImages.innerHTML = ""; // Clear previous images
+    if (Array.isArray(images)) {
+        images.forEach((image) => {
+            if (image && image.url) {
+                const img = document.createElement("img");
+                img.src = image.url;
+                img.alt = "Property Image";
+                img.loading = "lazy"; // Enable lazy loading
+                img.srcset = `
+                    ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
+                    ${image.sizes ? image.sizes.large || image.url : image.url} 2x
+                `;
+                propertyImages.appendChild(img);
+            }
+        });
+    }
+};
+
 
                 // Add markers for all properties
                 buttons.forEach((button, index) => {
-                    const lat = parseFloat(button.getAttribute("data-lat"));
-                    const lng = parseFloat(button.getAttribute("data-lng"));
-                    const title = button.querySelector("strong").textContent;
-                    const address = button.getAttribute("data-address");
-                    const images = JSON.parse(button.getAttribute("data-images"));
-                    const firstImage = images && images[0] ? images[0].url : null;
+    const lat = parseFloat(button.getAttribute("data-lat"));
+    const lng = parseFloat(button.getAttribute("data-lng"));
+    const title = button.querySelector("strong").textContent;
+    const address = button.getAttribute("data-address");
+    const images = JSON.parse(button.getAttribute("data-images"));
+    const firstImage = images && images[0] ? images[0].url : null;
 
-                    // Add marker to the map
-                    const marker = L.marker([lat, lng], {
-                        icon: index === 0 ? activeIcon : inactiveIcon,
-                    }).addTo(map);
+    // Add marker to the map
+    const marker = L.marker([lat, lng], {
+        icon: index === 0 ? activeIcon : inactiveIcon,
+    }).addTo(map);
 
-                    // Add click event for marker
-                    marker.on("click", () => {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
+    // Add click event for marker
+    marker.on("click", () => {
+        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+        updatePropertyInfo(title, address, firstImage, images);
+        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
+    });
 
-                    // Store marker
-                    markers.push(marker);
+    // Store marker
+    markers.push(marker);
 
-                    // Select the first property by default
-                    if (index === 0) {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage);
-                    }
+    // Select the first property by default
+    if (index === 0) {
+        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+        updatePropertyInfo(title, address, firstImage, images);
+    }
 
-                    // Add click event for property link
-                    button.addEventListener("click", function () {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
-                });
+    // Add click event for property link
+    button.addEventListener("click", function () {
+        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+        updatePropertyInfo(title, address, firstImage, images);
+        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
+    });
+});
+
             });
         </script>
 
