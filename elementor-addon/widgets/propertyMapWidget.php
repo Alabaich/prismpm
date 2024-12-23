@@ -129,9 +129,13 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
 }
     
             .map-container {
-                width: 70%;
+                width: 100%;
                 height: 400px;
                 border: 1px solid #ccc;
+            }
+
+            .mapContainer{
+                width: 50%;
             }
     
             .property-info {
@@ -164,12 +168,16 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         </span>
                 <?php endforeach; ?>
             </div>
+            <div class="mapContainer">
             <div id="property-map" class="map-container"></div>
+            <div class="property-images"></div>
+            </div>
+            
         </div>
     
         <div class="property-info">
-            <div class="property-description"></div>
-            <div class="property-images"></div>
+
+            
         </div>
     
         <script>
