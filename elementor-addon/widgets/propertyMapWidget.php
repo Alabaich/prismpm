@@ -212,33 +212,20 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <div class="propertiesContainer">
             <h3>Discover Our Rental Properties</h3>
             <div class="property-map-container">
-<div class="property-links">
-    <?php foreach ($settings['property_list'] as $index => $property) : ?>
-        <span class="property-link <?php echo $index === 0 ? 'active' : ''; ?>" 
-              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
-              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
-              data-description="<?php echo esc_attr($property['property_description']); ?>" 
-              data-address="<?php echo esc_attr($property['property_address']); ?>" 
-              data-images='<?php echo json_encode($property['property_images']); ?>'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40" fill="none" class="property-icon">
-                <g clip-path="url(#clip0_57_2)">
-                    <path d="M30 0H0V30.1838H30V0Z" fill="currentColor"/>
-                    <path d="M15 40L10.4079 31.9974L5.81516 23.9948H15H24.1848L19.5921 31.9974L15 40Z" fill="currentColor"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0_57_2">
-                        <rect width="30" height="40" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-            <div class="property-text">
-                <h6 class="property-title"><?php echo esc_html($property['property_name']); ?></h6>
-                <p class="property-description"><?php echo esc_html($property['property_description']); ?></p>
-            </div>
-        </span>
-    <?php endforeach; ?>
-</div>
-
+                <div class="property-links">
+                    <?php foreach ($settings['property_list'] as $index => $property) : ?>
+                        <span class="property-link" 
+                              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
+                              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
+                              data-description="<?php echo esc_attr($property['property_description']); ?>" 
+                              data-address="<?php echo esc_attr($property['property_address']); ?>" 
+                              data-images='<?php echo json_encode($property['property_images']); ?>'
+                              <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
+                            <strong><?php echo esc_html($property['property_name']); ?></strong>
+                            <p><?php echo esc_html($property['property_description']); ?></p>
+                        </span>
+                    <?php endforeach; ?>
+                </div>
                 <div class="mapContainer">
                     <div id="property-map" class="map-container"></div>
                     <div class="property-info-block">
