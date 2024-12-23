@@ -82,8 +82,9 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 'label' => esc_html__('Longitude', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => '0',
-            ]
+            ],
         );
+        
 
         $this->add_control(
             'property_list',
