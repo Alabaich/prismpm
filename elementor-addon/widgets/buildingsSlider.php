@@ -28,10 +28,8 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
 
         $repeater = new \Elementor\Repeater();
 
-        // Неизменяемые заголовки
         $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
         
-        // Для каждого фиксированного заголовка создаем поле
         foreach ($fixed_titles as $title) {
             $repeater->add_control(
                 strtolower($title) . '_text',
@@ -44,7 +42,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             );
         }
 
-        // Добавляем поле для изображения (если нужно)
         $repeater->add_control(
             'slide_image',
             [
@@ -56,7 +53,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             ]
         );
 
-        // Добавляем поле для текста кнопки
         $repeater->add_control(
             'button_text',
             [
@@ -66,7 +62,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             ]
         );
 
-        // Добавляем URL для кнопки
         $repeater->add_control(
             'button_url',
             [
@@ -76,7 +71,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             ]
         );
 
-        // Добавляем контрол для репитера
         $this->add_control(
             'slides',
             [
@@ -84,7 +78,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [],
-                'title_field' => '{{{ building_text }}}', // Это будет выводить значение "Building" из каждого слайда
+                'title_field' => '{{{ building_text }}}',
             ]
         );
 
@@ -94,12 +88,68 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        // Если слайды пустые, ничего не выводим
         if (empty($settings['slides'])) {
             return;
         }
 
         ?>
+        <style>
+            .buildings-slider {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .buildings-list {
+                display: flex;
+                gap: 20px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .building-item {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .slider-image {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .slider-content {
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            .slider-text-block {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .slider-button a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #0073e6;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+                margin-top: 10px;
+            }
+
+            .slider-button a:hover {
+                background-color: #005bb5;
+            }
+        </style>
+
         <div class="buildings-slider">
             <ul class="buildings-list">
                 <?php foreach ($settings['slides'] as $slide): ?>
@@ -138,7 +188,40 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
                 <?php endforeach; ?>
             </ul>
         </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $('.buildings-list').slick({
+                    slidesToShow: 3, 
+                    slidesToScroll: 1, 
+                    autoplay: true, 
+                    autoplaySpeed: 3000, 
+                    prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+                    nextArrow: '<button type="button" class="slick-next">Next</button>',
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2, 
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
+        </script>
         <?php
     }
 }
+
 ?>
