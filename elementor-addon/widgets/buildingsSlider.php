@@ -139,6 +139,8 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 font-family: "Graphik Extralight", Sans-serif;
                 font-size: 24px;
                 font-weight: normal;
+                border-bottom: 1px solid #80808066;
+                padding-bottom: 5px;
             }
 
             .building-info p strong {
