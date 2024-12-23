@@ -105,7 +105,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
-                gap: 20px;
+                gap: 70px;
                 align-items: flex-start;
             }
 
@@ -114,7 +114,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                max-width: 300px;
+                max-width: 400px;
                 width: 100%;
                 box-sizing: border-box;
             }
