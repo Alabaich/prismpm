@@ -175,6 +175,11 @@ class Elementor_richText extends \Elementor\Widget_Base
                 font-family: "Graphik Light", Sans-serif;
                 font-size: 50px;
                 font-weight: normal;
+                margin: 0;
+            }
+
+            .richTextText {
+                padding: 0% 10% 0% 10%;
             }
 
             .richText p {
@@ -225,6 +230,7 @@ class Elementor_richText extends \Elementor\Widget_Base
 
                 .richText p {
                     font-size: 14px;
+                    padding: 0px 30px 0px 30px;
                 }
             }
         </style>
@@ -239,7 +245,7 @@ class Elementor_richText extends \Elementor\Widget_Base
             <?php endif; ?>
 
             <?php if (!empty($settings['text'])) : ?>
-                <div class="richText">
+                <div class="richText richTextText">
                     <p>
                         <?php echo wp_kses_post($settings['text']); ?>
                     </p>
