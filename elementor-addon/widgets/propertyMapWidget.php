@@ -147,17 +147,17 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .property-info .property-images {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-    
-            .property-info .property-images img {
-                width: 100%; /* Full width of container */
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 10px; /* Gap between images */
+}
+
+.property-info .property-images img {
+    width: 100%; /* Images fill their grid cell */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
         </style>
     
         <div class="property-map-container">
@@ -184,70 +184,118 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         </div>
     
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const map = L.map('property-map', {
-                    zoom: 13,
-                    center: [0, 0],
-                    scrollWheelZoom: false,
-                    fadeAnimation: true,
-                });
-    
-                // Use Carto Positron tile layer
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                    attribution: '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>',
-                    subdomains: 'abcd',
-                    maxZoom: 19,
-                }).addTo(map);
-    
-                const marker = L.marker([0, 0]).addTo(map);
-                const propertyImages = document.querySelector(".property-images");
-                const buttons = document.querySelectorAll(".property-link");
-    
-                // Helper function to update map, images, and description
-                const updateProperty = (lat, lng, images) => {
-                    // Update map view
-                    map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                    marker.setLatLng([lat, lng]);
-    
-                    // Update images
-                    propertyImages.innerHTML = "";
-                    if (Array.isArray(images)) {
-                        images.forEach(image => {
-                            if (image && image.url) {
-                                const img = document.createElement("img");
-                                img.src = image.url;
-                                img.alt = "Property Image";
-                                img.loading = "lazy"; // Lazy loading
-                                img.srcset = `
-                                    ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
-                                    ${image.sizes ? image.sizes.large || image.url : image.url} 2x
-                                `;
-                                propertyImages.appendChild(img);
-                            }
-                        });
-                    }
-                };
-    
-                // Select first property by default
-                if (buttons.length > 0) {
-                    const firstButton = buttons[0];
-                    const lat = parseFloat(firstButton.getAttribute("data-lat"));
-                    const lng = parseFloat(firstButton.getAttribute("data-lng"));
-                    const images = JSON.parse(firstButton.getAttribute("data-images"));
-                    updateProperty(lat, lng, images);
+    document.addEventListener("DOMContentLoaded", function () {
+        const map = L.map('property-map', {
+            zoom: 13,
+            center: [0, 0],
+            scrollWheelZoom: false,
+            fadeAnimation: true,
+        });
+
+        // Use Carto Positron tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Custom marker icons
+        const activeIcon = L.divIcon({
+            html: `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.008 70.247" width="30" height="40">
+                    <rect style="fill:#083E5F;" width="53.008" height="53.008"/>
+                    <polygon style="fill:#083E5F;" points="26.504,70.247 18.39,56.193 10.275,42.139 26.504,42.139 42.733,42.139 34.618,56.193"/>
+                    <path style="fill:#FFFFFF;" d="M-5.822,38.108h-11.4   l11.507-7.41L5.365,36.1h5.441L4.102,24.486L-5.822,7.312l-9.911,17.174l-9.911,17.174h17.959l3.539-3.539h-1.676V38.108z M1.215,25.976L1.215,25.976l4.004,6.931l-9.631-4.683V16.225l5.614,9.724L1.215,25.976z M-12.833,25.95l5.614-9.724v12.105   l-11.121,7.157L-12.833,25.95z"/>
+                </svg>
+            `,
+            className: '', // Remove default icon styles
+            iconSize: [30, 40],
+            iconAnchor: [15, 40],
+        });
+
+        const inactiveIcon = L.divIcon({
+            html: `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.008 70.247" width="30" height="40">
+                    <rect style="fill:#cccccc;" width="53.008" height="53.008"/>
+                    <polygon style="fill:#cccccc;" points="26.504,70.247 18.39,56.193 10.275,42.139 26.504,42.139 42.733,42.139 34.618,56.193"/>
+                </svg>
+            `,
+            className: '', // Remove default icon styles
+            iconSize: [30, 40],
+            iconAnchor: [15, 40],
+        });
+
+        const propertyImages = document.querySelector(".property-images");
+        const buttons = document.querySelectorAll(".property-link");
+
+        // Store markers to avoid duplicates
+        const markers = [];
+
+        // Helper function to update map and images
+        const updateProperty = (lat, lng, images, markerIndex) => {
+            // Center map on active property
+            map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+
+            // Set active icon for the selected property
+            markers.forEach((marker, index) => {
+                if (index === markerIndex) {
+                    marker.setIcon(activeIcon);
+                } else {
+                    marker.setIcon(inactiveIcon);
                 }
-    
-                // Add click event listeners
-                buttons.forEach(button => {
-                    button.addEventListener("click", function () {
-                        const lat = parseFloat(this.getAttribute("data-lat"));
-                        const lng = parseFloat(this.getAttribute("data-lng"));
-                        const images = JSON.parse(this.getAttribute("data-images"));
-                        updateProperty(lat, lng, images);
-                    });
-                });
             });
-        </script>
+
+            // Update images
+            propertyImages.innerHTML = "";
+            if (Array.isArray(images)) {
+                images.forEach(image => {
+                    if (image && image.url) {
+                        const img = document.createElement("img");
+                        img.src = image.url;
+                        img.alt = "Property Image";
+                        img.loading = "lazy"; // Lazy loading
+                        img.srcset = `
+                            ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
+                            ${image.sizes ? image.sizes.large || image.url : image.url} 2x
+                        `;
+                        propertyImages.appendChild(img);
+                    }
+                });
+            }
+        };
+
+        // Add markers for all properties
+        buttons.forEach((button, index) => {
+            const lat = parseFloat(button.getAttribute("data-lat"));
+            const lng = parseFloat(button.getAttribute("data-lng"));
+            const images = JSON.parse(button.getAttribute("data-images"));
+
+            // Add marker to the map
+            const marker = L.marker([lat, lng], {
+                icon: index === 0 ? activeIcon : inactiveIcon, // Active for the first property
+            }).addTo(map);
+
+            // Add click event for marker
+            marker.on("click", () => {
+                updateProperty(lat, lng, images, index);
+            });
+
+            // Store marker
+            markers.push(marker);
+
+            // Select the first property by default
+            if (index === 0) {
+                updateProperty(lat, lng, images, index);
+            }
+
+            // Add click event for property link
+            button.addEventListener("click", function () {
+                updateProperty(lat, lng, images, index);
+            });
+        });
+    });
+</script>
+
     
         <link
             rel="stylesheet"
