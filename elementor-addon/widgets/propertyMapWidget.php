@@ -172,15 +172,16 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             
             /* The title is now an H6 */
             .property-link-text h6 {
-                font-size: 16px;
+                color: #093D5F;
+                font-size: 1.8em;
                 font-weight: bold;
                 margin: 0;
             }
             
             .property-link-text p {
                 margin: 5px 0 0;
-                font-size: 14px;
-                color: #666;
+                font-size: 1.3em;
+                color: #093D5F;
             }
             
             .mapContainer {
@@ -289,7 +290,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     
                                 <!-- Text container -->
                                 <div class="property-link-text">
-                                    <h6><?php echo esc_html($property['property_name']); ?></h6>
+                                    <h6 class="elementor-heading-title elementor-size-default"><?php echo esc_html($property['property_name']); ?></h6>
                                     <p><?php echo esc_html($property['property_description']); ?></p>
                                 </div>
                             </div>
