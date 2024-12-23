@@ -151,64 +151,14 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/css/splide.min.css">
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/js/splide.min.js"></script>
 
-        <style>
-            .buildings-slider {
-                margin: 20px auto;
-                max-width: 1200px;
-            }
-            .splide__slide {
-                padding: 15px;
-                background: #f7f7f7;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                text-align: center;
-                box-sizing: border-box;
-            }
-            .slider-image {
-                max-width: 100%;
-                height: auto;
-                margin-bottom: 15px;
-                border-radius: 5px;
-            }
-            .slider-content {
-                font-family: 'Arial', sans-serif;
-            }
-            .slider-text-block {
-                margin-bottom: 10px;
-            }
-            .slider-button .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #093D5F;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 4px;
-                transition: background-color 0.3s ease;
-            }
-            .slider-button .btn:hover {
-                background-color: #fff;
-                color: #093D5F;
-                border: 1px solid #093D5F;
-            }
-        </style>
-
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                var splide = new Splide('.buildings-slider', {
-                    type       : 'slide',     // Make sure the slider type is 'slide'
-                    perPage    : 3,            // Number of items per page
-                    rewind     : true,         // Loop the slider
-                    gap        : '1rem',       // Gap between items
-                    focus      : 'center',     // Focus the center item
-                    breakpoints: {
-                        768: {
-                            perPage: 1,        // Show 1 slide per page for mobile devices
-                        },
-                        1024: {
-                            perPage: 2,        // Show 2 slides per page for tablets
-                        },
-                    },
+                var splide = new Splide('.splide', {
+                    type   : 'loop',          // Loop through slides
+                    perPage: 3,               // Number of slides to show per page
+                    perMove: 1,               // Move 1 slide per time
                 });
+
                 splide.mount();
             });
         </script>
