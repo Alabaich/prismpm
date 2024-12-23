@@ -436,7 +436,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     const linkUrl = button.getAttribute("data-url");
 
 button.addEventListener("click", () => {
-    updatePropertyInfo(title, address, firstImage, url);
+    updatePropertyInfo(title, address, firstImage, linkUrl);
 });
     
                     const marker = L.marker([lat, lng], {
