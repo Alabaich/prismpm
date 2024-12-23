@@ -110,7 +110,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
             }
 
             .building-item {
-                width: 100%;
+                width: 100% !important;
                 box-sizing: border-box;
             }
 
