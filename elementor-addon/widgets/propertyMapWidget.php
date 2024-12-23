@@ -270,8 +270,9 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
                               data-description="<?php echo esc_attr($property['property_description']); ?>" 
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
-                              data-images='<?php echo json_encode($property['property_images']); ?>'
                               data-url="<?php echo esc_attr($property['property_url']); ?>"
+                              data-images='<?php echo json_encode($property['property_images']); ?>'
+
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
                             
                             <!-- Inner container to hold icon + text -->
@@ -400,8 +401,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const buttons = document.querySelectorAll(".property-link");
                 const markers = [];
     
-                const updatePropertyInfo = (title, address, imageUrl, url) => {
-                    console.log("URL passed to updatePropertyInfo:", url);
+                const updatePropertyInfo = (title, address, imageUrl, linkUrl) => {
+
     const activeTitle = document.querySelector(".property-info-title");
     const activeAddress = document.querySelector(".property-info-address");
     const activeImage = document.querySelector(".property-info-image");
@@ -416,8 +417,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
 
     // Update link
     if (activeLink) {
-        activeLink.href = url || '#';
-        activeLink.style.display = url ? 'block' : 'none';
+        activeLink.href = linkUrl || '#';
+        activeLink.style.display = linkUrl ? 'block' : 'none';
     }
 };
 
@@ -432,7 +433,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     const images = JSON.parse(button.getAttribute("data-images"));
                     const firstImage = images && images[0] ? images[0].url : null;
 
-                    const url = button.getAttribute("data-url");
+                    const linkUrl = button.getAttribute("data-url");
 
 button.addEventListener("click", () => {
     updatePropertyInfo(title, address, firstImage, url);
