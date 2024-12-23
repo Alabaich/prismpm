@@ -41,6 +41,24 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         );
 
         $repeater->add_control(
+            'property_description',
+            [
+                'label' => esc_html__('Property Description', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => esc_html__('Description of the property.', 'elementor-addon'),
+            ]
+        );
+    
+        $repeater->add_control(
+            'property_images',
+            [
+                'label' => esc_html__('Property Images', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::GALLERY,
+                'default' => [],
+            ]
+        );
+
+        $repeater->add_control(
             'property_lat',
             [
                 'label' => esc_html__('Latitude', 'elementor-addon'),
@@ -108,17 +126,42 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 height: 400px;
                 border: 1px solid #ccc;
             }
+    
+            .property-info {
+                margin-top: 20px;
+            }
+    
+            .property-info .property-description {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+    
+            .property-info .property-images img {
+                max-width: 100px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+            }
         </style>
     
         <div class="property-map-container">
             <div class="property-links">
+                <h3>Discover Our Rental Properties</h3>
                 <?php foreach ($settings['property_list'] as $index => $property) : ?>
-                    <button class="property-link" data-lat="<?php echo esc_attr($property['property_lat']); ?>" data-lng="<?php echo esc_attr($property['property_lng']); ?>">
+                    <button class="property-link" 
+                        data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
+                        data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
+                        data-description="<?php echo esc_attr($property['property_description']); ?>" 
+                        data-images='<?php echo json_encode($property['property_images']); ?>'>
                         <?php echo esc_html($property['property_name']); ?>
                     </button>
                 <?php endforeach; ?>
             </div>
             <div id="property-map" class="map-container"></div>
+        </div>
+    
+        <div class="property-info">
+            <div class="property-description"></div>
+            <div class="property-images"></div>
         </div>
     
         <script>
@@ -137,23 +180,36 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     maxZoom: 19,
                 }).addTo(map);
     
-                // Add a single marker and reuse it for smooth transition
                 const marker = L.marker([0, 0]).addTo(map);
+    
+                const propertyDescription = document.querySelector(".property-description");
+                const propertyImages = document.querySelector(".property-images");
     
                 const buttons = document.querySelectorAll(".property-link");
                 buttons.forEach(button => {
                     button.addEventListener("click", function () {
                         const lat = parseFloat(this.getAttribute("data-lat"));
                         const lng = parseFloat(this.getAttribute("data-lng"));
-                        
-                        // Smooth panning to the new position
-                        map.flyTo([lat, lng], 15, {
-                            animate: true,
-                            duration: 1.5, // Duration of the animation
-                        });
+                        const description = this.getAttribute("data-description");
+                        const images = JSON.parse(this.getAttribute("data-images"));
     
-                        // Update marker position without re-adding it
+                        // Update map view
+                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
                         marker.setLatLng([lat, lng]);
+    
+                        // Update description
+                        propertyDescription.textContent = description;
+    
+                        // Update images
+                        propertyImages.innerHTML = "";
+                        images.forEach(image => {
+                            const img = document.createElement("img");
+                            img.src = image.url;
+                            img.alt = "Property Image";
+                            img.loading = "lazy"; // Lazy loading
+                            img.srcset = image.sizes.medium + " 1x, " + image.sizes.large + " 2x";
+                            propertyImages.appendChild(img);
+                        });
                     });
                 });
             });
