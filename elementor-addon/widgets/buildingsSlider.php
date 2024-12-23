@@ -98,7 +98,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         if (empty($settings['slides'])) {
             return;
         }
-        ?>
+?>
 
         <div class="splide">
             <div class="splide__track">
@@ -128,7 +128,9 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
 
         <script type="module">
             import Splide from '@splidejs/splide';
-            import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
+            import {
+                AutoScroll
+            } from '@splidejs/splide-extension-auto-scroll';
 
             const splide = new Splide('.splide', {
                 type: 'loop',
@@ -149,20 +151,17 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         </script>
 
         <style>
-            /* Make sure the splide list is using flex */
+            /* Optional: Add custom styles for the slider */
             .splide__list {
                 display: flex;
-                gap: 20px; /* Adjust as needed */
-                list-style: none;
-                padding: 0;
+                gap: 100px;
             }
 
             .splide__slide {
-                flex-shrink: 0; /* Prevent shrinking */
-                width: 100%; /* Ensure full width for each slide */
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 100%;
             }
 
             .building-slide {
@@ -174,9 +173,8 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             }
 
             .building-slide img {
+                height: 300px;
                 width: 100%;
-                height: 300px; /* Adjust image size as necessary */
-                object-fit: cover; /* Ensure image covers the space */
             }
 
             .building-info {
