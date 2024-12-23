@@ -402,7 +402,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const markers = [];
     
                 const updatePropertyInfo = (title, address, imageUrl, linkUrl) => {
-
+                    console.log(linkUrl)
     const activeTitle = document.querySelector(".property-info-title");
     const activeAddress = document.querySelector(".property-info-address");
     const activeImage = document.querySelector(".property-info-image");
