@@ -204,6 +204,15 @@ class Elementor_richText extends \Elementor\Widget_Base
                 color: #fff;
                 background-color: #093D5F;
                 display: inline-block;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 12px;
+                font-weight: normal;
+                transition: all 0.3s ease;
+            }
+
+            .buttonWrapper .btn:hover {
+                color: #093D5F;
+                background-color: #fff;
             }
         </style>
 
