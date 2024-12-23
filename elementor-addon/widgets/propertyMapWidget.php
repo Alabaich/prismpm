@@ -256,7 +256,19 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                             <div class="property-link-inner">
                                 <!-- Icon with a circle and property number -->
                                 <div class="property-link-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" width="92.088px" height="122.036px" viewBox="0 0 92.088 122.036" style="enable-background:new 0 0 92.088 122.036;" xml:space="preserve"><style type="text/css">	.st0{fill:#083E5F;}</style><g>	<rect class="st0" width="92.088" height="92.088"/>	<polygon class="st0" points="46.044,122.036 31.947,97.621 17.851,73.205 46.044,73.205 74.237,73.205 60.14,97.621  "/></g><g/><g/><g/><g/><g/><g/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" width="92.088px" height="122.036px" viewBox="0 0 92.088 122.036" style="enable-background:new 0 0 92.088 122.036;" xml:space="preserve"><style type="text/css">	.st0{fill:#083E5F;}</style><g>	<rect class="st0" width="92.088" height="92.088"/>	<polygon class="st0" points="46.044,122.036 31.947,97.621 17.851,73.205 46.044,73.205 74.237,73.205 60.14,97.621  "/></g><g/><g/><g/><g/><g/><g/>
+                                        <text
+                                            x="50%"
+                                            y="50%"
+                                            text-anchor="middle"
+                                            dominant-baseline="middle"
+                                            fill="#FFFFFF"
+                                            font-size="16"
+                                            font-weight="bold"
+                                            font-family="Arial">
+                                            <?php echo $index + 1; ?>
+                                        </text>
+                                    </svg>
                                 </div>
     
                                 <!-- Text container -->
