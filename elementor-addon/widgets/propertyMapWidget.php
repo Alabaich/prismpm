@@ -84,6 +84,21 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 'default' => '0',
             ],
         );
+
+        $repeater->add_control(
+            'property_url',
+            [
+                'label' => esc_html__('Property URL', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://example.com', 'elementor-addon'),
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                ],
+            ]
+        );
+        
         
 
         $this->add_control(
@@ -259,6 +274,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-description="<?php echo esc_attr($property['property_description']); ?>" 
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
                               data-images='<?php echo json_encode($property['property_images']); ?>'
+                              data-url="<?php echo esc_url($property['property_url']['url']); ?>"
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
                             
                             <!-- Inner container to hold icon + text -->
@@ -309,10 +325,12 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 <div class="mapContainer">
                     <div id="property-map" class="map-container"></div>
                     <div class="property-info-block">
-                        <div class="property-info-title"></div>
-                        <div class="property-info-address"></div>
-                        <div class="property-info-image"></div>
-                    </div>
+    <div class="property-info-title"></div>
+    <div class="property-info-address"></div>
+    <div class="property-info-image"></div>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="property-info-link" style="display: none; color: #093D5F; text-decoration: underline; font-weight: bold; margin-top: 10px;">View Property</a>
+</div>
+
                     <div class="property-info">
                         <div class="property-images"></div>
                     </div>
@@ -385,31 +403,25 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const buttons = document.querySelectorAll(".property-link");
                 const markers = [];
     
-                const updatePropertyInfo = (title, address, imageUrl, images) => {
-                    activeTitle.textContent = title;
-                    activeAddress.textContent = address;
-                    activeImage.innerHTML = imageUrl
-                        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
-                        : '<p>No Image Available</p>';
-    
-                    const propertyImages = document.querySelector(".property-info .property-images");
-                    propertyImages.innerHTML = "";
-                    if (Array.isArray(images)) {
-                        images.forEach((image) => {
-                            if (image && image.url) {
-                                const img = document.createElement("img");
-                                img.src = image.url;
-                                img.alt = "Property Image";
-                                img.loading = "lazy";
-                                img.srcset = `
-                                    ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
-                                    ${image.sizes ? image.sizes.large || image.url : image.url} 2x
-                                `;
-                                propertyImages.appendChild(img);
-                            }
-                        });
-                    }
-                };
+                const updatePropertyInfo = (title, address, imageUrl, url) => {
+    const activeTitle = document.querySelector(".property-info-title");
+    const activeAddress = document.querySelector(".property-info-address");
+    const activeImage = document.querySelector(".property-info-image");
+    const activeLink = document.querySelector(".property-info-link");
+
+    activeTitle.textContent = title;
+    activeAddress.textContent = address;
+
+    activeImage.innerHTML = imageUrl
+        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
+        : '<p>No Image Available</p>';
+
+    if (activeLink) {
+        activeLink.href = url || '#';
+        activeLink.style.display = url ? 'block' : 'none';
+    }
+};
+
     
                 buttons.forEach((button, index) => {
                     const lat = parseFloat(button.getAttribute("data-lat"));
@@ -419,6 +431,12 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     const address = button.getAttribute("data-address");
                     const images = JSON.parse(button.getAttribute("data-images"));
                     const firstImage = images && images[0] ? images[0].url : null;
+
+                    const url = button.getAttribute("data-url");
+
+button.addEventListener("click", () => {
+    updatePropertyInfo(title, address, firstImage, url);
+});
     
                     const marker = L.marker([lat, lng], {
                         icon: index === 0 ? activeIcon : inactiveIcon,
