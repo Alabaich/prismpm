@@ -102,7 +102,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .property-links {
-                width: 50%;
+                width: 49%;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
@@ -136,7 +136,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .mapContainer {
-                width: 50%;
+                width: 49%;
             }
     
             .map-container {
