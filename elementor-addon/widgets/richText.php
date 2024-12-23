@@ -208,11 +208,13 @@ class Elementor_richText extends \Elementor\Widget_Base
                 font-size: 12px;
                 font-weight: normal;
                 transition: all 0.3s ease;
+                border: 2px solid transparent;
             }
 
             .buttonWrapper .btn:hover {
                 color: #093D5F;
                 background-color: #fff;
+                border-color: #093D5F;
             }
         </style>
 
