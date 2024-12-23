@@ -116,6 +116,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 font-family: "Graphik Light", Sans-serif;
     font-size: 50px;
     font-weight: normal;
+    color: #093D5F;
             }
             
             .property-map-container {
@@ -148,8 +149,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
             
             .property-link:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-                border-color: #ccc;
+                background-color: rgba(0, 68, 255, 0.05);
+                border-color: transparent;
             }
     
             /* Inner container to hold icon and text side by side (or stacked) */
