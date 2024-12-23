@@ -77,6 +77,17 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $repeater->add_control(
+            'new_build',
+            [
+                'label' => esc_html__('Show New Build', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'elementor-addon'),
+                'label_off' => esc_html__('No', 'elementor-addon'),
+                'return_value' => 'yes',
+            ]
+        );
+
         $this->add_control(
             'slides',
             [
@@ -126,6 +137,24 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 height: auto;
                 max-height: 300px;
                 object-fit: cover;
+            }
+
+            .building-block .new-build-triangle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #093D5F;
+                color: white;
+                padding: 5px 10px;
+                font-size: 14px;
+                font-family: "Graphik Medium", Sans-serif;
+                transform: translate(-50%, -50%);
+                border-top-right-radius: 5px;
+                display: none;
+            }
+
+            .building-block.new-build .new-build-triangle {
+                display: block;
             }
 
             .building-info {
@@ -190,6 +219,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             <?php foreach ($settings['slides'] as $slide): ?>
                 <div class="building-block">
                     <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
+                    <div class="new-build-triangle">New Build</div>
                     <div class="building-info">
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
