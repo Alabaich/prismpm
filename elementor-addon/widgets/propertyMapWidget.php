@@ -89,15 +89,12 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             'property_url',
             [
                 'label' => esc_html__('Property URL', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::URL,
+                'type' => \Elementor\Controls_Manager::TEXT,
                 'placeholder' => esc_html__('https://example.com', 'elementor-addon'),
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => true,
-                ],
+                'default' => '',
             ]
         );
+        
         
         
 
@@ -274,7 +271,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-description="<?php echo esc_attr($property['property_description']); ?>" 
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
                               data-images='<?php echo json_encode($property['property_images']); ?>'
-                              data-url="<?php echo isset($property['property_url']['url']) ? esc_url($property['property_url']['url']) : ''; ?>"
+                              data-url="<?php echo esc_attr($property['property_url']); ?>"
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
                             
                             <!-- Inner container to hold icon + text -->
