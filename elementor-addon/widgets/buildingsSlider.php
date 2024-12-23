@@ -98,7 +98,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         if (empty($settings['slides'])) {
             return;
         }
-        ?>
+?>
 
         <div class="splide">
             <div class="splide__track">
@@ -128,19 +128,21 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
 
         <script type="module">
             import Splide from '@splidejs/splide';
-            import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
+            import {
+                AutoScroll
+            } from '@splidejs/splide-extension-auto-scroll';
 
             const splide = new Splide('.splide', {
-                type   : 'loop',
-                drag   : 'free',
-                focus  : 'center',
+                type: 'loop',
+                drag: 'free',
+                focus: 'center',
                 perPage: 3,
                 autoScroll: {
                     speed: 1,
                 },
                 breakpoints: {
                     768: {
-                        perPage: 1,  // Show 1 slide per page on smaller screens
+                        perPage: 1, // Show 1 slide per page on smaller screens
                     },
                 },
             });
@@ -152,7 +154,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             /* Optional: Add custom styles for the slider */
             .splide__list {
                 display: flex;
-                gap: 20px;
+                gap: 100px;
             }
 
             .splide__slide {
@@ -170,8 +172,21 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 width: 100%;
             }
 
+            .building-slide img {
+                height: 300px;
+                width: 100%;
+            }
+
             .building-info {
                 margin-top: 10px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .building-info p {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
             }
 
             .button {
@@ -184,7 +199,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             }
         </style>
 
-        <?php
+<?php
     }
 }
 
