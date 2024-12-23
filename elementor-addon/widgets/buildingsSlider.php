@@ -14,7 +14,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        return 'eicon-slides';
+        return 'eicon-slider-3d';
     }
 
     public function get_categories()
@@ -103,19 +103,23 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        
 
         if (empty($settings['slides'])) {
             return;
         }
 
-        echo '<div class="buildings-slider">';
-        foreach ($settings['slides'] as $slide) {
-            echo '<div class="slider-item">';
+        echo '<div class="splide buildings-slider">';
+        echo '<div class="splide__track">';
+        echo '<ul class="splide__list">';
 
+        
+
+        foreach ($settings['slides'] as $slide) {
+            echo '<li class="splide__slide slider-item">';
             if (!empty($slide['slide_image']['url'])) {
                 echo '<img src="' . esc_url($slide['slide_image']['url']) . '" alt="' . esc_attr($slide['image_alt']) . '" class="slider-image" />';
             }
-
             echo '<div class="slider-content">';
 
             $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
@@ -135,8 +139,72 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             }
 
             echo '</div>'; // slider-content
-            echo '</div>'; // slider-item
+            echo '</li>'; // splide__slide
         }
-        echo '</div>'; // buildings-slider
+
+        echo '</ul>';
+        echo '</div>'; // splide__track
+        echo '</div>'; // splide
+        ?>
+
+<style>
+            .buildings-slider {
+                margin: 20px auto;
+                max-width: 1200px;
+            }
+            .splide__slide {
+                padding: 15px;
+                background: #f7f7f7;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                text-align: center;
+            }
+            .slider-image {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 15px;
+                border-radius: 5px;
+            }
+            .slider-content {
+                font-family: 'Arial', sans-serif;
+            }
+            .slider-text-block {
+                margin-bottom: 10px;
+            }
+            .slider-button .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #093D5F;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+            .slider-button .btn:hover {
+                background-color: #fff;
+                color: #093D5F;
+                border: 1px solid #093D5F;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var splide = new Splide('.buildings-slider', {
+                    perPage: 3,
+                    rewind: true,
+                    gap: '1rem',
+                    breakpoints: {
+                        768: {
+                            perPage: 1,
+                        },
+                        1024: {
+                            perPage: 2,
+                        },
+                    },
+                });
+                splide.mount();
+            });
+        </script>
+        <?php
     }
 }
