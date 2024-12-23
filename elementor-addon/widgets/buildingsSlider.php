@@ -103,51 +103,51 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        
 
         if (empty($settings['slides'])) {
             return;
         }
-
-        echo '<div class="splide buildings-slider">';
-        echo '<div class="splide__track">';
-        echo '<ul class="splide__list">';
-
-        
-
-        foreach ($settings['slides'] as $slide) {
-            echo '<li class="splide__slide slider-item">';
-            if (!empty($slide['slide_image']['url'])) {
-                echo '<img src="' . esc_url($slide['slide_image']['url']) . '" alt="' . esc_attr($slide['image_alt']) . '" class="slider-image" />';
-            }
-            echo '<div class="slider-content">';
-
-            $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
-            foreach ($fixed_titles as $title) {
-                $key = strtolower($title) . '_text';
-                if (!empty($slide[$key])) {
-                    echo '<div class="slider-text-block">';
-                    echo '<strong>' . esc_html__($title, 'elementor-addon') . ':</strong> ' . esc_html($slide[$key]);
-                    echo '</div>';
-                }
-            }
-
-            if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])) {
-                echo '<div class="slider-button">';
-                echo '<a href="' . esc_url($slide['button_url']['url']) . '" class="btn">' . esc_html($slide['button_text']) . '</a>';
-                echo '</div>';
-            }
-
-            echo '</div>'; // slider-content
-            echo '</li>'; // splide__slide
-        }
-
-        echo '</ul>';
-        echo '</div>'; // splide__track
-        echo '</div>'; // splide
         ?>
+        <div class="splide buildings-slider">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <?php foreach ($settings['slides'] as $slide): ?>
+                        <li class="splide__slide slider-item">
+                            <?php if (!empty($slide['slide_image']['url'])): ?>
+                                <img 
+                                    src="<?php echo esc_url($slide['slide_image']['url']); ?>" 
+                                    alt="<?php echo esc_attr($slide['image_alt']); ?>" 
+                                    class="slider-image"
+                                />
+                            <?php endif; ?>
+                            <div class="slider-content">
+                                <?php
+                                $fixed_titles = ['Building', 'Address', 'Developer', 'Units', 'Completed'];
+                                foreach ($fixed_titles as $title):
+                                    $key = strtolower($title) . '_text';
+                                    if (!empty($slide[$key])): ?>
+                                        <div class="slider-text-block">
+                                            <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong> 
+                                            <?php echo esc_html($slide[$key]); ?>
+                                        </div>
+                                    <?php endif;
+                                endforeach;
+                                ?>
+                                <?php if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])): ?>
+                                    <div class="slider-button">
+                                        <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="btn">
+                                            <?php echo esc_html($slide['button_text']); ?>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
 
-<style>
+        <style>
             .buildings-slider {
                 margin: 20px auto;
                 max-width: 1200px;
@@ -186,6 +186,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 border: 1px solid #093D5F;
             }
         </style>
+
+        <!-- Include Splide CSS and JS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/css/splide.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.7/dist/js/splide.min.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
