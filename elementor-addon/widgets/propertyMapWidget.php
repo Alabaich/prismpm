@@ -121,57 +121,42 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
     
             .property-links {
-    width: 49%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.property-link {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 15px;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    color: #999; /* Default inactive color */
-}
-
-.property-link.active {
-    color: #093D5F;
-    border-color: #093D5F;
-}
-
-.property-link.active .property-icon {
-    color: #093D5F; /* Active color for the icon */
-}
-
-.property-link .property-icon {
-    flex-shrink: 0;
-    width: 30px;
-    height: 40px;
-    color: #999; /* Inactive icon color */
-    transition: color 0.3s;
-}
-
-.property-link h6 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: inherit; /* Inherit color from the parent span */
-    transition: color 0.3s;
-}
-
-.property-link p {
-    margin: 5px 0 0;
-    font-size: 14px;
-    color: inherit; /* Inherit color from the parent span */
-    transition: color 0.3s;
-}
-
+                width: 49%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            .property-links .property-link {
+                display: block;
+                padding: 10px;
+                cursor: pointer;
+                background-color: transparent;
+                border: 1px solid transparent;
+                border-radius: 5px;
+                text-align: left;
+                transition: background-color 0.3s, border-color 0.3s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+    
+            .property-links .property-link:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+                border-color: #ccc;
+            }
+    
+            .property-links .property-link strong {
+                font-size: 16px;
+                font-weight: bold;
+            }
+    
+            .property-links .property-link p {
+                margin: 5px 0 0;
+                font-size: 14px;
+                color: #666;
+            }
     
             .mapContainer {
                 width: 49%;
@@ -231,31 +216,45 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <div class="propertiesContainer">
             <h3>Discover Our Rental Properties</h3>
             <div class="property-map-container">
-            <div class="property-links">
-    <?php foreach ($settings['property_list'] as $index => $property) : ?>
-        <span class="property-link <?php echo $index === 0 ? 'active' : ''; ?>" 
-              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
-              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
-              data-description="<?php echo esc_attr($property['property_description']); ?>" 
-              data-address="<?php echo esc_attr($property['property_address']); ?>" 
-              data-images='<?php echo json_encode($property['property_images']); ?>'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40" fill="none" class="property-icon">
-                <g clip-path="url(#clip0_57_2)">
-                    <path d="M30 0H0V30.1838H30V0Z" fill="currentColor"/>
-                    <path d="M15 40L10.4079 31.9974L5.81516 23.9948H15H24.1848L19.5921 31.9974L15 40Z" fill="currentColor"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0_57_2">
-                        <rect width="30" height="40" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-            <h6 class="property-title"><?php echo esc_html($property['property_name']); ?></h6>
-            <p class="property-description"><?php echo esc_html($property['property_description']); ?></p>
-        </span>
-    <?php endforeach; ?>
-</div>
+                <div class="property-links">
+                    <?php foreach ($settings['property_list'] as $index => $property) : ?>
+                        <span class="property-link" 
+                              data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
+                              data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
+                              data-description="<?php echo esc_attr($property['property_description']); ?>" 
+                              data-address="<?php echo esc_attr($property['property_address']); ?>" 
+                              data-images='<?php echo json_encode($property['property_images']); ?>'
+                              <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
+                              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 53.008 70.247" style="enable-background:new 0 0 53.008 70.247;" xml:space="preserve">
+<g>
+	<rect style="fill:#083E5F;" width="53.008" height="53.008"/>
+	<polygon style="fill:#083E5F;" points="26.504,70.247 18.39,56.193 10.275,42.139 26.504,42.139 42.733,42.139 34.618,56.193  "/>
+</g>
+<g id="Group_165_00000079456985974355619680000000723066802891853475_" transform="translate(32.313)">
+	<path id="Path_1802_00000054257242555282270560000005141572564971228607_" style="fill:#FFFFFF;" d="M-5.822,38.108h-11.4   l11.507-7.41L5.365,36.1h5.441L4.102,24.486L-5.822,7.312l-9.911,17.174l-9.911,17.174h17.959l3.539-3.539h-1.676V38.108z    M1.215,25.976L1.215,25.976l4.004,6.931l-9.631-4.683V16.225l5.614,9.724L1.215,25.976z M-12.833,25.95l5.614-9.724v12.105   l-11.121,7.157L-12.833,25.95z"/>
+	<path id="Path_1803_00000125601528014637803720000011345230273618210699_" style="fill:#FFFFFF;" d="M11.963,38.108l-3.738,0.013   h-9.724l-3.539,3.539h19.063L11.963,38.108z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                              <span>
+                              <h6><?php echo esc_html($property['property_name']); ?></h6>
+                              <p><?php echo esc_html($property['property_description']); ?></p>
+                              </span>
 
+                        </span>
+                    <?php endforeach; ?>
+                </div>
                 <div class="mapContainer">
                     <div id="property-map" class="map-container"></div>
                     <div class="property-info-block">
