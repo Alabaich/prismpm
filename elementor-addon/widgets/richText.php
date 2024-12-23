@@ -160,14 +160,28 @@ class Elementor_richText extends \Elementor\Widget_Base
         if (!empty($settings['alignment'])) {
             $alignment_class = 'align-' . esc_attr($settings['alignment']);
         }
-        ?>
+?>
 
         <style>
             .richTextContainer {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: 20px;
+                gap: 10px;
+            }
+
+            .richText h1 {
+                color: #093D5F;
+                font-family: "Graphik Light", Sans-serif;
+                font-size: 50px;
+                font-weight: normal;
+            }
+
+            .richText p {
+                padding: 0% 10% 0% 10%;
+                font-family: "Graphik Light", Sans-serif;
+                font-size: 16px;
+                font-weight: 400;
             }
 
             .align-left {
@@ -220,6 +234,6 @@ class Elementor_richText extends \Elementor\Widget_Base
             <?php endif; ?>
         </div>
 
-        <?php
+<?php
     }
 }
