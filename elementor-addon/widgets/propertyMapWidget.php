@@ -95,62 +95,67 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <style>
             .property-map-container {
                 display: flex;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 gap: 20px;
                 padding: 25px 5%;
                 width: 100%;
             }
     
+            .property-links {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+    
             .property-links .property-link {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    text-align: left;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.property-links .property-link:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: #ccc;
-}
-
-.property-links .property-link strong {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.property-links .property-link p {
-    margin: 5px 0 0;
-    font-size: 14px;
-    color: #666;
-}
+                display: block;
+                padding: 10px;
+                cursor: pointer;
+                background-color: transparent;
+                border: 1px solid transparent;
+                border-radius: 5px;
+                text-align: left;
+                transition: background-color 0.3s, border-color 0.3s;
+            }
+    
+            .property-links .property-link:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+                border-color: #ccc;
+            }
+    
+            .property-links .property-link strong {
+                font-size: 16px;
+                font-weight: bold;
+            }
+    
+            .property-links .property-link p {
+                margin: 5px 0 0;
+                font-size: 14px;
+                color: #666;
+            }
+    
+            .mapContainer {
+                width: 50%;
+            }
     
             .map-container {
                 width: 100%;
                 height: 400px;
                 border: 1px solid #ccc;
-            }
-
-            .mapContainer{
-                width: 50%;
-            }
-    
-            .property-info {
-                margin-top: 20px;
-            }
-    
-            .property-info .property-description {
-                font-size: 16px;
                 margin-bottom: 15px;
             }
     
+            .property-info .property-images {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+    
             .property-info .property-images img {
-                max-width: 100px;
-                margin-right: 10px;
+                max-width: 150px;
                 border: 1px solid #ccc;
+                border-radius: 5px;
             }
         </style>
     
@@ -159,25 +164,21 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 <h3>Discover Our Rental Properties</h3>
                 <?php foreach ($settings['property_list'] as $index => $property) : ?>
                     <span class="property-link" 
-            data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
-            data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
-            data-description="<?php echo esc_attr($property['property_description']); ?>" 
-            data-images='<?php echo json_encode($property['property_images']); ?>'>
-            <strong><?php echo esc_html($property['property_name']); ?></strong>
-            <p><?php echo esc_html($property['property_description']); ?></p>
-        </span>
+                          data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
+                          data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
+                          data-description="<?php echo esc_attr($property['property_description']); ?>" 
+                          data-images='<?php echo json_encode($property['property_images']); ?>'>
+                        <strong><?php echo esc_html($property['property_name']); ?></strong>
+                        <p><?php echo esc_html($property['property_description']); ?></p>
+                    </span>
                 <?php endforeach; ?>
             </div>
             <div class="mapContainer">
-            <div id="property-map" class="map-container"></div>
-            <div class="property-images"></div>
+                <div id="property-map" class="map-container"></div>
+                <div class="property-info">
+                    <div class="property-images"></div>
+                </div>
             </div>
-            
-        </div>
-    
-        <div class="property-info">
-
-            
         </div>
     
         <script>
@@ -198,49 +199,38 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     
                 const marker = L.marker([0, 0]).addTo(map);
     
-                const propertyDescription = document.querySelector(".property-description");
                 const propertyImages = document.querySelector(".property-images");
     
                 const buttons = document.querySelectorAll(".property-link");
-buttons.forEach(button => {
-    button.addEventListener("click", function () {
-        const lat = parseFloat(this.getAttribute("data-lat"));
-        const lng = parseFloat(this.getAttribute("data-lng"));
-        const description = this.getAttribute("data-description");
-        const images = JSON.parse(this.getAttribute("data-images"));
-
-        // Update map view
-        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-        marker.setLatLng([lat, lng]);
-
-        // Update description
-        propertyDescription.textContent = description;
-
-        // Update images
-        propertyImages.innerHTML = "";
-        if (Array.isArray(images)) {
-            images.forEach(image => {
-                if (image && image.url) {
-                    const img = document.createElement("img");
-                    img.src = image.url;
-                    img.alt = "Property Image";
-                    img.loading = "lazy"; // Lazy loading
-
-                    // Use srcset if sizes are available
-                    if (image.sizes) {
-                        img.srcset = `
-                            ${image.sizes.medium || image.url} 1x, 
-                            ${image.sizes.large || image.url} 2x
-                        `;
-                    }
-
-                    propertyImages.appendChild(img);
-                }
-            });
-        }
-    });
-});
-
+                buttons.forEach(button => {
+                    button.addEventListener("click", function () {
+                        const lat = parseFloat(this.getAttribute("data-lat"));
+                        const lng = parseFloat(this.getAttribute("data-lng"));
+                        const images = JSON.parse(this.getAttribute("data-images"));
+    
+                        // Update map view
+                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+                        marker.setLatLng([lat, lng]);
+    
+                        // Update images
+                        propertyImages.innerHTML = "";
+                        if (Array.isArray(images)) {
+                            images.forEach(image => {
+                                if (image && image.url) {
+                                    const img = document.createElement("img");
+                                    img.src = image.url;
+                                    img.alt = "Property Image";
+                                    img.loading = "lazy"; // Lazy loading
+                                    img.srcset = `
+                                        ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
+                                        ${image.sizes ? image.sizes.large || image.url : image.url} 2x
+                                    `;
+                                    propertyImages.appendChild(img);
+                                }
+                            });
+                        }
+                    });
+                });
             });
         </script>
     
@@ -251,7 +241,6 @@ buttons.forEach(button => {
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
         <?php
     }
-    
     
 }
 
