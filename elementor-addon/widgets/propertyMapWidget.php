@@ -258,14 +258,32 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     
                 // Custom marker icons
                 const activeIcon = L.divIcon({
-                    html: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="#083E5F"><rect width="30" height="40"/></svg>`,
+                    html: 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40" fill="none">
+                            <g clip-path="url(#clip0)">
+                                <path d="M30 0H0V30.1838H30V0Z" fill="#083E5F"/>
+                                <path d="M15 40L10.4079 31.9974L5.81516 23.9948H15H24.1848L19.5921 31.9974L15 40Z" fill="#083E5F"/>
+                                <path d="M14.9926 21.6994H8.54079L15.0532 17.48L21.324 20.556H24.4033L20.6092 13.9428L14.9926 4.16359L9.38349 13.9428L3.77434 23.722H13.9383L15.9412 21.7068H14.9926V21.6994ZM18.9753 14.7912L21.2413 18.7379L15.7906 16.0713V9.23882L18.9679 14.7759L18.9753 14.7912ZM11.0248 14.7764L14.202 9.23939V16.1322L7.90805 20.2075L11.0248 14.7764Z" fill="white"/>
+                                <path d="M25.0581 21.6994L22.9426 21.7068H17.4393L15.4364 23.722H26.2251L25.0581 21.6994Z" fill="white"/>
+                            </g>
+                        </svg>
+                    ,
                     className: '',
                     iconSize: [30, 40],
                     iconAnchor: [15, 40],
                 });
     
-                const inactiveIcon = L.divIcon({
-                    html: `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="#CCCCCC"><rect width="30" height="40"/></svg>`,
+                const inactiveIcon = .divIcon({
+                    html: 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40" fill="none">
+                            <g clip-path="url(#clip0)">
+                                <path d="M30 0H0V30.1838H30V0Z" fill="#CCCCCC"/>
+                                <path d="M15 40L10.4079 31.9974L5.81516 23.9948H15H24.1848L19.5921 31.9974L15 40Z" fill="#CCCCCC"/>
+                                <path d="M14.9926 21.6994H8.54079L15.0532 17.48L21.324 20.556H24.4033L20.6092 13.9428L14.9926 4.16359L9.38349 13.9428L3.77434 23.722H13.9383L15.9412 21.7068H14.9926V21.6994ZM18.9753 14.7912L21.2413 18.7379L15.7906 16.0713V9.23882L18.9679 14.7759L18.9753 14.7912ZM11.0248 14.7764L14.202 9.23939V16.1322L7.90805 20.2075L11.0248 14.7764Z" fill="white"/>
+                                <path d="M25.0581 21.6994L22.9426 21.7068H17.4393L15.4364 23.722H26.2251L25.0581 21.6994Z" fill="white"/>
+                            </g>
+                        </svg>
+                    ,
                     className: '',
                     iconSize: [30, 40],
                     iconAnchor: [15, 40],
