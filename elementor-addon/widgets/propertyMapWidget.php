@@ -102,11 +102,21 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
         ?>
         <style>
+
+            .propertiesContainer{
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px 5%;
+                width: 100%;
+            }
             .property-map-container {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
-                padding: 25px 5%;
                 width: 100%;
                 position: relative;
             }
@@ -200,10 +210,11 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 border-radius: 5px;
             }
         </style>
-
-        <div class="property-map-container">
+<div class="propertiesContainer">
+<h3>Discover Our Rental Properties</h3>
+<div class="property-map-container">
             <div class="property-links">
-                <h3>Discover Our Rental Properties</h3>
+
                 <?php foreach ($settings['property_list'] as $index => $property) : ?>
                     <span class="property-link" 
                           data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
@@ -226,6 +237,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 </div>
             </div>
         </div>
+</div>
+
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
