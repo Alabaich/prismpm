@@ -108,7 +108,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 align-items: center;
                 flex-direction: column;
                 gap: 25px;
-                padding: 25px 5%;
+                padding: 100px 5%;
                 width: 100%;
             }
     
@@ -221,7 +221,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                               data-address="<?php echo esc_attr($property['property_address']); ?>" 
                               data-images='<?php echo json_encode($property['property_images']); ?>'
                               <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
-                            <strong><?php echo esc_html($property['property_name']); ?></strong>
+                            <h6><?php echo esc_html($property['property_name']); ?></h6>
                             <p><?php echo esc_html($property['property_description']); ?></p>
                         </span>
                     <?php endforeach; ?>
