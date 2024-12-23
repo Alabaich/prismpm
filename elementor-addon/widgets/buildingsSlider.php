@@ -114,7 +114,7 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                max-width: 400px;
+                max-width: 450px;
                 width: 100%;
                 box-sizing: border-box;
             }
@@ -150,7 +150,6 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             }
 
             .button {
-                margin-top: 10px;
                 text-decoration: none;
                 padding: 10px 20px;
                 color: #fff;
