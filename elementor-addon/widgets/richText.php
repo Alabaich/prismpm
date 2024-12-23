@@ -201,7 +201,8 @@ class Elementor_richText extends \Elementor\Widget_Base
             .buttonWrapper .btn {
                 padding: 10px 20px;
                 text-decoration: none;
-                color: #093D5F;
+                color: #fff;
+                background-color: #093D5F;
                 display: inline-block;
             }
         </style>
