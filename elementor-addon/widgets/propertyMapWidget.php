@@ -149,7 +149,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
             }
             
             .property-link:hover {
-                background-color: rgba(0, 68, 255, 0.3);
+                background-color: rgba(0, 68, 255, 0.05);
                 border-color: transparent;
             }
     
