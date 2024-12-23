@@ -1,29 +1,23 @@
 <?php
 
-class Elementor_BuildingsSlider extends \Elementor\Widget_Base
-{
-    public function get_name()
-    {
+class Elementor_BuildingsSlider extends \Elementor\Widget_Base {
+    public function get_name() {
         return 'buildings_slider';
     }
 
-    public function get_title()
-    {
+    public function get_title() {
         return esc_html__('Buildings Slider', 'elementor-addon');
     }
 
-    public function get_icon()
-    {
+    public function get_icon() {
         return 'eicon-slider-3d';
     }
 
-    public function get_categories()
-    {
+    public function get_categories() {
         return ['basic'];
     }
 
-    protected function register_controls()
-    {
+    protected function register_controls() {
         $this->start_controls_section(
             'slider_content_section',
             [
@@ -100,24 +94,24 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    protected function render()
-    {
+    protected function render() {
         $settings = $this->get_settings_for_display();
 
         if (empty($settings['slides'])) {
             return;
         }
 
-?>
+        ?>
         <div class="buildings-slider">
             <ul class="buildings-list">
                 <?php foreach ($settings['slides'] as $slide): ?>
                     <li class="building-item">
                         <?php if (!empty($slide['slide_image']['url'])): ?>
-                            <img
-                                src="<?php echo esc_url($slide['slide_image']['url']); ?>"
-                                alt="<?php echo esc_attr($slide['image_alt']); ?>"
-                                class="slider-image" />
+                            <img 
+                                src="<?php echo esc_url($slide['slide_image']['url']); ?>" 
+                                alt="<?php echo esc_attr($slide['image_alt']); ?>" 
+                                class="slider-image"
+                            />
                         <?php endif; ?>
                         <div class="slider-content">
                             <?php
@@ -126,10 +120,10 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                                 $key = strtolower($title) . '_text';
                                 if (!empty($slide[$key])): ?>
                                     <div class="slider-text-block">
-                                        <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong>
+                                        <strong><?php echo esc_html__($title, 'elementor-addon'); ?>:</strong> 
                                         <?php echo esc_html($slide[$key]); ?>
                                     </div>
-                            <?php endif;
+                                <?php endif;
                             endforeach;
                             ?>
                             <?php if (!empty($slide['button_text']) && !empty($slide['button_url']['url'])): ?>
@@ -145,61 +139,66 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
             </ul>
         </div>
 
-        <style>
-            /* Slick Slider Styles */
-            .buildings-slider .slick-slide {
-                position: relative;
+        <!-- Slick Slider CSS -->
+        <style type="text/css">
+            .slick-slide img {
+                width: 100%;
+                height: auto;
             }
-
-            .buildings-slider .slider-content {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: rgba(0, 0, 0, 0.6);
-                color: white;
+            .buildings-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .slider-content {
                 padding: 20px;
-                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
-
-            .buildings-slider .slider-button .btn {
+            .slider-button a {
+                padding: 10px 20px;
                 background-color: #0073e6;
                 color: white;
-                padding: 10px 20px;
                 text-decoration: none;
                 border-radius: 5px;
                 transition: background-color 0.3s;
             }
-
-            .buildings-slider .slider-button .btn:hover {
+            .slider-button a:hover {
                 background-color: #005bb5;
             }
         </style>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <!-- Slick Slider JS -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        <script>
+        <script type="text/javascript">
             jQuery(document).ready(function($) {
-                // Initialize Slick Slider
                 $('.buildings-list').slick({
-                    slidesToShow: 1,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     autoplay: true,
-                    autoplaySpeed: 5000,
-                    arrows: true,
-                    dots: true,
-                    responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
+                    autoplaySpeed: 2000,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
                         }
-                    }, ]
+                    ]
                 });
             });
         </script>
 
-<?php
+        <?php
     }
 }
