@@ -150,10 +150,11 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 display: flex;
                 gap: 10px;
                 flex-wrap: wrap;
+                justify-content: center;
             }
     
             .property-info .property-images img {
-                max-width: 150px;
+                width: 100%; /* Full width of container */
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
@@ -167,7 +168,8 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                           data-lat="<?php echo esc_attr($property['property_lat']); ?>" 
                           data-lng="<?php echo esc_attr($property['property_lng']); ?>" 
                           data-description="<?php echo esc_attr($property['property_description']); ?>" 
-                          data-images='<?php echo json_encode($property['property_images']); ?>'>
+                          data-images='<?php echo json_encode($property['property_images']); ?>'
+                          <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
                         <strong><?php echo esc_html($property['property_name']); ?></strong>
                         <p><?php echo esc_html($property['property_description']); ?></p>
                     </span>
@@ -198,37 +200,50 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 }).addTo(map);
     
                 const marker = L.marker([0, 0]).addTo(map);
-    
                 const propertyImages = document.querySelector(".property-images");
-    
                 const buttons = document.querySelectorAll(".property-link");
+    
+                // Helper function to update map, images, and description
+                const updateProperty = (lat, lng, images) => {
+                    // Update map view
+                    map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+                    marker.setLatLng([lat, lng]);
+    
+                    // Update images
+                    propertyImages.innerHTML = "";
+                    if (Array.isArray(images)) {
+                        images.forEach(image => {
+                            if (image && image.url) {
+                                const img = document.createElement("img");
+                                img.src = image.url;
+                                img.alt = "Property Image";
+                                img.loading = "lazy"; // Lazy loading
+                                img.srcset = `
+                                    ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
+                                    ${image.sizes ? image.sizes.large || image.url : image.url} 2x
+                                `;
+                                propertyImages.appendChild(img);
+                            }
+                        });
+                    }
+                };
+    
+                // Select first property by default
+                if (buttons.length > 0) {
+                    const firstButton = buttons[0];
+                    const lat = parseFloat(firstButton.getAttribute("data-lat"));
+                    const lng = parseFloat(firstButton.getAttribute("data-lng"));
+                    const images = JSON.parse(firstButton.getAttribute("data-images"));
+                    updateProperty(lat, lng, images);
+                }
+    
+                // Add click event listeners
                 buttons.forEach(button => {
                     button.addEventListener("click", function () {
                         const lat = parseFloat(this.getAttribute("data-lat"));
                         const lng = parseFloat(this.getAttribute("data-lng"));
                         const images = JSON.parse(this.getAttribute("data-images"));
-    
-                        // Update map view
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        marker.setLatLng([lat, lng]);
-    
-                        // Update images
-                        propertyImages.innerHTML = "";
-                        if (Array.isArray(images)) {
-                            images.forEach(image => {
-                                if (image && image.url) {
-                                    const img = document.createElement("img");
-                                    img.src = image.url;
-                                    img.alt = "Property Image";
-                                    img.loading = "lazy"; // Lazy loading
-                                    img.srcset = `
-                                        ${image.sizes ? image.sizes.medium || image.url : image.url} 1x,
-                                        ${image.sizes ? image.sizes.large || image.url : image.url} 2x
-                                    `;
-                                    propertyImages.appendChild(img);
-                                }
-                            });
-                        }
+                        updateProperty(lat, lng, images);
                     });
                 });
             });
@@ -241,6 +256,7 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
         <?php
     }
+    
     
 }
 
