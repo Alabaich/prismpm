@@ -171,6 +171,16 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 border-color: #093D5F;
             }
 
+            @media screen and (max-width: 1300px) {
+                .building-block {
+                    max-width: 380px;
+                }
+
+                .building-blocks-container {
+                    gap: 40px;
+                }
+            }
+
             @media screen and (max-width: 600px) {
                 .building-block img {
                     max-height: 250px;
