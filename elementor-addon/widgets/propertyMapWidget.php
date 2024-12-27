@@ -258,6 +258,92 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
+
+            @media (max-width: 1024px) {
+        .property-links, .mapContainer {
+            width: 100%;
+        }
+
+        .property-link-text h6 {
+            font-size: 1.5em;
+        }
+
+        .property-link-text p {
+            font-size: 1.1em;
+        }
+
+        .property-info-block {
+            display: none;
+        }
+
+        .property-info-block .property-info-title {
+            font-size: 14px;
+        }
+
+        .property-info-block .property-info-address {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .propertiesContainer {
+            padding: 50px 5%;
+        }
+
+        .propertiesContainer h3 {
+            font-size: 40px;
+        }
+
+        .property-link-text h6 {
+            font-size: 1.3em;
+        }
+
+        .property-link-text p {
+            font-size: 1em;
+        }
+
+        .property-info-block {
+            display: none;
+        }
+
+        .property-info-block .property-info-title {
+            font-size: 12px;
+        }
+
+        .property-info-block .property-info-address {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .propertiesContainer {
+            padding: 30px 5%;
+        }
+
+        .propertiesContainer h3 {
+            font-size: 30px;
+        }
+
+        .property-link-text h6 {
+            font-size: 1.1em;
+        }
+
+        .property-link-text p {
+            font-size: 0.9em;
+        }
+
+        .property-info-block {
+            display: none;
+        }
+
+        .property-info-block .property-info-title {
+            font-size: 10px;
+        }
+
+        .property-info-block .property-info-address {
+            font-size: 8px;
+        }
+    }
         </style>
     
         <div class="propertiesContainer">
