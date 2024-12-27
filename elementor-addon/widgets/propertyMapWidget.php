@@ -398,70 +398,75 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 const activeTitle = document.querySelector(".property-info-title");
                 const activeAddress = document.querySelector(".property-info-address");
                 const activeImage = document.querySelector(".property-info-image");
+                const activeLink = document.querySelector(".property-info-link");
+                const propertyImagesContainer = document.querySelector(".property-images");
                 const buttons = document.querySelectorAll(".property-link");
                 const markers = [];
     
                 const updatePropertyInfo = (title, address, imageUrl, linkUrl) => {
-                    console.log(linkUrl)
-    const activeTitle = document.querySelector(".property-info-title");
-    const activeAddress = document.querySelector(".property-info-address");
-    const activeImage = document.querySelector(".property-info-image");
-    const activeLink = document.querySelector(".property-info-link");
+                    activeTitle.textContent = title;
+                    activeAddress.textContent = address;
+                    activeImage.innerHTML = imageUrl
+                        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
+                        : '<p>No Image Available</p>';
 
-    // Update title, address, and image
-    activeTitle.textContent = title;
-    activeAddress.textContent = address;
-    activeImage.innerHTML = imageUrl
-        ? `<img src="${imageUrl}" alt="Property Image" loading="lazy">`
-        : '<p>No Image Available</p>';
+                    if (activeLink) {
+                        activeLink.href = linkUrl || '#';
+                        activeLink.style.display = linkUrl ? 'block' : 'none';
+                    }
+                };
 
-    // Update link
-    if (activeLink) {
-        activeLink.href = linkUrl || '#';
-        activeLink.style.display = linkUrl ? 'block' : 'none';
-    }
-};
+                propertyImagesContainer.innerHTML = '';
+                if (images && images.length > 0) {
+                    images.forEach(image => {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = image.url;
+                        imgElement.alt = 'Property Image';
+                        imgElement.style.width = '100%';
+                        imgElement.style.border = '1px solid #ccc';
+                        imgElement.style.borderRadius = '5px';
+                        propertyImagesContainer.appendChild(imgElement);
+                    });
+                }
 
 
     
                 buttons.forEach((button, index) => {
-                    const lat = parseFloat(button.getAttribute("data-lat"));
-                    const lng = parseFloat(button.getAttribute("data-lng"));
-                    // Now we look for <h6> instead of <strong>
-                    const title = button.querySelector("h6").textContent;
-                    const address = button.getAttribute("data-address");
-                    const images = JSON.parse(button.getAttribute("data-images"));
-                    const firstImage = images && images[0] ? images[0].url : null;
+        const lat = parseFloat(button.getAttribute("data-lat"));
+        const lng = parseFloat(button.getAttribute("data-lng"));
+        const title = button.querySelector("h6").textContent;
+        const address = button.getAttribute("data-address");
+        const images = JSON.parse(button.getAttribute("data-images"));
+        const firstImage = images && images[0] ? images[0].url : null;
+        const linkUrl = button.getAttribute("data-url");
 
-                    const linkUrl = button.getAttribute("data-url");
+        button.addEventListener("click", () => {
+            updatePropertyInfo(title, address, firstImage, linkUrl, images);
+        });
 
-button.addEventListener("click", () => {
-    updatePropertyInfo(title, address, firstImage, linkUrl);
-});
-    
-                    const marker = L.marker([lat, lng], {
-                        icon: index === 0 ? activeIcon : inactiveIcon,
-                    }).addTo(map);
-    
-                    marker.on("click", () => {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
-    
-                    markers.push(marker);
-    
-                    if (index === 0) {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                    }
-    
-                    button.addEventListener("click", () => {
-                        map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
-                        updatePropertyInfo(title, address, firstImage, images);
-                        markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
-                    });
-                });
+        const marker = L.marker([lat, lng], {
+            icon: index === 0 ? activeIcon : inactiveIcon,
+        }).addTo(map);
+
+        marker.on("click", () => {
+            map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+            updatePropertyInfo(title, address, firstImage, linkUrl, images);
+            markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
+        });
+
+        markers.push(marker);
+
+        if (index === 0) {
+            map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+            updatePropertyInfo(title, address, firstImage, linkUrl, images);
+        }
+
+        button.addEventListener("click", () => {
+            map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
+            updatePropertyInfo(title, address, firstImage, linkUrl, images);
+            markers.forEach((m, i) => m.setIcon(i === index ? activeIcon : inactiveIcon));
+        });
+    });
             });
         </script>
     
