@@ -323,11 +323,11 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 <div class="mapContainer">
                     <div id="property-map" class="map-container"></div>
                     <div class="property-info-block">
-    <div class="property-info-title"></div>
-    <div class="property-info-address"></div>
-    <div class="property-info-image"></div>
-    <a href="#" target="_blank" rel="noopener noreferrer" class="property-info-link" style="display: none; color: #093D5F; text-decoration: underline; font-weight: bold; margin-top: 10px;">View Property</a>
-</div>
+                    <div class="property-info-title"></div>
+                    <div class="property-info-address"></div>
+                    <div class="property-info-image"></div>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="property-info-link" style="display: none; color: #093D5F; text-decoration: underline; font-weight: bold; margin-top: 10px;">View Property</a>
+                </div>
 
                     <div class="property-info">
                         <div class="property-images"></div>
