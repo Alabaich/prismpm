@@ -181,9 +181,19 @@ class Elementor_BuildingsSlider extends \Elementor\Widget_Base
                 }
             }
 
+            @media screen and (max-width: 768px) {
+                .building-block {
+                    max-width: 75%;
+                }
+            }
+
             @media screen and (max-width: 600px) {
                 .building-block img {
                     max-height: 250px;
+                }
+
+                .building-block {
+                    max-width: 100%;
                 }
 
                 .building-info p {

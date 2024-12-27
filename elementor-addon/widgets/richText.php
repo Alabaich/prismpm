@@ -227,6 +227,9 @@ class Elementor_richText extends \Elementor\Widget_Base
                 .richText h1 {
                     font-size: 30px;
                 }
+                .richTextText {
+                padding: 0;
+            }
             }
 
             @media (max-width: 768px) {
@@ -242,7 +245,7 @@ class Elementor_richText extends \Elementor\Widget_Base
 
                 .richText p {
                     font-size: 14px;
-                    padding: 0px 30px 0px 30px;
+                    padding: 0;
                 }
             }
         </style>
