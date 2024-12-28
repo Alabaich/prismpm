@@ -151,11 +151,10 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 font-weight: normal;
             }
 
-            .button {
+            .button-properties-coming-soon {
                 text-decoration: none;
                 padding: 10px 20px;
                 color: #fff;
-                border-color: #fff;
                 background-color: #093D5F;
                 display: inline-block;
                 font-family: "Graphik Medium", Sans-serif;
@@ -164,9 +163,10 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 transition: all 0.3s ease;
                 border: 2px solid transparent;
                 font-size: 16px;
+                border-color: #fff;
             }
 
-            .button:hover {
+            .button-properties-coming-soon:hover {
                 background-color: #fff;
                 color: #093D5F;
                 border-color: #093D5F;
@@ -226,7 +226,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                         <p><strong>Towers:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
                         <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimated_text']); ?></p>
                         <?php if (!empty($slide['button_url']['url'])): ?>
-                            <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button">
+                            <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button-properties-coming-soon">
                                 <?php echo esc_html($slide['button_text']); ?>
                             </a>
                         <?php endif; ?>
