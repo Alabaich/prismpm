@@ -195,6 +195,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
 
                 .property-coming-soon-block {
                     width: 100%;
+                    max-width: 100%;
                 }
             }
 
