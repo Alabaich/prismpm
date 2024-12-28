@@ -34,7 +34,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
 
         $repeater = new \Elementor\Repeater();
 
-        $fixed_titles = ['Building', 'Address', 'Developer', 'Towers', 'Estimated Launch'];
+        $fixed_titles = ['Building', 'Address', 'Developer', 'Towers', 'EstimatedLaunch'];
 
         foreach ($fixed_titles as $title) {
             $repeater->add_control(
@@ -99,7 +99,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
 ?>
 
         <style>
-            .building-blocks-container {
+            .properties-coming-soon-container {
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
@@ -109,7 +109,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 width: 100%;
             }
 
-            .building-block {
+            .property-coming-soon-block {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -119,7 +119,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 box-sizing: border-box;
             }
 
-            .building-block img {
+            .property-coming-soon-block img {
                 width: 100%;
                 height: auto;
                 max-height: 300px;
@@ -170,7 +170,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
 
             @media screen and (max-width: 1600px) {
-                .building-block {
+                .property-coming-soon-block {
                     max-width: 380px;
                 }
 
@@ -180,17 +180,17 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
 
             @media screen and (max-width: 768px) {
-                .building-block {
+                .property-coming-soon-block {
                     max-width: 75%;
                 }
             }
 
             @media screen and (max-width: 600px) {
-                .building-block img {
+                .property-coming-soon-block img {
                     max-height: 250px;
                 }
 
-                .building-block {
+                .property-coming-soon-block {
                     max-width: 100%;
                 }
 
@@ -204,16 +204,16 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
         </style>
 
-        <div class="building-blocks-container">
+        <div class="properties-coming-soon-container">
             <?php foreach ($settings['slides'] as $slide): ?>
-                <div class="building-block">
+                <div class="property-coming-soon-block">
                     <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
                     <div class="building-info">
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
                         <p><strong>Towers:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
-                        <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimated_launch']); ?></p>
+                        <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimatedlaunch_text']); ?></p>
                         <?php if (!empty($slide['button_url']['url'])): ?>
                             <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button">
                                 <?php echo esc_html($slide['button_text']); ?>
