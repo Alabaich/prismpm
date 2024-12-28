@@ -140,7 +140,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 font-size: 24px;
                 font-weight: normal;
                 color: #fff;
-                border-bottom: 1px solid #80808066;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.7);
                 padding-bottom: 5px;
             }
 
@@ -187,9 +187,29 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 }
             }
 
+            @media screen and (max-width: 1280px) {
+                .properties-coming-soon-container {
+                    gap: 50px;
+                    flex-direction: column;
+                }
+
+                .property-coming-soon-block {
+                    width: 100%;
+                }
+            }
+
             @media screen and (max-width: 768px) {
+                .properties-coming-soon-container {
+                    gap: 50px;
+                }
+
                 .property-coming-soon-block {
                     max-width: 75%;
+                    flex-direction: column;
+                }
+
+                .building-coming-soon-info {
+                    width: 95%;
                 }
             }
 
