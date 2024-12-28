@@ -114,7 +114,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 display: flex;
                 align-items: center;
                 text-align: center;
-                max-width: 40%;
+                max-width: 45%;
                 width: 100%;
                 gap: 20px;
                 box-sizing: border-box;
@@ -126,13 +126,13 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 object-fit: cover;
             }
 
-            .building-info {
+            .building-coming-soon-info {
                 margin-top: 10px;
                 text-align: left;
-                width: 100%;
+                width: 80%;
             }
 
-            .building-info p {
+            .building-coming-soon-info p {
                 display: flex;
                 flex-direction: column;
                 text-align: left;
@@ -144,7 +144,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 padding-bottom: 5px;
             }
 
-            .building-info p strong {
+            .building-coming-soon-info p strong {
                 font-family: "Graphik Extralight", Sans-serif;
                 font-size: 14px;
                 color: #fff;
@@ -219,7 +219,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                         <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
                     </div>
 
-                    <div class="building-info">
+                    <div class="building-coming-soon-info">
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
