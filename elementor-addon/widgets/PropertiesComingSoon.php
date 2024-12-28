@@ -199,21 +199,6 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 }
             }
 
-            @media screen and (max-width: 768px) {
-                .properties-coming-soon-container {
-                    gap: 50px;
-                }
-
-                .property-coming-soon-block {
-                    max-width: 75%;
-                    flex-direction: column;
-                }
-
-                .building-coming-soon-info {
-                    width: 95%;
-                }
-            }
-
             @media screen and (max-width: 600px) {
                 .property-coming-soon-block img {
                     max-height: 250px;
