@@ -17,6 +17,7 @@ function register_hello_world_widget( $widgets_manager ) {
     require_once( __DIR__ . '/widgets/propertyMapWidget.php' );
     require_once( __DIR__ . '/widgets/richText.php' );
     require_once( __DIR__ . '/widgets/buildingsSlider.php' );
+    require_once( __DIR__ . '/widgets/PropertiesComingSoon.php' );
 	
 
     $widgets_manager->register( new \Elementor_switchSideImage() );
@@ -26,6 +27,7 @@ function register_hello_world_widget( $widgets_manager ) {
     $widgets_manager->register( new \Elementor_PropertyMapWidget() );
     $widgets_manager->register( new \Elementor_richText() );
     $widgets_manager->register( new \Elementor_buildingsSlider() );
+    $widgets_manager->register( new \Elementor_PropertiesComingSoon() );
 
 
 }
