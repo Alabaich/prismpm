@@ -155,7 +155,8 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 text-decoration: none;
                 padding: 10px 20px;
                 color: #fff;
-                background-color: #fff;
+                border-color: #fff;
+                background-color: #093D5F;
                 display: inline-block;
                 font-family: "Graphik Medium", Sans-serif;
                 font-size: 12px;
@@ -166,9 +167,9 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
 
             .button:hover {
-                background-color: #093D5F;
-                color: #fff;
-                border-color: #fff;
+                background-color: #fff;
+                color: #093D5F;
+                border-color: #093D5F;
             }
 
             .property-coming-soon-block .property-image-container {
