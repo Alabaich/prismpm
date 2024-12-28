@@ -204,16 +204,21 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                     max-height: 250px;
                 }
 
+                .properties-coming-soon-container {
+                    gap: 50px;
+                }
+
                 .property-coming-soon-block {
-                    max-width: 100%;
+                    max-width: 75%;
+                    flex-direction: column;
                 }
 
-                .building-info p {
+                .building-coming-soon-info {
+                    width: 95%;
+                }
+
+                .building-coming-soon-info p {
                     font-size: 18px;
-                }
-
-                .building-blocks-container {
-                    gap: 25px;
                 }
             }
         </style>
