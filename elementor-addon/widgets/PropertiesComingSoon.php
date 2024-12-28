@@ -173,13 +173,12 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
 
             .property-coming-soon-block .property-image-container {
-                height: 100%;
                 width: 100%;
             }
 
             @media screen and (max-width: 1600px) {
-                .property-coming-soon-block {
-                    max-width: 380px;
+                .building-coming-soon-info {
+                    margin-top: 0px;
                 }
 
                 .building-blocks-container {
@@ -219,7 +218,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 }
 
                 .building-coming-soon-info p {
-                    font-size: 18px;
+                    font-size: 20px;
                 }
             }
         </style>
