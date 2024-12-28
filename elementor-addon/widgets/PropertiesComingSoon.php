@@ -34,7 +34,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
 
         $repeater = new \Elementor\Repeater();
 
-        $fixed_titles = ['Building', 'Address', 'Developer', 'Towers', 'EstimatedLaunch'];
+        $fixed_titles = ['Building', 'Address', 'Developer', 'Towers', 'estimated'];
 
         foreach ($fixed_titles as $title) {
             $repeater->add_control(
@@ -103,7 +103,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
-                gap: 70px;
+                gap: 20px;
                 align-items: flex-start;
                 padding: 50px 15px;
                 width: 100%;
@@ -122,8 +122,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
 
             .property-coming-soon-block img {
                 width: 100%;
-                height: auto;
-                max-height: 300px;
+                height: 100%;
                 object-fit: cover;
             }
 
@@ -156,7 +155,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 text-decoration: none;
                 padding: 10px 20px;
                 color: #fff;
-                background-color: #093D5F;
+                background-color: #fff;
                 display: inline-block;
                 font-family: "Graphik Medium", Sans-serif;
                 font-size: 12px;
@@ -167,9 +166,9 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             }
 
             .button:hover {
-                background-color: #fff;
-                color: #093D5F;
-                border-color: #093D5F;
+                background-color: #093D5F;
+                color: #fff;
+                border-color: #fff;
             }
 
             .property-coming-soon-block .property-image-container {
@@ -224,7 +223,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
                         <p><strong>Towers:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
-                        <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimatedlaunch_text']); ?></p>
+                        <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimated_text']); ?></p>
                         <?php if (!empty($slide['button_url']['url'])): ?>
                             <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button">
                                 <?php echo esc_html($slide['button_text']); ?>
