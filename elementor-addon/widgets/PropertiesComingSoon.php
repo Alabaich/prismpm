@@ -105,17 +105,18 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 flex-wrap: wrap;
                 gap: 70px;
                 align-items: flex-start;
-                padding: 0px 15px;
+                padding: 50px 15px;
                 width: 100%;
+                background-color: #093D5F;
             }
 
             .property-coming-soon-block {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 text-align: center;
-                max-width: 450px;
+                max-width: 40%;
                 width: 100%;
+                gap: 20px;
                 box-sizing: border-box;
             }
 
@@ -139,6 +140,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 font-family: "Graphik Extralight", Sans-serif;
                 font-size: 24px;
                 font-weight: normal;
+                color: #fff;
                 border-bottom: 1px solid #80808066;
                 padding-bottom: 5px;
             }
@@ -146,6 +148,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
             .building-info p strong {
                 font-family: "Graphik Extralight", Sans-serif;
                 font-size: 14px;
+                color: #fff;
                 font-weight: normal;
             }
 
