@@ -169,6 +169,11 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                 border-color: #093D5F;
             }
 
+            .property-coming-soon-block .property-image-container {
+                height: 100%;
+                width: 100%;
+            }
+
             @media screen and (max-width: 1600px) {
                 .property-coming-soon-block {
                     max-width: 380px;
@@ -207,7 +212,10 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
         <div class="properties-coming-soon-container">
             <?php foreach ($settings['slides'] as $slide): ?>
                 <div class="property-coming-soon-block">
-                    <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
+                    <div class="property-image-container">
+                        <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="">
+                    </div>
+
                     <div class="building-info">
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
