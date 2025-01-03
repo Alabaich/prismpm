@@ -157,6 +157,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
 .hero-banner img.hero-image {
     width: 100%;
     height: auto;
+    max-height: 90vh;
     display: block;
 }
 
@@ -241,9 +242,9 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
                 
             <img src="<?php echo $logo_image; ?>" alt="Logo" class="hero-logo" id="parallax-logo">
 
-            <div class="hero-text">  
+            <!-- <div class="hero-text">  
                 <h1><?php echo $title_text; ?></h1>
-            </div>
+            </div> -->
         </div>
 
         <script>
