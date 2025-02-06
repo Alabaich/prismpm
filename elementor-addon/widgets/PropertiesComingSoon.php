@@ -234,7 +234,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
-                        <p><strong>Towers:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
+                        <p><strong>Units:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
                         <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimated_text']); ?></p>
                         <?php if (!empty($slide['button_url']['url'])): ?>
                             <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button-properties-coming-soon">
