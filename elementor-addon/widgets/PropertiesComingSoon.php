@@ -49,6 +49,18 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
         }
 
         $repeater->add_control(
+            'use_units',
+            [
+                'label' => esc_html__('Use Units Instead of Towers', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'elementor-addon'),
+                'label_off' => esc_html__('No', 'elementor-addon'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $repeater->add_control(
             'slide_image',
             [
                 'label' => esc_html__('Image', 'elementor-addon'),
@@ -234,7 +246,7 @@ class Elementor_PropertiesComingSoon extends \Elementor\Widget_Base
                         <p><strong>Building:</strong><?php echo esc_html($slide['building_text']); ?></p>
                         <p><strong>Address:</strong> <?php echo esc_html($slide['address_text']); ?></p>
                         <p><strong>Developer:</strong> <?php echo esc_html($slide['developer_text']); ?></p>
-                        <p><strong>Units:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
+                        <p><strong><?php echo ($slide['use_units'] === 'yes') ? 'Units' : 'Towers'; ?>:</strong> <?php echo esc_html($slide['towers_text']); ?></p>
                         <p><strong>Estimated Launch:</strong> <?php echo esc_html($slide['estimated_text']); ?></p>
                         <?php if (!empty($slide['button_url']['url'])): ?>
                             <a href="<?php echo esc_url($slide['button_url']['url']); ?>" class="button-properties-coming-soon">
