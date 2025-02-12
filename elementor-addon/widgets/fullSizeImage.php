@@ -1,34 +1,41 @@
 <?php
 
-class Elementor_FullSizeImage extends \Elementor\Widget_Base {
+class Elementor_FullSizeImage extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return 'full_size_image';
     }
 
-    public function get_title() {
-        return esc_html__( 'Full Size Image Banner', 'elementor-addon' );
+    public function get_title()
+    {
+        return esc_html__('Full Size Image Banner', 'elementor-addon');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-image';
     }
 
-    public function get_categories() {
-        return [ 'basic' ];
+    public function get_categories()
+    {
+        return ['basic'];
     }
 
-    public function get_keywords() {
-        return [ 'image', 'banner', 'hero', 'responsive' ];
+    public function get_keywords()
+    {
+        return ['image', 'banner', 'hero', 'responsive'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
 
         // Section: Content
         $this->start_controls_section(
             'section_content',
             [
-                'label' => esc_html__( 'Content', 'elementor-addon' ),
+                'label' => esc_html__('Content', 'elementor-addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -37,7 +44,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'desktop_image',
             [
-                'label' => esc_html__( 'Desktop Image', 'elementor-addon' ),
+                'label' => esc_html__('Desktop Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -48,7 +55,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'medium_image',
             [
-                'label' => esc_html__( '1366x768 Image', 'elementor-addon' ),
+                'label' => esc_html__('1366x768 Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -60,7 +67,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'tablet_image',
             [
-                'label' => esc_html__( 'Tablet Image', 'elementor-addon' ),
+                'label' => esc_html__('Tablet Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -72,7 +79,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'phone_image',
             [
-                'label' => esc_html__( 'Phone Image', 'elementor-addon' ),
+                'label' => esc_html__('Phone Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -84,7 +91,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'logo_image',
             [
-                'label' => esc_html__( 'Logo Image', 'elementor-addon' ),
+                'label' => esc_html__('Logo Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -96,9 +103,9 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'title_text',
             [
-                'label' => esc_html__( 'Title', 'elementor-addon' ),
+                'label' => esc_html__('Title', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__( 'Your Hero Title', 'elementor-addon' ),
+                'default' => esc_html__('Your Hero Title', 'elementor-addon'),
             ]
         );
 
@@ -108,7 +115,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style',
             [
-                'label' => esc_html__( 'Style', 'elementor-addon' ),
+                'label' => esc_html__('Style', 'elementor-addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -116,7 +123,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__( 'Title Color', 'elementor-addon' ),
+                'label' => esc_html__('Title Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hero-text h1' => 'color: {{VALUE}};',
@@ -128,7 +135,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => esc_html__( 'Title Typography', 'elementor-addon' ),
+                'label' => esc_html__('Title Typography', 'elementor-addon'),
                 'selector' => '{{WRAPPER}} .hero-text h1',
             ]
         );
@@ -136,110 +143,115 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
-    
-        $desktop_image = esc_url( $settings['desktop_image']['url'] );
-        $tablet_image = esc_url( $settings['tablet_image']['url'] );
-        $medium_image = esc_url( $settings['medium_image']['url'] );
-        $phone_image = esc_url( $settings['phone_image']['url'] );
-        $logo_image = esc_url( $settings['logo_image']['url'] );
-        $title_text = esc_html( $settings['title_text'] );
-        ?>
-    <style>
-.hero-banner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    aspect-ratio: 1920 / 996;
-}
 
-.hero-banner img.hero-image {
-    width: 100%;
-    height: auto;
-    max-height: 90vh;
-    display: block;
-}
+        $desktop_image = esc_url($settings['desktop_image']['url']);
+        $tablet_image = esc_url($settings['tablet_image']['url']);
+        $medium_image = esc_url($settings['medium_image']['url']);
+        $phone_image = esc_url($settings['phone_image']['url']);
+        $logo_image = esc_url($settings['logo_image']['url']);
+        $title_text = esc_html($settings['title_text']);
+?>
+        <style>
+            .hero-banner {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                aspect-ratio: 1920 / 996;
+            }
 
-/* Positioning adjustments for logo and text */
-.hero-banner .hero-logo {
-    position: absolute;
-    right: 0;
-    bottom: 125px;
-    width: auto;
-    height: 100%;
-    transition: transform 0.2s ease-out;
-    z-index: 10;
-}
+            .hero-banner img.hero-image {
+                width: 100%;
+                height: auto;
+                max-height: 90vh;
+                display: block;
+            }
 
-.hero-banner .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #fff;
-    background: rgba(8, 62, 95, 0.75);
-    padding: 15px;
-    z-index: 9;
-    max-width: 50%;
-}
+            .hero-banner .hero-logo {
+                position: absolute;
+                right: 0;
+                bottom: 125px;
+                width: auto;
+                height: 100%;
+                transition: transform 0.2s ease-out;
+                z-index: 10;
+            }
 
-
-.hero-banner .hero-text h1 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: start;
-    margin: 0;
-    line-height: 1.2;
-}
+            .hero-banner .hero-text {
+                position: absolute;
+                top: 50%;
+                left: 15px;
+                transform: translateY(-50%);
+                text-align: center;
+                color: #fff;
+                background: rgba(8, 62, 95, 0.75);
+                padding: 15px;
+                z-index: 9;
+                max-width: 50%;
+            }
 
 
-@media (max-width: 1366px) {
+            .hero-banner .hero-text h1 {
+                font-size: 1.5rem;
+                font-weight: 400;
+                text-align: start;
+                margin: 0;
+                line-height: 1.2;
+            }
 
-    .hero-banner .hero-text h1 {
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-banner .hero-logo {
-    bottom: 0;
-}
-
-.hero-banner .hero-text {
-    left: 0;
-}
-
-    .hero-banner .hero-text h1 {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
+            @media screen and (max-width: 1500px) {
+                .hero-banner .hero-logo {
+                    bottom: 80px;
+                }
+            }
 
 
-    .hero-banner .hero-text h1 {
-        font-size: 0.75rem;
-    }
-}
+            @media (max-width: 1366px) {
 
+                .hero-banner .hero-text h1 {
+                    font-size: 1.25rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .hero-banner .hero-logo {
+                    bottom: 0;
+                }
+
+                .hero-banner .hero-text {
+                    left: 0;
+                }
+
+                .hero-banner .hero-text h1 {
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+
+
+                .hero-banner .hero-text h1 {
+                    font-size: 0.75rem;
+                }
+            }
         </style>
-    
+
         <div class="hero-banner">
-            <img 
-                src="<?php echo $desktop_image; ?>" 
+            <img
+                src="<?php echo $desktop_image; ?>"
                 srcset="<?php echo $phone_image; ?> 600w, 
                     <?php echo $tablet_image; ?> 768w, 
                     <?php echo $medium_image; ?> 1366w, 
-                    <?php echo $desktop_image; ?> 1920w" 
+                    <?php echo $desktop_image; ?> 1920w"
                 sizes="(max-width: 600px) 100vw, 
                        (max-width: 768px) 100vw, 
                        (max-width: 1366px) 100vw, 
                        100vw"
-                alt="Hero Image" 
+                alt="Hero Image"
                 class="hero-image">
-                
+
             <img src="<?php echo $logo_image; ?>" alt="Logo" class="hero-logo" id="parallax-logo">
 
             <!-- <div class="hero-text">  
@@ -248,17 +260,16 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base {
         </div>
 
         <script>
-document.addEventListener("scroll", function() {
-    const logo = document.getElementById("parallax-logo");
-    const title = document.getElementById("parallax-title");
-    const scrollPosition = window.scrollY;
+            document.addEventListener("scroll", function() {
+                const logo = document.getElementById("parallax-logo");
+                const title = document.getElementById("parallax-title");
+                const scrollPosition = window.scrollY;
 
-    // Adjust the multiplier as desired for different parallax speeds
-    logo.style.transform = `translateY(${scrollPosition * -0.3}px)`;
-    title.style.transform = `translateY(${scrollPosition * -0.2}px)`;
-});
-</script>
-        <?php
+                // Adjust the multiplier as desired for different parallax speeds
+                logo.style.transform = `translateY(${scrollPosition * -0.3}px)`;
+                title.style.transform = `translateY(${scrollPosition * -0.2}px)`;
+            });
+        </script>
+<?php
     }
-    
 }
