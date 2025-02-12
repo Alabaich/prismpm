@@ -203,17 +203,9 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base
 
             @media screen and (max-width: 1500px) {
                 .hero-banner .hero-logo {
-                    bottom: 60px;
+                    bottom: 5%;
                 }
             }
-
-
-            @media screen and (max-width: 1200px) {
-                .hero-banner .hero-logo {
-                    bottom: 40px;
-                }
-            }
-
 
             @media (max-width: 1366px) {
 
