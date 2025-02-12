@@ -56,9 +56,9 @@ class Elementor_aboutUs extends \Elementor\Widget_Base
             'regular_text',
             [
                 'label' => esc_html__('Text', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'type' => \Elementor\Controls_Manager::WYSIWYG,
                 'default' => '',
-                'placeholder' => esc_html__('Enter text', 'elementor-addon'),
+                'placeholder' => esc_html__('Enter text with formatting', 'elementor-addon'),
             ]
         );
 
@@ -97,6 +97,17 @@ class Elementor_aboutUs extends \Elementor\Widget_Base
             .about-us-text {
                 width: 65%;
                 background-color: #093D5F;
+                color: #fff;
+                padding: 0 5%;
+            }
+
+            .about-us-text h2, .about-us-text h3, .about-us-text p {
+                margin: 10px 0;
+            }
+
+            .about-us-text a {
+                color: #FFD700;
+                text-decoration: underline;
             }
 
             .about-us-image {
@@ -121,7 +132,7 @@ class Elementor_aboutUs extends \Elementor\Widget_Base
                     <?php endif; ?>
 
                     <?php if (!empty($settings['regular_text'])) : ?>
-                        <p><?php echo esc_html($settings['regular_text']); ?></p>
+                        <div><?php echo $settings['regular_text']; ?></div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
