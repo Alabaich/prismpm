@@ -172,7 +172,7 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base
             .hero-banner .hero-logo {
                 position: absolute;
                 right: 0;
-                bottom: 125px;
+                bottom: 5%;
                 width: auto;
                 height: 100%;
                 transition: transform 0.2s ease-out;
@@ -199,12 +199,6 @@ class Elementor_FullSizeImage extends \Elementor\Widget_Base
                 text-align: start;
                 margin: 0;
                 line-height: 1.2;
-            }
-
-            @media screen and (max-width: 1500px) {
-                .hero-banner .hero-logo {
-                    bottom: 5%;
-                }
             }
 
             @media (max-width: 1366px) {
