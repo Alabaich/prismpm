@@ -90,12 +90,13 @@ class Elementor_aboutUs extends \Elementor\Widget_Base
         <style>
             .about-us-container {
                 display: flex;
-                gap: 20px;
+                gap: 50px;
                 align-items: center;
             }
 
             .about-us-text {
                 width: 65%;
+                background-color: #093D5F;
             }
 
             .about-us-image {
@@ -105,7 +106,6 @@ class Elementor_aboutUs extends \Elementor\Widget_Base
             .about-us-image img {
                 width: 100%;
                 height: auto;
-                border-radius: 10px;
             }
         </style>
 
