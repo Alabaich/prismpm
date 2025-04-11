@@ -19,6 +19,7 @@ function register_hello_world_widget( $widgets_manager ) {
     require_once( __DIR__ . '/widgets/buildingsSlider.php' );
     require_once( __DIR__ . '/widgets/PropertiesComingSoon.php' );
     require_once( __DIR__ . '/widgets/aboutUs.php' );
+    require_once( __DIR__ . '/widgets/HeroSlider.php' );
 	
 
     $widgets_manager->register( new \Elementor_switchSideImage() );
@@ -30,6 +31,7 @@ function register_hello_world_widget( $widgets_manager ) {
     $widgets_manager->register( new \Elementor_buildingsSlider() );
     $widgets_manager->register( new \Elementor_PropertiesComingSoon() );
     $widgets_manager->register( new \Elementor_aboutUs() );
+    $widgets_manager->register( new \Elementor_HeroSlider() );
 
 
 }
