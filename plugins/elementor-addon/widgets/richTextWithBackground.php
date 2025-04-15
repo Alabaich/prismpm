@@ -1,11 +1,11 @@
 <?php
 
-class Elementor_richText extends \Elementor\Widget_Base
+class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 {
 
     public function get_name()
     {
-        return 'richText';
+        return 'richTextWithBackground';
     }
 
     public function get_title()
@@ -31,8 +31,6 @@ class Elementor_richText extends \Elementor\Widget_Base
     protected function register_controls()
     {
 
-        // Content Tab Start
-
         $this->start_controls_section(
             'section_title',
             [
@@ -50,10 +48,18 @@ class Elementor_richText extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'uppertitle',
+            [
+                'label' => esc_html__('Upper Title', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+            ]
+        );
+
+        $this->add_control(
             'text',
             [
                 'label' => esc_html__('Text', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::WYSIWYG,
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
             ]
         );
 
@@ -95,14 +101,12 @@ class Elementor_richText extends \Elementor\Widget_Base
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
-                'default' => 'left',
+                'default' => 'center',
                 'toggle' => true,
             ]
         );
 
         $this->end_controls_section();
-
-        // Style Tab Start
 
         $this->start_controls_section(
             'section_title_style',
@@ -145,17 +149,24 @@ class Elementor_richText extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'button_hover_color',
+            [
+                'label' => esc_html__('Button Hover Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .buttonWrapper .btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
-
-        // Style Tab End
-
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
 
-        // Determine alignment class
         $alignment_class = '';
         if (!empty($settings['alignment'])) {
             $alignment_class = 'align-' . esc_attr($settings['alignment']);
@@ -167,25 +178,46 @@ class Elementor_richText extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: 10px;
+                align-items: center;
+                background: #093D5F;
+                text-align: center;
+                padding-bottom: 150px;
+                padding-top: 150px;
             }
 
-            .richText h1 {
-                color: #093D5F;
-                font-family: "Graphik Light", Sans-serif;
-                font-size: 50px;
+            .richText h2 {
+                color: #FFFFFF;
+                font-family: "Darker Grotesque", Sans-serif;
+                font-size: 34px;
+                font-weight: 600;
+                max-width: 902px;
+                line-height: 96%;
+                margin: 0px;
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+
+            .richText h4 {
+                color: #E0E0E0;
+                font-family: "Inter Tight", Sans-serif;
+                font-size: 14px;
                 font-weight: normal;
-                margin: 0;
+                margin: 0px;
+                margin-bottom: 16px;
+            }
+
+            .richText p {
+                color: #E0E0E0;
+                font-family: "Inter Tight", Sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                max-width: 614px;
+                margin-top: 16px;
+                margin-bottom: 60px;
             }
 
             .richTextText {
                 padding: 0% 10% 0% 10%;
-            }
-
-            .richText p {
-                font-family: "Graphik Light", Sans-serif;
-                font-size: 16px;
-                font-weight: 400;
             }
 
             .align-left {
@@ -204,43 +236,64 @@ class Elementor_richText extends \Elementor\Widget_Base
             }
 
             .buttonWrapper .btn {
-                padding: 10px 20px;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                border-radius: 9999px;
+                background: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
+                padding: 1rem 2rem;
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #2A2A2A;
                 text-decoration: none;
-                color: #fff;
-                background-color: #093D5F;
-                display: inline-block;
-                font-family: "Graphik Medium", Sans-serif;
-                font-size: 12px;
-                font-weight: normal;
+                font-family: "Inter Tight", Sans-serif;
+                border: none;
+                cursor: pointer;
                 transition: all 0.3s ease;
                 border: 2px solid transparent;
-                font-size: 16px;
             }
 
             .buttonWrapper .btn:hover {
-                color: #093D5F;
-                background-color: #fff;
-                border-color: #093D5F;
+                background: transparent;
+                border-color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
+                color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
+            }
+
+            .buttonWrapper .btn svg {
+                transition: all 0.3s ease;
+                rotate: -45deg;
+                width: 24px;
+                height: 24px;
             }
 
             @media (max-width: 1200px) {
                 .richText h1 {
                     font-size: 30px;
                 }
+
                 .richTextText {
-                padding: 0;
-            }
+                    padding: 0;
+                }
             }
 
             @media (max-width: 768px) {
+                .richTextContainer {
+                    padding-bottom: 50px;
+                    padding-top: 50px;
+                }
+
                 .richText h1 {
+                    font-size: 30px;
+                }
+
+                .richText h2 {
                     font-size: 30px;
                 }
             }
 
             @media (max-width: 480px) {
-                .richText h1 {
-                    font-size: 30px;
+                .richText h2 {
+                    font-size: 22px;
                 }
 
                 .richText p {
@@ -251,18 +304,26 @@ class Elementor_richText extends \Elementor\Widget_Base
         </style>
 
         <div class="richTextContainer <?php echo esc_attr($alignment_class); ?>">
+            <?php if (!empty($settings['uppertitle'])) : ?>
+                <div class="richText">
+                    <h4>
+                        <?php echo esc_html($settings['uppertitle']); ?>
+                    </h4>
+                </div>
+            <?php endif; ?>
+
             <?php if (!empty($settings['title'])) : ?>
                 <div class="richText">
-                    <h1>
+                    <h2>
                         <?php echo esc_html($settings['title']); ?>
-                    </h1>
+                    </h2>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($settings['text'])) : ?>
                 <div class="richText richTextText">
                     <p>
-                        <?php echo wp_kses_post($settings['text']); ?>
+                        <?php echo esc_html($settings['text']); ?>
                     </p>
                 </div>
             <?php endif; ?>
@@ -271,6 +332,9 @@ class Elementor_richText extends \Elementor\Widget_Base
                 <div class="buttonWrapper">
                     <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
                         <?php echo esc_html($settings['textForButton']); ?>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
                     </a>
                 </div>
             <?php endif; ?>
