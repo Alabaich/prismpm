@@ -1,5 +1,6 @@
 <?php
 
+
 class Elementor_stSection extends \Elementor\Widget_Base
 {
 
