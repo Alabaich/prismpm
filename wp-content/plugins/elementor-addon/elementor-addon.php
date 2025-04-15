@@ -15,6 +15,7 @@ function register_hello_world_widget( $widgets_manager ) {
     require_once( __DIR__ . '/widgets/stSection.php' );
     require_once( __DIR__ . '/widgets/ndSection.php' );
 
+    
     $widgets_manager->register( new \Elementor_totalServices() );
     $widgets_manager->register( new \Elementor_totalServicesq() );
     $widgets_manager->register( new \Elementor_stSection() );
