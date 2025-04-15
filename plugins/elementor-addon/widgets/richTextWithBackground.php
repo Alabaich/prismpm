@@ -31,8 +31,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
     protected function register_controls()
     {
 
-        // Content Tab Start
-
         $this->start_controls_section(
             'section_title',
             [
@@ -50,7 +48,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'uppertitle', // Changed from subtitle to uppertitle
+            'uppertitle',
             [
                 'label' => esc_html__('Upper Title', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
@@ -61,7 +59,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             'text',
             [
                 'label' => esc_html__('Text', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA, // Changed from WYSIWYG to TEXTAREA
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
             ]
         );
 
@@ -169,7 +167,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        // Determine alignment class
         $alignment_class = '';
         if (!empty($settings['alignment'])) {
             $alignment_class = 'align-' . esc_attr($settings['alignment']);
