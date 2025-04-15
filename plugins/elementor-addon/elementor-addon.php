@@ -8,31 +8,17 @@
  * Text Domain: elementor-addon
  */
 
-function register_hello_world_widget( $widgets_manager ) {
+function register_hello_world_widget($widgets_manager)
+{
 
-    require_once( __DIR__ . '/widgets/switchSideImage.php' );
-    require_once( __DIR__ . '/widgets/totalServices.php' );
-    require_once( __DIR__ . '/widgets/fullSizeImage.php' );
-    require_once( __DIR__ . '/widgets/applyCTAButton.php' );
-    require_once( __DIR__ . '/widgets/propertyMapWidget.php' );
-    require_once( __DIR__ . '/widgets/richText.php' );
-    require_once( __DIR__ . '/widgets/buildingsSlider.php' );
-    require_once( __DIR__ . '/widgets/PropertiesComingSoon.php' );
-    require_once( __DIR__ . '/widgets/aboutUs.php' );
-    require_once( __DIR__ . '/widgets/HeroSlider.php' );
-	
-
-    $widgets_manager->register( new \Elementor_switchSideImage() );
-    $widgets_manager->register( new \Elementor_totalServices() );
-    $widgets_manager->register( new \Elementor_fullSizeImage() );
-    $widgets_manager->register( new \Elementor_applyCTAButton() );
-    $widgets_manager->register( new \Elementor_PropertyMapWidget() );
-    $widgets_manager->register( new \Elementor_richText() );
-    $widgets_manager->register( new \Elementor_buildingsSlider() );
-    $widgets_manager->register( new \Elementor_PropertiesComingSoon() );
-    $widgets_manager->register( new \Elementor_aboutUs() );
-    $widgets_manager->register( new \Elementor_HeroSlider() );
+    require_once(__DIR__ . '/widgets/HeroSlider.php');
+    require_once(__DIR__ . '/widgets/richTextWithBackground.php');
+    require_once(__DIR__ . '/widgets/heroImage.php');
 
 
+    $widgets_manager->register(new \Elementor_HeroSlider());
+    $widgets_manager->register(new \Elementor_richTextWithBackground());
+    $widgets_manager->register(new \Elementor_heroImage());
 }
-add_action( 'elementor/widgets/register', 'register_hello_world_widget' );
+
+add_action('elementor/widgets/register', 'register_hello_world_widget');

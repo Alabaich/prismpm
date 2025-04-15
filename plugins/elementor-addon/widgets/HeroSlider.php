@@ -228,10 +228,8 @@ class Elementor_HeroSlider extends \Elementor\Widget_Base {
         </section>
 
         <style>
-            /* Основные стили */
             #hero-slider-<?php echo esc_attr($widget_id); ?> {
                 display: flex;
-                min-height: 100vh;
                 width: 100%;
                 position: relative;
             }
@@ -298,6 +296,7 @@ class Elementor_HeroSlider extends \Elementor\Widget_Base {
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button-icon {
                 transition: all 0.3s ease;
+                rotate: -45deg;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-navigation {
@@ -360,7 +359,6 @@ class Elementor_HeroSlider extends \Elementor\Widget_Base {
                 object-fit: cover;
             }
 
-            /* Адаптивность */
             @media (max-width: 1024px) {
                 #hero-slider-<?php echo esc_attr($widget_id); ?> {
                     flex-direction: column;
@@ -383,6 +381,10 @@ class Elementor_HeroSlider extends \Elementor\Widget_Base {
             @media (max-width: 768px) {
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
                     font-size: 2rem;
+                }
+
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-content-wrapper {
+                padding: 0rem;
                 }
             }
 
