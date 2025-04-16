@@ -4,6 +4,7 @@
  *
  * @package HelloElementor
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -25,9 +26,9 @@ $menu_args = [
 $header_nav_menu = wp_nav_menu( $menu_args );
 $header_mobile_nav_menu = wp_nav_menu( $menu_args ); // The same menu but separate call to avoid duplicate ID attributes.
 ?>
-<header id="site-header" class="site-header dynamic-header <?php echo esc_attr( $header_class ); ?>">
-	<div class="header-inner">
-		<div class="site-branding show-<?php echo esc_attr( hello_elementor_get_setting( 'hello_header_logo_type' ) ); ?>">
+<header id="site-header" class="headr site-header dynamic-header <?php echo esc_attr( $header_class ); ?>">
+	<div class="headr-container">
+		<div class="headr-logo site-branding show-<?php echo esc_attr( hello_elementor_get_setting( 'hello_header_logo_type' ) ); ?>">
 			<?php if ( has_custom_logo() && ( 'title' !== hello_elementor_get_setting( 'hello_header_logo_type' ) || $is_editor ) ) : ?>
 				<div class="site-logo <?php echo esc_attr( hello_show_or_hide( 'hello_header_logo_display' ) ); ?>">
 					<?php the_custom_logo(); ?>
@@ -50,12 +51,24 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args ); // The same menu but separa
 		</div>
 
 		<?php if ( $header_nav_menu ) : ?>
-			<nav class="site-navigation <?php echo esc_attr( hello_show_or_hide( 'hello_header_menu_display' ) ); ?>" aria-label="<?php echo esc_attr__( 'Main menu', 'hello-elementor' ); ?>">
+			<div class="nav-container">
+				<nav class="site-navigation headr-nav <?php echo esc_attr( hello_show_or_hide( 'hello_header_menu_display' ) ); ?>" aria-label="<?php echo esc_attr__( 'Main menu', 'hello-elementor' ); ?>">
 				<?php
 				// PHPCS - escaped by WordPress with "wp_nav_menu"
 				echo $header_nav_menu; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
-			</nav>
+				</nav>
+				<div class="btn-container">
+				<button>
+					<a class='btnDef'>
+						289.499.2632
+					</a>
+				</button>
+				<button>
+					lease@prismpm.ca
+				</button>
+				</div>
+			</div>
 		<?php endif; ?>
 		<?php if ( $header_mobile_nav_menu ) : ?>
 			<div class="site-navigation-toggle-holder <?php echo esc_attr( hello_show_or_hide( 'hello_header_menu_display' ) ); ?>">
@@ -71,4 +84,43 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args ); // The same menu but separa
 			</nav>
 		<?php endif; ?>
 	</div>
+
+	<style>
+		.headr {
+			padding: 1.5rem 2rem;
+			display: flex;
+			justify-content: center;
+		}
+		.headr-container {
+			display:flex;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 100%;
+			max-width: 98rem;
+			margin: 0 auto;
+		}
+		.nav-container{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap:0 8rem;
+		}
+		.headr-nav{
+			display: flex;
+			color: #2A2A2A;	
+		}
+		.headr-nav a{
+			color: #2A2A2A;	
+		}
+		.btn-container{
+			display:flex;
+			gap: 0 1rem;
+		}
+		.btn-container button{
+			display:flex;
+			border-radius:666px;
+		}
+
+
+	</style>
 </header>

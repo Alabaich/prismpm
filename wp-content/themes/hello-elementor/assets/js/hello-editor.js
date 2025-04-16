@@ -15,8 +15,8 @@ exports["default"] = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(693));
 var _controlsHook = _interopRequireDefault(__webpack_require__(239));
 class _default extends $e.modules.ComponentBase {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     (0, _defineProperty2.default)(this, "pages", {});
   }
   getNamespace() {
@@ -222,8 +222,7 @@ class ControlsHook extends $e.modules.hookUI.After {
    */
   toggleLayoutClass(element, classPrefix, inputOptions, inputValue) {
     // Loop through the possible classes and remove the one that's not in use
-    Object.entries(inputOptions).forEach(_ref => {
-      let [key] = _ref;
+    Object.entries(inputOptions).forEach(([key]) => {
       element.removeClass(classPrefix + key);
     });
 

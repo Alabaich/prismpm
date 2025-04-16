@@ -1,4 +1,5 @@
 <?php
+
 namespace HelloElementor\Includes\Customizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
