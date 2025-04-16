@@ -19,6 +19,7 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/showCaseSection.php');
     require_once(__DIR__ . '/widgets/blogShowCase.php');
     require_once(__DIR__ . '/widgets/socialSection.php');
+    require_once(__DIR__ . '/widgets/circuleSlider.php');
 
 
     $widgets_manager->register(new \Elementor_heroSlider());
@@ -29,6 +30,7 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_showCaseSection());
     $widgets_manager->register(new \Elementor_blogShowCase());
     $widgets_manager->register(new \Elementor_socialSection());
+    $widgets_manager->register(new \Elementor_circuleSlider());
 
 }
 
