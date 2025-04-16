@@ -8,19 +8,24 @@
  * Text Domain: elementor-addon
  */
 
-function register_hello_world_widget( $widgets_manager ) {
+function register_hello_world_widget($widgets_manager)
+{
 
-    require_once( __DIR__ . '/widgets/totalServices.php' );
-    require_once( __DIR__ . '/widgets/totalServicesq.php' );
-    require_once( __DIR__ . '/widgets/stSection.php' );
-    require_once( __DIR__ . '/widgets/ndSection.php' );
+    require_once(__DIR__ . '/widgets/HeroSlider.php');
+    require_once(__DIR__ . '/widgets/richTextWithBackground.php');
+    require_once(__DIR__ . '/widgets/heroImage.php');
+    require_once(__DIR__ . '/widgets/testimonialSection.php');
+    require_once(__DIR__ . '/widgets/announceProperty.php');
+    require_once(__DIR__ . '/widgets/showCaseSection.php');
 
-    
-    $widgets_manager->register( new \Elementor_totalServices() );
-    $widgets_manager->register( new \Elementor_totalServicesq() );
-    $widgets_manager->register( new \Elementor_stSection() );
-    $widgets_manager->register( new \Elementor_ndSection() );
 
+    $widgets_manager->register(new \Elementor_heroSlider());
+    $widgets_manager->register(new \Elementor_richTextWithBackground());
+    $widgets_manager->register(new \Elementor_heroImage());
+    $widgets_manager->register(new \Elementor_testimonialsSection());
+    $widgets_manager->register(new \Elementor_announceProperty());
+    $widgets_manager->register(new \Elementor_showCaseSection());
 
 }
-add_action( 'elementor/widgets/register', 'register_hello_world_widget' );
+
+add_action('elementor/widgets/register', 'register_hello_world_widget');

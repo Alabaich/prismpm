@@ -4,8 +4,8 @@
 	Description: Hello Elementor is a lightweight and minimalist WordPress theme that was built specifically to work seamlessly with the Elementor site builder plugin. The theme is free, open-source, and designed for users who want a flexible, easy-to-use, and customizable website. The theme, which is optimized for performance, provides a solid foundation for users to build their own unique designs using the Elementor drag-and-drop site builder. Its simplicity and flexibility make it a great choice for both beginners and experienced Web Creators.
 	Author: Elementor Team
 	Author URI: https://elementor.com/?utm_source=wp-themes&utm_campaign=author-uri&utm_medium=wp-dash
-	Version: 3.3.0
-	Stable tag: 3.3.0
+	Version: 3.2.1
+	Stable tag: 3.2.1
 	Requires at least: 6.0
 	Tested up to: 6.7
 	Requires PHP: 7.4
@@ -26,6 +26,8 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  * 3. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
  */
+@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600&family=Inter+Tight:wght@400&display=swap");
+
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -41,7 +43,9 @@ html {
  */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -55,7 +59,12 @@ body {
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-block-start: 0.5rem;
   margin-block-end: 1rem;
   font-family: inherit;
@@ -64,33 +73,130 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: "Darker Grotesque", sans-serif;
+}
+
 h1 {
-  font-size: 2.5rem;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 0.9;
+  letter-spacing: 0em;
 }
 
 h2 {
-  font-size: 2rem;
+  font-weight: 600;
+  font-size: 2.125rem;
+  line-height: 1.1;
+  letter-spacing: 0em;
+  text-transform: capitalize;
+  margin: 0 0 0.75rem 0;
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-weight: 600;
+  font-size: 1.625rem;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-transform: capitalize;
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-weight: 600;
+  font-size: 1.313rem;
+  line-height: 1;
+  letter-spacing: 0;
+  vertical-align: middle;
+  text-transform: capitalize;
 }
 
 h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.313rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  vertical-align: middle;
+  text-transform: capitalize;
 }
 
 p {
-  margin-block-start: 0;
-  margin-block-end: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+p.interTight {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  vertical-align: middle;
+}
+
+a.btnDef {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 500;
+  font-size: 1.067rem;
+  line-height: 1;
+  letter-spacing: 0;
+  vertical-align: middle;
+  text-transform: capitalize;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #0a3b5c 0%, #144a7d 100%);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+a.btnDef:hover {
+  background: linear-gradient(90deg, #2176ae 0%, #3a8fbd 100%);
+}
+
+a.btnDef:active {
+  background: linear-gradient(90deg, #062e48 0%, #0d3c5f 100%);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.125rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 0.875rem;
+  }
+
+  h4 {
+    font-size: 0.75rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  p.interTight {
+    font-size: 0.933rem;
+  }
+
+  a.btnDef {
+    font-size: 0.875rem;
+  }
 }
 
 /* Grouping content
@@ -120,16 +226,18 @@ pre {
 a {
   background-color: transparent;
   text-decoration: none;
-  color: #CC3366;
+  color: #cc3366;
 }
-a:hover, a:active {
+a:hover,
+a:active {
   color: #333366;
 }
 a:not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
 }
-a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+a:not([href]):not([tabindex]):hover,
+a:not([href]):not([tabindex]):focus {
   color: inherit;
   text-decoration: none;
 }
@@ -144,7 +252,7 @@ a:not([href]):not([tabindex]):focus {
 abbr[title] {
   border-block-end: none; /* 1 */
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -275,7 +383,7 @@ template {
   pre,
   blockquote {
     -moz-column-break-inside: avoid;
-         break-inside: avoid;
+    break-inside: avoid;
     border: 1px solid #cccccc;
   }
   thead {
@@ -284,7 +392,7 @@ template {
   tr,
   img {
     -moz-column-break-inside: avoid;
-         break-inside: avoid;
+    break-inside: avoid;
   }
   p,
   h2,
@@ -295,7 +403,7 @@ template {
   h2,
   h3 {
     -moz-column-break-after: avoid;
-         break-after: avoid;
+    break-after: avoid;
   }
 }
 /**
@@ -322,14 +430,14 @@ textarea {
   margin: 0; /* 2 */
 }
 
-input[type=text],
-input[type=date],
-input[type=email],
-input[type=number],
-input[type=password],
-input[type=search],
-input[type=tel],
-input[type=url],
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
 select,
 textarea {
   width: 100%;
@@ -338,14 +446,14 @@ textarea {
   padding: 0.5rem 1rem;
   transition: all 0.3s;
 }
-input[type=text]:focus,
-input[type=date]:focus,
-input[type=email]:focus,
-input[type=number]:focus,
-input[type=password]:focus,
-input[type=search]:focus,
-input[type=tel]:focus,
-input[type=url]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
 select:focus,
 textarea:focus {
   border-color: #333333;
@@ -356,7 +464,8 @@ textarea:focus {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -365,7 +474,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -373,9 +483,9 @@ select { /* 1 */
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type=button],
-[type=reset],
-[type=submit] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   width: auto;
   -webkit-appearance: button;
 }
@@ -384,40 +494,41 @@ button,
  * Restore the focus styles unset by the previous rule.
  */
 button,
-[type=submit],
-[type=button] {
+[type="submit"],
+[type="button"] {
   display: inline-block;
   font-weight: 400;
-  color: #CC3366;
+  color: #cc3366;
   text-align: center;
   white-space: nowrap;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   background-color: transparent;
-  border: 1px solid #CC3366;
+  border: 1px solid #cc3366;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 3px;
   transition: all 0.3s;
 }
 button:focus:not(:focus-visible),
-[type=submit]:focus:not(:focus-visible),
-[type=button]:focus:not(:focus-visible) {
+[type="submit"]:focus:not(:focus-visible),
+[type="button"]:focus:not(:focus-visible) {
   outline: none;
 }
-button:hover, button:focus,
-[type=submit]:hover,
-[type=submit]:focus,
-[type=button]:hover,
-[type=button]:focus {
+button:hover,
+button:focus,
+[type="submit"]:hover,
+[type="submit"]:focus,
+[type="button"]:hover,
+[type="button"]:focus {
   color: #ffffff;
-  background-color: #CC3366;
+  background-color: #cc3366;
   text-decoration: none;
 }
 button:not(:disabled),
-[type=submit]:not(:disabled),
-[type=button]:not(:disabled) {
+[type="submit"]:not(:disabled),
+[type="button"]:not(:disabled) {
   cursor: pointer;
 }
 
@@ -462,8 +573,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type=checkbox],
-[type=radio] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -471,8 +582,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -480,7 +591,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type=search] {
+[type="search"] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -488,7 +599,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type=search]::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
