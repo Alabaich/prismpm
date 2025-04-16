@@ -1,5 +1,5 @@
 <?php
-class Elementor_HeroSlider extends \Elementor\Widget_Base {
+class Elementor_heroSlider extends \Elementor\Widget_Base {
 
     public function get_name() {
         return 'hero_slider';
