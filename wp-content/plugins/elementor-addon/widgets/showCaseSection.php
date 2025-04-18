@@ -131,6 +131,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        max-width:360px;
     }
 
     .city-block img {

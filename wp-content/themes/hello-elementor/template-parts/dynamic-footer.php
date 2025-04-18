@@ -24,7 +24,7 @@ $footer_nav_menu = wp_nav_menu( [
 	<div class="footer-container">
 		<div class="footer-left">
 			<?php if ( has_custom_logo() ) : ?>
-				<div class="site-logo"><?php the_custom_logo(); ?></div>
+				<div id="ref" class="site-logo"><?php the_custom_logo(); ?></div>
 			<?php endif; ?>
 		</div>
 
@@ -91,10 +91,21 @@ $footer_nav_menu = wp_nav_menu( [
 	</div>
 
 	<style>
+		#ref {
+			color:white;
+			fill:white;
+		}
+		#site-footer {
+			max-width:1728px;
+			
+		}
 		.prism-footer {
 			background: #0e3c55;
 			color: #fff;
-			padding: 3rem 2rem 2rem;
+			padding: 60px 80px;
+		}
+		.newsletter-form {
+			max-width:780px;
 		}
 
 		.footer-container {
@@ -122,7 +133,8 @@ $footer_nav_menu = wp_nav_menu( [
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
-			min-width: 300px;
+			min-width: 320px;
+			max-width:780px;
 		}
 
 		.footer-row {
@@ -194,7 +206,6 @@ $footer_nav_menu = wp_nav_menu( [
 			flex-wrap: wrap;
 			font-size: 12px;
 			color: #ccc;
-			max-width: 1200px;
 			margin-left: auto;
 			margin-right: auto;
 		}

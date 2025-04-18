@@ -19,9 +19,16 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/showCaseSection.php');
     require_once(__DIR__ . '/widgets/blogShowCase.php');
     require_once(__DIR__ . '/widgets/socialSection.php');
-    require_once(__DIR__ . '/widgets/circuleSlider.php');
+    require_once(__DIR__ . '/widgets/circleSlider.php');
+    require_once(__DIR__ . '/widgets/singleBlogPost.php');
+    require_once(__DIR__ . '/widgets/buildingPageAddition.php');
+    require_once(__DIR__ . '/widgets/modelSuitesSection.php');
+    require_once(__DIR__ . '/widgets/gallerySection.php');
+    require_once(__DIR__ . '/widgets/advantageSection.php');
+    require_once(__DIR__ . '/widgets/commitmentSection.php');
+    require_once(__DIR__ . '/widgets/faq-accordion.php');
 
-
+    
     $widgets_manager->register(new \Elementor_heroSlider());
     $widgets_manager->register(new \Elementor_richTextWithBackground());
     $widgets_manager->register(new \Elementor_heroImage());
@@ -30,7 +37,15 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_showCaseSection());
     $widgets_manager->register(new \Elementor_blogShowCase());
     $widgets_manager->register(new \Elementor_socialSection());
-    $widgets_manager->register(new \Elementor_circuleSlider());
+    $widgets_manager->register(new \Elementor_circleSlider());
+    $widgets_manager->register(new \Elementor_singleBlogPost());
+    $widgets_manager->register(new \Elementor_buildingPageAddition());
+    $widgets_manager->register(new \Elementor_modelSuitesSection());
+    $widgets_manager->register(new \Elementor_gallerySection());
+    $widgets_manager->register(new \Elementor_advantageSection());
+    $widgets_manager->register(new \Elementor_commitmentSection());
+    $widgets_manager->register(new \Elementor_faqAccordion());
+
 
 }
 

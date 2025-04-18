@@ -9,6 +9,7 @@
   /* Backwards compat for Hello 2.3.0 */
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   padding-block-start: 1rem;
   padding-block-end: 1rem;
   position: relative;
@@ -27,6 +28,7 @@
 .site-header .header-inner {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .site-header .header-inner .custom-logo-link {
   display: block;

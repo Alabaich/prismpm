@@ -2,7 +2,7 @@
 class Elementor_heroSlider extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'hero_slider';
+        return 'heroSlider';
     }
 
     public function get_title() {
@@ -455,6 +455,6 @@ function register_hero_slider_widget($widgets_manager) {
         true
     );
 
-    $widgets_manager->register(new \Elementor_HeroSlider());
+    $widgets_manager->register(new \Elementor_heroSlider());
 }
 add_action('elementor/widgets/register', 'register_hero_slider_widget');

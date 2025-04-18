@@ -42,7 +42,7 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 
 		<div class="right-block">
 			<a class="btn phone" href="tel:2894992632">
-				📞 289.499.2632
+				<i class="fa fa-phone"></i> 289.499.2632
 			</a>
 			<a class="btn email" href="mailto:lease@prismpm.ca">
 				lease@prismpm.ca
@@ -63,6 +63,11 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 	<?php endif; ?>
 
 	<style>
+		#site-header{
+			max-width:1728px;
+			margin:auto;
+			border-radius:8px;
+		}
 	.headr {
 		position: fixed;
 		top: 0;
@@ -71,10 +76,12 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 		z-index: 1000;
 		background: transparent;
 		box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-		padding: 1.5rem 2rem;
+		padding: 2rem;
+		padding-bottom:1.5rem;
 	}
 
 	.headr-container {
+		padding-top:1rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -124,6 +131,9 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 
 	.phone {
 		background: #f4f4f4;
+		display:flex;
+		align-items:center;
+		gap:4px;
 		color: #000;
 	}
 
