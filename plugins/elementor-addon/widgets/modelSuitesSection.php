@@ -163,7 +163,7 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base {
             }
 
             .show-moreq {
-                padding: 20px 58px;
+                padding: 1.25rem 3.75rem
                 border: 1px solid #000;
                 background: white;
                 border-radius: 999px;

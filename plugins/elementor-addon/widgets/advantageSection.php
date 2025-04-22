@@ -152,123 +152,123 @@ class Elementor_AdvantageSection extends \Elementor\Widget_Base
         </section>
 
         <style>
-            .why-choose-prism-section {
-                padding: 50px 20px;
-                background-color: #fff;
-                text-align: center;
-            }
+    .why-choose-prism-section {
+        padding: 3.125rem 0rem; /* 50px 20px */
+        background-color: #fff;
+        text-align: center;
+    }
 
-            .why-choose-prism__container {
-            }
+    .why-choose-prism__container {
+    }
 
-            .why-choose-prism__header {
-                margin-bottom: 40px;
-                max-width:780px;
-                margin:auto;
-            }
+    .why-choose-prism__header {
+        margin-bottom: 2.5rem; /* 40px */
+        max-width: 48.75rem; /* 780px */
+        margin: auto;
+    }
 
-            .why-choose-prism__title {
-                font-size: 52px;
-                font-weight: 600;
-                text-align:center
-                color: #2A2A2A;
-                margin: 0 0 24px;
-                line-height: 1.3;
-            }
+    .why-choose-prism__title {
+        font-size: 3.25rem; /* 52px */
+        font-weight: 600;
+        text-align: center;
+        color: #2A2A2A;
+        margin: 0 0 1.5rem; /* 24px */
+        line-height: 1.3;
+    }
 
-            .why-choose-prism__description {
-                font-size: 16px;
-  font-family: "Inter Tight", sans-serif;
-                color: #52525B;
-                margin: 0;
-                max-width: 514px;
-                margin-left: auto;
-                margin-right: auto;
-                line-height: 1.5;
-                padding-bottom:50px;
-            }
+    .why-choose-prism__description {
+        font-size: 1rem; /* 16px */
+        font-family: "Inter Tight", sans-serif;
+        color: #52525B;
+        margin: 0;
+        max-width: 32.125rem; /* 514px */
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        padding-bottom: 3.125rem; /* 50px */
+    }
 
-            .why-choose-prism__grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-            }
+    .why-choose-prism__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.875rem; /* 30px */
+    }
 
-            .why-choose-prism__card {
-                background-color: #fff;
-                max-width:510px;
-                padding: 40px;
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                text-align: center;
-            }
+    .why-choose-prism__card {
+        background-color: #fff;
+        max-width: 31.875rem; /* 510px */
+        padding: 2.5rem; /* 40px */
+        border: 1px solid #e0e0e0;
+        border-radius: 0.5rem; /* 8px */
+        text-align: center;
+    }
 
-            .why-choose-prism__icon {
-                font-size: 48px;
-                color: #000;
-                margin-bottom: 15px;
-            }
+    .why-choose-prism__icon {
+        font-size: 3rem; /* 48px */
+        color: #000;
+        margin-bottom: 0.9375rem; /* 15px */
+    }
 
-            .why-choose-prism__icon svg {
-                width: 48px;
-                height: 48px;
-            }
+    .why-choose-prism__icon svg {
+        width: 3rem; /* 48px */
+        height: 3rem;
+    }
 
-            .why-choose-prism__card-title {
-                font-size: 32px;
-                font-weight: 600;
-                color:  #2A2A2A;
-                margin: 0 0 24px;
-            }
+    .why-choose-prism__card-title {
+        font-size: 2rem; /* 32px */
+        font-weight: 600;
+        color: #2A2A2A;
+        margin: 0 0 1.5rem; /* 24px */
+    }
 
-            .why-choose-prism__card-text {
-                font-size: 18px;
-  font-family: "Inter Tight", sans-serif;
+    .why-choose-prism__card-text {
+        font-size: 1.125rem; /* 18px */
+        font-family: "Inter Tight", sans-serif;
+        color: #52525B;
+        margin: 0;
+        line-height: 1.4;
+    }
 
-                color: #52525B;
-                margin: 0;
-                line-height: 140%;
-            }
+    @media (max-width: 991px) {
+        .why-choose-prism__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem; /* 20px */
+        }
+    }
 
-            @media (max-width: 991px) {
-                .why-choose-prism__grid {
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 20px;
-                }
-            }
+    @media (max-width: 576px) {
+        .why-choose-prism__grid {
+            grid-template-columns: 1fr;
+            gap: 0.9375rem; /* 15px */
+        }
 
-            @media (max-width: 576px) {
-                .why-choose-prism__grid {
-                    grid-template-columns: 1fr;
-                    gap: 15px;
-                }
+        .why-choose-prism__title {
+            font-size: 1.5rem; /* 24px */
+        }
 
-                .why-choose-prism__title {
-                    font-size: 24px;
-                }
+        .why-choose-prism__description {
+            font-size: 0.875rem; /* 14px */
+        }
 
-                .why-choose-prism__description {
-                    font-size: 14px;
-                }
+        .why-choose-prism__icon {
+            font-size: 2.25rem; /* 36px */
+        }
 
-                .why-choose-prism__icon {
-                    font-size: 36px;
-                }
+        .why-choose-prism__icon svg {
+            width: 2.25rem; /* 36px */
+            height: 2.25rem;
+        }
 
-                .why-choose-prism__icon svg {
-                    width: 36px;
-                    height: 36px;
-                }
+        .why-choose-prism__card-title {
+            font-size: 1rem; /* 16px */
+        }
 
-                .why-choose-prism__card-title {
-                    font-size: 16px;
-                }
+        .why-choose-prism__card-text {
+            font-size: 0.8125rem; /* 13px */
+        }
+    }
+</style>
 
-                .why-choose-prism__card-text {
-                    font-size: 13px;
-                }
-            }
-        </style>
         <?php
     }
 }

@@ -130,7 +130,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 }
 
                 .years-section .right {
-                    padding: 20px;
+                    padding: 1.25rem;
                 }
 
                 .years-section .right .big-number {

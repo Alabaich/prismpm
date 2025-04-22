@@ -206,110 +206,110 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         </div>
 
         <style>
-            .faq-accordion.faq-first-page .qwdsadqwdasdas {
-                display: none;
-            }
-            .faq-accordion.faq-first-page {
-                padding-top: 180px;
-            }
-            .faq-accordion.faq-first-page h2 {
-                max-width: 500px;
-                text-align: center;
-                margin: auto;
-                font-size: 72px;
-            }
-            .qwdsa {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding-bottom: 50px;
-            }
-            .faq-accordion {
-                padding: 40px;
-                padding-left:0px;
-                padding-right:0px;
-                padding-bottom: 140px;
-                font-family: sans-serif;
-            }
-            .faq-accordion h2 {
-                font-size: 52px;
-                font-weight: bold;
-                margin: 0;
-            }
-            .faq-category {
-                margin-bottom: 40px;
-            }
-            .faq-category-title {
-                font-size: 40px;
-                font-weight: bold;
-                color: #2A2A2A;
-                margin-bottom: 20px;
-                text-transform: uppercase;
-            }
-            .faq-item {
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                margin-bottom: 10px;
-                background: #fff;
-                overflow: hidden;
-            }
-            .faq-item-header {
-                display: flex;
-                align-items: center;
-                padding: 15px;
-                cursor: pointer;
-            }
-            .faq-item-number {
-                font-size: 18px;
-                font-weight: 400;
-                margin-right: 18px;
-                color: #2A2A2A;
-                width: 30px;
-            }
-            .faq-item-question {
-                flex: 1;
-                font-size: 32px;
-                font-weight: 600;
-                margin: 0;
-                color: #2A2A2A;
-            }
-            .faq-item-toggle {
-                font-size: 20px;
-                font-weight: bold;
-                color: #000;
-                width: 20px;
-                text-align: center;
-            }
-            .faq-item-content {
-                padding: 0 15px 15px;
-                display: none;
-            }
-            .faq-item.active .faq-item-content {
-                display: block;
-            }
-            .faq-item.active .faq-item-toggle {
-                content: "−";
-            }
-            .faq-item-answer {
-                font-size: 18px;
-                margin-left: 50px;
-                line-height: 140%;
-                color: #52525B;
-            }
-            .qwdsadqwdasdas {
-                padding: 20px 58px;
-                border: 1px solid #000;
-                background: white;
-                border-radius: 999px;
-                cursor: pointer;
-                transition: background 0.3s ease;
-                color: #2A2A2A;
-            }
-            .qwdsadqwdasdas:hover {
-                background: #0e3c55;
-                color: white;
-            }
-        </style>
+    .faq-accordion.faq-first-page .qwdsadqwdasdas {
+        display: none;
+    }
+    .faq-accordion.faq-first-page {
+        padding-top: 11.25rem; /* 180px */
+    }
+    .faq-accordion.faq-first-page h2 {
+        max-width: 31.25rem; /* 500px */
+        text-align: center;
+        margin: auto;
+        font-size: 4.5rem; /* 72px */
+    }
+    .qwdsa {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 3.125rem; /* 50px */
+    }
+    .faq-accordion {
+        padding: 2.5rem; /* 40px */
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 8.75rem; /* 140px */
+    }
+    .faq-accordion h2 {
+        font-size: 3.25rem; /* 52px */
+        font-weight: bold;
+        margin: 0;
+    }
+    .faq-category {
+        margin-bottom: 2.5rem; /* 40px */
+    }
+    .faq-category-title {
+        font-size: 2.5rem; /* 40px */
+        font-weight: bold;
+        color: #2A2A2A;
+        margin-bottom: 1.25rem; /* 20px */
+        text-transform: uppercase;
+    }
+    .faq-item {
+        border: 0.0625rem solid #e0e0e0; /* 1px */
+        border-radius: 0.5rem; /* 8px */
+        margin-bottom: 0.625rem; /* 10px */
+        background: #fff;
+        overflow: hidden;
+    }
+    .faq-item-header {
+        display: flex;
+        align-items: center;
+        padding: 0.9375rem; /* 15px */
+        cursor: pointer;
+    }
+    .faq-item-number {
+        font-size: 1.125rem; /* 18px */
+        font-weight: 400;
+        margin-right: 1.125rem; /* 18px */
+        color: #2A2A2A;
+        width: 1.875rem; /* 30px */
+    }
+    .faq-item-question {
+        flex: 1;
+        font-size: 2rem; /* 32px */
+        font-weight: 600;
+        margin: 0;
+        color: #2A2A2A;
+    }
+    .faq-item-toggle {
+        font-size: 1.25rem; /* 20px */
+        font-weight: bold;
+        color: #000;
+        width: 1.25rem; /* 20px */
+        text-align: center;
+    }
+    .faq-item-content {
+        padding: 0 0.9375rem 0.9375rem; /* 0 15px 15px */
+        display: none;
+    }
+    .faq-item.active .faq-item-content {
+        display: block;
+    }
+    .faq-item.active .faq-item-toggle {
+        content: "−";
+    }
+    .faq-item-answer {
+        font-size: 1.125rem; /* 18px */
+        margin-left: 3.125rem; /* 50px */
+        line-height: 140%;
+        color: #52525B;
+    }
+    .qwdsadqwdasdas {
+        padding: 1.25rem 3.625rem; /* 20px 58px */
+        border: 0.0625rem solid #000; /* 1px */
+        background: white;
+        border-radius: 62.4375rem; /* 999px */
+        cursor: pointer;
+        transition: background 0.3s ease;
+        color: #2A2A2A;
+    }
+    .qwdsadqwdasdas:hover {
+        background: #0e3c55;
+        color: white;
+    }
+</style>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {

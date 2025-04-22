@@ -114,226 +114,219 @@ class Elementor_propertyMapWidget extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         ?>
-        <style>
-            .propertiesContainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 25px;
-                padding: 100px 5%;
-                width: 100%;
-            }
+       <style>
+.propertiesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5625rem;
+    padding: 6.25rem 5%;
+    width: 100%;
+}
 
-            .propertiesContainer h3{
-                font-family: "Graphik Light", Sans-serif;
-    font-size: 50px;
+.propertiesContainer h3 {
+    font-family: "Graphik Light", Sans-serif;
+    font-size: 3.125rem;
     font-weight: normal;
     color: #093D5F;
-            }
-            
-            .property-map-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                width: 100%;
-                position: relative;
-            }
-            
-            .property-links {
-                width: 39%;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            /* Each clickable property span */
-            .property-link {
-                padding: 10px;
-                cursor: pointer;
-                background-color: transparent;
-                border: 1px solid transparent;
-                border-radius: 5px;
-                text-align: left;
-                transition: background-color 0.3s, border-color 0.3s;
-                
-                /* We use a child container for icon + text in a row or column */
-                display: block; /* keep as block so the entire row is clickable */
-            }
-            
-            .property-link:hover {
-                background-color: rgba(0, 68, 255, 0.05);
-                border-color: transparent;
-            }
-    
-            /* Inner container to hold icon and text side by side (or stacked) */
-            .property-link-inner {
-                display: flex;
-                flex-direction: row; /* or column if you prefer vertical stacking */
-                align-items: center;
-                gap: 20px;
-            }
-    
-            /* The icon (circle with number) */
-            .property-link-icon {
-                width: 40px;
-                height: 40px;
-                flex-shrink: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-    
-            /* The text (h6 + p) */
-            .property-link-text {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            /* The title is now an H6 */
-            .property-link-text h6 {
-                color: #093D5F;
-                font-size: 1.8em;
-                font-weight: bold;
-                margin: 0;
-            }
-            
-            .property-link-text p {
-                margin: 5px 0 0;
-                font-size: 1.3em;
-                color: #093D5F;
-            }
-            
-            .mapContainer {
-                width: 59%;
-                position: relative;
-            }
-            
-            .map-container {
-                width: 100%;
-                height: 400px;
-                border: 1px solid #ccc;
-                margin-bottom: 15px;
-            }
-            
-            .property-info-block {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                width: 250px;
-                background: white;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                padding: 10px;
-                z-index: 1000;
-                font-family: Arial, sans-serif;
-            }
-            
-            .property-info-block .property-info-title {
-                font-size: 16px;
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-            
-            .property-info-block .property-info-address {
-                font-size: 14px;
-                color: #666;
-                margin-bottom: 10px;
-            }
-            
-            .property-info-block .property-info-image img {
-                width: 100%;
-                border-radius: 5px;
-            }
-            
+}
 
-            @media (max-width: 1024px) {
-        .property-links, .mapContainer {
-            width: 100%;
-        }
+.property-map-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    width: 100%;
+    position: relative;
+}
 
-        .property-link-text h6 {
-            font-size: 1.5em;
-        }
+.property-links {
+    width: 39%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
 
-        .property-link-text p {
-            font-size: 1.1em;
-        }
+.property-link {
+    padding: 0.625rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0.0625rem solid transparent;
+    border-radius: 0.3125rem;
+    text-align: left;
+    transition: background-color 0.3s, border-color 0.3s;
+    display: block;
+}
 
-        .property-info-block {
-            display: none;
-        }
+.property-link:hover {
+    background-color: rgba(0, 68, 255, 0.05);
+    border-color: transparent;
+}
 
-        .property-info-block .property-info-title {
-            font-size: 14px;
-        }
+.property-link-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+}
 
-        .property-info-block .property-info-address {
-            font-size: 12px;
-        }
+.property-link-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.property-link-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.property-link-text h6 {
+    color: #093D5F;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.property-link-text p {
+    margin: 0.3125rem 0 0;
+    font-size: 1.3em;
+    color: #093D5F;
+}
+
+.mapContainer {
+    width: 59%;
+    position: relative;
+}
+
+.map-container {
+    width: 100%;
+    height: 25rem;
+    border: 0.0625rem solid #ccc;
+    margin-bottom: 0.9375rem;
+}
+
+.property-info-block {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 15.625rem;
+    background: white;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    padding: 0.625rem;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+.property-info-block .property-info-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.3125rem;
+}
+
+.property-info-block .property-info-address {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.625rem;
+}
+
+.property-info-block .property-info-image img {
+    width: 100%;
+    border-radius: 0.3125rem;
+}
+
+@media (max-width: 64rem) {
+    .property-links, .mapContainer {
+        width: 100%;
     }
 
-    @media (max-width: 768px) {
-        .propertiesContainer {
-            padding: 50px 5%;
-        }
-
-        .propertiesContainer h3 {
-            font-size: 40px;
-        }
-
-        .property-link-text h6 {
-            font-size: 1.3em;
-        }
-
-        .property-link-text p {
-            font-size: 1em;
-        }
-
-        .property-info-block {
-            display: none;
-        }
-
-        .property-info-block .property-info-title {
-            font-size: 12px;
-        }
-
-        .property-info-block .property-info-address {
-            font-size: 10px;
-        }
+    .property-link-text h6 {
+        font-size: 1.5em;
     }
 
-    @media (max-width: 480px) {
-        .propertiesContainer {
-            padding: 30px 5%;
-        }
-
-        .propertiesContainer h3 {
-            font-size: 30px;
-        }
-
-        .property-link-text h6 {
-            font-size: 1.1em;
-        }
-
-        .property-link-text p {
-            font-size: 0.9em;
-        }
-
-        .property-info-block {
-            display: none;
-        }
-
-        .property-info-block .property-info-title {
-            font-size: 10px;
-        }
-
-        .property-info-block .property-info-address {
-            font-size: 8px;
-        }
+    .property-link-text p {
+        font-size: 1.1em;
     }
-        </style>
+
+    .property-info-block {
+        display: none;
+    }
+
+    .property-info-block .property-info-title {
+        font-size: 0.875rem;
+    }
+
+    .property-info-block .property-info-address {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .propertiesContainer {
+        padding: 3.125rem 5%;
+    }
+
+    .propertiesContainer h3 {
+        font-size: 2.5rem;
+    }
+
+    .property-link-text h6 {
+        font-size: 1.3em;
+    }
+
+    .property-link-text p {
+        font-size: 1em;
+    }
+
+    .property-info-block {
+        display: none;
+    }
+
+    .property-info-block .property-info-title {
+        font-size: 0.75rem;
+    }
+
+    .property-info-block .property-info-address {
+        font-size: 0.625rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    .propertiesContainer {
+        padding: 1.875rem 5%;
+    }
+
+    .propertiesContainer h3 {
+        font-size: 1.875rem;
+    }
+
+    .property-link-text h6 {
+        font-size: 1.1em;
+    }
+
+    .property-link-text p {
+        font-size: 0.9em;
+    }
+
+    .property-info-block {
+        display: none;
+    }
+
+    .property-info-block .property-info-title {
+        font-size: 0.625rem;
+    }
+
+    .property-info-block .property-info-address {
+        font-size: 0.5rem;
+    }
+}
+</style>
+
     
         <div class="propertiesContainer">
             <h3>Discover Our Rental Properties</h3>
