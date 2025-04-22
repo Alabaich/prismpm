@@ -91,12 +91,15 @@ $footer_nav_menu = wp_nav_menu( [
 	</div>
 
 	<style>
+		#site-footer .site-logo img {
+	content: url('/wp-content/themes/hello-elementor/assets/images/Logo_foot.png');
+}
 		#ref {
 			color:white;
 			fill:white;
 		}
 		#site-footer {
-			max-width:1728px;
+			max-width:1568px;
 			
 		}
 		.prism-footer {
@@ -118,7 +121,6 @@ $footer_nav_menu = wp_nav_menu( [
 
 		.footer-left {
 			flex: 1;
-			min-width:32%;
 		}
 
 		.footer-left .site-logo img {

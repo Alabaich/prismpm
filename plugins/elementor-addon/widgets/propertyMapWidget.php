@@ -1,9 +1,9 @@
 <?php
 
-class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
+class Elementor_propertyMapWidget extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'property_map_widget';
+        return 'propertyMapWidget';
     }
 
     public function get_title() {
@@ -247,17 +247,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                 border-radius: 5px;
             }
             
-            .property-info .property-images {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            
-            .property-info .property-images img {
-                width: 100%;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
 
             @media (max-width: 1024px) {
         .property-links, .mapContainer {
@@ -414,10 +403,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
                     <div class="property-info-image"></div>
                     <a href="#" target="_blank" rel="noopener noreferrer" class="property-info-link" style="display: none; color: #093D5F; text-decoration: underline; font-weight: bold; margin-top: 10px;">View Property</a>
                 </div>
-
-                    <div class="property-info">
-                        <div class="property-images"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -483,7 +468,6 @@ class Elementor_PropertyMapWidget extends \Elementor\Widget_Base {
     const activeAddress = document.querySelector(".property-info-address");
     const activeImage = document.querySelector(".property-info-image");
     const activeLink = document.querySelector(".property-info-link");
-    const propertyImagesContainer = document.querySelector(".property-images");
     const buttons = document.querySelectorAll(".property-link");
     const markers = [];
 

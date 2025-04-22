@@ -240,6 +240,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 align-items: center;
                 background: white;
                 padding: 2rem;
+                padding-left:0rem;
                 z-index: 2;
             }
 
@@ -248,6 +249,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 width: 100%;
                 margin: 0 auto;
                 padding: 2rem;
+                padding-left:0rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -263,6 +265,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 font-weight: 700;
                 line-height: 1.1;
                 margin-bottom: 1.5rem;
+                padding-top:5rem;
                 color: <?php echo esc_attr($settings['title_color'] ?: '#111827'); ?>;
                 <?php if ($settings['title_typography_font_family']) : ?>
                 font-family: <?php echo esc_attr($settings['title_typography_font_family']); ?>;

@@ -27,7 +27,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         $this->start_controls_section(
             'faq_section',
             [
-                'label' => esc_html__('FAQ Items', 'elementor-addon'),
+                'label' => esc_html__('FAQ Categories', 'elementor-addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -44,9 +44,23 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
             ]
         );
 
-        $repeater = new \Elementor\Repeater();
+        // Repeater для категорий
+        $category_repeater = new \Elementor\Repeater();
 
-        $repeater->add_control(
+        $category_repeater->add_control(
+            'category_title',
+            [
+                'label' => esc_html__('Category Title', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Category Title', 'elementor-addon'),
+                'label_block' => true,
+            ]
+        );
+
+        // Repeater для вопросов внутри категории
+        $question_repeater = new \Elementor\Repeater();
+
+        $question_repeater->add_control(
             'question',
             [
                 'label' => esc_html__('Question', 'elementor-addon'),
@@ -56,7 +70,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
             ]
         );
 
-        $repeater->add_control(
+        $question_repeater->add_control(
             'answer',
             [
                 'label' => esc_html__('Answer', 'elementor-addon'),
@@ -65,12 +79,12 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'faqs',
+        $category_repeater->add_control(
+            'questions',
             [
-                'label' => esc_html__('FAQ Items', 'elementor-addon'),
+                'label' => esc_html__('Questions', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
+                'fields' => $question_repeater->get_controls(),
                 'default' => [
                     [
                         'question' => 'How Can I Apply For An Apartment?',
@@ -80,20 +94,62 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
                         'question' => 'Are Pets Allowed?',
                         'answer' => 'Yes, pets are allowed under certain conditions.',
                     ],
-                    [
-                        'question' => 'What Utilities Are Included In The Rent?',
-                        'answer' => 'Utilities such as water and heat are included. Electricity is separately metered.',
-                    ],
-                    [
-                        'question' => 'Is Parking Available?',
-                        'answer' => 'Yes, parking is available for residents at an additional cost.',
-                    ],
-                    [
-                        'question' => 'How Do I Schedule A Viewing?',
-                        'answer' => 'You can schedule a viewing by contacting our leasing office via phone or email.',
-                    ],
                 ],
                 'title_field' => '{{{ question }}}',
+            ]
+        );
+
+        $this->add_control(
+            'faq_categories',
+            [
+                'label' => esc_html__('FAQ Categories', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $category_repeater->get_controls(),
+                'default' => [
+                    [
+                        'category_title' => 'Questions About Moving',
+                        'questions' => [
+                            [
+                                'question' => 'How Can I Apply For An Apartment?',
+                                'answer' => 'With 370 beautiful suites and a wide range of amenities, 80 Bond has fast become the premier address in downtown Oshawa.',
+                            ],
+                            [
+                                'question' => 'Are Pets Allowed?',
+                                'answer' => 'Yes, pets are allowed under certain conditions.',
+                            ],
+                            [
+                                'question' => 'What Utilities Are Included In The Rent?',
+                                'answer' => 'Utilities such as water and heat are included. Electricity is separately metered.',
+                            ],
+                            [
+                                'question' => 'Is Parking Available?',
+                                'answer' => 'Yes, parking is available for residents at an additional cost.',
+                            ],
+                        ],
+                    ],
+                    [
+                        'category_title' => 'Questions About Cook Old\'s',
+                        'questions' => [
+                            [
+                                'question' => 'How Do I Schedule A Viewing?',
+                                'answer' => 'You can schedule a viewing by contacting our leasing office via phone or email.',
+                            ],
+                            [
+                                'question' => 'What Is The Minimum Lease Term?',
+                                'answer' => 'The minimum lease term is typically 12 months.',
+                            ],
+                            [
+                                'question' => 'Are The Buildings Accessible?',
+                                'answer' => 'Yes, our buildings are designed to be accessible.',
+                            ],
+                            [
+                                'question' => 'How Do I Know Which Units Are Currently Available?',
+                                'answer' => 'You can check availability on our website or contact our leasing office.',
+                            ],
+                        ],
+                    ],
+                ],
+                'title_field' => '{{{ category_title }}}',
             ]
         );
 
@@ -109,68 +165,86 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-protected function render()
-{
-    $settings = $this->get_settings_for_display();
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
 
-    if (empty($settings['faqs'])) {
-        return;
-    }
+        if (empty($settings['faq_categories'])) {
+            return;
+        }
 
-    $is_first_page = $settings['is_first_page'] === 'yes';
-    $first_page_class = $is_first_page ? 'faq-first-page' : '';
-    ?>
-    <div class="faq-accordion <?php echo esc_attr($first_page_class); ?>">
-        <div class="qwdsa">
-            <h2>Frequently Asked Questions</h2>
-            <?php if (!empty($settings['toggle_all_text'])) : ?>
-                <button class="qwdsadqwdasdas"><?php echo esc_html($settings['toggle_all_text']); ?></button>
-            <?php endif; ?>
-        </div>
-        <div class="faq-items">
-            <?php foreach ($settings['faqs'] as $index => $faq) : ?>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span class="faq-item-number"><?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
-                        <h3 class="faq-item-question"><?php echo esc_html($faq['question']); ?></h3>
-                        <span class="faq-item-toggle">+</span>
-                    </div>
-                    <div class="faq-item-content" style="display: none;">
-                        <div class="faq-item-answer"><?php echo wp_kses_post($faq['answer']); ?></div>
+        $is_first_page = $settings['is_first_page'] === 'yes';
+        $first_page_class = $is_first_page ? 'faq-first-page' : '';
+        ?>
+        <div class="faq-accordion <?php echo esc_attr($first_page_class); ?>">
+            <div class="qwdsa">
+                <h2>Frequently Asked Questions</h2>
+                <?php if (!empty($settings['toggle_all_text'])) : ?>
+                    <button class="qwdsadqwdasdas"><?php echo esc_html($settings['toggle_all_text']); ?></button>
+                <?php endif; ?>
+            </div>
+
+            <?php foreach ($settings['faq_categories'] as $cat_index => $category) : ?>
+                <div class="faq-category">
+                    <h3 class="faq-category-title"><?php echo esc_html($category['category_title']); ?></h3>
+                    <div class="faq-items">
+                        <?php foreach ($category['questions'] as $index => $faq) : ?>
+                            <div class="faq-item">
+                                <div class="faq-item-header">
+                                    <span class="faq-item-number"><?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
+                                    <h4 class="faq-item-question"><?php echo esc_html($faq['question']); ?></h4>
+                                    <span class="faq-item-toggle">+</span>
+                                </div>
+                                <div class="faq-item-content" style="display: none;">
+                                    <div class="faq-item-answer"><?php echo wp_kses_post($faq['answer']); ?></div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-    </div>
+
         <style>
-            .faq-accordion.faq-first-page .qwdsadqwdasdas{
+            .faq-accordion.faq-first-page .qwdsadqwdasdas {
                 display: none;
             }
             .faq-accordion.faq-first-page {
                 padding-top: 180px;
             }
-
             .faq-accordion.faq-first-page h2 {
                 max-width: 500px;
-                text-align:center;
-                margin:auto;
+                text-align: center;
+                margin: auto;
                 font-size: 72px;
             }
             .qwdsa {
-                display:flex;
-                align-items:center;
+                display: flex;
+                align-items: center;
                 justify-content: space-between;
-                padding-bottom:50px;
+                padding-bottom: 50px;
             }
             .faq-accordion {
                 padding: 40px;
-                padding-bottom:140px;
+                padding-left:0px;
+                padding-right:0px;
+                padding-bottom: 140px;
                 font-family: sans-serif;
             }
             .faq-accordion h2 {
                 font-size: 52px;
                 font-weight: bold;
-                margin:0;
+                margin: 0;
+            }
+            .faq-category {
+                margin-bottom: 40px;
+            }
+            .faq-category-title {
+                font-size: 40px;
+                font-weight: bold;
+                color: #2A2A2A;
+                margin-bottom: 20px;
+                text-transform: uppercase;
             }
             .faq-item {
                 border: 1px solid #e0e0e0;
@@ -194,9 +268,10 @@ protected function render()
             }
             .faq-item-question {
                 flex: 1;
-                font-size: 40px;
+                font-size: 32px;
                 font-weight: 600;
                 margin: 0;
+                color: #2A2A2A;
             }
             .faq-item-toggle {
                 font-size: 20px;
@@ -217,7 +292,7 @@ protected function render()
             }
             .faq-item-answer {
                 font-size: 18px;
-                margin-left:50px;
+                margin-left: 50px;
                 line-height: 140%;
                 color: #52525B;
             }
@@ -228,39 +303,58 @@ protected function render()
                 border-radius: 999px;
                 cursor: pointer;
                 transition: background 0.3s ease;
-
-                color:#2A2A2A;
+                color: #2A2A2A;
             }
             .qwdsadqwdasdas:hover {
-                background:#0e3c55;
-                color:white;
+                background: #0e3c55;
+                color: white;
             }
         </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const faqItems = document.querySelectorAll('.faq-item');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const faqItems = document.querySelectorAll('.faq-item');
+                const toggleAllBtn = document.querySelector('.qwdsadqwdasdas');
 
-        faqItems.forEach(item => {
-            const header = item.querySelector('.faq-item-header');
-            const content = item.querySelector('.faq-item-content');
-            const toggle = item.querySelector('.faq-item-toggle');
+                faqItems.forEach(item => {
+                    const header = item.querySelector('.faq-item-header');
+                    const content = item.querySelector('.faq-item-content');
+                    const toggle = item.querySelector('.faq-item-toggle');
 
-            header.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                if (isActive) {
-                    item.classList.remove('active');
-                    content.style.display = 'none';
-                    toggle.textContent = '+';
-                } else {
-                    item.classList.add('active');
-                    content.style.display = 'block';
-                    toggle.textContent = '−';
+                    header.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        if (isActive) {
+                            item.classList.remove('active');
+                            content.style.display = 'none';
+                            toggle.textContent = '+';
+                        } else {
+                            item.classList.add('active');
+                            content.style.display = 'block';
+                            toggle.textContent = '−';
+                        }
+                    });
+                });
+
+                if (toggleAllBtn) {
+                    toggleAllBtn.addEventListener('click', function () {
+                        const anyActive = document.querySelector('.faq-item.active');
+                        if (anyActive) {
+                            faqItems.forEach(item => {
+                                item.classList.remove('active');
+                                item.querySelector('.faq-item-content').style.display = 'none';
+                                item.querySelector('.faq-item-toggle').textContent = '+';
+                            });
+                        } else {
+                            faqItems.forEach(item => {
+                                item.classList.add('active');
+                                item.querySelector('.faq-item-content').style.display = 'block';
+                                item.querySelector('.faq-item-toggle').textContent = '−';
+                            });
+                        }
+                    });
                 }
             });
-        });
-    });
-</script>
+        </script>
         <?php
     }
 }

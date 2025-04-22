@@ -123,7 +123,7 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
         ?>
         <style>
             .blog-showcase {
-                padding: 4rem 2rem;
+                padding: 4rem 0rem;
                 text-align: center;
             }
 

@@ -46,23 +46,6 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
             'type' => \Elementor\Controls_Manager::MEDIA,
         ]);
 
-        // Repeater 1: Recent News
-        $repeater = new \Elementor\Repeater();
-        $repeater->add_control('news_title', [
-            'label' => esc_html__('Title', 'elementor-addon'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-        ]);
-        $repeater->add_control('news_date', [
-            'label' => esc_html__('Date', 'elementor-addon'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-        ]);
-        $this->add_control('recent_news', [
-            'label' => esc_html__('Recent News Items', 'elementor-addon'),
-            'type' => \Elementor\Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-            'title_field' => '{{{ news_title }}}',
-        ]);
-
         // Repeater 2: Advantages Of Long-Term Leases
         $advantages_repeater = new \Elementor\Repeater();
         $advantages_repeater->add_control('advantage_title', [
@@ -118,23 +101,56 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
+        $widget_id = $this->get_id();
         ?>
         <style>
-            .blog-single {
+            .blog-single-<?php echo esc_attr($widget_id); ?> {
+                position: relative;
                 display: grid;
                 grid-template-columns: 3fr 1fr;
                 gap: 3rem;
-                padding: 2rem;
+                padding: 2rem 0rem;
                 padding-top: 6rem;
+            }
+
+            .blog-single-<?php echo esc_attr($widget_id); ?> .share-icons {
+                position: absolute;
+                left: -80px;
+                top: 100px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 55px;
+                height: 177px;
+            }
+
+            .blog-single-<?php echo esc_attr($widget_id); ?> .share-icons a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 55px;
+                height: 55px;
+                background: #fff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                transition: background 0.3s ease;
+            }
+
+            .blog-single-<?php echo esc_attr($widget_id); ?> .share-icons a:hover {
+                background: rgb(8, 5, 5);
             }
 
             .blog-main h1 {
                 margin-bottom: 1.5rem;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #22282B;
             }
 
             .blog-meta {
                 color: #909DA2;
                 margin-bottom: 1.5rem;
+                font-size: 0.875rem;
             }
 
             .blog-main img {
@@ -157,19 +173,23 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
                 border: 1px solid #e5e7eb;
                 border-radius: 1rem;
                 background: #fafafa;
-                max-height:fit-content;
+                max-height: fit-content;
             }
 
             .sidebar h3 {
                 border-bottom: 2px solid #E6E9EA;
                 padding: 1.25rem;
-                margin:0rem;
+                margin: 0rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #22282B;
             }
 
             .recent-post {
                 padding: 1.5rem;
-                border-bottom: 2px solid #E6E9EA
+                border-bottom: 2px solid #E6E9EA;
             }
+
             .recent-post:last-child {
                 border-bottom: none;
             }
@@ -177,6 +197,17 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
             .recent-post-title {
                 font-weight: 600;
                 margin-bottom: 0.25rem;
+                color: #22282B;
+                font-size: 1rem;
+            }
+
+            .recent-post-title a {
+                color: #22282B;
+                text-decoration: none;
+            }
+
+            .recent-post-title a:hover {
+                text-decoration: underline;
             }
 
             .recent-post-date {
@@ -187,13 +218,17 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
             .advantage-block, .consideration-block {
                 margin-top: 2rem;
             }
-            .consideration-block p{
+
+            .consideration-block p {
                 font-family: "Inter Tight", sans-serif;
                 font-size: 1rem;
             }
 
             .advantage-block h2, .consideration-block h2 {
                 margin-bottom: 1.5rem;
+                font-size: 1.75rem;
+                font-weight: 600;
+                color: #22282B;
             }
 
             .advantage-item, .consideration-item {
@@ -201,31 +236,32 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
             }
 
             .consideration-item {
-                display:flex;
-                align-items:baseline;
-                justify-content:center;
-                margin:0rem;
-                gap:0 0.2rem;
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                margin: 0rem;
+                gap: 0 0.2rem;
             }
-            .consideration-item p{
-                margin:0rem;
 
+            .consideration-item p {
+                margin: 0rem;
             }
 
             .advantage-item h3, .consideration-item h6 {
                 font-family: "Inter Tight", sans-serif;
                 font-size: 1.38rem;
                 margin-bottom: 0.5rem;
-                color:#22282B;
-                font-weight:400;
+                color: #22282B;
+                font-weight: 400;
             }
+
             .consideration-item h6 {
                 font-size: 1rem;
                 font-family: "Inter Tight", sans-serif;
-                text-align:center;
-                min-width: fit-content;;
-                color:#000000;
-                margin:0rem;
+                text-align: center;
+                min-width: fit-content;
+                color: #000000;
+                margin: 0rem;
             }
 
             .advantage-item p, .consideration-item p {
@@ -235,27 +271,34 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
                 line-height: 1.6;
             }
 
-            .blog-extra-content .extra-section {
-                margin-bottom: 2rem;
-            }
+            @media (max-width: 768px) {
+                .blog-single-<?php echo esc_attr($widget_id); ?> {
+                    grid-template-columns: 1fr;
+                }
 
-            .blog-extra-content .extra-section h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .blog-extra-content .extra-section p {
-                font-size: 1rem;
-  font-family: "Inter Tight", sans-serif;
-                color: #909DA2;
-                line-height: 1.6;
+                .blog-single-<?php echo esc_attr($widget_id); ?> .share-icons {
+                    position: static;
+                    flex-direction: row;
+                    margin-bottom: 1rem;
+                    justify-content: center;
+                    height: auto;
+                    color: black;
+                }
             }
         </style>
 
-        <div class="blog-single">
+        <div class="blog-single blog-single-<?php echo esc_attr($widget_id); ?>">
+            <!-- Share Icons -->
+            <div class="share-icons">
+                <a href="#" class="social-icon"><i class="fas fa-share"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <!-- Main Content -->
             <div class="blog-main">
-            <div class="blog-meta">
-                    <?php echo esc_html($settings['read_time']); ?> &nbsp;&nbsp;•&nbsp;&nbsp; <?php echo esc_html($settings['post_date']); ?>
+                <div class="blog-meta">
+                    <?php echo esc_html($settings['read_time']); ?>   •   <?php echo esc_html($settings['post_date']); ?>
                 </div>
                 <h1><?php echo esc_html($settings['post_title']); ?></h1>
                 <?php if (!empty($settings['main_image']['url'])) : ?>
@@ -288,31 +331,51 @@ class Elementor_singleBlogPost extends \Elementor\Widget_Base {
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-
-                <!-- Extra Section -->
-                <?php if (!empty($settings['extra_sections'])) : ?>
-                    <div class="blog-extra-content">
-                        <?php foreach ($settings['extra_sections'] as $section): ?>
-                            <div class="extra-section">
-                                <h3><?php echo esc_html($section['extra_title']); ?></h3>
-                                <p><?php echo esc_html($section['extra_description']); ?></p>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
             </div>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <h3>Recent News</h3>
-                <?php foreach ($settings['recent_news'] as $news): ?>
+                <?php
+                $recent_posts = wp_get_recent_posts([
+                    'numberposts' => 3,
+                    'post_status' => 'publish'
+                ]);
+                foreach ($recent_posts as $post) : ?>
                     <div class="recent-post">
-                        <div class="recent-post-title"><?php echo esc_html($news['news_title']); ?></div>
-                        <div class="recent-post-date"><?php echo esc_html($news['news_date']); ?></div>
+                        <div class="recent-post-title">
+                            <a href="<?php echo esc_url(get_permalink($post['ID'])); ?>">
+                                <?php echo esc_html($post['post_title']); ?>
+                            </a>
+                        </div>
+                        <div class="recent-post-date">
+                            <?php echo esc_html(get_the_date('j F Y', $post['ID'])); ?>
+                        </div>
                     </div>
                 <?php endforeach; ?>
+                <?php wp_reset_postdata(); ?>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const shareIcons = document.querySelector('.blog-single-<?php echo esc_attr($widget_id); ?> .share-icons');
+                if (shareIcons) {
+                    window.addEventListener('scroll', function() {
+                        const blogMain = document.querySelector('.blog-single-<?php echo esc_attr($widget_id); ?> .blog-main');
+                        const rect = blogMain.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            shareIcons.style.opacity = '1';
+                        } else {
+                            shareIcons.style.opacity = '0';
+                        }
+                    });
+                }
+            });
+        </script>
         <?php
     }
 }
+?>

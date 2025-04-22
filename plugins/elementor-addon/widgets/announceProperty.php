@@ -161,7 +161,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
 <style>
     .coming-soon-section {
-        padding: 3.75rem 1.25rem; /* 60px 20px */
+        padding: 3.75rem 0rem; /* 60px 20px */
     }
 
     .coming-soon-section h1 {

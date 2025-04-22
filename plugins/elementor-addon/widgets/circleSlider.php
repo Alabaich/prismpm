@@ -9,7 +9,7 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Circle Image Slider', 'elementor-addon');
+        return esc_html__('Circle Slider', 'elementor-addon');
     }
 
     public function get_icon()
@@ -22,22 +22,22 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
         return ['basic'];
     }
 
-    public function get_style_depends()
-    {
-        return ['circle-slider-style'];
-    }
-
     public function get_script_depends()
     {
-        return ['swiper', 'circle-slider-script'];
+        return ['swiper'];
+    }
+
+    public function get_style_depends()
+    {
+        return ['swiper'];
     }
 
     protected function register_controls()
     {
         $this->start_controls_section(
-            'slides_section',
+            'section_content',
             [
-                'label' => esc_html__('Slides', 'elementor-addon'),
+                'label' => esc_html__('Content', 'elementor-addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -47,14 +47,13 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
         $repeater->add_control(
             'slide_image',
             [
-                'label' => esc_html__('Image', 'elementor-addon'),
+                'label' => esc_html__('Slide Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
             ]
         );
-
 
         $this->add_control(
             'slides',
@@ -64,10 +63,22 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'slide_image' => ['url' => \Elementor\Utils::get_placeholder_image_src()],
+                        'slide_image' => [
+                            'url' => 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop',
+                        ],
+                    ],
+                    [
+                        'slide_image' => [
+                            'url' => 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
+                        ],
+                    ],
+                    [
+                        'slide_image' => [
+                            'url' => 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop',
+                        ],
                     ],
                 ],
-                'title_field' => '{{{ slide_image.url ? "Slide Image" : "Empty Slide" }}}',
+                'title_field' => 'Slide',
             ]
         );
 
@@ -77,113 +88,143 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $widget_id = $this->get_id();
 
         if (empty($settings['slides'])) {
+            echo '<p>' . esc_html__('No slides added. Please add at least one slide in the widget settings.', 'elementor-addon') . '</p>';
             return;
         }
 
+        $valid_slides = array_filter($settings['slides'], function($slide) {
+            return !empty($slide['slide_image']['url']);
+        });
+
+        if (empty($valid_slides)) {
+            echo '<p>' . esc_html__('No valid slides with images found. Please ensure all slides have images.', 'elementor-addon') . '</p>';
+            return;
+        }
         ?>
-        <div class="circle-slider swiper">
-            <div class="swiper-wrapper">
-                <?php foreach ($settings['slides'] as $index => $slide) : 
-                    if (empty($slide['slide_image']['url'])) {
-                        continue;
-                    }
-                ?>
-                    <div class="swiper-slide">
-                        <div class="circle-image">
-                            <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="<?php echo esc_attr__('Slide', 'elementor-addon') . ' ' . ($index + 1); ?>" />
-                        </div>
+        <section class="circle-slider-container" id="circle-slider-<?php echo esc_attr($widget_id); ?>">
+            <div class="circle-slider-wrapper">
+                <div class="swiper circle-slider">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($valid_slides as $index => $slide) : ?>
+                            <div class="swiper-slide">
+                                <img src="<?php echo esc_url($slide['slide_image']['url']); ?>" alt="Slide Image" class="circle-slide-image">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <style>
+            #circle-slider-<?php echo esc_attr($widget_id); ?> {
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+
+            #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider-wrapper {
+                width: 100%;
+            }
+
+            #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider {
+                width: 100%;
+                padding: 20px 0;
+            }
+
+            #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-wrapper {
+                display: flex;
+                flex-direction: row !important;
+                align-items: center;
+            }
+
+            #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
+                width: 310px;
+                height: 200px;
+                flex-shrink: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            @media (max-width: 768px) {
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                try {
+                    var circleSlider = new Swiper('#circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider', {
+                        loop: true,
+                        speed: 600,
+                        slidesPerView: 'auto',
+                        spaceBetween: 20,
+                        grabCursor: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        breakpoints: {
+                            480: {
+                                slidesPerView: 3,
+                            },
+                            768: {
+                                slidesPerView: 5,
+                            }
+                        },
+                        on: {
+                            init: function() {
+                                console.log('Circle Slider initialized successfully:', this);
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error initializing Circle Slider:', error);
+                }
+            });
+        </script>
         <?php
     }
 }
 
-add_action('wp_enqueue_scripts', function () {
+function register_circle_slider_widget($widgets_manager) {
     wp_enqueue_style(
         'swiper',
-        'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.css',
         [],
-        '10.0.0'
+        '8.4.5'
     );
 
     wp_enqueue_script(
         'swiper',
-        'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.js',
         [],
-        '10.0.0',
+        '8.4.5',
         true
     );
 
-    wp_enqueue_style('circle-slider-style', false);
-    wp_add_inline_style('circle-slider-style', '
-        .circle-slider {
-            display: flex;
-
-            width: 100%;
-            padding: 20px 0;
-            overflow: hidden;
-        }
-        .circle-slider .swiper-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .circle-slider .swiper-slide {
-                        max-width: 312px;
-            max-height: 312px;
-            display: flex;
-            flex-direction:row;
-            justify-content: center;
-            align-items: center;
-            flex-wrap:nowrap;
-        }
-        .circle-slider .circle-image {
-            max-width: 312px;
-            max-height: 312px;
-        }
-        .circle-slider .circle-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .circle-slider .circle-slider-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-    ');
-
-    wp_enqueue_script('circle-slider-script', false, ['swiper'], null, true);
-    wp_add_inline_script('circle-slider-script', '
-        jQuery(window).on("elementor/frontend/init", function() {
-            elementorFrontend.hooks.addAction("frontend/element_ready/circle-slider.default", function($scope) {
-                const slider = $scope.find(".circle-slider")[0];
-                if (slider && !slider.swiper) {
-                    new Swiper(slider, {
-                        slidesPerView: "auto",
-                        spaceBetween: 20,
-                        loop: true,
-                        grabCursor: true,
-                        breakpoints: {
-                            768: {
-                                slidesPerView: 5,
-                            },
-                            480: {
-                                slidesPerView: 3,
-                            }
-                        }
-                    });
-                }
-            });
-        });
-    ');
-});
+    $widgets_manager->register(new \Elementor_circleSlider());
+}
+add_action('elementor/widgets/register', 'register_circle_slider_widget');
 ?>

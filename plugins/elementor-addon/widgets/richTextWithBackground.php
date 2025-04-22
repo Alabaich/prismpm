@@ -218,7 +218,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         if ($use_no_background) {
             $inline_style = 'background: none;';
         } elseif ($has_background_image) {
-            $inline_style = "background-image: url('{$background_image_url}'); background-size: cover; background-position: center;";
+            $inline_style = "background-image: url('{$background_image_url}'); height: 100vh; background-size: cover; background-position: center;";
         } else {
             $inline_style = "background-color: #093D5F;";
         }

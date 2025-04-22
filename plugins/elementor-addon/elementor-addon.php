@@ -27,6 +27,9 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/advantageSection.php');
     require_once(__DIR__ . '/widgets/commitmentSection.php');
     require_once(__DIR__ . '/widgets/faq-accordion.php');
+    require_once(__DIR__ . '/widgets/contactUsSection.php');
+    require_once(__DIR__ . '/widgets/propertyMapWidget.php');
+
 
     
     $widgets_manager->register(new \Elementor_heroSlider());
@@ -45,6 +48,8 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_advantageSection());
     $widgets_manager->register(new \Elementor_commitmentSection());
     $widgets_manager->register(new \Elementor_faqAccordion());
+    $widgets_manager->register(new \Elementor_contactUsSection());
+    $widgets_manager->register(new \Elementor_propertyMapWidget());
 
 
 }
