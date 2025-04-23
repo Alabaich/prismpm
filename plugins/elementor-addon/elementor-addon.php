@@ -28,7 +28,7 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/commitmentSection.php');
     require_once(__DIR__ . '/widgets/faq-accordion.php');
     require_once(__DIR__ . '/widgets/contactUsSection.php');
-    require_once(__DIR__ . '/widgets/propertyMapWidget.php');
+    require_once(__DIR__ . '/widgets/propertyMapWidgetNew.php');
 
 
     
@@ -49,7 +49,7 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_commitmentSection());
     $widgets_manager->register(new \Elementor_faqAccordion());
     $widgets_manager->register(new \Elementor_contactUsSection());
-    $widgets_manager->register(new \Elementor_propertyMapWidget());
+    $widgets_manager->register(new \Elementor_propertyMapWidgetNew());
 
 
 }
