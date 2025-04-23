@@ -100,13 +100,13 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
         text-align: center;
     }
 
-    .land-acknowledgement-section h2 {
+    .land-acknowledgement-section h1 {
         font-size: 2rem;
-        margin-bottom: 0.625rem;
+        margin-bottom: 0.75rem;
     }
 
-    .land-acknowledgement-section p.subtitle {
-        max-width: 30.5rem;
+    .land-acknowledgement-section .subtitle {
+        max-width: 32rem;
         margin: 0 auto 2.5rem;
         font-size: 1rem;
         line-height: 1.6;
@@ -115,41 +115,71 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
 
     .city-columns {
         display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 0 2rem;
-        margin-top: 1.25rem;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: baseline;
     }
 
     .city-block {
         display: flex;
-        text-align: left;
-        gap: 0 1rem;
-    }
-
-    .city-block-text {
-        display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        max-width:360px;
+        align-items: center;
+        max-width: 30rem;
+        margin: 0 auto;
     }
 
     .city-block img {
+        width: 100%;
         border-radius: 0.5rem;
-        width: 17.25rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
+        object-fit: cover;
+        max-height: 300px;
+        max-width:380px;
     }
 
     .city-block-text h4 {
-        font-size: 2rem;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
     }
 
     .city-block-text p {
-        font-size: 1.375rem;
+        font-size: 1rem;
         color: #E0E0E0;
-        line-height: 108%;
+        line-height: 1.5;
+    }
+
+    @media (min-width: 768px) {
+        .land-acknowledgement-section {
+            padding: 6rem 2rem;
+        }
+
+        .city-columns {
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .city-block {
+            flex-direction: column;
+            max-width: 20rem;
+        }
+
+        .city-block img {
+            max-height: 250px;
+            max-width:300px;
+        }
+
+        .city-block-text h4 {
+            font-size: 1.5rem;
+        }
+
+        .city-block-text p {
+            font-size: 1.125rem;
+        }
     }
 </style>
+
 
         <div class="land-acknowledgement-section">
             <h1><?php echo esc_html($settings['main_title']); ?></h1>

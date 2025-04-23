@@ -163,13 +163,6 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                     height: 100px;
                 }
             }
-
-            @media (max-width: 480px) {
-                #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
-                    width: 80px;
-                    height: 80px;
-                }
-            }
         </style>
 
         <script>

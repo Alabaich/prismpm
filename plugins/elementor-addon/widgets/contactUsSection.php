@@ -142,7 +142,7 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				flex-wrap: wrap;
+				flex-wrap: nowrap;
 				gap: 1rem;
 			}
 
@@ -168,6 +168,11 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base {
 
 			.first-contact-section {
 				margin-top: 200px;
+			}
+			@media (max-width: 768px) {
+				.right-column h2, .right-column p {
+					text-align:center;
+				}
 			}
 		</style>
 		<?php

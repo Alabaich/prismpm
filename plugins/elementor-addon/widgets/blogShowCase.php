@@ -200,6 +200,15 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
             .meta span {
                 color:#909DA2;
             }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size:22px;
+        }
+        .featured-post {
+            display:none;
+        }
+    }
         </style>
 
         <div class="blog-showcase">

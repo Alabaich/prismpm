@@ -308,6 +308,29 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         background: #0e3c55;
         color: white;
     }
+    @media (max-width: 768px) {
+        .qwdsadqwdasdas {
+            display:none;
+        }
+        .faq-accordion h2 {
+            font-size:32px;
+        }
+        .qwdsa {
+            text-align:center;
+            justify-content:center;
+            padding-bottom:1.5rem;
+        }
+        .faq-category-title {
+            font-size:24px;
+        }
+        .faq-item-question {
+            font-size:22px;
+        }
+        .faq-accordion.faq-first-page h2 {
+            font-size:32px;
+        }
+    }
+
 </style>
 
 

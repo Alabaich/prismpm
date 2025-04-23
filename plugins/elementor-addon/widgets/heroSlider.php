@@ -250,6 +250,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 margin: 0 auto;
                 padding: 2rem;
                 padding-left:0rem;
+                padding-right:0rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -389,6 +390,16 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-content-wrapper {
                 padding: 0rem;
                 }
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider-wrapper {
+        display: none;
+    }
+                .hero-text-content{
+                    text-align:center;
+                    max-width:340px;
+                }
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-navigation {
+    display: none;
+}
             }
 
             @media (max-width: 480px) {

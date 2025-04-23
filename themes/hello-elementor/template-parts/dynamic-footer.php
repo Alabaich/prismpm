@@ -221,5 +221,62 @@ $footer_nav_menu = wp_nav_menu( [
 		.footer-links a:hover {
 			text-decoration: underline;
 		}
+		@media (max-width: 768px) {
+	.prism-footer {
+		padding: 40px 20px;
+	}
+
+	.footer-container {
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.footer-left {
+		text-align: center;
+	}
+
+	.footer-left .site-logo img {
+		height: auto;
+		width: 220px;
+	}
+
+	.footer-right {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.footer-row {
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.footer-col {
+		width: 100%;
+		text-align: center;
+	}
+
+	.newsletter-form {
+		gap: 10px;
+	}
+
+	.newsletter-form input,
+	.newsletter-form button {
+		text-align: center;
+	}
+
+	.footer-bottom {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 10px;
+	}
+
+	.footer-links a {
+		display: block;
+		margin: 5px 0;
+	}
+}
+
 	</style>
 </footer>

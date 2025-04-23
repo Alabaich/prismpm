@@ -48,7 +48,6 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 				lease@prismpm.ca
 			</a>
 		</div>
-	</div>
 
 	<?php if ( $header_mobile_nav_menu ) : ?>
 		<div class="site-navigation-toggle-holder">
@@ -61,9 +60,13 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 			<?php echo $header_mobile_nav_menu; ?>
 		</nav>
 	<?php endif; ?>
+	</div>
+
 
 	<style>
 		#site-header {
+			display:flex;
+			align-items:center;
 			max-width: 1728px;
 			margin: auto;
 			border-radius: 8px;
@@ -163,6 +166,21 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 		.email:hover{
 			color:white;
 				}
+
+				@media (max-width: 768px) {
+	.right-block .phone,
+	.right-block .email {
+		display: none;
+	}
+	@media (max-width: 768px) {
+		.headr-container {
+			max-width:360px;
+			margin-left:0px;
+			margin-right:0px;
+			padding-top:28px;
+		}
+	}
+}
 	</style>
 
 	<script>

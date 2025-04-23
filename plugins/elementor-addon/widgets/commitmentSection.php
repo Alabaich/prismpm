@@ -160,6 +160,7 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
             @media (max-width: 768px) {
                 .commitment-section__container {
                     flex-direction: column;
+                    text-align:center;
                 }
 
                 .commitment-section__text, .commitment-section__image {
@@ -169,6 +170,9 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
 
                 .commitment-section__image {
                     margin-top: 2rem;
+                }
+                .commitment-section__title {
+                    font-size:24px;
                 }
             }
         </style>
