@@ -161,7 +161,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
 <style>
     .coming-soon-section {
-        padding: 3.75rem 1.25rem; /* 60px 20px */
+        padding: 3.75rem 0rem; /* 60px 20px */
     }
 
     .coming-soon-section h1 {
@@ -295,6 +295,81 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
     .coming-soon-section.first-page {
         padding-top: 6rem;
     }
+
+    @media (max-width: 768px) {
+    .coming-soon-section .property-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .coming-soon-section .property-content {
+        min-width: unset;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .coming-soon-section .property-content h3 {
+        font-size: 28px;
+    }
+
+    .coming-soon-section .property-image {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .coming-soon-section .property-image img {
+        width: 100%;
+        height: auto;
+        max-height: 240px;
+        object-fit: cover;
+    }
+
+    .coming-soon-section .metaq {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .property-button {
+        margin-top:0px;
+        display: flex;
+        justify-content: center;
+        margin-bottom:1rem;
+
+    }
+    .section-img {
+        display:none;
+    }
+    .section-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .title-container {
+        align-items: center;
+        display: flex;
+
+        justify-content: center;
+        text-align: center;
+    }
+    .section-titles h1, .coming-soon-section.first-page h1{
+        font-size:22px;
+    }
+    .section-titles h1,
+    .section-titles p {
+        text-align: center;
+        margin-top:0rem;
+    }
+    .metaq span{
+        font-size: 1rem;
+    }
+    .metaq h6 {
+        margin:0rem;
+    }
+}
+
 </style>
 
 

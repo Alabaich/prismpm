@@ -48,7 +48,6 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 				lease@prismpm.ca
 			</a>
 		</div>
-	</div>
 
 	<?php if ( $header_mobile_nav_menu ) : ?>
 		<div class="site-navigation-toggle-holder">
@@ -61,99 +60,141 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 			<?php echo $header_mobile_nav_menu; ?>
 		</nav>
 	<?php endif; ?>
+	</div>
+
 
 	<style>
-		#site-header{
-			max-width:1728px;
-			margin:auto;
-			border-radius:8px;
+		#site-header {
+			display:flex;
+			align-items:center;
+			max-width: 1728px;
+			margin: auto;
+			border-radius: 8px;
 		}
-	.headr {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 1000;
-		background: transparent;
-		box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-		padding: 2rem;
-		padding-bottom:1.5rem;
-	}
+		.headr {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1000;
+			background: transparent;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+			padding: 2rem;
+			padding-bottom: 1.5rem;
+			transition: all 0.3s ease;
+		}
 
-	.headr-container {
-		padding-top:1rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin: 0 auto;
-		width: 100%;
-	}
+		.headr.scrolled {
+			background: white;
+			padding: 1.5rem 2rem;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
 
-	.left-block {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-		flex-shrink: 0;
-	}
+		.headr-container {
+			max-width: 1568px;
+			padding-top: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin: 0 auto;
+			width: 100%;
+		}
 
-	.headr-logo img {
-		max-height: 40px;
-	}
+		.left-block {
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+			flex-shrink: 0;
+		}
 
-	.headr-nav {
-		display: flex;
-		gap: 1.5rem;
-	}
+		.headr-logo img {
+			max-height: 40px;
+			transition: max-height 0.3s ease;
+		}
 
-	.headr-nav a {
-		color: #2A2A2A;
-		text-decoration: none;
-		font-weight: 500;
-	}
+		.headr.scrolled .headr-logo img {
+			max-height: 32px;
+		}
 
-	.right-block {
-		margin-left: auto; 
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
+		.headr-nav {
+			display: flex;
+			gap: 1.5rem;
+		}
 
-	.btn {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.5rem 1.2rem;
-		border-radius: 999px;
-		font-size: 0.9rem;
-		font-weight: 500;
-		text-decoration: none;
-		white-space: nowrap;
-	}
+		.headr-nav a {
+			color: #2A2A2A;
+			text-decoration: none;
+			font-weight: 500;
+		}
 
-	.phone {
-		background: #f4f4f4;
-		display:flex;
-		align-items:center;
-		gap:4px;
-		color: #000;
-	}
+		.right-block {
+			margin-left: auto; 
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
 
-	.email {
-		background: #0e3c55;
-		color: #fff;
-	}
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			padding: 0.5rem 1.2rem;
+			border-radius: 999px;
+			font-size: 0.9rem;
+			font-weight: 500;
+			text-decoration: none;
+			white-space: nowrap;
+		}
 
-	.email:hover,
-	.phone:hover {
-		opacity: 0.9;
+		.phone {
+			background: #f4f4f4;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			color: #000;
+		}
+
+		.email {
+			background: #0e3c55;
+			color: #fff;
+		}
+
+		.email:hover,
+		.phone:hover {
+			opacity: 0.9;
+			color:black;
+		}
+		.email:hover{
+			color:white;
+				}
+
+				@media (max-width: 768px) {
+	.right-block .phone,
+	.right-block .email {
+		display: none;
 	}
-	.email:hover {
-		background: #0e3c55;
-		color: #fff;
+	@media (max-width: 768px) {
+		.headr-container {
+			max-width:360px;
+			margin-left:0px;
+			margin-right:0px;
+			padding-top:28px;
+		}
 	}
-	.phone:hover {
-		background: #f4f4f4;
-		color: #000;
-	}
-</style>
+}
+	</style>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const header = document.getElementById('site-header');
+
+			window.addEventListener('scroll', function () {
+				if (window.scrollY > 100) {
+					header.classList.add('scrolled');
+				} else {
+					header.classList.remove('scrolled');
+				}
+			});
+		});
+	</script>
 
 </header>

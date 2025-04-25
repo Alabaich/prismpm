@@ -168,6 +168,20 @@ protected function render() {
             .aboutText, .aboutImage {
                 flex: 1 1 100%;
             }
+        .aboutPropertyBlock h2 {
+            font-size:24px;
+            margin-bottom:0.5rem;
+        }
+        .aboutText h3 {
+            display:none;
+        }
+        .wqhjashfjka{
+            text-align:center;
+        }
+        .featureList li {
+            font-size:1rem;
+            font-weight:500;
+        }
         }
     </style>
 

@@ -130,7 +130,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 }
 
                 .years-section .right {
-                    padding: 20px;
+                    padding: 1.25rem;
                 }
 
                 .years-section .right .big-number {
@@ -146,11 +146,15 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 .years-section .right .text {
                     font-size: 28px;
                 }
+                
+            .years-section .left {
+                object-fit:cover;
+            }
             }
 
             @media (max-width: 480px) {
                 .years-section .right .text {
-                    font-size: 18px;
+                    font-size: 24px;
                     max-width: 90%;
                 }
 

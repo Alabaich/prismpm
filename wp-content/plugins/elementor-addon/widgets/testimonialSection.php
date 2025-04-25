@@ -102,80 +102,81 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         ?>
 
-        <style>
-            .testimonial-section {
-                background-color: #093D5F;
-                color: #fff;
-                text-align: center;
-                padding: 100px 20px;
-            }
+<style>
+.testimonial-section {
+    background-color: #093D5F;
+    color: #fff;
+    text-align: center;
+    padding: 6.25rem 1.25rem;
+}
 
-            .testimonial-section h2 {
-                font-size: 42px;
-                font-weight: 600;
-                margin-bottom: 12px;
-            }
+.testimonial-section h2 {
+    font-size: 2.625rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
 
-            .testimonial-section h4 {
-                color: #E0E0E0;
-                font-size: 20px;
-                margin-bottom: 50px;
-                margin-top: 0px;
-            }
+.testimonial-section h4 {
+    color: #E0E0E0;
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    margin-top: 0;
+}
 
-            .testimonial-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 30px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+    gap: 1.875rem;
+    max-width: 75rem;
+    margin: 0 auto;
+}
 
-            .testimonial-card {
-                background: #fff;
-                color: #2a2a2a;
-                border-radius: 12px;
-                padding: 26px;
-                text-align: left;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
+.testimonial-card {
+    background: #fff;
+    color: #2a2a2a;
+    border-radius: 0.75rem;
+    padding: 1.625rem;
+    text-align: left;
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-            .testimonial-card p {
-                font-size: 16px;
-                margin-bottom: 20px;
-                margin-top: 0px;
-            }
+.testimonial-card p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+}
 
-            .testimonial-author {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
 
-            .testimonial-author img {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
+.testimonial-author img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-            .testimonial-author-info {
-                display: flex;
-                flex-direction: column;
-            }
+.testimonial-author-info {
+    display: flex;
+    flex-direction: column;
+}
 
-            .testimonial-author-info .name {
-                font-size: 16px;
-            }
+.testimonial-author-info .name {
+    font-size: 1rem;
+}
 
-            .testimonial-author-info .loc {
-                font-size: 14px;
-                color: #666;
-            }
-        </style>
+.testimonial-author-info .loc {
+    font-size: 0.875rem;
+    color: #666;
+}
+</style>
+
 
         <div class="testimonial-section">
             <h2><?php echo esc_html($settings['section_title']); ?></h2>

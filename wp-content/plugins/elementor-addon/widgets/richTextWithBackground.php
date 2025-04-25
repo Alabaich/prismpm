@@ -218,7 +218,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         if ($use_no_background) {
             $inline_style = 'background: none;';
         } elseif ($has_background_image) {
-            $inline_style = "background-image: url('{$background_image_url}'); background-size: cover; background-position: center;";
+            $inline_style = "background-image: url('{$background_image_url}'); height: 100vh; background-size: cover; background-position: center;";
         } else {
             $inline_style = "background-color: #093D5F;";
         }
@@ -368,28 +368,29 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
 
             @media (max-width: 768px) {
+                .richTextContainer .richText h2 {
+                <?php if ($is_first_page): ?>
+                    font-size:28px;
+                <?php endif; ?>
+            }
+            .richTextContainer {
+                <?php if ($is_first_page): ?>
+                    padding-bottom: 0px;
+                    padding-top: 0px;
+                <?php endif; ?>
+            }
                 .richTextContainer {
                     padding-bottom: 50px;
-                    padding-top: 50px;
+                    padding-top: 100px;
                 }
 
                 .richText h1 {
                     font-size: 30px;
                 }
-
-                .richText h2 {
-                    font-size: 30px;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .richText h2 {
-                    font-size: 22px;
-                }
-
                 .richText p {
                     font-size: 14px;
-                    padding: 0;
+                    padding-top: 1rem;
+                    padding-bottom: 0rem;
                 }
             }
         </style>

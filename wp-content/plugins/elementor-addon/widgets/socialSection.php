@@ -131,7 +131,7 @@ protected function render() {
         }
 
         .social-block {
-            min-width: 200px;
+            min-width: 180px;
             text-align: left;
             color:#52525B
         }

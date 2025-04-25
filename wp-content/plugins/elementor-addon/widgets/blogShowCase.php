@@ -123,7 +123,7 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
         ?>
         <style>
             .blog-showcase {
-                padding: 4rem 2rem;
+                padding: 4rem 0rem;
                 text-align: center;
             }
 
@@ -171,10 +171,10 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
             .blog-card {
                 background: #F4F4F499/60;
                 border-radius: 0.5rem;
-                padding: 0.5rem;
                 text-align: left;
                 max-width: 26rem;
                 box-shadow: 0 0 10px rgba(0,0,0,0.05);
+                min-width:500px;
             }
 
             .blog-card img {
@@ -187,6 +187,9 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
             .blog-card .title {
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+
             }
 
             .blog-card .meta {
@@ -195,11 +198,23 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
                 justify-content:space-between;
                 font-size: 1.125rem;
                 color: #52525B;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-bottom:0.5rem;
             }
 
             .meta span {
                 color:#909DA2;
             }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size:22px;
+        }
+        .featured-post {
+            display:none;
+        }
+    }
         </style>
 
         <div class="blog-showcase">
