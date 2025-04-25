@@ -141,8 +141,8 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
-                width: 310px;
-                height: 200px;
+                width: 212px;
+                height: 212px;
                 flex-shrink: 0;
                 display: flex;
                 justify-content: center;
