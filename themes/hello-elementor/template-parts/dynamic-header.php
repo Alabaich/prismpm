@@ -122,9 +122,11 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 		}
 
 		.headr-nav a {
+  font-family: "Inter Tight", sans-serif;
+
 			color: #2A2A2A;
 			text-decoration: none;
-			font-weight: 500;
+			font-weight: 400;
 		}
 
 		.right-block {
@@ -135,6 +137,8 @@ $header_mobile_nav_menu = wp_nav_menu( $menu_args );
 		}
 
 		.btn {
+  font-family: "Inter Tight", sans-serif;
+
 			display: inline-flex;
 			align-items: center;
 			padding: 0.5rem 1.2rem;

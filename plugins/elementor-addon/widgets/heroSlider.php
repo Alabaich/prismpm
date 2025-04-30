@@ -240,7 +240,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 align-items: center;
                 background: white;
                 padding: 2rem;
-                padding-left:0rem;
+                padding-left: 5rem;
                 z-index: 2;
             }
 
@@ -262,11 +262,11 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
-                font-size: 3.75rem;
+                font-size: 4rem;
                 font-weight: 700;
                 line-height: 1.1;
                 margin-bottom: 1.5rem;
-                padding-top:5rem;
+                padding-top:6.5rem;
                 color: <?php echo esc_attr($settings['title_color'] ?: '#111827'); ?>;
                 <?php if ($settings['title_typography_font_family']) : ?>
                 font-family: <?php echo esc_attr($settings['title_typography_font_family']); ?>;
@@ -274,12 +274,15 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-description {
-                font-size: 1.125rem;
+                font-size: 1rem;
+  font-family: "Inter Tight", sans-serif;
+                max-width:414px;
                 color: <?php echo esc_attr($settings['description_color'] ?: '#4b5563'); ?>;
-                margin-bottom: 2rem;
+                margin-bottom: 4.5rem;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button {
+  font-family: "Inter Tight", sans-serif;
                 display: inline-flex;
                 align-items: center;
                 gap: 0.75rem;
@@ -295,7 +298,12 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button:hover {
                 background: <?php echo esc_attr($settings['button_hover_bg_color'] ?: '#0c4e7a'); ?>;
-                gap: 1rem;
+                gap: 2rem;
+            }
+            
+            #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button:active {
+                background: #0B3550;
+                gap: 2rem;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button-icon {
@@ -346,11 +354,12 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider-wrapper {
                 width: 40%;
                 position: relative;
+                height: 100vh;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider {
                 width: 100%;
-                height: 100vh;
+                height: 100%;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
@@ -384,15 +393,42 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
 
             @media (max-width: 768px) {
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
-                    font-size: 2rem;
+                    font-family: 'Darker Grotesque', sans-serif;
+                    font-weight: 600;
+                    font-size: 28px;
+                    line-height: 90%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #2a2a2a;
                 }
 
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-content-wrapper {
-                padding: 0rem;
-                }
+                padding-left: 2rem;
+            }
+
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider-wrapper {
-        display: none;
-    }
+                display: none;
+                }
+
+                #hero-slider-6da996f .hero-content {
+                    padding: 0;
+                }
+
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-text-content {
+                    max-width: 100%;
+                    padding: 0 1rem;
+                }
+
+                #hero-slider-6da996f .hero-title {
+                    padding-top: 0;
+                }
+
+                .hero-content-wrapper {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+
                 .hero-text-content{
                     text-align:center;
                     max-width:340px;
@@ -400,12 +436,6 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-navigation {
     display: none;
 }
-            }
-
-            @media (max-width: 480px) {
-                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
-                    font-size: 1.75rem;
-                }
             }
         </style>
 

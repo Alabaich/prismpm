@@ -90,6 +90,7 @@ protected function render() {
         .aboutPropertyFlex {
             display: flex;
             flex-wrap: wrap;
+            justify-content:space-between;
             gap: 2rem;
             align-items: stretch;
         }
@@ -108,7 +109,7 @@ protected function render() {
         }
 
         .aboutText h3 {
-            font-size: 40px;
+            font-size: 32px;
             margin-bottom: 1.5rem;
             color:black;
             margin-top:0;
@@ -125,6 +126,7 @@ protected function render() {
         .featureList {
             display:flex;
             flex-direction:column;
+            gap:1.5rem 0rem;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -134,7 +136,7 @@ protected function render() {
             position: relative;
             padding-left: 2rem;
             font-weight:400;
-            font-size: 22px;
+            font-size: 18px;
         }
 
         .featureList li::before {
@@ -147,15 +149,16 @@ protected function render() {
 
 .wqhjashfjka{
     margin:0;
+    font-size:16px;
 }
 
-        .aboutImage {
-            flex: 1 1 40%;
-        }
 
         .aboutImage img {
-            width: 100%;
-            height: auto;
+            max-width: 636px;
+            min-width: 636px;
+
+            max-height: 380px;
+            min-height: 380px;
             border-radius: 0.5rem;
             object-fit: cover;
         }

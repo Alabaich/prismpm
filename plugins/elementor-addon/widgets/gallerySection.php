@@ -17,56 +17,6 @@ class Elementor_gallerySection extends \Elementor\Widget_Base {
     public function get_categories() {
         return ['basic'];
     }
-    protected function register_controls() {
-
-        $this->start_controls_section(
-            'content_section',
-            [
-                'label' => esc_html__('Content', 'elementor-addon'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
-    
-        $this->add_control(
-            'title',
-            [
-                'label' => esc_html__('Title', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Explore Our Gallery', 'elementor-addon'),
-            ]
-        );
-    
-        $this->add_control(
-            'subtitle',
-            [
-                'label' => esc_html__('Subtitle', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('A glimpse into our spaces', 'elementor-addon'),
-            ]
-        );
-    
-        $this->add_control(
-            'gallery_items',
-            [
-                'label' => esc_html__('Gallery Items', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => [
-                    [
-                        'name' => 'image',
-                        'label' => esc_html__('Image', 'elementor-addon'),
-                        'type' => \Elementor\Controls_Manager::MEDIA,
-                        'default' => [
-                            'url' => \Elementor\Utils::get_placeholder_image_src(),
-                        ],
-                    ],
-                ],
-                'default' => [],
-                'title_field' => '{{{ image.url }}}',
-            ]
-        );
-    
-        $this->end_controls_section();
-    }
 
     protected function render() {
         $settings = $this->get_settings_for_display();

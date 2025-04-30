@@ -72,6 +72,8 @@ class Elementor_heroImage extends \Elementor\Widget_Base
 ?>
 
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=ES+Rebond+Grotesque+TRIAL:wght@500&display=swap');
+
             .years-section {
                 display: flex;
                 flex-wrap: wrap;
@@ -115,7 +117,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 color: #000;
                 text-align: center;
                 line-height: 97%;
-                max-width: 80%;
+                max-width: 36%;
                 z-index: 666;
             }
 
@@ -135,6 +137,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
 
                 .years-section .right .big-number {
                     font-size: 200px;
+
                 }
 
                 .years-section .right .text {
@@ -146,10 +149,10 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 .years-section .right .text {
                     font-size: 28px;
                 }
-                
-            .years-section .left {
-                object-fit:cover;
-            }
+
+                .years-section .left {
+                    object-fit: cover;
+                }
             }
 
             @media (max-width: 480px) {

@@ -19,7 +19,6 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
     }
 
     protected function register_controls() {
-
         $this->start_controls_section(
             'properties_section',
             [
@@ -117,14 +116,15 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
     align-items: center;
     flex-direction: column;
     gap: 1.5625rem;
-    padding: 6.25rem 5%;
+    padding: 6.25rem 5rem;
     width: 100%;
 }
 
 .propertiesContainer h3 {
-    font-size: 3.125rem;
-    font-weight: normal;
+    font-size: 52px;
+    font-weight: 600;
     color:#2A2A2A;
+    margin:0px;
 }
 
 .property-map-container {
@@ -182,10 +182,8 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 
 .property-link-text h6 {
   font-family: "Darker Grotesque", sans-serif;
-
     color:#2A2A2A;
-    font-size: 40px;
-    font-weight: 400;
+    font-size: 32px;
     margin: 0;
 }
 
@@ -197,7 +195,8 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 
 .property-description {
     margin-top: 0.625rem;
-    font-size: 1.1em;
+    font-size: 1rem;
+  font-family: "Inter Tight", sans-serif;
     color: #2A2A2A;
     display: none;
 }
@@ -214,7 +213,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 }
 
 .toggle-icon.active {
-    transform: rotate(45deg);
+    transform: rotate(180deg);
 }
 
 .mapContainer {
@@ -283,7 +282,12 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border:#093D5F;
+    border:#093D5F; 
+    padding: 0.625rem 1rem;
+    border-radius:90px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.625rem;
 }
 
 .qwe:hover {
@@ -292,6 +296,16 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 
 .qwe i {
     color:white;
+}
+
+.ffffwqdsad {
+    margin:0px;
+  font-family: "Inter Tight", sans-serif;
+font-size:1rem;
+color:#52525B;
+max-width:436px;
+margin:auto;
+text-align:center;
 }
 
 @media (max-width: 64rem) {
@@ -326,7 +340,14 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
     }
 
     .propertiesContainer h3 {
-        font-size: 2.5rem;
+        font-family: 'Darker Grotesque', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 90%;
+        letter-spacing: 0%;
+        text-align: center;
+        vertical-align: middle;
+        color: #2a2a2a;
     }
 
     .property-link-text h6 {
@@ -388,6 +409,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 
         <div class="propertiesContainer">
             <h3>Discover Our Rental Properties</h3>
+            <p class='ffffwqdsad'>Lorem ipsum Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </>
             <div class="property-map-container">
                 <div class="property-links">
                     <?php foreach ($settings['property_list'] as $index => $property) : ?>
@@ -419,7 +441,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                                             dominant-baseline="middle"
                                             fill="black"
                                             font-size="48"
-                                            font-family="inherit">
+                                            font-family="Inter Tight">
                                             <?php echo $index + 1; ?>
                                         </text>
                                     </svg>
@@ -527,7 +549,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
 
                     if (activeLink) {
                         activeLink.href = linkUrl || '#';
-                        activeLink.style.display = linkUrl ? 'block' : 'none';
+                        activeLink.style.display = linkUrl ? 'inline-block' : 'none';
                     }
 
                     propertyImagesContainer.innerHTML = '';
@@ -544,6 +566,17 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                     }
                 };
 
+                // Function to close all property descriptions
+                const closeAllDescriptions = () => {
+                    document.querySelectorAll('.property-description').forEach(desc => {
+                        desc.classList.remove('visible');
+                    });
+                    document.querySelectorAll('.toggle-icon').forEach(icon => {
+                        icon.classList.remove('active');
+                        icon.textContent = '+';
+                    });
+                };
+
                 buttons.forEach((button, index) => {
                     const lat = parseFloat(button.getAttribute("data-lat"));
                     const lng = parseFloat(button.getAttribute("data-lng"));
@@ -556,9 +589,13 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                     const toggleIcon = button.querySelector(".toggle-icon");
 
                     const toggleDescription = () => {
-                        description.classList.toggle('visible');
-                        toggleIcon.classList.toggle('active');
-                        toggleIcon.textContent = toggleIcon.classList.contains('active') ? '−' : '+';
+                        // Close all descriptions first
+                        closeAllDescriptions();
+                        
+                        // Then open the clicked one
+                        description.classList.add('visible');
+                        toggleIcon.classList.add('active');
+                        toggleIcon.textContent = '−';
                     };
 
                     button.addEventListener("click", () => {
@@ -584,6 +621,9 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                     if (index === 0) {
                         map.flyTo([lat, lng], 15, { animate: true, duration: 1.5 });
                         updatePropertyInfo(title, address, firstImage, linkUrl, images);
+                        description.classList.add('visible');
+                        toggleIcon.classList.add('active');
+                        toggleIcon.textContent = '−';
                     }
                 });
             });
