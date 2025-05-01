@@ -180,6 +180,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             @media (max-width: 768px) {
                 .city-columns {
                     flex-direction: column;
+                    align-items:center;
                     gap: 2rem;
                 }
 
@@ -203,7 +204,8 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 }
 
                 .city-block {
-                    width: 100%;
+                    max-width: 312px;
+                    width:100%;
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
@@ -211,8 +213,8 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 }
 
                 .city-block img {
-                    width: 100%;
-                    height: 220px;
+                    max-width: 312px;
+                    height: 200px;
                     object-fit: cover;
                     border-radius: 0.5rem;
                 }

@@ -10,8 +10,19 @@
 
 function register_hello_world_widget( $widgets_manager ) {
 
+    require_once( __DIR__ . '/widgets/switchSideImage.php' );
+    require_once( __DIR__ . '/widgets/totalServices.php' );
+    require_once( __DIR__ . '/widgets/fullSizeImage.php' );
+    require_once( __DIR__ . '/widgets/applyCTAButton.php' );
+    require_once( __DIR__ . '/widgets/propertyMapWidget.php' );
+    require_once( __DIR__ . '/widgets/richText.php' );
+    require_once( __DIR__ . '/widgets/buildingsSlider.php' );
+    require_once( __DIR__ . '/widgets/PropertiesComingSoon.php' );
+    require_once( __DIR__ . '/widgets/aboutUs.php' );
 
-     require_once(__DIR__ . '/widgets/heroSlider.php');
+
+
+     require_once(__DIR__ . '/widgets/HeroSlider.php');
      require_once(__DIR__ . '/widgets/richTextWithBackground.php');
      require_once(__DIR__ . '/widgets/heroImage.php');
      require_once(__DIR__ . '/widgets/testimonialSection.php');
@@ -46,7 +57,18 @@ function register_hello_world_widget( $widgets_manager ) {
      $widgets_manager->register(new \Elementor_faqAccordion());
      $widgets_manager->register(new \Elementor_contactUsSection());
      $widgets_manager->register(new \Elementor_propertyMapWidgetNew());
+	
 
+
+    $widgets_manager->register( new \Elementor_switchSideImage() );
+    $widgets_manager->register( new \Elementor_totalServices() );
+    $widgets_manager->register( new \Elementor_fullSizeImage() );
+    $widgets_manager->register( new \Elementor_applyCTAButton() );
+    $widgets_manager->register( new \Elementor_PropertyMapWidget() );
+    $widgets_manager->register( new \Elementor_richText() );
+    $widgets_manager->register( new \Elementor_buildingsSlider() );
+    $widgets_manager->register( new \Elementor_PropertiesComingSoon() );
+    $widgets_manager->register( new \Elementor_aboutUs() );
 
 
 }

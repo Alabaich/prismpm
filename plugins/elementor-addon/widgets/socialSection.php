@@ -121,6 +121,11 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 overflow-x: hidden;
             }
 
+            .conteinerchenko {
+                max-width:1568px;
+                margin:0 auto;
+            }
+
             .social-follow-section h1 {
                 font-size: 52px;
                 margin-bottom: 0.75rem;
@@ -185,6 +190,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 width: 100%;
                 object-fit: fit-content;
                 height: auto;
+                max-height:556px;
                 border-radius: 0.5rem;
                 display: block;
                 image-rendering: auto;
@@ -266,6 +272,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
 
         <div class="social-follow-section">
+            <div class='conteinerchenko'>
             <h1><?php echo esc_html($settings['main_title']); ?></h1>
             <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
 
@@ -285,6 +292,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </div>
             </div>
 
 

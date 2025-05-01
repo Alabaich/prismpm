@@ -170,11 +170,46 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                 #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
                     width: 160px;
                     height: 160px;
+                    width: 160px;
+                    height: 160px;
+                    min-width: 160px;
+                    min-height: 160px;
+                    max-width: 160px;
+                    max-height: 160px;
                 }
 
                 #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
                     width: 160px;
                     height: 160px;
+                    width: 160px;
+                    height: 160px;
+                    min-width: 160px;
+                    min-height: 160px;
+                    max-width:160px;
+                    max-height: 160px;
+                }
+            }
+            @media (max-width: 468px) {
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
+                    width: 100px;
+                    height: 100px;
+                    width: 100px;
+                    height: 100px;
+                    min-width: 100px;
+                    min-height: 100px;
+                    max-width: 100px;
+                    max-height: 100px;
+                }
+
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
+                    width: 100px;
+                    height: 100px;
+                    width: 100px;
+                    height: 100px;
+                    min-width: 100px;
+                    min-height: 100px;
+                    max-width:100px;
+                    max-height: 100px;
                 }
             }
         </style>
@@ -191,18 +226,6 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                         autoplay: {
                             delay: 3000,
                             disableOnInteraction: false,
-                        },
-                        breakpoints: {
-                            480: {
-                                slidesPerView: 3,
-                            },
-                            768: {
-                                slidesPerView: 4,
-                            },
-                            1024: {
-                                slidesPerView: 5,
-                                
-                            }
                         },
                         on: {
                             init: function() {

@@ -312,10 +312,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 display: flex;
             }
             .property-button a:hover {
-    gap: 2rem;
+    gap: 0rem 2rem;
 }
 .property-button a:hover svg {
-    transform: translateX(6px);
+    transform: translateX(4px);
 }
 
             .coming-soon-section.centered-header .title-container {
@@ -337,15 +337,23 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 padding-top: 6rem;
             }
 
+
+            .anounc-button-icon {
+                rotate: -45deg;
+            }
             @media (max-width: 768px) {
                 .coming-soon-section .property-card {
                     flex-direction: column;
-                    align-items: stretch;
                     text-align: left;
+                    max-width:350px;
                 }
 
                 .coming-soon-section {
                     padding: 2rem 1rem;
+                    display:flex;
+                    flex-direction:column;
+                    justify-items:center;
+                    align-items:center;
                 }
 
                 .coming-soon-section .property-content {
@@ -353,15 +361,20 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-image {
-                    width: 100%;
+                    max-width: 310px;
+                    min-width: 310px;
+                    min-height: 200px;
+                    max-height: 200px;
                     order: -1;
                     margin-bottom: 1rem;
                 }
 
                 .coming-soon-section .property-image img {
-                    width: 100%;
                     height: auto;
-                    max-height: 240px;
+                    max-height: 200px;
+                    max-width:310px;
+                    min-height: 200px;
+                    min-width:310px;
                     object-fit: cover;
                     border-radius: 0.5rem;
                 }
@@ -496,7 +509,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                             <div class="property-button">
                                 <a href="<?php echo esc_url($item['button_link']['url']); ?>" target="<?php echo esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
                                     Pre-Register
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hero-button-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="anounc-button-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                             </svg>
                                 </a>

@@ -146,7 +146,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             }
 
             .featured-post .title {
-                font-size: 2rem;
+                font-size: 28px;
                 margin-bottom: 0.5rem;
                 font-weight: 600;
                 color: #333;
@@ -211,7 +211,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 padding: 20px 28px;
                 border: 1px solid #000;
                 border-radius: 2rem;
-                width: 188px;
+                min-width: 188px;
                 background: #fff;
                 font-family: "Inter Tight", sans-serif;
                 color: #2A2A2A;
@@ -221,18 +221,18 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 gap: 1rem;
             }
 
-            .hero-button-icon {
+            .hqwdasdicon {
                 color: #2A2A2A;
                 transition: transform 0.3s ease;
+                rotate: -45deg;
             }
 
             .read-more-btn:hover {
-                width: 218px;
-
+                gap:0rem 4rem;
             }
 
-            .read-more-btn:hover .hero-button-icon {
-                transform: translateX(42px);
+            .read-more-btn:hover .hqwdasdicon {
+                transform: translateX(4px);
             }
 
             .sadqwd {
@@ -288,7 +288,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                         <?php if (has_post_thumbnail($featured_post->ID)): ?>
                             <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
                         <?php endif; ?>
-                        <h2 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
+                        <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
                         <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
                     </a>
                 </div>
@@ -297,7 +297,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                         <?php if (has_post_thumbnail($featured_post->ID)): ?>
                             <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
                         <?php endif; ?>
-                        <h2 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
+                        <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
                         <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
                     </a>
                 </div>
@@ -338,7 +338,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             </div>
             <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-btn">
                 <?php esc_html_e('Read More', 'elementor-addon'); ?>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hero-button-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hqwdasdicon">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
             </a>

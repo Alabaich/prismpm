@@ -188,7 +188,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                         <p class="hero-description"><?php echo esc_html($settings['description']); ?></p>
                         <a href="<?php echo esc_url($button_url); ?>" class="hero-button">
                             <?php echo esc_html($settings['button_text']); ?>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hero-button-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" class="hero-button-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                             </svg>
                         </a>
@@ -307,6 +307,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button-icon {
+                color:white;
                 transition: all 0.3s ease;
                 rotate: -45deg;
             }
