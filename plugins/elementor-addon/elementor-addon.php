@@ -22,7 +22,7 @@ function register_hello_world_widget( $widgets_manager ) {
 
 
 
-     require_once(__DIR__ . '/widgets/HeroSlider.php');
+     require_once(__DIR__ . '/widgets/heroSlider.php');
      require_once(__DIR__ . '/widgets/richTextWithBackground.php');
      require_once(__DIR__ . '/widgets/heroImage.php');
      require_once(__DIR__ . '/widgets/testimonialSection.php');
