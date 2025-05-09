@@ -132,6 +132,9 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider {
                 width: 100%;
+                background: #093D5F0D;
+                padding: 20px 0px;
+                margin-bottom: 100px;
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-wrapper {

@@ -35,13 +35,15 @@ h6 {
   line-height: 1.2;
   color: inherit;
 }
+p {
+  font-family: "Darker Grotesque", sans-serif;
+}
+
 h1,
 h2,
 h3,
-h4,
-h5,
-p {
-  font-family: "Darker Grotesque", sans-serif;
+h4 {
+  font-family: "Playfair Display", serif;
 }
 
 h1 {

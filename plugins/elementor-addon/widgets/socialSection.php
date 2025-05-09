@@ -116,7 +116,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
         <style>
             .social-follow-section {
-                padding: 4rem 0rem;
+                padding: 3.75rem 5rem;
                 text-align: center;
                 overflow-x: hidden;
             }
@@ -182,7 +182,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
             }
 
             .social-block i {
-                font-size: 2rem;
+                font-size: 1.25rem;
                 color: #000;
             }
 
