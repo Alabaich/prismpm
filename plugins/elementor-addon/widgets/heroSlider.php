@@ -281,14 +281,12 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 left: 0;
                 width: 100%;
                 opacity: 0;
-                transition: opacity 0.8s ease, transform 0.8s ease;
-                transform: translateY(20px);
+                transition: opacity 0.8s ease;
                 pointer-events: none;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content.active {
                 opacity: 1;
-                transform: translateY(0);
                 pointer-events: auto;
             }
 
@@ -480,66 +478,72 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
         </style>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var heroSlider = new Swiper('#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider', {
-                    loop: true,
-                    effect: 'fade',
-                    fadeEffect: {
-                        crossFade: true
-                    },
-                    speed: 1000,
-                    navigation: {
-                        nextEl: '#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-next',
-                        prevEl: '#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-prev',
-                    },
-                    on: {
-                        init: function() {
-                            updateContent(this.activeIndex);
-                            var totalSlides = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .total-slides');
-                            if (totalSlides) {
-                                totalSlides.textContent = String(this.slides.length - 2).padStart(2, '0');
-                            }
-                        },
-                        slideChange: function() {
-                            updateContent(this.activeIndex);
-                        }
-                    }
+document.addEventListener('DOMContentLoaded', function() {
+    var heroSlider = new Swiper('#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-slider', {
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        speed: 1000,
+        navigation: {
+            nextEl: '#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-next',
+            prevEl: '#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-prev',
+        },
+        on: {
+            init: function() {
+                document.querySelectorAll('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content').forEach(el => {
+                    el.classList.remove('active');
                 });
-
-                function updateContent(activeIndex) {
-                    var slideContents = document.querySelectorAll('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content');
-                    var currentSlide = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .current-slide');
-                    
-                    var realIndex = activeIndex % <?php echo count($settings['slides']); ?>;
-                    
-                    if (currentSlide) {
-                        currentSlide.textContent = String(realIndex + 1).padStart(2, '0');
-                    }
-                    
-                    slideContents.forEach(function(content) {
-                        content.classList.remove('active');
-                    });
-                    
-                    setTimeout(function() {
-                        var activeContent = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content[data-slide-index="' + realIndex + '"]');
-                        if (activeContent) {
-                            activeContent.classList.add('active');
-                        }
-                    }, 100);
+                
+                var firstSlide = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content[data-slide-index="0"]');
+                if (firstSlide) {
+                    firstSlide.classList.add('active');
                 }
-
-                var content = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-content');
-                if (content) {
-                    content.style.opacity = '0';
-                    content.style.transform = 'translateX(-20px)';
-                    
-                    setTimeout(function() {
-                        content.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                        content.style.opacity = '1';
-                        content.style.transform = 'translateX(0)';
-                    }, 100);
+                
+                var totalSlides = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .total-slides');
+                if (totalSlides) {
+                    totalSlides.textContent = String(this.slides.length - 2).padStart(2, '0');
                 }
-            });
+                
+                document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .current-slide').textContent = '01';
+            },
+            slideChange: function() {
+                updateContent(this.realIndex);
+            }
+        }
+    });
+
+    function updateContent(realIndex) {
+        var slideContents = document.querySelectorAll('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content');
+        var currentSlide = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .current-slide');
+        
+        slideContents.forEach(function(content) {
+            content.classList.remove('active');
+        });
+        
+        var activeContent = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .slide-content[data-slide-index="' + realIndex + '"]');
+        if (activeContent) {
+            activeContent.classList.add('active');
+        }
+        
+        if (currentSlide) {
+            currentSlide.textContent = String(realIndex + 1).padStart(2, '0');
+        }
+    }
+
+    var content = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .hero-content');
+    if (content) {
+        content.style.opacity = '0';
+        content.style.transform = 'translateX(-20px)';
+        
+        setTimeout(function() {
+            content.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            content.style.opacity = '1';
+            content.style.transform = 'translateX(0)';
+        }, 100);
+    }
+});
         </script>
         <?php
     }
