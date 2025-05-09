@@ -139,6 +139,15 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+        'button_link',
+        [
+        'label' => esc_html__('Button Text', 'elementor-addon'),
+        'type' => \Elementor\Controls_Manager::TEXT,
+        'default' => 'Pre-Register',
+    ]
+);
+
+        $repeater->add_control(
             'button_link',
             [
                 'label' => esc_html__('Pre-Register Link', 'elementor-addon'),
@@ -508,7 +517,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                         <?php if (!empty($item['button_link']['url'])): ?>
                             <div class="property-button">
                                 <a href="<?php echo esc_url($item['button_link']['url']); ?>" target="<?php echo esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
-                                    Pre-Register
+                                <?php echo esc_html($item['button_text']); ?>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="anounc-button-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                             </svg>
