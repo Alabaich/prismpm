@@ -336,7 +336,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button-icon {
-                color:white;
+                color: white;
                 transition: all 0.3s ease;
                 rotate: -45deg;
             }
@@ -422,6 +422,16 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             @media (max-width: 768px) {
+                #hero-slider-<?php echo esc_attr($widget_id); ?> {
+                    flex-direction: column;
+                    min-height: auto;
+                    padding-top: 0;
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                    display: none !important;
+                }
+
                 #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
                     font-weight: 600;
                     font-size: 28px;
@@ -501,7 +511,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                     var currentSlide = document.querySelector('#hero-slider-<?php echo esc_attr($widget_id); ?> .current-slide');
                     
                     var realIndex = activeIndex % <?php echo count($settings['slides']); ?>;
-                    r
+                    
                     if (currentSlide) {
                         currentSlide.textContent = String(realIndex + 1).padStart(2, '0');
                     }

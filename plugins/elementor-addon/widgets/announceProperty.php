@@ -271,24 +271,24 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             }
 
             .property-button a {
-    font-family: "Inter Tight", sans-serif;
-    display: inline-flex;
-    align-items: center;
-    background: #093D5F;
-    color: #fff;
-    padding: 22px 28px;
-    min-width: 188px;
-    border-radius: 1.875rem;
-    font-weight: 500;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    gap: 0.5rem;
-    transform: scale(1);
-}
-.property-button a svg {
-    transition: transform 0.3s ease;
-}
+                font-family: "Inter Tight", sans-serif;
+                display: inline-flex;
+                align-items: center;
+                background: #093D5F;
+                color: #fff;
+                padding: 18px 28px;
+                min-width: 188px;
+                border-radius: 50%;
+                font-weight: 500;
+                font-size: 1rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                gap: 0.5rem;
+                transform: scale(1);
+            }
+            .property-button a svg {
+                transition: transform 0.3s ease;
+            }
 
             .title-container {
                 display: flex;
@@ -312,11 +312,11 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 display: flex;
             }
             .property-button a:hover {
-    gap: 0rem 2rem;
-}
-.property-button a:hover svg {
-    transform: translateX(4px);
-}
+                gap: 0rem 1rem;
+            }
+            .property-button a:hover svg {
+                transform: translateX(4px);
+            }
 
             .coming-soon-section.centered-header .title-container {
                 flex-direction: column;

@@ -161,17 +161,16 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 display: block;
                 font-weight: 400;
                 font-size: 1rem;
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
                 color: #52525B;
-                margin-bottom: 1.25rem;
+                margin-bottom: 0.5rem;
                 text-align: left;
             }
 
             .social-block p {
-  font-family: "Inter Tight", sans-serif;
-  display:flex;
-  justify-items:baseline;
+                font-family: "Inter Tight", sans-serif;
+                display:flex;
+                justify-items:baseline;
                 align-items:center;
                 color: #374151;
                 margin:0px;
@@ -214,7 +213,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 }
 
                 .social-follow-section h1 {
-                    font-family: 'Darker Grotesque', sans-serif;
+                    font-family: "Playfair Display", serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;

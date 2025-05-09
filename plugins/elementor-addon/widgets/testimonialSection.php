@@ -187,7 +187,6 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
 
             @media (max-width: 768px) {
                 .testimonial-section h2 {
-                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;

@@ -269,7 +269,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
             .richText h2 {
                 color: #FFFFFF;
-                font-family: "Darker Grotesque", Sans-serif;
+                font-family: "Playfair Display", serif;
                 max-width: 902px;
                 font-size: 52px;
                 line-height: 96%;
@@ -389,7 +389,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 }
 
                 .richTextContainer .richText h2 {
-                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 24px;
                     line-height: 100%;

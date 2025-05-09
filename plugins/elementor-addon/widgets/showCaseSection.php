@@ -118,6 +118,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 letter-spacing: 0em;
                 text-transform: capitalize;
                 margin: 0 0 0.75rem 0;
+                font-family: "Playfair Display", serif;
             }
 
             .land-acknowledgement-section .section-heading p {
@@ -142,6 +143,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 overflow: hidden;
                 align-items: flex-start;
                 gap: 1.5rem;
+                background: #093D5F0D;
             }
 
             .city-block img {
@@ -175,6 +177,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 letter-spacing: -0.01em;
                 color: #52525B;
                 margin: 0px;
+                padding-right: 10px;
             }
 
             @media (max-width: 768px) {
@@ -204,16 +207,15 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 }
 
                 .city-block {
-                    max-width: 312px;
                     width:100%;
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
                     gap: 1rem;
+                    padding-top: 10px;
                 }
 
                 .city-block img {
-                    max-width: 312px;
                     height: 200px;
                     object-fit: cover;
                     border-radius: 0.5rem;

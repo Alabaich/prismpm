@@ -118,6 +118,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 margin:auto;
                 margin-bottom: 1.5rem;
                 margin-top:0px;
+                font-family: "Playfair Display", serif;
             }
 
             .blog-showcase .subtitle {
