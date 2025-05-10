@@ -25,7 +25,7 @@ $buildings=array_unique(array_column($data, 'building_id'));
 
 ?>
 <section class="full-width-suites">
-    <h1><?php echo $arg ?> </h1>
+    <h1><?= $arg ?> </h1>
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
         <?php foreach ($buildings as $item): ?>
