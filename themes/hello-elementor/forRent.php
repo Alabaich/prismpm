@@ -9,7 +9,21 @@ Template Name: Units
  * @param string $section_title 
  */
 
-$arg=$_GET['arg']
+
+// Get the current URL
+$current_url = home_url(add_query_arg([]));
+
+// Parse the URL
+$parsed_url = wp_parse_url($current_url);
+
+// Parse query string
+parse_str($parsed_url['query'] ?? '', $query_params);
+
+// Get 'arg'
+$arg = $query_params['arg'] ?? null;
+
+
+
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
