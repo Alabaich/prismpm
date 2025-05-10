@@ -68,14 +68,7 @@ if ($arg) {
     <h1><?= $arg ?> </h1>
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
-<select onchange="location.href=this.value">
-    <option value="/newforrent">All Buildings</option>
-    <?php foreach ($data_build as $item): ?>
-        <option value="/newforrent?arg=<?= esc_attr($item["id"]) ?>" <?= $arg === $item["id"] ? 'selected' : '' ?>>
-            <?= esc_html($item["name"]) ?>
-        </option>
-    <?php endforeach; ?>
-</select>
+
     </div>
 
     <div class="suites-list">
