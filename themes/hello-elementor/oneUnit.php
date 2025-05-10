@@ -19,9 +19,29 @@ parse_str($parsed_url['query'] ?? '', $query_params);
 $arg = $query_params['arg'] ?? null;
 
 
+if ($arg) {
+    // Sanitize and use arg in WHERE clause
+    $stmt = $conn->prepare("SELECT * FROM units WHERE id = ?");
+    $stmt->bind_param("i", $arg);
+
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $data = [];
+
+    while ($row = $res->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
 ?>
 
-<h1>HERE</h1>
+
+<?php foreach ($data as $item): ?>
+    <h1><?= $item['unit'] ?></h1>
+    <?php endforeach ?>
 
 
 
