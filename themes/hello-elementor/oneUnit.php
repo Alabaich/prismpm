@@ -41,8 +41,8 @@ if ($arg) {
 
 
 <?php foreach ($data as $item): ?>
-    <h1><?= $item['units_unit'] ?></h1>
-    <h2><?= $item['building_id'] ?></h2>
+    <h1><?= $item['unit'] ?></h1>
+    <h2><?= $item['address'] ?></h2>
 <?php endforeach ?>
 
 
