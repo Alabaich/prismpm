@@ -10,7 +10,7 @@ Template Name: Units
  */
 
 
-$building_id= $_GET['building_id']
+/*$building_id= $_GET['building_id']*/
 
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
@@ -22,19 +22,19 @@ while ($row = $res->fetch_assoc()) {
     $data[] = $row;
 }
 
-$data = [];
+// $data = [];
 
 $uniq_buildings_ids = array_unique(array_column($data, 'building_id'));
 
 
-$final_data = []
+// $final_data = []
 
-if ($building_id) {
-    $res = $conn->query("SELECT * FROM units WHERE unit_status = 1 AND building_id = $building_id");
-} else {
-    $final_data = $data
+// if ($building_id) {
+//     $res = $conn->query("SELECT * FROM units WHERE unit_status = 1 AND building_id = $building_id");
+// } else {
+//     $final_data = $data
 
-}
+// }
 
 
 
