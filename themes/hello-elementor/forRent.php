@@ -30,11 +30,7 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
     <a><?= esc_html($item['unit']) ?></a>
   </div>
               <div class="suite-item">
-                <?php if (!empty($suite['image'])) : ?>
-                    <div class="suite-image">
-                        <img src="" alt="">
-                    </div>
-                <?php endif; ?>
+
 
                 <div class="suite-content">
                     <div class="suite-info">
@@ -46,34 +42,34 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
                         </div>
 
                         <div class="suite-tags">
-                            <?php if (!empty($suite['bedrooms'])) : ?>
+
                                 <div class="tag-item">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2.75 4.58325V17.4166M2.75 14.6666H19.25M19.25 17.4166V12.0999C19.25 11.0732 19.25 10.5597 19.0502 10.1676C18.8744 9.82264 18.5939 9.54214 18.249 9.36642C17.8569 9.16659 17.3434 9.16659 16.3167 9.16659H10.0833V14.4166M6.41667 10.9999H6.42583M7.33333 10.9999C7.33333 11.5062 6.92292 11.9166 6.41667 11.9166C5.91041 11.9166 5.5 11.5062 5.5 10.9999C5.5 10.4936 5.91041 10.0833 6.41667 10.0833C6.92292 10.0833 7.33333 10.4936 7.33333 10.9999Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <span></span>
                                 </div>
-                            <?php endif; ?>
 
-                            <?php if (!empty($suite['bathrooms'])) : ?>
+
+
                                 <div class="tag-item">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7572 5.56968C10.5359 5.85004 9.625 6.94364 9.625 8.25V8.9375H15.125V8.25C15.125 7.01287 14.3081 5.96653 13.1842 5.621C13.4001 5.1442 13.8801 4.8125 14.4375 4.8125C15.1969 4.8125 15.8125 5.42811 15.8125 6.1875V11.6875H4.125V13.0625H4.8125V16.5C4.8125 17.6391 5.73591 18.5625 6.875 18.5625H15.125C16.264 18.5625 17.1875 17.6391 17.1875 16.5V13.0625H17.875V11.6875H17.1875V6.1875C17.1875 4.66872 15.9563 3.4375 14.4375 3.4375C13.1312 3.4375 12.0376 4.34839 11.7572 5.56968ZM6.1875 13.0625H15.8125V16.5C15.8125 16.8797 15.5047 17.1875 15.125 17.1875H6.875C6.49531 17.1875 6.1875 16.8797 6.1875 16.5V13.0625ZM12.375 6.875C12.8839 6.875 13.3283 7.15151 13.566 7.5625H11.184C11.4217 7.15151 11.8661 6.875 12.375 6.875Z" fill="black" />
                                     </svg>
                                     <span></span>
                                 </div>
-                            <?php endif; ?>
 
-                            <?php if (!empty($suite['size'])) : ?>
+
+
                                 <div class="tag-item">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.33333 2.75H4.58333C4.0971 2.75 3.63079 2.94315 3.28697 3.28697C2.94315 3.63079 2.75 4.0971 2.75 4.58333V7.33333M19.25 7.33333V4.58333C19.25 4.0971 19.0568 3.63079 18.713 3.28697C18.3692 2.94315 17.9029 2.75 17.4167 2.75H14.6667M14.6667 19.25H17.4167C17.9029 19.25 18.3692 19.0568 18.713 18.713C19.0568 18.3692 19.25 17.9029 19.25 17.4167V14.6667M2.75 14.6667V17.4167C2.75 17.9029 2.94315 18.3692 3.28697 18.713C3.63079 19.0568 4.0971 19.25 4.58333 19.25H7.33333" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <span></span>
                                 </div>
-                            <?php endif; ?>
 
-                            <?php if (!empty($suite['pet_friendly']) && $suite['pet_friendly'] === 'yes') : ?>
+
+
                                 <div class="tag-item">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.04293 15.3542C3.82293 18.0034 5.82126 20.1667 8.47959 20.1667H12.8704C15.8587 20.1667 17.9121 17.7559 17.4171 14.8042C16.8946 11.7059 13.9062 9.16675 10.7621 9.16675C7.35209 9.16675 4.32709 11.9534 4.04293 15.3542Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -84,19 +80,19 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
                                     </svg>
                                     <span>Pet friendly</span>
                                 </div>
-                            <?php endif; ?>
+
                         </div>
                     </div>
 
                     <div class="suite-price-section">
-                        <?php if (!empty($suite['price'])) : ?>
+
                             <div class="suite-price">
                                 <div class="price-amount"></div>
-                                <?php if (!empty($suite['price_period'])) : ?>
+
                                     <div class="price-period"></div>
-                                <?php endif; ?>
+
                             </div>
-                        <?php endif; ?>
+
                         <button class="wishlist">♡</button>
                     </div>
                 </div>
@@ -104,10 +100,6 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 <?php endforeach; ?>
 
 
-
-        <?php foreach ($suites as $suite) : ?>
-
-        <?php endforeach; ?>
     </div>
 </section>
 
