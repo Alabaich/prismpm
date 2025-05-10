@@ -21,19 +21,15 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
 
 ?>
+<section class="full-width-suites">
+    <h2 class="section-title">UNITS</h2>
 
+    <div class="suites-list">
 <?php foreach ($data as $item): ?>
   <div>
     <a><?= esc_html($item['unit']) ?></a>
-
   </div>
-<?php endforeach; ?>
-<section class="full-width-suites">
-    <h2 class="section-title"></h2>
-
-    <div class="suites-list">
-        <?php foreach ($suites as $suite) : ?>
-            <div class="suite-item">
+              <div class="suite-item">
                 <?php if (!empty($suite['image'])) : ?>
                     <div class="suite-image">
                         <img src="" alt="">
@@ -42,7 +38,7 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
                 <div class="suite-content">
                     <div class="suite-info">
-                        <h3 class="suite-title"></h3>
+                        <h3 class="suite-title"><?= esc_html($item['building_id', '-', 'unit']) ?></h3>
 
                         <div class="suite-availability">
                             <span class="availability-dot">●</span>
@@ -105,6 +101,12 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
                     </div>
                 </div>
             </div>
+<?php endforeach; ?>
+
+
+
+        <?php foreach ($suites as $suite) : ?>
+
         <?php endforeach; ?>
     </div>
 </section>
