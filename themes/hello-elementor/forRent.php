@@ -26,7 +26,7 @@ $buildings=array_unique(array_column($data, 'building_id'));
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
         <?php foreach ($buildings as $item): ?>
-            <a href=""><?= esc_html($item) ?> </a>
+            <a href="/newforrent?arg=<?= esc_html($item) ?>"><?= esc_html($item) ?> </a>
             <?php endforeach ?>
     </div>
 
