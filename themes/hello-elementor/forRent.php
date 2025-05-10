@@ -12,7 +12,7 @@ Template Name: Units
 
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
-	$res = $conn->query("SELECT * FROM units");
+	$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
 	$data = [];
 
 	while ($row = $res->fetch_assoc()) {
@@ -34,7 +34,8 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
                 <div class="suite-content">
                     <div class="suite-info">
-                        <h3 class="suite-title"><?= esc_html($item['building_id']) ?></h3>
+
+                        <h3 class="suite-title"><?= esc_html($item['building_id']) ?> - <?= esc_html($item['unit']) ?></h3>
 
                         <div class="suite-availability">
                             <span class="availability-dot">●</span>
@@ -87,9 +88,9 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
                     <div class="suite-price-section">
 
                             <div class="suite-price">
-                                <div class="price-amount"></div>
+                                <div class="price-amount"><?= esc_html($item['market_rent']) ?></div>
 
-                                    <div class="price-period"></div>
+                                    <div class="price-period">monthly</div>
 
                             </div>
 
