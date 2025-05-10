@@ -8,8 +8,26 @@ Template Name: Units
  * @param array $suites 
  * @param string $section_title 
  */
-function display_suites_list($suites, $section_title = 'Available Suites') {
+
+
+
+$conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
+	$res = $conn->query("SELECT * FROM units");
+	$data = [];
+
+	while ($row = $res->fetch_assoc()) {
+	  $data[] = $row;
+	}
+
+
 ?>
+
+<?php foreach ($data as $item): ?>
+  <div>
+    <a><?= esc_html($item['unit']) ?></a>
+
+  </div>
+<?php endforeach; ?>
 <section class="full-width-suites">
     <h2 class="section-title"></h2>
 
@@ -258,4 +276,3 @@ function display_suites_list($suites, $section_title = 'Available Suites') {
     }
 </style>
 <?php
-}
