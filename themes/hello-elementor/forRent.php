@@ -34,9 +34,9 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	  $data[] = $row;
 	}
 
-    $res_build = $conn->query("SELECT * FROM `building`")
+    $res_build = $conn->query("SELECT * FROM building ")
 
-    	$data_build = [];
+    $data_build = [];
 
 	while ($row_build = $res_build->fetch_assoc()) {
 	  $data_build[] = $row_build;
@@ -52,15 +52,15 @@ if ($arg) {
     $stmt->bind_param("i", $arg);
 
     $stmt->execute();
-$res = $stmt->get_result();
-$data = [];
+    $res = $stmt->get_result();
+    $data = [];
 
-while ($row = $res->fetch_assoc()) {
-    $data[] = $row;
-}
+    while ($row = $res->fetch_assoc()) {
+        $data[] = $row;
+    }
 
-$stmt->close();
-$conn->close();
+    $stmt->close();
+    $conn->close();
 }
 
 ?>
