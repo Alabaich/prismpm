@@ -34,7 +34,7 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
                 <div class="suite-content">
                     <div class="suite-info">
-                        <h3 class="suite-title"><?= esc_html($item['building_id', '-', 'unit']) ?></h3>
+                        <h3 class="suite-title"><?= esc_html($item['building_id']) ?></h3>
 
                         <div class="suite-availability">
                             <span class="availability-dot">●</span>
