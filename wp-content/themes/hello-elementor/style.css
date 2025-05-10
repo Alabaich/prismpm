@@ -141,7 +141,10 @@ p.interTight {
   letter-spacing: -0.01em;
   vertical-align: middle;
 }
-
+a {
+  font-family: "Inter Tight", sans-serif;
+  
+}
 a.btnDef {
   font-family: "Inter Tight", sans-serif;
   font-weight: 500;
@@ -166,7 +169,7 @@ a.btnDef:hover {
 }
 
 a.btnDef:active {
-  background: linear-gradient(90deg, #062e48 0%, #0d3c5f 100%);
+  background: linear-gradient(90deg, #062e48 0%, #0B3550 100%);
 }
 
 @media (max-width: 600px) {

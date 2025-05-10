@@ -48,6 +48,10 @@ protected function register_controls() {
         'label' => esc_html__('Image', 'elementor-addon'),
         'type' => \Elementor\Controls_Manager::MEDIA,
     ]);
+    $this->add_control('logo', [
+        'label' => esc_html__('Logo', 'elementor-addon'),
+        'type' => \Elementor\Controls_Manager::MEDIA,
+    ]);
 
     $this->add_control('features_list', [
         'label' => esc_html__('Features', 'elementor-addon'),
@@ -90,6 +94,7 @@ protected function render() {
         .aboutPropertyFlex {
             display: flex;
             flex-wrap: wrap;
+            justify-content:space-between;
             gap: 2rem;
             align-items: stretch;
         }
@@ -108,7 +113,7 @@ protected function render() {
         }
 
         .aboutText h3 {
-            font-size: 40px;
+            font-size: 32px;
             margin-bottom: 1.5rem;
             color:black;
             margin-top:0;
@@ -125,6 +130,7 @@ protected function render() {
         .featureList {
             display:flex;
             flex-direction:column;
+            gap:1.5rem 0rem;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -134,7 +140,7 @@ protected function render() {
             position: relative;
             padding-left: 2rem;
             font-weight:400;
-            font-size: 22px;
+            font-size: 18px;
         }
 
         .featureList li::before {
@@ -147,15 +153,23 @@ protected function render() {
 
 .wqhjashfjka{
     margin:0;
+    font-size:16px;
+}
+.qwe {
+    margin:auto;
+    max-width:220px;
+    min-width:220px;
+    max-height:110px;
+    min-height:110px;
 }
 
-        .aboutImage {
-            flex: 1 1 40%;
-        }
 
         .aboutImage img {
-            width: 100%;
-            height: auto;
+            max-width: 636px;
+            min-width: 636px;
+
+            max-height: 380px;
+            min-height: 380px;
             border-radius: 0.5rem;
             object-fit: cover;
         }
@@ -186,8 +200,11 @@ protected function render() {
     </style>
 
     <div class="aboutPropertyBlock">
+        <div class="qwe">
+            <img src="<?php echo esc_url($settings['logo']['url']); ?>" alt="jqhwkl">
+        </div>
         <h2><?php echo wp_kses_post($settings['main_title']); ?></h2>
-        <div class="aboutPropertyFlex">
+        <div class="aboutPropertyFlex">1
             <div class="aboutText">
                 <div class="aboutTextDiv">
                     <h3><?php echo esc_html($settings['about_title']); ?></h3>

@@ -1,24 +1,30 @@
 <?php
 
-class Elementor_blogShowCase extends \Elementor\Widget_Base {
+class Elementor_BlogShowCase extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'blogShowCase';
+    public function get_name()
+    {
+        return 'blog_showcase';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Blog Showcase', 'elementor-addon');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-posts-grid';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['basic'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->start_controls_section(
             'section_content',
             [
@@ -45,208 +51,301 @@ class Elementor_blogShowCase extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'featured_image',
+            'show_featured_post',
             [
-                'label' => esc_html__('Featured Image', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
+                'label' => esc_html__('Show Featured Post', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'elementor-addon'),
+                'label_off' => esc_html__('Hide', 'elementor-addon'),
+                'return_value' => 'yes',
+                'default' => 'yes',
             ]
         );
 
         $this->add_control(
-            'featured_title',
+            'posts_count',
             [
-                'label' => esc_html__('Featured Title', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__('Number of Posts', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 4,
+                'min' => 1,
+                'max' => 12,
             ]
         );
 
         $this->add_control(
-            'featured_date',
+            'read_time_text',
             [
-                'label' => esc_html__('Featured Date', 'elementor-addon'),
+                'label' => esc_html__('Read Time Text', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-            ]
-        );
-
-        $repeater = new \Elementor\Repeater();
-
-        $repeater->add_control(
-            'image',
-            [
-                'label' => esc_html__('Image', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-            ]
-        );
-
-        $repeater->add_control(
-            'title',
-            [
-                'label' => esc_html__('Title', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-            ]
-        );
-
-        $repeater->add_control(
-            'date',
-            [
-                'label' => esc_html__('Date', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-            ]
-        );
-
-        $repeater->add_control(
-            'read_time',
-            [
-                'label' => esc_html__('Read Time', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => '6 min read',
-            ]
-        );
-
-        $this->add_control(
-            'blog_cards',
-            [
-                'label' => esc_html__('Blog Cards', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [],
-                'title_field' => '{{{ title }}}',
+                'default' => 'min read',
             ]
         );
 
         $this->end_controls_section();
     }
 
-
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
-        ?>
+
+        // Get the latest posts
+        $args = [
+            'post_type' => 'post',
+            'posts_per_page' => $settings['posts_count'] + ($settings['show_featured_post'] === 'yes' ? 2 : 0),
+            'post_status' => 'publish',
+            'ignore_sticky_posts' => true,
+        ];
+
+        $query = new WP_Query($args);
+
+        // Get featured post (first post from the query)
+        $featured_posts = [];
+        if ($settings['show_featured_post'] === 'yes' && $query->have_posts()) {
+            $featured_posts[] = $query->posts[0];
+            if (isset($query->posts[1])) {
+                $featured_posts[] = $query->posts[1];
+            }
+        }
+?>
         <style>
             .blog-showcase {
-                padding: 4rem 0rem;
+                padding: 4rem 5rem;
                 text-align: center;
             }
 
             .blog-showcase h1 {
+                font-size: 52px;
+                color: #2A2A2A;
+                max-width: 584px;
+                margin: auto;
                 margin-bottom: 1.5rem;
+                margin-top: 0px;
             }
 
             .blog-showcase .subtitle {
-                color: #555;
+                color: #52525B;
+                margin-top: 0px;
                 margin-bottom: 2.5rem;
+                font-size: 1rem;
+                font-family: "Inter Tight", sans-serif;
             }
 
             .featured-post {
-                margin-bottom: 3rem;
+                width: 50%;
                 text-align: left;
+                border-radius: 0.5rem;
+                background: #F4F4F4;
+                padding: 1rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
 
             .featured-post img {
                 width: 100%;
-                border-radius: 0.2rem;
+                border-radius: 0.5rem;
                 object-fit: cover;
-                max-height: 350px;
+                height: 400px;
             }
 
             .featured-post .title {
-                font-size: 2rem;
-                margin-top: 1rem;
-                margin-bottom: 1rem;
+                font-size: 28px;
+                margin-bottom: 0.5rem;
                 font-weight: 600;
+                color: #333;
             }
 
             .featured-post .date {
                 color: #52525B;
+                font-family: "Inter Tight", sans-serif;
+
+                font-size: 1rem;
             }
 
             .blog-cards {
-                display: flex;
-                justify-content:center;
-                align-items:center;
-                gap: 2rem;
-                flex-wrap: wrap;
-                margin-top: 2rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1rem 2rem;
             }
 
             .blog-card {
-                background: #F4F4F499/60;
+                background: #F4F4F4;
                 border-radius: 0.5rem;
                 text-align: left;
-                max-width: 26rem;
-                box-shadow: 0 0 10px rgba(0,0,0,0.05);
-                min-width:500px;
+                overflow: hidden;
             }
 
             .blog-card img {
                 width: 100%;
-                border-radius: 0.75rem;
-                margin-bottom: 0.75rem;
+                height: 200px;
                 object-fit: cover;
             }
 
-            .blog-card .title {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+            .blog-card .content {
+                padding: 1rem;
+                padding-top: 0rem;
+            }
 
+            .blog-card .title {
+                font-size: 28px;
+                margin-bottom: 1.5rem;
+                margin-top: 0px;
+                color: #2A2A2A;
             }
 
             .blog-card .meta {
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                font-size: 1.125rem;
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
                 color: #52525B;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                padding-bottom:0.5rem;
+                font-family: "Inter Tight", sans-serif;
+
+                margin-top: auto;
             }
 
-            .meta span {
-                color:#909DA2;
+            .meta .read-time {
+                color: #909DA2;
             }
 
-    @media (max-width: 768px) {
-        h1 {
-            font-size:22px;
-        }
-        .featured-post {
-            display:none;
-        }
-    }
+            .read-more-btn {
+                display: inline-flex;
+                align-items: center;
+                margin-top: 70px;
+                padding: 20px 28px;
+                border: 1px solid #000;
+                border-radius: 2rem;
+                min-width: 188px;
+                background: #fff;
+                font-family: "Inter Tight", sans-serif;
+                color: #2A2A2A;
+                font-weight: 500;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                gap: 1rem;
+            }
+
+            .hqwdasdicon {
+                color: #2A2A2A;
+                transition: transform 0.3s ease;
+                rotate: -45deg;
+            }
+
+            .read-more-btn:hover {
+                gap: 0rem 4rem;
+            }
+
+            .read-more-btn:hover .hqwdasdicon {
+                transform: translateX(4px);
+            }
+
+            .sadqwd {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 0rem 1rem;
+                margin-bottom: 3rem;
+
+            }
+
+            @media (max-width: 768px) {
+                .blog-showcase {
+                    padding: 4rem 1rem;
+                }
+
+                .blog-showcase h1 {
+                    font-family: 'Darker Grotesque', sans-serif;
+                    font-weight: 600;
+                    font-size: 28px;
+                    line-height: 90%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #2a2a2a;
+                }
+
+                .blog-showcase .subtitle {
+                    font-size: 1rem;
+                }
+
+                .featured-post {
+                    display: none;
+                }
+
+                .blog-cards {
+                    grid-template-columns: 1fr;
+                }
+
+                .blog-card img {
+                    height: 180px;
+                }
+            }
         </style>
 
         <div class="blog-showcase">
             <h1><?php echo esc_html($settings['main_title']); ?></h1>
-            <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+            <p class="subtitle"><?php echo esc_html($settings['subtitle']); ?></p>
 
-            <?php if (!empty($settings['featured_image']['url']) || !empty($settings['featured_title'])): ?>
-                <div class="featured-post">
-                    <?php if (!empty($settings['featured_image']['url'])): ?>
-                        <img src="<?php echo esc_url($settings['featured_image']['url']); ?>" alt="">
-                    <?php endif; ?>
-                    <h2 class="title"><?php echo esc_html($settings['featured_title']); ?></h2>
-                    <p class="date"><?php echo esc_html($settings['featured_date']); ?></p>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!empty($settings['blog_cards']) && is_array($settings['blog_cards'])): ?>
-                <div class="blog-cards">
-                    <?php foreach ($settings['blog_cards'] as $card): ?>
-                        <div class="blog-card">
-                            <?php if (!empty($card['image']['url'])): ?>
-                                <img src="<?php echo esc_url($card['image']['url']); ?>" alt="">
-                            <?php endif; ?>
-                            <h3 class="title"><?php echo esc_html($card['title']); ?></h3>
-                            <div class="meta">
-                                <?php echo esc_html($card['date']); ?> <span><?php echo esc_html($card['read_time']); ?></span>
-                            </div>
+            <?php if (!empty($featured_posts)): ?>
+                <div class='sadqwd'>
+                    <?php foreach ($featured_posts as $featured_post): ?>
+                        <div class="featured-post">
+                            <a href="<?php echo esc_url(get_permalink($featured_post->ID)); ?>">
+                                <?php if (has_post_thumbnail($featured_post->ID)): ?>
+                                    <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
+                                <?php endif; ?>
+                                <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h3>
+                                <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
+
+            <div class="blog-cards">
+                <?php
+                $posts_shown = 0;
+                while ($query->have_posts()): $query->the_post();
+                    // Skip featured posts if they're shown
+                    if ($settings['show_featured_post'] === 'yes' && $posts_shown < count($featured_posts)) {
+                        $posts_shown++;
+                        continue;
+                    }
+                ?>
+                    <div class="blog-card">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php if (has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail('medium'); ?>
+                            <?php endif; ?>
+                            <div class="content">
+                                <h3 class="title"><?php the_title(); ?></h3>
+                                <div class="meta">
+                                    <span class="date"><?php echo get_the_date(); ?></span>
+                                    <span class="read-time">
+                                        <?php
+                                        $read_time = $this->estimate_reading_time(get_the_content());
+                                        echo $read_time . ' ' . esc_html($settings['read_time_text']);
+                                        ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endwhile;
+                wp_reset_postdata(); ?>
+            </div>
+            <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-btn">
+                <?php esc_html_e('Read More', 'elementor-addon'); ?>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hqwdasdicon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
         </div>
-        <?php
+<?php
+    }
+
+    private function estimate_reading_time($content)
+    {
+        $word_count = str_word_count(strip_tags($content));
+        $reading_time = ceil($word_count / 200);
+        return $reading_time ?: 1;
     }
 }

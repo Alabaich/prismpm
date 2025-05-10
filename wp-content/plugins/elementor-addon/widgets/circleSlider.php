@@ -95,7 +95,7 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
             return;
         }
 
-        $valid_slides = array_filter($settings['slides'], function($slide) {
+        $valid_slides = array_filter($settings['slides'], function ($slide) {
             return !empty($slide['slide_image']['url']);
         });
 
@@ -103,7 +103,7 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
             echo '<p>' . esc_html__('No valid slides with images found. Please ensure all slides have images.', 'elementor-addon') . '</p>';
             return;
         }
-        ?>
+?>
         <section class="circle-slider-container" id="circle-slider-<?php echo esc_attr($widget_id); ?>">
             <div class="circle-slider-wrapper">
                 <div class="swiper circle-slider">
@@ -132,7 +132,9 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider {
                 width: 100%;
-                padding: 20px 0;
+                background: #093D5F0D;
+                padding: 20px 0px;
+                margin-bottom: 100px;
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-wrapper {
@@ -142,24 +144,75 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
-                width: 312px;
-                height: 312px;
+                border-radius: 999px;
                 flex-shrink: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 300px;
+                height: 300px;
+                min-width: 300px;
+                min-height: 300px;
+                max-width: 300px;
+                max-height: 300px;
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
                 object-fit: cover;
+                width: 300px;
+                height: 300px;
+                min-width: 300px;
+                min-height: 300px;
+                max-width: 300px;
+                max-height: 300px;
                 border-radius: 50%;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
 
             @media (max-width: 768px) {
                 #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
+                    width: 160px;
+                    height: 160px;
+                    width: 160px;
+                    height: 160px;
+                    min-width: 160px;
+                    min-height: 160px;
+                    max-width: 160px;
+                    max-height: 160px;
+                }
+
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
+                    width: 160px;
+                    height: 160px;
+                    width: 160px;
+                    height: 160px;
+                    min-width: 160px;
+                    min-height: 160px;
+                    max-width:160px;
+                    max-height: 160px;
+                }
+            }
+            @media (max-width: 468px) {
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
                     width: 100px;
                     height: 100px;
+                    width: 100px;
+                    height: 100px;
+                    min-width: 100px;
+                    min-height: 100px;
+                    max-width: 100px;
+                    max-height: 100px;
+                }
+
+                #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slide-image {
+                    width: 100px;
+                    height: 100px;
+                    width: 100px;
+                    height: 100px;
+                    min-width: 100px;
+                    min-height: 100px;
+                    max-width:100px;
+                    max-height: 100px;
                 }
             }
         </style>
@@ -177,14 +230,6 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                             delay: 3000,
                             disableOnInteraction: false,
                         },
-                        breakpoints: {
-                            480: {
-                                slidesPerView: 3,
-                            },
-                            768: {
-                                slidesPerView: 5,
-                            }
-                        },
                         on: {
                             init: function() {
                                 console.log('Circle Slider initialized successfully:', this);
@@ -196,11 +241,12 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                 }
             });
         </script>
-        <?php
+<?php
     }
 }
 
-function register_circle_slider_widget($widgets_manager) {
+function register_circle_slider_widget($widgets_manager)
+{
     wp_enqueue_style(
         'swiper',
         'https://unpkg.com/swiper@8/swiper-bundle.min.css',

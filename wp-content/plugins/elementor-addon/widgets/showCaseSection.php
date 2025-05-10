@@ -2,23 +2,28 @@
 
 class Elementor_showCaseSection extends \Elementor\Widget_Base
 {
-    public function get_name() {
+    public function get_name()
+    {
         return 'showCaseSection';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Show Case', 'elementor-addon');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-editor-align-center';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['basic'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->start_controls_section(
             'section_content',
             [
@@ -88,107 +93,164 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
-        ?>
+        $cities = array_slice($settings['cities'], 0, 2); // Ограничиваем до 2
+?>
+        <style>
+            .land-acknowledgement-section {
+                width: 100%;
+                padding: 5rem 5rem;
+            }
 
-<style>
-    .land-acknowledgement-section {
-        background-color: #04364C;
-        color: white;
-        padding: 5rem 1.25rem;
-        text-align: center;
-    }
+            .land-acknowledgement-section .section-heading {
+                text-align: center;
+                margin-bottom: 50px;
+                max-width: 488px;
+                margin:auto;
+            }
 
-    .land-acknowledgement-section h1 {
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
-    }
+            .land-acknowledgement-section .section-heading h2 {
+                font-weight: 600;
+                font-size:52px;
+                line-height: 1.1;
+                letter-spacing: 0em;
+                text-transform: capitalize;
+                margin: 0 0 0.75rem 0;
+            }
 
-    .land-acknowledgement-section .subtitle {
-        max-width: 32rem;
-        margin: 0 auto 2.5rem;
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #eee;
-    }
+            .land-acknowledgement-section .section-heading p {
+                color: #6B7280;
+                font-size: 1rem;
+                margin: 0 auto 3rem;
+                line-height: 1.6;
+            }
 
-    .city-columns {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        align-items: baseline;
-    }
+            .city-columns {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                gap: 35px;
+            }
 
-    .city-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 30rem;
-        margin: 0 auto;
-    }
+            .city-block {
+                display: flex;
+                flex-direction: row;
+                width: calc(50% - 17.5px);
+                border-radius: 0.5rem;
+                overflow: hidden;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
 
-    .city-block img {
-        width: 100%;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        object-fit: cover;
-        max-height: 300px;
-        max-width:380px;
-    }
+            .city-block img {
+                width: 377px;
+                height: 426px;
+                object-fit: fit-content;
+                border-radius: 0.5rem 0 0 0.5rem;
+            }
 
-    .city-block-text h4 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
+            .city-block-text {
+                width: 55%;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
 
-    .city-block-text p {
-        font-size: 1rem;
-        color: #E0E0E0;
-        line-height: 1.5;
-    }
+            .city-block-text h4 {
+                margin-bottom: 1rem;
+                color: #111827;
+                font-size: 30px;
+                margin: 0px;
+            }
 
-    @media (min-width: 768px) {
-        .land-acknowledgement-section {
-            padding: 6rem 2rem;
-        }
+            .city-block-text p {
+                font-family: "Inter Tight", sans-serif;
+                font-weight: 400;
+                font-size: 1rem;
+                letter-spacing: -0.01em;
+                color: #52525B;
+                margin: 0px;
+            }
 
-        .city-columns {
-            flex-direction: row;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
+            @media (max-width: 768px) {
+                .city-columns {
+                    flex-direction: column;
+                    align-items:center;
+                    gap: 2rem;
+                }
 
-        .city-block {
-            flex-direction: column;
-            max-width: 20rem;
-        }
+                .land-acknowledgement-section {
+                    padding: 5rem 1rem;
+                }
 
-        .city-block img {
-            max-height: 250px;
-            max-width:300px;
-        }
+                .land-acknowledgement-section .section-heading h2 {
+                    font-family: 'Darker Grotesque', sans-serif;
+                    font-weight: 600;
+                    font-size: 28px;
+                    line-height: 90%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #2a2a2a;
+                }
 
-        .city-block-text h4 {
-            font-size: 1.5rem;
-        }
+                .land-acknowledgement-section .section-heading p {
+                    max-width: 100%;
+                }
 
-        .city-block-text p {
-            font-size: 1.125rem;
-        }
-    }
-</style>
+                .city-block {
+                    max-width: 312px;
+                    width:100%;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 1rem;
+                }
 
+                .city-block img {
+                    max-width: 312px;
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 0.5rem;
+                }
+
+                .city-block-text {
+                    width: 100%;
+                    padding: 1rem 0;
+                    text-align: center;
+                }
+
+                .city-block-text h4 {
+                    font-size: 1.25rem;
+                }
+
+                .city-block-text p {
+                    font-size: 1rem;
+                }
+            }
+        </style>
 
         <div class="land-acknowledgement-section">
-            <h1><?php echo esc_html($settings['main_title']); ?></h1>
-            <p class="subtitle"><?php echo esc_html($settings['subtitle']); ?></p>
+            <div class="section-heading">
+                <?php if (!empty($settings['main_title'])) : ?>
+                    <h2><?php echo esc_html($settings['main_title']); ?></h2>
+                <?php endif; ?>
+
+                <?php if (!empty($settings['subtitle'])) : ?>
+                    <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+                <?php endif; ?>
+            </div>
+
             <div class="city-columns">
-                <?php foreach ($settings['cities'] as $city): ?>
+                <?php foreach ($cities as $city): ?>
                     <div class="city-block">
                         <img src="<?php echo esc_url($city['image']['url']); ?>" alt="<?php echo esc_attr($city['city']); ?>">
-                        <div class = "city-block-text">
+                        <div class="city-block-text">
                             <h4><?php echo esc_html($city['city']); ?></h4>
                             <p><?php echo esc_html($city['description']); ?></p>
                         </div>
@@ -197,6 +259,6 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             </div>
         </div>
 
-        <?php
+<?php
     }
 }

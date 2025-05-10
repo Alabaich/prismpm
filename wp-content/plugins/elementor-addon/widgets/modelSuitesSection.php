@@ -95,7 +95,12 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base {
         <section class="model-suites">
             <div class="suites-header">
                 <h2><?php echo esc_html($settings['section_title']); ?></h2>
-                <button class="show-moreq"><?php echo esc_html($settings['show_more_text']); ?></button>
+                <button class="show-moreq">
+                    <?php echo esc_html($settings['show_more_text']); ?>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hero-button-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </button>
             </div>
 
             <div class="suites-grid">
@@ -163,17 +168,32 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base {
             }
 
             .show-moreq {
-                padding: 1.25rem 3.75rem
+                padding: 20px 28px;
+  font-family: "Inter Tight", sans-serif;
+  font-weight:500;
                 border: 1px solid #000;
                 background: white;
                 border-radius: 999px;
                 cursor: pointer;
                 color:#2A2A2A;
-            }
+                display:flex;
+                align-items:center;
+                justify-items:center;
+                gap:0rem 1rem;
+    transition: transform 0.3s ease, gap 0.3s ease;
+                }
+            .show-moreq svg {
+    transition: transform 0.3s ease;
+}
             .show-moreq:hover {
-                background:#0e3c55;
-                color:white;
+                background:white;
+                color:#2A2A2A;
+                gap:0rem 2rem;
+
             }
+            .show-moreq:hover svg {
+    transform: translateX(16px);
+}
 
             .suites-grid {
                 display: flex;

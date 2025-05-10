@@ -83,7 +83,8 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
 
         <style>
             .commitment-section {
-                padding: 6rem 0rem;
+                padding: 6rem 2rem;
+                background-color: #fff;
             }
             .commitment-section__container {
     display: flex;

@@ -72,7 +72,9 @@ $footer_nav_menu = wp_nav_menu( [
 					<h4>Latest News & Events</h4>
 					<form class="newsletter-form" action="#" method="post">
 						<input type="email" placeholder="enter your email address" required>
-						<button type="submit">Submit <span>&rarr;</span></button>
+						<button type="submit">Subscribe           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="footIcon">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg></button>
 					</form>
 				</div>
 			</div>
@@ -188,15 +190,39 @@ $footer_nav_menu = wp_nav_menu( [
 
 		.newsletter-form button {
 			background: #fff;
-			color: #0e3c55;
+			color: #2A2A2A;
 			border: none;
 			padding: 10px 18px;
 			border-radius: 30px;
 			cursor: pointer;
-			display: flex;
-			align-items: center;
-			gap: 5px;
-			font-weight: 600;
+			font-weight: 500;
+			display:flex;
+                align-items:center;
+                justify-items:center;
+                gap:0rem 1rem;
+    transition: transform 0.3s ease, gap 0.3s ease;
+		}
+		.newsletter-form button svg {
+    transition: transform 0.3s ease;
+}
+.newsletter-form button:hover {
+                background:white;
+                color:#2A2A2A;
+                gap:0rem 2rem;
+
+            }
+            .newsletter-form button:hover svg {
+    transform: translateX(4px);
+}
+ .footIcon{
+	transition: transform 0.3s ease;
+	rotate: -45deg;
+ }
+
+
+		.newsletter-form button:hover {
+			background: #fff;
+			color: #2A2A2A;
 		}
 
 		.footer-bottom {

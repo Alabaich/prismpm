@@ -63,7 +63,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 'default' => 'no',
             ]
         );
-        
+
         $this->add_control(
             'background_image',
             [
@@ -214,7 +214,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         $background_image_url = $settings['background_image']['url'] ?? '';
         $has_background_image = $is_first_page && !empty($background_image_url);
         $use_no_background = $settings['background_none'] === 'yes';
-        
+
         if ($use_no_background) {
             $inline_style = 'background: none;';
         } elseif ($has_background_image) {
@@ -230,32 +230,32 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
         <style>
             .richTextContainer {
-                <?php if ($is_first_page): ?>
-                    padding-bottom: 240px;
-                    padding-top: 240px;
+                <?php if ($is_first_page): ?>padding-bottom: 240px;
+                padding-top: 240px;
                 <?php endif; ?>
             }
+
             .richTextContainer .richText h2 {
-                <?php if ($is_first_page): ?>
-                    font-size:72px;
+                <?php if ($is_first_page): ?>font-size: 72px;
                 <?php endif; ?>
             }
+
             .richTextContainer .richText h2 {
-                <?php if ($use_no_background): ?>
-                    color:#2A2A2A;
+                <?php if ($use_no_background): ?>color: #2A2A2A;
                 <?php endif; ?>
             }
+
             .richTextContainer .richText p {
-                <?php if ($use_no_background): ?>
-                    color:#52525B;
+                <?php if ($use_no_background): ?>color: #52525B;
                 <?php endif; ?>
             }
+
             .richTextContainer .richText p {
-                <?php if ($is_first_page): ?>
-                    padding-bottom: 60px;
-                    max-width: 464px;
+                <?php if ($is_first_page): ?>padding-bottom: 60px;
+                max-width: 464px;
                 <?php endif; ?>
             }
+
             .richTextContainer {
                 display: flex;
                 flex-direction: column;
@@ -263,15 +263,15 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 background: #093D5F;
                 text-align: center;
-                padding-bottom: 70px;
-                padding-top: 140px;
+                padding-bottom: 202px;
+                padding-top: 202px;
             }
 
             .richText h2 {
                 color: #FFFFFF;
                 font-family: "Darker Grotesque", Sans-serif;
                 max-width: 902px;
-                font-size:52px;
+                font-size: 52px;
                 line-height: 96%;
                 margin: 0px;
             }
@@ -279,7 +279,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             .richText h4 {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
-                font-size: 22px;
+                font-size: 1rem;
                 font-weight: normal;
                 margin: 0px;
                 margin-bottom: 16px;
@@ -288,12 +288,12 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             .richText p {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
-                font-size: 1.125rem;
+                font-size: 1rem;
                 font-weight: 400;
                 max-width: 614px;
-                margin:0;
-                padding-top:1.5rem;
-                padding-bottom: 80px;
+                margin: 0;
+                padding-top: 1.5rem;
+                padding-bottom: 70px;
             }
 
             .richTextText {
@@ -332,21 +332,23 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 transition: all 0.3s ease;
                 border: 2px solid transparent;
             }
+
             .buttonWrapper .btn {
-                <?php if ($use_no_background): ?>
-                    color:white;
-                    background:#093D5F;
+                <?php if ($use_no_background): ?>color: white;
+                background: #093D5F;
                 <?php endif; ?>
             }
+
             .buttonWrapper .btn:hover {
                 background: transparent;
+                gap:2rem;
                 border-color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
                 color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
             }
+
             .buttonWrapper .btn:hover {
-                <?php if ($use_no_background): ?>
-                    color:white;
-                    background:#093D5F;
+                <?php if ($use_no_background): ?>color: white;
+                background: #093D5F;
                 <?php endif; ?>
             }
 
@@ -369,68 +371,82 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
             @media (max-width: 768px) {
                 .richTextContainer .richText h2 {
-                <?php if ($is_first_page): ?>
-                    font-size:28px;
-                <?php endif; ?>
-            }
-            .richTextContainer {
-                <?php if ($is_first_page): ?>
-                    padding-bottom: 0px;
+                    <?php if ($is_first_page): ?>font-size: 28px;
+                    <?php endif; ?>
+                }
+
+                .richTextContainer {
+                    <?php if ($is_first_page): ?>padding-bottom: 0px;
                     padding-top: 0px;
-                <?php endif; ?>
-            }
+                    <?php endif; ?>
+                }
+
                 .richTextContainer {
                     padding-bottom: 50px;
                     padding-top: 100px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+
+                .richTextContainer .richText h2 {
+                    font-family: 'Darker Grotesque', sans-serif;
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: white;
                 }
 
                 .richText h1 {
                     font-size: 30px;
                 }
+
                 .richText p {
                     font-size: 14px;
                     padding-top: 1rem;
-                    padding-bottom: 0rem;
+                    padding-bottom: 2rem;
                 }
             }
         </style>
 
-<div class="richTextContainer <?php echo esc_attr($alignment_class); ?>" style="<?php echo esc_attr($inline_style); ?>">
-        <?php if (!empty($settings['uppertitle'])) : ?>
-            <div class="richText">
-                <h4>
-                    <?php echo esc_html($settings['uppertitle']); ?>
-                </h4>
-            </div>
-        <?php endif; ?>
+        <div class="richTextContainer <?php echo esc_attr($alignment_class); ?>" style="<?php echo esc_attr($inline_style); ?>">
+            <?php if (!empty($settings['uppertitle'])) : ?>
+                <div class="richText">
+                    <h4>
+                        <?php echo esc_html($settings['uppertitle']); ?>
+                    </h4>
+                </div>
+            <?php endif; ?>
 
-        <?php if (!empty($settings['title'])) : ?>
-            <div class="richText">
-                <h2>
-                    <?php echo esc_html($settings['title']); ?>
-                </h2>
-            </div>
-        <?php endif; ?>
+            <?php if (!empty($settings['title'])) : ?>
+                <div class="richText">
+                    <h2>
+                        <?php echo esc_html($settings['title']); ?>
+                    </h2>
+                </div>
+            <?php endif; ?>
 
-        <?php if (!empty($settings['text'])) : ?>
-            <div class="richText richTextText">
-                <p>
-                    <?php echo esc_html($settings['text']); ?>
-                </p>
-            </div>
-        <?php endif; ?>
+            <?php if (!empty($settings['text'])) : ?>
+                <div class="richText">
+                    <p class='QWkdj'>
+                        <?php echo esc_html($settings['text']); ?>
+                    </p>
+                </div>
+            <?php endif; ?>
 
-        <?php if (!empty($settings['textForButton']) && !empty($settings['url'])) : ?>
-            <div class="buttonWrapper">
-                <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
-                    <?php echo esc_html($settings['textForButton']); ?>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                </a>
-            </div>
-        <?php endif; ?>
-    </div>
+            <?php if (!empty($settings['textForButton']) && !empty($settings['url'])) : ?>
+                <div class="buttonWrapper">
+                    <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
+                        <?php echo esc_html($settings['textForButton']); ?>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
 
 <?php
     }
