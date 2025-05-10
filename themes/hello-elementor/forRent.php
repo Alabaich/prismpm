@@ -10,47 +10,17 @@ Template Name: Units
  */
 
 
-$building_id= $_GET['building_id']
-
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
+	$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
+	$data = [];
 
-
-$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
-
-while ($row = $res->fetch_assoc()) {
-    $data[] = $row;
-}
-
- $data = [];
-
-$uniq_buildings_ids = array_unique(array_column($data, 'building_id'));
-
-
-// $final_data = []
-
-// if ($building_id) {
-//     $res = $conn->query("SELECT * FROM units WHERE unit_status = 1 AND building_id = $building_id");
-// } else {
-//     $final_data = $data
-
-// }
-
-
+	while ($row = $res->fetch_assoc()) {
+	  $data[] = $row;
+	}
 
 
 ?>
-
-<?php foreach ($uniq_buildings_ids as $item): ?>
-    
-    <a href="<?= add_query_arg('building_id', $item['building_id'], get_permalink()) ?>">
-        <?= esc_html($item['building_id']) ?>
-    </a>
-<?php endforeach; ?>
-
-
-
-
 <section class="full-width-suites">
     <h2 class="section-title">UNITS</h2>
 
