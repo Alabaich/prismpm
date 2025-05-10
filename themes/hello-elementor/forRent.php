@@ -27,12 +27,20 @@ $arg = $query_params['arg'] ?? null;
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
+
 	$data = [];
 
 	while ($row = $res->fetch_assoc()) {
 	  $data[] = $row;
 	}
 
+    $res_build = $conn->query("SELECT * FROM `building`")
+
+    	$data_build = [];
+
+	while ($row_build = $res_build->fetch_assoc()) {
+	  $data_build[] = $row_build;
+	}
 
 
 $buildings=array_unique(array_column($data, 'building_id'));
@@ -62,9 +70,9 @@ $conn->close();
     <div class="buildingsFilter">
 <select onchange="location.href=this.value">
     <option value="/newforrent">All Buildings</option>
-    <?php foreach ($buildings as $item): ?>
-        <option value="/newforrent?arg=<?= esc_attr($item) ?>" <?= $arg === $item ? 'selected' : '' ?>>
-            <?= esc_html($item) ?>
+    <?php foreach ($data_build as $item): ?>
+        <option value="/newforrent?arg=<?= esc_attr($item["id"]) ?>" <?= $arg === $item["id"] ? 'selected' : '' ?>>
+            <?= esc_html($item["name"]) ?>
         </option>
     <?php endforeach; ?>
 </select>
