@@ -26,9 +26,6 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
     <div class="suites-list">
 <?php foreach ($data as $item): ?>
-  <div>
-    <a><?= esc_html($item['unit']) ?></a>
-  </div>
               <div class="suite-item">
 
 
