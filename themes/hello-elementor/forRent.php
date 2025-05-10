@@ -19,10 +19,16 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	  $data[] = $row;
 	}
 
+$buildings=array_unique(array_column($data, 'building_id'));
 
 ?>
 <section class="full-width-suites">
     <h2 class="section-title">UNITS</h2>
+    <div class="buildingsFilter">
+        <?php foreach ($buildings as $item): ?>
+            <a href=""><?= esc_html($item) ?> </a>
+            <?php endforeach ?>
+    </div>
 
     <div class="suites-list">
 <?php foreach ($data as $item): ?>
