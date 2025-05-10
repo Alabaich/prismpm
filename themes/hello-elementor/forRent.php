@@ -60,7 +60,7 @@ $conn->close();
     <h1><?= $arg ?> </h1>
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
-<select onchange="location.href=this.value">
+<select onchange="location.href=this.value" value="<?= $arg ?>">
     <option value="/newforrent">All Buildings</option>
     <?php foreach ($buildings as $item): ?>
         <option value="/newforrent?arg=<?= esc_attr($item) ?>">
