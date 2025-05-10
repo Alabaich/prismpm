@@ -60,9 +60,14 @@ $conn->close();
     <h1><?= $arg ?> </h1>
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
-        <?php foreach ($buildings as $item): ?>
-            <a href="/newforrent?arg=<?= esc_html($item) ?>"><?= esc_html($item) ?> </a>
-            <?php endforeach ?>
+<select onchange="location.href=this.value">
+    <option value="/newforrent">All Buildings</option>
+    <?php foreach ($buildings as $item): ?>
+        <option value="/newforrent?arg=<?= esc_attr($item) ?>">
+            <?= esc_html($item) ?>
+        </option>
+    <?php endforeach; ?>
+</select>
     </div>
 
     <div class="suites-list">
