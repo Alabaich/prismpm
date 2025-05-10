@@ -22,7 +22,7 @@ while ($row = $res->fetch_assoc()) {
     $data[] = $row;
 }
 
-// $data = [];
+ $data = [];
 
 $uniq_buildings_ids = array_unique(array_column($data, 'building_id'));
 
