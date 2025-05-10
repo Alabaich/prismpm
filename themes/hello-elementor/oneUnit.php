@@ -20,6 +20,7 @@ $arg = $query_params['arg'] ?? null;
 
 
 if ($arg) {
+    $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
     // Sanitize and use arg in WHERE clause
     $stmt = $conn->prepare("SELECT * FROM units WHERE id = ?");
     $stmt->bind_param("i", $arg);
@@ -41,7 +42,7 @@ if ($arg) {
 
 <?php foreach ($data as $item): ?>
     <h1><?= $item['unit'] ?></h1>
-    <?php endforeach ?>
+<?php endforeach ?>
 
 
 
