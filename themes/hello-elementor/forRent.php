@@ -80,7 +80,7 @@ if ($arg) {
 
     <div class="suites-list">
 <?php foreach ($data as $item): ?>
-              <div class="suite-item">
+              <a href='/oneUnit?arg=<?= $item['id'] ?>' class="suite-item">
 
 
                 <div class="suite-content">
@@ -148,7 +148,7 @@ if ($arg) {
                         <button class="wishlist">♡</button>
                     </div>
                 </div>
-            </div>
+</a>
 <?php endforeach; ?>
 
 
