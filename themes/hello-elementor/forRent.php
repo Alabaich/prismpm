@@ -37,6 +37,24 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
 $buildings=array_unique(array_column($data, 'building_id'));
 
+
+if ($arg) {
+    // Sanitize and use arg in WHERE clause
+    $stmt = $conn->prepare("SELECT * FROM units WHERE unit_status = 1 AND building_id = ?");
+    $stmt->bind_param("i", $arg);
+
+    $stmt->execute();
+$res = $stmt->get_result();
+$data = [];
+
+while ($row = $res->fetch_assoc()) {
+    $data[] = $row;
+}
+
+$stmt->close();
+$conn->close();
+}
+
 ?>
 <section class="full-width-suites">
     <h1><?= $arg ?> </h1>
