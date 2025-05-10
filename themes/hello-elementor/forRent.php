@@ -10,7 +10,7 @@ Template Name: Units
  */
 
 
-/*$building_id= $_GET['building_id']*/
+$building_id= $_GET['building_id']
 
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
