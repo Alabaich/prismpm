@@ -9,7 +9,7 @@ Template Name: Units
  * @param string $section_title 
  */
 
-
+$arg=$_GET['arg']
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	$res = $conn->query("SELECT * FROM units WHERE unit_status = 1");
@@ -19,10 +19,13 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 	  $data[] = $row;
 	}
 
+
+
 $buildings=array_unique(array_column($data, 'building_id'));
 
 ?>
 <section class="full-width-suites">
+    <h1><?php echo $arg ?> </h1>
     <h2 class="section-title">UNITS</h2>
     <div class="buildingsFilter">
         <?php foreach ($buildings as $item): ?>
