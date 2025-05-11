@@ -192,7 +192,6 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 }
 
                 .land-acknowledgement-section .section-heading h2 {
-                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;

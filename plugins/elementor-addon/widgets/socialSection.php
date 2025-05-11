@@ -131,6 +131,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 margin-bottom: 0.75rem;
                 font-weight: 600;
                 color: #111827;
+                font-family: "Playfair Display", serif;
             }
 
             .social-follow-section .subtitle {
@@ -163,7 +164,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 font-size: 1rem;
                 font-family: "Inter Tight", sans-serif;
                 color: #52525B;
-                margin-bottom: 0.5rem;
+                margin-bottom: 1.25rem;
                 text-align: left;
             }
 

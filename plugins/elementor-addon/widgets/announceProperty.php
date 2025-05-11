@@ -71,6 +71,15 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'section_image_link',
+            [
+                'label' => esc_html__('Image Link', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => 'https://your-link.com',
+            ]
+        );
+
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
@@ -191,6 +200,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             .coming-soon-section h1 {
                 margin-bottom: 0.625rem;
                 font-size:52px;
+                font-family: "Playfair Display", serif;
                 /* 10px */
             }
 
@@ -256,10 +266,11 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 object-fit: cover;
             }
             .coming-soon-section .property-image {
+                max-width: 100%;
                 max-width:586px;
-                max-height:355px;
-                min-height:355px;
-                min-width:586px;
+                min-height: auto;
+                min-width: auto;
+                flex: 1 1 50%;
             }
 
             .metaq div {
@@ -295,13 +306,12 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 background: #093D5F;
                 color: #fff;
                 padding: 18px 28px;
-                min-width: 188px;
-                border-radius: 50%;
+                border-radius: 99999px;
                 font-weight: 500;
                 font-size: 1rem;
                 text-decoration: none;
                 transition: all 0.3s ease;
-                gap: 0.5rem;
+                gap: 1rem;
                 transform: scale(1);
             }
             .property-button a svg {
@@ -329,11 +339,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             .flex {
                 display: flex;
             }
-            .property-button a:hover {
-                gap: 0rem 1rem;
-            }
+
             .property-button a:hover svg {
                 transform: translateX(4px);
+                margin-left: 0.5rem;
             }
 
             .coming-soon-section.centered-header .title-container {
@@ -363,7 +372,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 .coming-soon-section .property-card {
                     flex-direction: column;
                     text-align: left;
-                    max-width:350px;
+                    max-width: 100%;
                 }
 
                 .coming-soon-section {
@@ -496,11 +505,17 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             <div class="title-container">
                 <div class="section-titles">
                     <h1 class="flex"><?php echo esc_html($settings['section_title']); ?></h1>
-                    <p class="flex"><?php echo esc_html($settings['section_subtitle']); ?></p>
+                    <p class="flex"><?php echo $settings['section_subtitle']; ?></p>
                 </div>
                 <?php if (!empty($settings['section_image']['url'])) : ?>
                     <div class="section-img flex">
-                        <img src="<?php echo esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
+                        <?php if (!empty($settings['section_image_link']['url'])): ?>
+                            <a href="<?php echo esc_url($settings['section_image_link']['url']); ?>" target="<?php echo esc_attr($settings['section_image_link']['is_external'] ? '_blank' : '_self'); ?>">
+                                <img src="<?php echo esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
+                            </a>
+                        <?php else: ?>
+                            <img src="<?php echo esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>
@@ -527,9 +542,9 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                             <div class="property-button">
                                 <a href="<?php echo esc_url($item['button_link']['url']); ?>" target="<?php echo esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
                                 <?php echo esc_html($item['button_text']); ?>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="anounc-button-icon">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                            </svg>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C0.447715 0 1.49012e-08 0.447715 1.49012e-08 1C1.49012e-08 1.55228 0.447715 2 1 2H8.51314L0.292893 10.2929C-0.0976311 10.6834 -0.0976311 11.3166 0.292893 11.7071C0.683417 12.0976 1.31658 12.0976 1.70711 11.7071L10 3.34093V11C10 11.5523 10.4477 12 11 12C11.5523 12 12 11.5523 12 11V1C12 0.447715 11.5523 0 11 0H1Z" fill="white"/>
+                                </svg>
                                 </a>
                             </div>
                         <?php endif; ?>

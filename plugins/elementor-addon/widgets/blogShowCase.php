@@ -92,7 +92,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
         // Get the latest posts
         $args = [
             'post_type' => 'post',
-            'posts_per_page' => $settings['posts_count'],
+            'posts_per_page' => $settings['posts_count'] + ($settings['show_featured_post'] === 'yes' ? 2 : 0),
             'post_status' => 'publish',
             'ignore_sticky_posts' => true,
         ];
@@ -100,9 +100,12 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
         $query = new WP_Query($args);
 
         // Get featured post (first post from the query)
-        $featured_post = null;
+        $featured_posts = [];
         if ($settings['show_featured_post'] === 'yes' && $query->have_posts()) {
-            $featured_post = $query->posts[0];
+            $featured_posts[] = $query->posts[0];
+            if (isset($query->posts[1])) {
+                $featured_posts[] = $query->posts[1];
+            }
         }
 ?>
         <style>
@@ -114,8 +117,8 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             .blog-showcase h1 {
                 font-size: 52px;
                 color: #2A2A2A;
-                max-width:584px;
-                margin:auto;
+                max-width: 584px;
+                margin: auto;
                 margin-bottom: 1.5rem;
                 margin-top:0px;
                 font-family: "Playfair Display", serif;
@@ -123,10 +126,10 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
 
             .blog-showcase .subtitle {
                 color: #52525B;
-                margin-top:0px;
+                margin-top: 0px;
                 margin-bottom: 2.5rem;
                 font-size: 1rem;
-  font-family: "Inter Tight", sans-serif;
+                font-family: "Inter Tight", sans-serif;
             }
 
             .featured-post {
@@ -155,7 +158,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
 
             .featured-post .date {
                 color: #52525B;
-  font-family: "Inter Tight", sans-serif;
+                font-family: "Inter Tight", sans-serif;
 
                 font-size: 1rem;
             }
@@ -187,7 +190,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             .blog-card .title {
                 font-size: 28px;
                 margin-bottom: 1.5rem;
-                margin-top:0px;
+                margin-top: 0px;
                 color: #2A2A2A;
             }
 
@@ -196,7 +199,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 justify-content: space-between;
                 font-size: 1rem;
                 color: #52525B;
-  font-family: "Inter Tight", sans-serif;
+                font-family: "Inter Tight", sans-serif;
 
                 margin-top: auto;
             }
@@ -209,10 +212,9 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 display: inline-flex;
                 align-items: center;
                 margin-top: 70px;
-                padding: 20px 28px;
+                padding: 18px 28px;
                 border: 1px solid #000;
-                border-radius: 2rem;
-                min-width: 188px;
+                border-radius: 99999px;
                 background: #fff;
                 font-family: "Inter Tight", sans-serif;
                 color: #2A2A2A;
@@ -222,23 +224,24 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 gap: 1rem;
             }
 
-            .hqwdasdicon {
+            .read-more-btn {
                 color: #2A2A2A;
                 transition: transform 0.3s ease;
                 rotate: -45deg;
             }
 
-            .read-more-btn:hover {
-                gap:0rem 4rem;
+            .read-more-btn a svg {
+                transition: all 0.3s ease;
             }
 
-            .read-more-btn:hover .hqwdasdicon {
+            .read-more-btn:hover svg {
                 transform: translateX(4px);
+                margin-left: 0.5rem;
             }
 
             .sadqwd {
-                display:flex;
-                flex-wrap:nowrap;
+                display: flex;
+                flex-wrap: nowrap;
                 gap: 0rem 1rem;
                 margin-bottom: 3rem;
 
@@ -250,7 +253,6 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 }
 
                 .blog-showcase h1 {
-                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;
@@ -282,26 +284,19 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             <h1><?php echo esc_html($settings['main_title']); ?></h1>
             <p class="subtitle"><?php echo esc_html($settings['subtitle']); ?></p>
 
-            <?php if ($featured_post): ?>
+            <?php if (!empty($featured_posts)): ?>
                 <div class='sadqwd'>
-                <div class="featured-post">
-                    <a href="<?php echo esc_url(get_permalink($featured_post->ID)); ?>">
-                        <?php if (has_post_thumbnail($featured_post->ID)): ?>
-                            <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
-                        <?php endif; ?>
-                        <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
-                        <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
-                    </a>
-                </div>
-                <div class="featured-post">
-                    <a href="<?php echo esc_url(get_permalink($featured_post->ID)); ?>">
-                        <?php if (has_post_thumbnail($featured_post->ID)): ?>
-                            <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
-                        <?php endif; ?>
-                        <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h2>
-                        <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
-                    </a>
-                </div>
+                    <?php foreach ($featured_posts as $featured_post): ?>
+                        <div class="featured-post">
+                            <a href="<?php echo esc_url(get_permalink($featured_post->ID)); ?>">
+                                <?php if (has_post_thumbnail($featured_post->ID)): ?>
+                                    <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
+                                <?php endif; ?>
+                                <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h3>
+                                <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
 
@@ -309,8 +304,8 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 <?php
                 $posts_shown = 0;
                 while ($query->have_posts()): $query->the_post();
-                    // Skip featured post if it's shown
-                    if ($settings['show_featured_post'] === 'yes' && $posts_shown === 0) {
+                    // Skip featured posts if they're shown
+                    if ($settings['show_featured_post'] === 'yes' && $posts_shown < count($featured_posts)) {
                         $posts_shown++;
                         continue;
                     }
@@ -339,9 +334,9 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             </div>
             <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-btn">
                 <?php esc_html_e('Read More', 'elementor-addon'); ?>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="hqwdasdicon">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
+                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="hqwdasdicon">
+                        <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="#2A2A2A"/>
+                    </svg>
             </a>
         </div>
 <?php

@@ -128,6 +128,8 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider-wrapper {
                 width: 100%;
+                overflow: hidden;
+                padding: 20px 0;
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider {
@@ -141,6 +143,7 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: row !important;
                 align-items: center;
+                box-sizing: border-box; 
             }
 
             #circle-slider-<?php echo esc_attr($widget_id); ?> .swiper-slide {
@@ -217,30 +220,37 @@ class Elementor_circleSlider extends \Elementor\Widget_Base
             }
         </style>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                try {
-                    var circleSlider = new Swiper('#circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider', {
-                        loop: true,
-                        speed: 600,
-                        slidesPerView: 'auto',
-                        spaceBetween: 20,
-                        grabCursor: true,
-                        autoplay: {
-                            delay: 3000,
-                            disableOnInteraction: false,
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                var circleSlider = new Swiper('#circle-slider-<?php echo esc_attr($widget_id); ?> .circle-slider', {
+                    loop: true,
+                    speed: 600,
+                    slidesPerView: 'auto',
+                    centeredSlides: true,
+                    spaceBetween: 20,
+                    grabCursor: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        320: {
+                            spaceBetween: 10
                         },
-                        on: {
-                            init: function() {
-                                console.log('Circle Slider initialized successfully:', this);
-                            }
+                        768: {
+                            spaceBetween: 15
+                        },
+                        1024: {
+                            spaceBetween: 20
                         }
-                    });
-                } catch (error) {
-                    console.error('Error initializing Circle Slider:', error);
-                }
-            });
-        </script>
+                    }
+                });
+            } catch (error) {
+                console.error('Error initializing Circle Slider:', error);
+            }
+        });
+    </script>
 <?php
     }
 }
