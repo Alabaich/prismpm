@@ -56,7 +56,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             'section_subtitle',
             [
                 'label' => esc_html__('Subtitle', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'type' => \Elementor\Controls_Manager::WYSIWYG,
                 'default' => 'Explore more properties and details at Atriadevelopment.ca',
             ]
         );
@@ -139,13 +139,22 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
-        'button_link',
-        [
-        'label' => esc_html__('Button Text', 'elementor-addon'),
-        'type' => \Elementor\Controls_Manager::TEXT,
-        'default' => 'Pre-Register',
-    ]
-);
+            'image_link',
+            [
+                'label' => esc_html__('Image Link', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => 'https://your-link.com',
+            ]
+        );
+
+        $repeater->add_control(
+            'button_text',
+            [
+                'label' => esc_html__('Button Text', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Pre-Register',
+            ]
+        );
 
         $repeater->add_control(
             'button_link',
@@ -526,7 +535,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                         <?php endif; ?>
                     </div>
                     <div class="property-image">
-                        <img src="<?php echo esc_url($item['image']['url']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                        <?php if (!empty($item['image_link']['url'])): ?>
+                            <a href="<?php echo esc_url($item['image_link']['url']); ?>" target="<?php echo esc_attr($item['image_link']['is_external'] ? '_blank' : '_self'); ?>">
+                                <img src="<?php echo esc_url($item['image']['url']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                            </a>
+                        <?php else: ?>
+                            <img src="<?php echo esc_url($item['image']['url']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
