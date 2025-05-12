@@ -29,10 +29,7 @@ $price_order = $query_params['price_order'] ?? null;
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
-$sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id FROM units 
-        JOIN building ON building.id = units.building_id 
-        LEFT JOIN media m ON m.building_id = building.id 
-        WHERE units.unit_status = 1";
+$sql = "SELECT units.*, building.*, building.filename, units.id as unit_id FROM units JOIN building ON building.id = units.building_id WHERE units.unit_status = 1";
 
 $params = [];
 $types = "";
@@ -67,19 +64,6 @@ if ($price_order === 'asc') {
     $sql .= " ORDER BY units.market_rent DESC";
 }
 
-function decode_image_urls_from_row($row)
-{
-    $imgs = [];
-
-    $folder = $row['filename'];
-
-    foreach (json_decode($row['gallery'], true) as $gallery) {
-        $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
-    }
-
-    return $imgs[0];
-}
-
 if (!empty($params)) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param($types, ...$params);
@@ -87,7 +71,7 @@ if (!empty($params)) {
     $res = $stmt->get_result();
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        $row['gallery_images'] = decode_image_urls_from_row($row);
+        $row['gallery_images'] = !empty($row['gallery']) ? json_decode($row['gallery'], true) : [];
         $data[] = $row;
     }
     $stmt->close();
@@ -95,7 +79,7 @@ if (!empty($params)) {
     $res = $conn->query($sql);
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        $row['gallery_images'] = decode_image_urls_from_row($row);
+        $row['gallery_images'] = !empty($row['gallery']) ? json_decode($row['gallery'], true) : [];
         $data[] = $row;
     }
 }
@@ -516,7 +500,7 @@ $total_units = count($data);
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
                 <?php if ($first_image): ?>
                     <div class="suite-image">
-                        <img src="<?= $item['gallery_images'] ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
+                        <img src="https://floorplan.atriadevelopment.ca/<?= $item['filename'] ?>/gallery/<?= $first_image ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
                     </div>
                 <?php endif; ?>
                 <div class="suite-content">
