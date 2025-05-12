@@ -78,7 +78,7 @@ function decode_image_urls_from_row($row)
     }
 
     if( empty($imgs) ){
-       return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+       return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
     } else {
         return $imgs[0];
     }
@@ -519,6 +519,9 @@ $total_units = count($data);
         <?php foreach ($data as $item) ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
 
+                    <div class="suite-image">
+                        <img src="<?= $item['gallery_images'] ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
+                    </div>
 
                 <div class="suite-content">
                     <div class="suite-info">
