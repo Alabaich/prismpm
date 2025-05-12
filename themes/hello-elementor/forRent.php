@@ -105,12 +105,14 @@ $data_baths = [];
 while ($row_bath = $res_baths->fetch_assoc()) {
     $data_baths[] = $row_bath['bath'];
 }
+$data_baths_filtered = array_unique(array_column($data, 'bath'));
 
 $res_beds = $conn->query("SELECT DISTINCT bed FROM units ORDER BY bed");
 $data_beds = [];
 while ($row_bed = $res_beds->fetch_assoc()) {
     $data_beds[] = $row_bed['bed'];
 }
+$data_beds_filtered = array_unique(array_column($data, 'bed'));
 
 $total_units = count($data);
 ?>
@@ -439,13 +441,22 @@ $total_units = count($data);
         render_filter("building-filter", "Building", $data_build, $building_id, "building");
         if ($city) {
             render_filter("city-filter", "City", $data_cities, $city, "city");
-            
         } else {
             render_filter("city-filter", "City", $data_cities_filtered, $city, "city");
         }
-        
-        render_filter("baths-filter", "Bath(s)", $data_baths, $baths, "baths");
+
+        if ($baths) {
+            render_filter("baths-filter", "Bath(s)", $data_baths, $baths, "baths");
+        } else {
+            render_filter("baths-filter", "Bath(s)", $data_baths_filtered, $baths, "baths");
+        }
+
+        if ($beds) {
         render_filter("beds-filter", "Bedroom(s)", $data_beds, $beds, "beds");
+        } else {
+        render_filter("beds-filter", "Bedroom(s)", $data_beds_filtered, $beds, "beds");
+        }
+        
         ?>
         <div class="filter-group">
             <label for="price-filter">Price</label>
