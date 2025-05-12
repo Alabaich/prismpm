@@ -499,9 +499,7 @@ $total_units = count($data);
         ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
 
-                    <div class="suite-image">
-                        <img src="https://floorplan.atriadevelopment.ca/<?= $item['filename'] ?>/gallery/<?= $first_image ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
-                    </div>
+
 
                 <div class="suite-content">
                     <div class="suite-info">
