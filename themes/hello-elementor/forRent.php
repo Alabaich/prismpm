@@ -77,7 +77,13 @@ function decode_image_urls_from_row($row)
         $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
     }
 
-    return $imgs[0];
+    if( empty($imgs) ){
+       return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+    } else {
+        return $imgs[0];
+    }
+
+
 }
 
 if (!empty($params)) {
