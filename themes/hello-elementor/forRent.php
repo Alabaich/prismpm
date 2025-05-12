@@ -95,7 +95,7 @@ $data_build_filtered = [];
 $seen_ids = [];
 
 foreach ($data_build as $item) {
-    if (!in_array($item['id'], $seen_ids)) {
+    if (!in_array($item['building_id'], $seen_ids)) {
         $data_build_filtered[] = [
             'id' => $item['building_id'],
             'name' => $item['name']
