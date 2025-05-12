@@ -67,22 +67,22 @@ if ($price_order === 'asc') {
     $sql .= " ORDER BY units.market_rent DESC";
 }
 
-// function decode_image_urls_from_row($row)
-// {
-//     $imgs = [];
+function decode_image_urls_from_row($row)
+{
+    $imgs = [];
 
-//     $folder = $row['filename'];
+    $folder = $row['filename'];
 
-//     foreach (json_decode($row['gallery'], true) as $gallery) {
-//         $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
-//     }
+    foreach (json_decode($row['gallery'], true) as $gallery) {
+        $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
+    }
 
-//     if( empty($imgs) ){
-//        return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
-//     } else {
-//         return $imgs[0];
-//     }
-// }
+    if( empty($imgs) ){
+       return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
+    } else {
+        return $imgs[0];
+    }
+}
 
 if (!empty($params)) {
     $stmt = $conn->prepare($sql);
@@ -91,7 +91,7 @@ if (!empty($params)) {
     $res = $stmt->get_result();
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        // $row['img'] = decode_image_urls_from_row($row)
+        $row['img'] = decode_image_urls_from_row($row)
         $data[] = $row;
     }
     $stmt->close();
@@ -99,7 +99,7 @@ if (!empty($params)) {
     $res = $conn->query($sql);
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        // $row['img'] = decode_image_urls_from_row($row)
+        $row['img'] = decode_image_urls_from_row($row)
         $data[] = $row;
     }
 }
