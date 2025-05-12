@@ -89,7 +89,7 @@ if (!empty($params)) {
 // while ($row_build = $res_build->fetch_assoc()) {
 //     $data_build[] = $row_build;
 // }
-$res_build = array_unique(array_column($data, 'name'));
+$data_build = array_unique(array_column($data, 'name'));
 
 $res_cities = $conn->query("SELECT DISTINCT city FROM building");
 $data_cities = [];
