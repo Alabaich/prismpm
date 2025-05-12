@@ -69,11 +69,7 @@ if ($arg) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body { background-color: #f3f4f6; font-family: Arial, sans-serif; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -102,7 +98,7 @@ if ($arg) {
         .amenities-table div:last-child { border-bottom: none; }
         .amenities-table p { color: #4b5563; margin: 0; }
     </style>
-</head>
+
 <body>
     <?php foreach ($data as $item): ?>
         <div class="container">
