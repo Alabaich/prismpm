@@ -510,9 +510,7 @@ $total_units = count($data);
     </p>
 
     <div class="suites-list">
-        <?php foreach ($data as $item):
-            $first_image = !empty($item['gallery_images'][0]) ? $item['gallery_images'][0] : null;
-        ?>
+        <?php foreach ($data as $item) ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
                 <?php if ($first_image): ?>
                     <div class="suite-image">
