@@ -117,12 +117,11 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
             }
 
             .testimonial-section h2 {
+                font-family: "Playfair Display", serif;
                 font-size: 2.625rem;
                 font-weight: 600;
                 margin-bottom: 0.75rem;
             }
-
-
 
             .testimonial-section h4 {
                 color: #E0E0E0;
@@ -149,13 +148,11 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
             }
 
             .testimonial-card p {
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
                 font-size: 1rem;
                 margin-bottom: 3.5rem;
                 margin-top: 0;
@@ -168,8 +165,8 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
             }
 
             .testimonial-author img {
-                width: 2.5rem;
-                height: 2.5rem;
+                width: 3rem;
+                height: 3rem;
                 border-radius: 50%;
                 object-fit: cover;
             }
@@ -190,7 +187,6 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
 
             @media (max-width: 768px) {
                 .testimonial-section h2 {
-                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;

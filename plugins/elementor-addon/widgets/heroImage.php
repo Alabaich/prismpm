@@ -84,6 +84,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
             .years-section .left {
                 max-width: 50%;
                 flex: 1;
+                background: #093D5F0D;
             }
 
             .years-section .right {
@@ -93,9 +94,10 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                font-family: "Darker Grotesque", sans-serif;
+                font-family: "Playfair Display", serif;
                 padding: 40px;
                 position: relative;
+                background: #093D5F0D;
             }
 
             .years-section .right .big-number {
@@ -118,7 +120,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 text-align: center;
                 line-height: 97%;
                 max-width: 36%;
-                z-index: 666;
+                z-index: 2;
             }
 
             @media (max-width: 1024px) {

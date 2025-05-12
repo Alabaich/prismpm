@@ -116,7 +116,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
         <style>
             .social-follow-section {
-                padding: 4rem 0rem;
+                padding: 3.75rem 5rem;
                 text-align: center;
                 overflow-x: hidden;
             }
@@ -131,6 +131,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 margin-bottom: 0.75rem;
                 font-weight: 600;
                 color: #111827;
+                font-family: "Playfair Display", serif;
             }
 
             .social-follow-section .subtitle {
@@ -161,17 +162,16 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 display: block;
                 font-weight: 400;
                 font-size: 1rem;
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
                 color: #52525B;
                 margin-bottom: 1.25rem;
                 text-align: left;
             }
 
             .social-block p {
-  font-family: "Inter Tight", sans-serif;
-  display:flex;
-  justify-items:baseline;
+                font-family: "Inter Tight", sans-serif;
+                display:flex;
+                justify-items:baseline;
                 align-items:center;
                 color: #374151;
                 margin:0px;
@@ -182,7 +182,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
             }
 
             .social-block i {
-                font-size: 2rem;
+                font-size: 1.25rem;
                 color: #000;
             }
 
@@ -214,7 +214,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 }
 
                 .social-follow-section h1 {
-                    font-family: 'Darker Grotesque', sans-serif;
+                    font-family: "Playfair Display", serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;
