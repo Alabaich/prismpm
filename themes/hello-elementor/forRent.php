@@ -91,7 +91,19 @@ while ($row_build = $res_build->fetch_assoc()) {
 }
 $data_build_name = array_unique(array_column($data, 'name'));
 $data_build_id = array_unique(array_column($data, 'id'));
-$data_build_filtered = array($data_build_name, $data_build_id);
+$data_build_filtered = [];
+$seen_ids = [];
+
+foreach ($data_build as $item) {
+    if (!in_array($item['id'], $seen_ids)) {
+        $data_build_filtered[] = [
+            'id' => $item['building_id'],
+            'name' => $item['name']
+        ];
+        $seen_ids[] = $item['id'];
+    }
+}
+
 
 $res_cities = $conn->query("SELECT DISTINCT city FROM building");
 $data_cities = [];
