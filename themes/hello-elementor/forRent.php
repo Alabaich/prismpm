@@ -92,7 +92,7 @@ while ($row_build = $res_build->fetch_assoc()) {
 $data_build_filtered = [];
 $seen_ids = [];
 
-foreach ($data_build as $item) {
+foreach ($data as $item) {
     if (!in_array($item['building_id'], $seen_ids)) {
         $data_build_filtered[] = [
             'id' => $item['building_id'],
