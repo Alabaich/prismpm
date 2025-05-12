@@ -84,19 +84,24 @@ if (!empty($params)) {
     }
 }
 
-$res_build = $conn->query("SELECT * FROM building");
-$data_build = [];
-while ($row_build = $res_build->fetch_assoc()) {
-    $data_build[] = $row_build;
-}
+// $res_build = $conn->query("SELECT * FROM building");
+// $data_build = [];
+// while ($row_build = $res_build->fetch_assoc()) {
+//     $data_build[] = $row_build;
+// }
 
-$res_cities = $conn->query("SELECT DISTINCT city FROM building");
-$data_cities = [];
-while ($row_city = $res_cities->fetch_assoc()) {
-    if (!empty(trim($row_city['city']))) {
-        $data_cities[] = $row_city['city'];
-    }
-}
+$data_build = array_unique(array_column($data, 'name'));
+
+// $res_cities = $conn->query("SELECT DISTINCT city FROM building");
+// $data_cities = [];
+// while ($row_city = $res_cities->fetch_assoc()) {
+//     if (!empty(trim($row_city['city']))) {
+//         $data_cities[] = $row_city['city'];
+//     }
+// }
+
+$data_cities = array_unique(array_column($data, 'city'));
+
 
 $res_baths = $conn->query("SELECT DISTINCT bath FROM units ORDER BY bath");
 $data_baths = [];
