@@ -84,24 +84,20 @@ if (!empty($params)) {
     }
 }
 
-// $res_build = $conn->query("SELECT * FROM building");
-// $data_build = [];
-// while ($row_build = $res_build->fetch_assoc()) {
-//     $data_build[] = $row_build;
-// }
+$res_build = $conn->query("SELECT * FROM building");
+$data_build = [];
+while ($row_build = $res_build->fetch_assoc()) {
+    $data_build[] = $row_build;
+}
 
-$data_build = array_unique(array_column($data, 'name'));
-
-// $res_cities = $conn->query("SELECT DISTINCT city FROM building");
-// $data_cities = [];
-// while ($row_city = $res_cities->fetch_assoc()) {
-//     if (!empty(trim($row_city['city']))) {
-//         $data_cities[] = $row_city['city'];
-//     }
-// }
-
-$data_cities = array_unique(array_column($data, 'city'));
-
+$res_cities = $conn->query("SELECT DISTINCT city FROM building");
+$data_cities = [];
+while ($row_city = $res_cities->fetch_assoc()) {
+    if (!empty(trim($row_city['city']))) {
+        $data_cities[] = $row_city['city'];
+    }
+}
+$data_cities_filtered = array_unique(array_column($data, 'city'));
 
 $res_baths = $conn->query("SELECT DISTINCT bath FROM units ORDER BY bath");
 $data_baths = [];
@@ -440,7 +436,13 @@ $total_units = count($data);
         }
 
         render_filter("building-filter", "Building", $data_build, $building_id, "building");
-        render_filter("city-filter", "City", $data_cities, $city, "city");
+        if ($city) {
+            render_filter("city-filter", "City", $data_cities, $city, "city");
+            
+        } else {
+            render_filter("city-filter", "City", $data_cities_filtered, $city, "city");
+        }
+        
         render_filter("baths-filter", "Bath(s)", $data_baths, $baths, "baths");
         render_filter("beds-filter", "Bedroom(s)", $data_beds, $beds, "beds");
         ?>
