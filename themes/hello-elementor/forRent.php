@@ -89,8 +89,6 @@ $data_build = [];
 while ($row_build = $res_build->fetch_assoc()) {
     $data_build[] = $row_build;
 }
-$data_build_name = array_unique(array_column($data, 'name'));
-$data_build_id = array_unique(array_column($data, 'id'));
 $data_build_filtered = [];
 $seen_ids = [];
 
@@ -454,9 +452,9 @@ $total_units = count($data);
 
 
         if ($building_id) {
-        render_filter("building-filter", "Building", $data_build, $building_id, "building");
+            render_filter("building-filter", "Building", $data_build, $building_id, "building");
         } else {
-        render_filter("building-filter", "Building", $data_build_filtered, $building_id, "building");
+            render_filter("building-filter", "Building", $data_build_filtered, $building_id, "building");
         }
 
         if ($city) {
