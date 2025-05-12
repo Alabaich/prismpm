@@ -592,7 +592,7 @@ $total_units = count($data);
                     </div>
                 </div>
             </a>
-        <?php endforeach; ?>
+        <?php //endforeach; ?>
 
     </div>
 </section>
