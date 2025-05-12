@@ -29,8 +29,9 @@ $price_order = $query_params['price_order'] ?? null;
 
 $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
-$sql = "SELECT units.*, building.*, building.filename, units.id as unit_id FROM units 
+$sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id FROM units 
         JOIN building ON building.id = units.building_id 
+        LEFT JOIN media m ON m.building_id = building.id 
         WHERE units.unit_status = 1";
 
 $params = [];
@@ -66,6 +67,23 @@ if ($price_order === 'asc') {
     $sql .= " ORDER BY units.market_rent DESC";
 }
 
+function decode_image_urls_from_row($row)
+{
+    $imgs = [];
+
+    $folder = $row['filename'];
+
+    foreach (json_decode($row['gallery'], true) as $gallery) {
+        $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
+    }
+
+    if( empty($imgs) ){
+       return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
+    } else {
+        return $imgs[0];
+    }
+}
+
 if (!empty($params)) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param($types, ...$params);
@@ -73,6 +91,7 @@ if (!empty($params)) {
     $res = $stmt->get_result();
     $data = [];
     while ($row = $res->fetch_assoc()) {
+        $row['img'] = decode_image_urls_from_row($row)
         $data[] = $row;
     }
     $stmt->close();
@@ -80,6 +99,7 @@ if (!empty($params)) {
     $res = $conn->query($sql);
     $data = [];
     while ($row = $res->fetch_assoc()) {
+        $row['img'] = decode_image_urls_from_row($row)
         $data[] = $row;
     }
 }
@@ -499,7 +519,9 @@ $total_units = count($data);
         ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
 
-
+                    <div class="suite-image">
+                        <img src="<?= $item['img'] ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
+                    </div>
 
                 <div class="suite-content">
                     <div class="suite-info">
