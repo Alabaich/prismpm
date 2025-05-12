@@ -99,7 +99,7 @@ if ($arg) {
         .amenities-table p { color: #4b5563; margin: 0; }
     </style>
 
-<body>
+
     <?php foreach ($data as $item): ?>
         <div class="container">
             <!-- Main Content -->
@@ -198,7 +198,7 @@ if ($arg) {
             });
         </script>
     <?php endforeach ?>
-</body>
-</html>
+
+
 
 <?php get_footer(); ?>
