@@ -31,7 +31,7 @@ $conn = new mysqli("5.161.90.110", "root", "exampleqi", "prismpm");
 
 $sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id FROM units 
         JOIN building ON building.id = units.building_id 
-        LEFT JOIN media m ON m.building_id = building.id 
+        LEFT JOIN media ON media.building_id = building.id 
         WHERE units.unit_status = 1";
 
 $params = [];
