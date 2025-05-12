@@ -93,7 +93,7 @@ if (!empty($params)) {
     $res = $stmt->get_result();
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        $row['gallery_images'] = decode_image_urls_from_row($row);
+//        $row['gallery_images'] = decode_image_urls_from_row($row);
         $data[] = $row;
     }
     $stmt->close();
@@ -101,7 +101,7 @@ if (!empty($params)) {
     $res = $conn->query($sql);
     $data = [];
     while ($row = $res->fetch_assoc()) {
-        $row['gallery_images'] = decode_image_urls_from_row($row);
+//        $row['gallery_images'] = decode_image_urls_from_row($row);
         $data[] = $row;
     }
 }
