@@ -69,21 +69,15 @@ if ($price_order === 'asc') {
 
 function decode_image_urls_from_row($row)
 {
-    // $imgs = [];
+    $imgs = [];
 
-    // $folder = $row['filename'];
+    $folder = $row['filename'];
 
-    // foreach (json_decode($row['gallery'], true) as $gallery) {
-    //     $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
-    // }
+    foreach (json_decode($row['gallery'], true) as $gallery) {
+        $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
+    }
 
-    // if( empty($imgs) ){
-    //    return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
-    // } else {
-    //     return $imgs[0];
-    // }
-
-    return true
+    return $imgs[0];
 }
 
 if (!empty($params)) {
@@ -516,13 +510,15 @@ $total_units = count($data);
     </p>
 
     <div class="suites-list">
-        <?php foreach ($data as $item) ?>
+        <?php foreach ($data as $item):
+            $first_image = !empty($item['gallery_images'][0]) ? $item['gallery_images'][0] : null;
+        ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
-
+                <?php if ($first_image): ?>
                     <div class="suite-image">
                         <img src="<?= $item['gallery_images'] ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
                     </div>
-
+                <?php endif; ?>
                 <div class="suite-content">
                     <div class="suite-info">
                         <h3 class="suite-title">
@@ -592,7 +588,7 @@ $total_units = count($data);
                     </div>
                 </div>
             </a>
-        <?php //endforeach; ?>
+        <?php endforeach; ?>
 
     </div>
 </section>
