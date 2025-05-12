@@ -518,11 +518,11 @@ $total_units = count($data);
     <div class="suites-list">
         <?php foreach ($data as $item) ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
-                <?php if ($first_image): ?>
+
                     <div class="suite-image">
                         <img src="<?= $item['gallery_images'] ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
                     </div>
-                <?php endif; ?>
+
                 <div class="suite-content">
                     <div class="suite-info">
                         <h3 class="suite-title">
