@@ -519,7 +519,9 @@ $total_units = count($data);
         ?>
             <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
 
-
+                    <div class="suite-image">
+                        <img src="<?= $item['img'] ?>" />
+                    </div>
 
                 <div class="suite-content">
                     <div class="suite-info">
