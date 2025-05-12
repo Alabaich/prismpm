@@ -440,7 +440,13 @@ $total_units = count($data);
         <?php
         }
 
+
+        if ($building_id) {
         render_filter("building-filter", "Building", $data_build, $building_id, "building");
+        } else {
+        render_filter("building-filter", "Building", $data_build_filtered, $building_id, "building");
+        }
+
         if ($city) {
             render_filter("city-filter", "City", $data_cities, $city, "city");
         } else {
