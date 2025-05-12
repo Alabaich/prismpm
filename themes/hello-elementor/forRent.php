@@ -113,141 +113,6 @@ while ($row_bed = $res_beds->fetch_assoc()) {
 $total_units = count($data);
 ?>
 
-<section class="full-width-suites">
-    <h2 class="section-title">Available Units</h2>
-    <p class="section-subtitle">Beautiful apartments with modern appliances, in-suite laundry, quality finishes, and state-of-the-art technologies.</p>
-
-    <div class="filters-container">
-        <?php
-        function render_filter($id, $label, $options, $selected_value, $query_key)
-        {
-        ?>
-            <div class="filter-group">
-                <label for="<?= $id ?>"><?= $label ?></label>
-                <div class="custom-select">
-                    <select id="<?= $id ?>" onchange="location.href=this.value">
-                        <option value="<?= esc_url(custom_remove_query_arg($query_key)) ?>">All <?= $label ?></option>
-                        <?php foreach ($options as $value):
-                            $display = is_array($value) ? $value['name'] : $value;
-                            $val = is_array($value) ? $value['id'] : $value;
-                        ?>
-                            <option value="<?= esc_url(custom_add_query_arg($query_key, $val)) ?>" <?= $selected_value == $val ? 'selected' : '' ?>>
-                                <?= esc_html($display) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <span class="custom-arrow">▼</span>
-                </div>
-            </div>
-        <?php
-        }
-
-        render_filter("building-filter", "Building", $data_build, $building_id, "building");
-        render_filter("city-filter", "City", $data_cities, $city, "city");
-        render_filter("baths-filter", "Bath(s)", $data_baths, $baths, "baths");
-        render_filter("beds-filter", "Bedroom(s)", $data_beds, $beds, "beds");
-        ?>
-        <div class="filter-group">
-            <label for="price-filter">Price</label>
-            <div class="custom-select">
-                <select id="price-filter" onchange="location.href=this.value">
-                    <option value="<?= esc_url(custom_remove_query_arg('price_order')) ?>">Default</option>
-                    <option value="<?= esc_url(custom_add_query_arg('price_order', 'asc')) ?>" <?= $price_order === 'asc' ? 'selected' : '' ?>>Low to High</option>
-                    <option value="<?= esc_url(custom_add_query_arg('price_order', 'desc')) ?>" <?= $price_order === 'desc' ? 'selected' : '' ?>>High to Low</option>
-                </select>
-                <span class="custom-arrow">▼</span>
-            </div>
-        </div>
-    </div>
-
-    <p style="color: #888; font-size: 14px; margin-top: 10px;">
-        Showing <?= $total_units ?> rental suite<?= $total_units === 1 ? '' : 's' ?>.
-    </p>
-
-    <div class="suites-list">
-        <?php foreach ($data as $item):
-            $first_image = !empty($item['gallery_images'][0]) ? $item['gallery_images'][0] : null;
-        ?>
-            <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
-                <?php if ($first_image): ?>
-                    <div class="suite-image">
-                        <img src="https://floorplan.atriadevelopment.ca/<?= $item['filename'] ?>/gallery/<?= $first_image ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
-                    </div>
-                <?php endif; ?>
-                <div class="suite-content">
-                    <div class="suite-info">
-                        <h3 class="suite-title">
-                            <?php echo $item['unit'] . ' - ' . $item['address'] . ', ' . $item['city'] . ', ' . $item['province'] . ' ' . $item['postal_code']; ?>
-                        </h3>
-
-                        <div class="suite-availability">
-                            <span class="availability-dot">●</span>
-                            <span class="availability-text">Available</span>
-                        </div>
-
-                        <div class="suite-tags">
-                            <?php if ($item['bed'] > 0): ?>
-                                <div class="tag-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.75 4.58325V17.4166M2.75 14.6666H19.25M19.25 17.4166V12.0999C19.25 11.0732 19.25 10.5597 19.0502 10.1676C18.8744 9.82264 18.5939 9.54214 18.249 9.36642C17.8569 9.16659 17.3434 9.16659 16.3167 9.16659H10.0833V14.4166M6.41667 10.9999H6.42583M7.33333 10.9999C7.33333 11.5062 6.92292 11.9166 6.41667 11.9166C5.91041 11.9166 5.5 11.5062 5.5 10.9999C5.5 10.4936 5.91041 10.0833 6.41667 10.0833C6.92292 10.0833 7.33333 10.4936 7.33333 10.9999Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <span><?php echo $item['bed']; ?> Bedroom</span>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ($item['bath'] > 0): ?>
-                                <div class="tag-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7572 5.56968C10.5359 5.85004 9.625 6.94364 9.625 8.25V8.9375H15.125V8.25C15.125 7.01287 14.3081 5.96653 13.1842 5.621C13.4001 5.1442 13.8801 4.8125 14.4375 4.8125C15.1969 4.8125 15.8125 5.42811 15.8125 6.1875V11.6875H4.125V13.0625H4.8125V16.5C4.8125 17.6391 5.73591 18.5625 6.875 18.5625H15.125C16.264 18.5625 17.1875 17.6391 17.1875 16.5V13.0625H17.875V11.6875H17.1875V6.1875C17.1875 4.66872 15.9563 3.4375 14.4375 3.4375C13.1312 3.4375 12.0376 4.34839 11.7572 5.56968ZM6.1875 13.0625H15.8125V16.5C15.8125 16.8797 15.5047 17.1875 15.125 17.1875H6.875C6.49531 17.1875 6.1875 16.8797 6.1875 16.5V13.0625ZM12.375 6.875C12.8839 6.875 13.3283 7.15151 13.566 7.5625H11.184C11.4217 7.15151 11.8661 6.875 12.375 6.875Z" fill="black" />
-                                    </svg>
-                                    <span><?php echo $item['bath']; ?> Bathroom</span>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if (!empty($item['unit_area']) && $item['unit_area'] > 0): ?>
-                                <div class="tag-item">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.33333 2.75H4.58333C4.0971 2.75 3.63079 2.94315 3.28697 3.28697C2.94315 3.63079 2.75 4.0971 2.75 4.58333V7.33333M19.25 7.33333V4.58333C19.25 4.0971 19.0568 3.63079 18.713 3.28697C18.3692 2.94315 17.9029 2.75 17.4167 2.75H14.6667M14.6667 19.25H17.4167C17.9029 19.25 18.3692 19.0568 18.713 18.713C19.0568 18.3692 19.25 17.9029 19.25 17.4167V14.6667M2.75 14.6667V17.4167C2.75 17.9029 2.94315 18.3692 3.28697 18.713C3.63079 19.0568 4.0971 19.25 4.58333 19.25H7.33333" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <span><?php echo $item['unit_area']; ?> sq ft</span>
-                                </div>
-                            <?php endif; ?>
-
-                            <div class="tag-item">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.04293 15.3542C3.82293 18.0034 5.82126 20.1667 8.47959 20.1667H12.8704C15.8587 20.1667 17.9121 17.7559 17.4171 14.8042C16.8946 11.7059 13.9062 9.16675 10.7621 9.16675C7.35209 9.16675 4.32709 11.9534 4.04293 15.3542Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.59736 6.87508C10.863 6.87508 11.889 5.84907 11.889 4.58341C11.889 3.31776 10.863 2.29175 9.59736 2.29175C8.33168 2.29175 7.30566 3.31776 7.30566 4.58341C7.30566 5.84907 8.33168 6.87508 9.59736 6.87508Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M15.8587 7.97502C16.8713 7.97502 17.6921 7.15421 17.6921 6.14168C17.6921 5.12916 16.8713 4.30835 15.8587 4.30835C14.8463 4.30835 14.0254 5.12916 14.0254 6.14168C14.0254 7.15421 14.8463 7.97502 15.8587 7.97502Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M19.25 11.6416C20.0094 11.6416 20.625 11.026 20.625 10.2666C20.625 9.50719 20.0094 8.8916 19.25 8.8916C18.4906 8.8916 17.875 9.50719 17.875 10.2666C17.875 11.026 18.4906 11.6416 19.25 11.6416Z" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M3.639 9.80831C4.65152 9.80831 5.47233 8.98746 5.47233 7.97493C5.47233 6.96241 4.65152 6.1416 3.639 6.1416C2.62647 6.1416 1.80566 6.96241 1.80566 7.97493C1.80566 8.98746 2.62647 9.80831 3.639 9.80831Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span>Pet friendly</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="suite-price-section">
-                        <div class="suite-price">
-                            <div class="price-amount">$<?= esc_html($item['market_rent']) ?></div>
-                            <div class="price-period">month</div>
-                        </div>
-
-                        <button class="wishlist">
-                            <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </a>
-        <?php endforeach; ?>
-
-    </div>
-</section>
-
 <style>
     .full-width-suites {
         font-family: "Inter Tight", sans-serif;
@@ -539,6 +404,143 @@ $total_units = count($data);
         transform: translateY(-50%) rotate(180deg);
     }
 </style>
+
+<section class="full-width-suites">
+    <h2 class="section-title">Available Units</h2>
+    <p class="section-subtitle">Beautiful apartments with modern appliances, in-suite laundry, quality finishes, and state-of-the-art technologies.</p>
+
+    <div class="filters-container">
+        <?php
+        function render_filter($id, $label, $options, $selected_value, $query_key)
+        {
+        ?>
+            <div class="filter-group">
+                <label for="<?= $id ?>"><?= $label ?></label>
+                <div class="custom-select">
+                    <select id="<?= $id ?>" onchange="location.href=this.value">
+                        <option value="<?= esc_url(custom_remove_query_arg($query_key)) ?>">All <?= $label ?></option>
+                        <?php foreach ($options as $value):
+                            $display = is_array($value) ? $value['name'] : $value;
+                            $val = is_array($value) ? $value['id'] : $value;
+                        ?>
+                            <option value="<?= esc_url(custom_add_query_arg($query_key, $val)) ?>" <?= $selected_value == $val ? 'selected' : '' ?>>
+                                <?= esc_html($display) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <span class="custom-arrow">▼</span>
+                </div>
+            </div>
+        <?php
+        }
+
+        render_filter("building-filter", "Building", $data_build, $building_id, "building");
+        render_filter("city-filter", "City", $data_cities, $city, "city");
+        render_filter("baths-filter", "Bath(s)", $data_baths, $baths, "baths");
+        render_filter("beds-filter", "Bedroom(s)", $data_beds, $beds, "beds");
+        ?>
+        <div class="filter-group">
+            <label for="price-filter">Price</label>
+            <div class="custom-select">
+                <select id="price-filter" onchange="location.href=this.value">
+                    <option value="<?= esc_url(custom_remove_query_arg('price_order')) ?>">Default</option>
+                    <option value="<?= esc_url(custom_add_query_arg('price_order', 'asc')) ?>" <?= $price_order === 'asc' ? 'selected' : '' ?>>Low to High</option>
+                    <option value="<?= esc_url(custom_add_query_arg('price_order', 'desc')) ?>" <?= $price_order === 'desc' ? 'selected' : '' ?>>High to Low</option>
+                </select>
+                <span class="custom-arrow">▼</span>
+            </div>
+        </div>
+    </div>
+
+    <p style="color: #888; font-size: 14px; margin-top: 10px;">
+        Showing <?= $total_units ?> rental suite<?= $total_units === 1 ? '' : 's' ?>.
+    </p>
+
+    <div class="suites-list">
+        <?php foreach ($data as $item):
+            $first_image = !empty($item['gallery_images'][0]) ? $item['gallery_images'][0] : null;
+        ?>
+            <a href='/oneUnit?arg=<?= $item['unit_id'] ?>' class="suite-item">
+                <?php if ($first_image): ?>
+                    <div class="suite-image">
+                        <img src="https://floorplan.atriadevelopment.ca/<?= $item['filename'] ?>/gallery/<?= $first_image ?>" alt="<?= esc_attr($item['unit'] . ' - ' . $item['address']) ?>" />
+                    </div>
+                <?php endif; ?>
+                <div class="suite-content">
+                    <div class="suite-info">
+                        <h3 class="suite-title">
+                            <?php echo $item['unit'] . ' - ' . $item['address'] . ', ' . $item['city'] . ', ' . $item['province'] . ' ' . $item['postal_code']; ?>
+                        </h3>
+
+                        <div class="suite-availability">
+                            <span class="availability-dot">●</span>
+                            <span class="availability-text">Available</span>
+                        </div>
+
+                        <div class="suite-tags">
+                            <?php if ($item['bed'] > 0): ?>
+                                <div class="tag-item">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.75 4.58325V17.4166M2.75 14.6666H19.25M19.25 17.4166V12.0999C19.25 11.0732 19.25 10.5597 19.0502 10.1676C18.8744 9.82264 18.5939 9.54214 18.249 9.36642C17.8569 9.16659 17.3434 9.16659 16.3167 9.16659H10.0833V14.4166M6.41667 10.9999H6.42583M7.33333 10.9999C7.33333 11.5062 6.92292 11.9166 6.41667 11.9166C5.91041 11.9166 5.5 11.5062 5.5 10.9999C5.5 10.4936 5.91041 10.0833 6.41667 10.0833C6.92292 10.0833 7.33333 10.4936 7.33333 10.9999Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span><?php echo $item['bed']; ?> Bedroom</span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($item['bath'] > 0): ?>
+                                <div class="tag-item">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7572 5.56968C10.5359 5.85004 9.625 6.94364 9.625 8.25V8.9375H15.125V8.25C15.125 7.01287 14.3081 5.96653 13.1842 5.621C13.4001 5.1442 13.8801 4.8125 14.4375 4.8125C15.1969 4.8125 15.8125 5.42811 15.8125 6.1875V11.6875H4.125V13.0625H4.8125V16.5C4.8125 17.6391 5.73591 18.5625 6.875 18.5625H15.125C16.264 18.5625 17.1875 17.6391 17.1875 16.5V13.0625H17.875V11.6875H17.1875V6.1875C17.1875 4.66872 15.9563 3.4375 14.4375 3.4375C13.1312 3.4375 12.0376 4.34839 11.7572 5.56968ZM6.1875 13.0625H15.8125V16.5C15.8125 16.8797 15.5047 17.1875 15.125 17.1875H6.875C6.49531 17.1875 6.1875 16.8797 6.1875 16.5V13.0625ZM12.375 6.875C12.8839 6.875 13.3283 7.15151 13.566 7.5625H11.184C11.4217 7.15151 11.8661 6.875 12.375 6.875Z" fill="black" />
+                                    </svg>
+                                    <span><?php echo $item['bath']; ?> Bathroom</span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($item['unit_area']) && $item['unit_area'] > 0): ?>
+                                <div class="tag-item">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.33333 2.75H4.58333C4.0971 2.75 3.63079 2.94315 3.28697 3.28697C2.94315 3.63079 2.75 4.0971 2.75 4.58333V7.33333M19.25 7.33333V4.58333C19.25 4.0971 19.0568 3.63079 18.713 3.28697C18.3692 2.94315 17.9029 2.75 17.4167 2.75H14.6667M14.6667 19.25H17.4167C17.9029 19.25 18.3692 19.0568 18.713 18.713C19.0568 18.3692 19.25 17.9029 19.25 17.4167V14.6667M2.75 14.6667V17.4167C2.75 17.9029 2.94315 18.3692 3.28697 18.713C3.63079 19.0568 4.0971 19.25 4.58333 19.25H7.33333" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span><?php echo $item['unit_area']; ?> sq ft</span>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="tag-item">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.04293 15.3542C3.82293 18.0034 5.82126 20.1667 8.47959 20.1667H12.8704C15.8587 20.1667 17.9121 17.7559 17.4171 14.8042C16.8946 11.7059 13.9062 9.16675 10.7621 9.16675C7.35209 9.16675 4.32709 11.9534 4.04293 15.3542Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9.59736 6.87508C10.863 6.87508 11.889 5.84907 11.889 4.58341C11.889 3.31776 10.863 2.29175 9.59736 2.29175C8.33168 2.29175 7.30566 3.31776 7.30566 4.58341C7.30566 5.84907 8.33168 6.87508 9.59736 6.87508Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M15.8587 7.97502C16.8713 7.97502 17.6921 7.15421 17.6921 6.14168C17.6921 5.12916 16.8713 4.30835 15.8587 4.30835C14.8463 4.30835 14.0254 5.12916 14.0254 6.14168C14.0254 7.15421 14.8463 7.97502 15.8587 7.97502Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M19.25 11.6416C20.0094 11.6416 20.625 11.026 20.625 10.2666C20.625 9.50719 20.0094 8.8916 19.25 8.8916C18.4906 8.8916 17.875 9.50719 17.875 10.2666C17.875 11.026 18.4906 11.6416 19.25 11.6416Z" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.639 9.80831C4.65152 9.80831 5.47233 8.98746 5.47233 7.97493C5.47233 6.96241 4.65152 6.1416 3.639 6.1416C2.62647 6.1416 1.80566 6.96241 1.80566 7.97493C1.80566 8.98746 2.62647 9.80831 3.639 9.80831Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span>Pet friendly</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="suite-price-section">
+                        <div class="suite-price">
+                            <div class="price-amount">$<?= esc_html($item['market_rent']) ?></div>
+                            <div class="price-period">month</div>
+                        </div>
+
+                        <button class="wishlist">
+                            <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
+
+    </div>
+</section>
+
+
 <?php
 
 get_footer();
