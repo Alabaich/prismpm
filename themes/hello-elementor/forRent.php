@@ -30,11 +30,12 @@ $price_order = $query_params['price_order'] ?? null;
 
 $conn = new mysqli("5.161.90.110", "readonly", "pass", "prismpm");
 
-$sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id FROM units
-            JOIN building ON building.id = units.building_id
-            LEFT JOIN media ON media.building_id = building.id
-            WHERE units.unit_status = 1
-            AND units.building_id IN (" . implode(',', $building_ids_allowed) . ")";
+$sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id, units.unit_of_area as area_sq_ft
+        FROM units
+        JOIN building ON building.id = units.building_id
+        LEFT JOIN media ON media.building_id = building.id
+        WHERE units.unit_status = 1
+        AND units.building_id IN (" . implode(',', $building_ids_allowed) . ")";
 
 $params = [];
 $types = "";
@@ -655,12 +656,12 @@ $total_units = count($data);
                                 </div>
                             <?php endif; ?>
 
-                            <?php if (!empty($item['unit_area']) && $item['unit_area'] > 0) : ?>
+                            <?php if (!empty($item['unit_of_area']) && $item['unit_of_area'] > 0) : ?>
                                 <div class="tag-item">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.33333 2.75H4.58333C4.0971 2.75 3.63079 2.94315 3.28697 3.28697C2.94315 3.63079 2.75 4.0971 2.75 4.58333V7.33333M19.25 7.33333V4.58333C19.25 4.0971 19.0568 3.63079 18.713 3.28697C18.3692 2.94315 17.9029 2.75 17.4167 2.75H14.6667M14.6667 19.25H17.4167C17.9029 19.25 18.3692 19.0568 18.713 18.713C19.0568 18.3692 19.25 17.9029 19.25 17.4167V14.6667M2.75 14.6667V17.4167C2.75 17.9029 2.94315 18.3692 3.28697 18.713C3.63079 19.0568 4.0971 19.25 4.58333 19.25H7.33333" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <span><?php echo $item['unit_area']; ?> sq ft</span>
+                                    <span><?php echo $item['unit_of_area']; ?> sq ft</span>
                                 </div>
                             <?php endif; ?>
 
