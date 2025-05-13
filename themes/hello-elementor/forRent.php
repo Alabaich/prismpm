@@ -147,7 +147,12 @@ $data_beds = [];
 while ($row_bed = $res_beds->fetch_assoc()) {
     $data_beds[] = $row_bed['bed'];
 }
-$data_beds_filtered = array_unique(array_column($data, 'bed'));
+$data_beds_filtered = [];
+foreach ($data as $unit) {
+    if (isset($unit['bed']) && $unit['bed'] > 0 && !in_array($unit['bed'], $data_beds_filtered)) {
+        $data_beds_filtered[] = $unit['bed'];
+    }
+}
 sort($data_beds_filtered);
 
 $unique_data = [];
