@@ -561,9 +561,11 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                             <div>
                                 <h6><?= esc_html($item['label_left']); ?>:</h6> <span><?= esc_html($item['value_left']); ?></span>
                             </div>
-                            <div>
-                                <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
-                            </div>
+                            <?php if (!empty($item['launch_date'])): ?>
+                                <div>
+                                    <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <?php if (!empty($item['button_link']['url'])): ?>

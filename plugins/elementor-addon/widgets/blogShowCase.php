@@ -108,6 +108,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             }
         }
 ?>
+
         <style>
             .blog-showcase {
                 padding: 4rem 5rem;
@@ -120,12 +121,12 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 max-width: 584px;
                 margin: auto;
                 margin-bottom: 1.5rem;
-                margin-top:0px;
+                margin-top: 0px;
                 font-family: "Playfair Display", serif;
             }
 
             .blog-showcase .subtitle {
-                color: #52525B;
+                color: #6B7280;
                 margin-top: 0px;
                 margin-bottom: 2.5rem;
                 font-size: 1rem;
@@ -136,7 +137,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 width: 50%;
                 text-align: left;
                 border-radius: 0.5rem;
-                background: #F4F4F4;
+                background: #093D5F0D;
                 padding: 1rem;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -150,30 +151,33 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             }
 
             .featured-post .title {
-                font-size: 28px;
+                font-size: 20px;
                 margin-bottom: 0.5rem;
                 font-weight: 600;
                 color: #333;
+                line-height: 1;
+                min-height: calc(1em * 2);
             }
 
             .featured-post .date {
-                color: #52525B;
+                color: #6B7280;
                 font-family: "Inter Tight", sans-serif;
-
                 font-size: 1rem;
             }
 
             .blog-cards {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1rem 2rem;
+                gap: 1rem;
             }
 
             .blog-card {
-                background: #F4F4F4;
+                background: #093D5F0D;
                 border-radius: 0.5rem;
                 text-align: left;
                 overflow: hidden;
+                display: flex;
+                flex-direction: column;
             }
 
             .blog-card img {
@@ -185,53 +189,66 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             .blog-card .content {
                 padding: 1rem;
                 padding-top: 0rem;
+                display: flex;
+                flex-direction: column;
             }
 
             .blog-card .title {
-                font-size: 28px;
+                font-size: 20px;
                 margin-bottom: 1.5rem;
                 margin-top: 0px;
                 color: #2A2A2A;
+                line-height: 1;
+                min-height: calc(1em * 2);
             }
 
             .blog-card .meta {
                 display: flex;
                 justify-content: space-between;
                 font-size: 1rem;
-                color: #52525B;
+                color: #6B7280;
                 font-family: "Inter Tight", sans-serif;
-
                 margin-top: auto;
             }
 
             .meta .read-time {
-                color: #909DA2;
+                color: #6B7280;
             }
 
             .read-more-btn {
                 display: inline-flex;
                 align-items: center;
-                margin-top: 70px;
-                padding: 18px 28px;
-                border: 1px solid #000;
-                border-radius: 99999px;
-                background: #fff;
-                font-family: "Inter Tight", sans-serif;
-                color: #2A2A2A;
-                font-weight: 500;
+                margin-top: 50px;
+                padding: 10px 20px;
                 text-decoration: none;
+                color: #fff;
+                background-color: #093D5F;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 16px;
+                font-weight: normal;
                 transition: all 0.3s ease;
+                border: 2px solid transparent;
+                border-radius: 99999px;
                 gap: 1rem;
             }
 
-            .read-more-btn {
-                color: #2A2A2A;
-                transition: transform 0.3s ease;
-                rotate: -45deg;
+            .read-more-btn svg path {
+                fill: #fff;
+                transition: fill 0.3s ease;
             }
 
-            .read-more-btn a svg {
-                transition: all 0.3s ease;
+            .read-more-btn:hover {
+                color: #093D5F;
+                background-color: #fff;
+                border-color: #093D5F;
+            }
+
+            .read-more-btn:hover svg path {
+                fill: #093D5F;
+            }
+
+            .read-more-btn svg {
+                transition: transform 0.3s ease;
             }
 
             .read-more-btn:hover svg {
@@ -243,8 +260,20 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 display: flex;
                 flex-wrap: nowrap;
                 gap: 0rem 1rem;
-                margin-bottom: 3rem;
+                margin-bottom: 1rem;
+            }
 
+            .featured-post .meta {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
+                color: #6B7280;
+                font-family: "Inter Tight", sans-serif;
+                margin-top: 1rem;
+            }
+
+            .featured-post .meta .read-time {
+                color: #6B7280;
             }
 
             @media (max-width: 768px) {
@@ -253,6 +282,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 }
 
                 .blog-showcase h1 {
+                    font-family: 'Darker Grotesque', sans-serif;
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;
@@ -293,7 +323,16 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                                     <?php echo get_the_post_thumbnail($featured_post->ID, 'large'); ?>
                                 <?php endif; ?>
                                 <h3 class="title"><?php echo esc_html($featured_post->post_title); ?></h3>
-                                <p class="date"><?php echo get_the_date('', $featured_post->ID); ?></p>
+                                <div class="meta">
+                                    <span class="date"><?php echo get_the_date('', $featured_post->ID); ?></span>
+                                    <span class="read-time">
+                                        <?php
+                                        $featured_content = get_post_field('post_content', $featured_post->ID);
+                                        $read_time = $this->estimate_reading_time($featured_content);
+                                        echo $read_time . ' ' . esc_html($settings['read_time_text']);
+                                        ?>
+                                    </span>
+                                </div>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -334,9 +373,9 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             </div>
             <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-btn">
                 <?php esc_html_e('Read More', 'elementor-addon'); ?>
-                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="hqwdasdicon">
-                        <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="#2A2A2A"/>
-                    </svg>
+                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="hqwdasdicon">
+                    <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="#2A2A2A" />
+                </svg>
             </a>
         </div>
 <?php
