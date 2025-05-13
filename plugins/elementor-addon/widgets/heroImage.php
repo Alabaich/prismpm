@@ -1,9 +1,6 @@
 <?php
-
-
 class Elementor_heroImage extends \Elementor\Widget_Base
 {
-
     public function get_name()
     {
         return 'heroImage';
@@ -63,6 +60,34 @@ class Elementor_heroImage extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'height',
+            [
+                'label' => esc_html__('Height', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['vh', 'px'],
+                'range' => [
+                    'vh' => [
+                        'min' => 30,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    'px' => [
+                        'min' => 200,
+                        'max' => 1200,
+                        'step' => 10,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'vh',
+                    'size' => 80,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .years-section' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -79,17 +104,30 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 flex-wrap: wrap;
                 align-items: stretch;
                 justify-content: space-between;
+                height: 80vh;
+                margin: 0;
+                padding: 0;
             }
 
             .years-section .left {
-                max-width: 50%;
-                flex: 1;
+                width: 50%;
+                flex: 1 0 auto;
                 background: #093D5F0D;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+
+            .years-section .left img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
             }
 
             .years-section .right {
-                max-width: 50%;
-                flex: 1;
+                width: 50%;
+                flex: 1 0 auto;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -98,6 +136,8 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 padding: 40px;
                 position: relative;
                 background: #093D5F0D;
+                margin: 0;
+                box-sizing: border-box;
             }
 
             .years-section .right .big-number {
@@ -107,6 +147,8 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 font-weight: 500;
                 line-height: 106%;
                 position: relative;
+                font-style: italic;
+                margin: 0;
             }
 
             .years-section .right .text {
@@ -121,54 +163,64 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 line-height: 97%;
                 max-width: 36%;
                 z-index: 2;
+                margin: 0;
+                padding: 0;
             }
 
             @media (max-width: 1024px) {
                 .years-section {
-                    flex-direction: column-reverse;
+                    flex-direction: column;
+                    height: auto !important;
                 }
 
                 .years-section .left,
                 .years-section .right {
-                    max-width: 100%;
+                    width: 100%;
+                    height: 50vh;
                 }
 
                 .years-section .right {
-                    padding: 1.25rem;
+                    padding: 20px;
+                    height: 50vh;
                 }
 
                 .years-section .right .big-number {
-                    font-size: 200px;
-
+                    font-size: 250px;
                 }
 
                 .years-section .right .text {
-                    font-size: 36px;
+                    font-size: 28px;
+                    max-width: 80%;
                 }
             }
 
             @media (max-width: 768px) {
-                .years-section .right .text {
-                    font-size: 28px;
+                .years-section .left,
+                .years-section .right {
+                    height: 50vh;
                 }
 
-                .years-section .left {
-                    object-fit: cover;
+                .years-section .right .text {
+                    font-size: 24px;
                 }
             }
 
             @media (max-width: 480px) {
+                .years-section .left,
+                .years-section .right {
+                    height: 50vh;
+                }
+
                 .years-section .right .text {
-                    font-size: 24px;
+                    font-size: 20px;
                     max-width: 90%;
                 }
 
                 .years-section .right .big-number {
-                    font-size: 225px;
+                    font-size: 250px;
                 }
             }
         </style>
-
 
         <div class="years-section">
             <div class="left">

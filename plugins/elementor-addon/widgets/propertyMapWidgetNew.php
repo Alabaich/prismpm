@@ -345,13 +345,14 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
             }
 
             .ffffwqdsad {
-                margin: 0px;
-                font-family: "Inter Tight", sans-serif;
-                font-size: 1rem;
-                color: #52525B;
-                max-width: 436px;
                 margin: auto;
                 text-align: center;
+                font-size: 1rem;
+                font-family: "Inter Tight", sans-serif;
+                margin-bottom: 1.5rem;
+                color: #6B7280;
+                max-width: 420px;
+                line-height: 1.6;
             }
 
             .property-number-icon {

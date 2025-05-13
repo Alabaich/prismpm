@@ -263,8 +263,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 background: #093D5F;
                 text-align: center;
-                padding-bottom: 202px;
-                padding-top: 202px;
+                padding: 8.5vh 2%;
             }
 
             .richText h2 {
@@ -286,14 +285,16 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
 
             .richText p {
-                color: #E0E0E0;
-                font-family: "Inter Tight", Sans-serif;
-                font-size: 1rem;
                 font-weight: 400;
                 max-width: 614px;
                 margin: 0;
                 padding-top: 1.5rem;
-                padding-bottom: 70px;
+                padding-bottom: 25px;
+                font-size: 1rem;
+                font-family: "Inter Tight", sans-serif;
+                margin-bottom: 1.5rem;
+                color: #E0E0E0;
+                line-height: 1.6;
             }
 
             .richTextText {

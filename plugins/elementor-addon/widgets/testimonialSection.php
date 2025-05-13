@@ -125,23 +125,28 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
 
             .testimonial-section h4 {
                 color: #E0E0E0;
-                font-size: 1.25rem;
                 margin-bottom: 3.125rem;
                 margin-top: 0;
+                font-weight: 400;
+                margin: 0;
+                font-size: 1rem;
+                font-family: "Inter Tight", sans-serif;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
             }
 
             .testimonial-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
                 gap: 1.875rem;
-                max-width: 75rem;
                 margin: 0 auto;
+                width: 90%;
             }
 
             .testimonial-card {
                 background: #fff;
                 color: #2a2a2a;
-                border-radius: 0.75rem;
+                border-radius: 4px;
                 padding: 1.625rem;
                 text-align: left;
                 box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.1);

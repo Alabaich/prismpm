@@ -199,7 +199,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .coming-soon-section h1 {
                 margin-bottom: 0.625rem;
-                font-size:52px;
+                font-size: 52px;
                 font-family: "Playfair Display", serif;
                 /* 10px */
             }
@@ -212,7 +212,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 font-family: "Inter Tight", sans-serif;
                 color: #52525B;
                 margin-bottom: 1.875rem;
-                font-size:1rem;
+                font-size: 1rem;
                 /* 30px */
             }
 
@@ -265,9 +265,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 height: 100%;
                 object-fit: cover;
             }
+
             .coming-soon-section .property-image {
                 max-width: 100%;
-                max-width:586px;
+                max-width: 586px;
                 min-height: auto;
                 min-width: auto;
                 flex: 1 1 50%;
@@ -284,7 +285,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .metaq h6 {
                 font-size: 1rem;
-                color: #52525B;
+                color: #6B7280;
                 margin: 0;
             }
 
@@ -295,7 +296,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .property-button {
                 margin-top: auto;
-                padding-bottom:2rem;
+                padding-bottom: 2rem;
                 transition: 0.3s ease;
             }
 
@@ -314,6 +315,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 gap: 1rem;
                 transform: scale(1);
             }
+
             .property-button a svg {
                 transition: transform 0.3s ease;
             }
@@ -321,7 +323,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             .title-container {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+                align-items: start;
                 flex-wrap: nowrap;
             }
 
@@ -356,6 +358,26 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 align-items: center;
             }
 
+            .title-container .section-titles .subtitle-content a {
+                color: #093D5F;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                position: relative;
+                display: inline-block;
+            }
+
+            .title-container .section-titles .subtitle-content a:hover {
+                color: rgb(6, 91, 151);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 2px;
+            }
+
+            .title-container .section-titles .subtitle-content a:hover::after {
+                width: 100%;
+            }
+
             .coming-soon-section.centered-header .section-img {
                 display: none;
             }
@@ -368,6 +390,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             .anounc-button-icon {
                 rotate: -45deg;
             }
+
             @media (max-width: 768px) {
                 .coming-soon-section .property-card {
                     flex-direction: column;
@@ -377,10 +400,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
                 .coming-soon-section {
                     padding: 2rem 1rem;
-                    display:flex;
-                    flex-direction:column;
-                    justify-items:center;
-                    align-items:center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-items: center;
+                    align-items: center;
                 }
 
                 .coming-soon-section .property-content {
@@ -399,9 +422,9 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 .coming-soon-section .property-image img {
                     height: auto;
                     max-height: 200px;
-                    max-width:310px;
+                    max-width: 310px;
                     min-height: 200px;
-                    min-width:310px;
+                    min-width: 310px;
                     object-fit: cover;
                     border-radius: 0.5rem;
                 }
@@ -416,8 +439,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-content h3 {
+                    font-family: 'Darker Grotesque', sans-serif;
+                    font-weight: 600;
                     font-size: 28px;
-                    margin-bottom: 1rem;
+                    line-height: 90%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: #2a2a2a;
                 }
 
                 .coming-soon-section .property-content .metaq {
@@ -477,10 +505,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     font-weight: 600;
                     font-size: 28px;
                     line-height: 90%;
-                    letter-spacing: 0%;
                     text-align: center;
                     vertical-align: middle;
                     color: #2a2a2a;
+                    margin-bottom: 1.5rem;
                 }
 
                 .section-titles h1,
@@ -501,20 +529,20 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             $classes[] = 'first-page';
         }
         ?>
-        <div class="<?php echo implode(' ', $classes); ?>">
+        <div class="<?= implode(' ', $classes); ?>">
             <div class="title-container">
                 <div class="section-titles">
-                    <h1 class="flex"><?php echo esc_html($settings['section_title']); ?></h1>
-                    <p class="flex"><?php echo $settings['section_subtitle']; ?></p>
+                    <h1 class="flex"><?= esc_html($settings['section_title']); ?></h1>
+                    <div class="flex subtitle-content"><?= wp_kses_post($settings['section_subtitle']); ?></div>
                 </div>
                 <?php if (!empty($settings['section_image']['url'])) : ?>
                     <div class="section-img flex">
                         <?php if (!empty($settings['section_image_link']['url'])): ?>
-                            <a href="<?php echo esc_url($settings['section_image_link']['url']); ?>" target="<?php echo esc_attr($settings['section_image_link']['is_external'] ? '_blank' : '_self'); ?>">
-                                <img src="<?php echo esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
+                            <a href="<?= esc_url($settings['section_image_link']['url']); ?>" target="<?= esc_attr($settings['section_image_link']['is_external'] ? '_blank' : '_self'); ?>">
+                                <img src="<?= esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
                             </a>
                         <?php else: ?>
-                            <img src="<?php echo esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
+                            <img src="<?= esc_url($settings['section_image']['url']); ?>" alt="Section Image" />
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -522,40 +550,40 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             <?php foreach ($settings['properties'] as $item): ?>
                 <div class="property-card">
                     <div class="property-content">
-                        <h3><?php echo esc_html($item['title']); ?></h3>
+                        <h3><?= esc_html($item['title']); ?></h3>
                         <div class="metaq">
                             <div>
-                                <h6>Address:</h6> <span><?php echo esc_html($item['address']); ?></span>
+                                <h6>Address:</h6> <span><?= esc_html($item['address']); ?></span>
                             </div>
                             <div>
-                                <h6>Developer:</h6> <span><?php echo esc_html($item['developer']); ?></span>
+                                <h6>Developer:</h6> <span><?= esc_html($item['developer']); ?></span>
                             </div>
                             <div>
-                                <h6><?php echo esc_html($item['label_left']); ?>:</h6> <span><?php echo esc_html($item['value_left']); ?></span>
+                                <h6><?= esc_html($item['label_left']); ?>:</h6> <span><?= esc_html($item['value_left']); ?></span>
                             </div>
                             <div>
-                                <h6>Estimated Launch:</h6> <span><?php echo esc_html($item['launch_date']); ?></span>
+                                <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
                             </div>
                         </div>
 
                         <?php if (!empty($item['button_link']['url'])): ?>
                             <div class="property-button">
-                                <a href="<?php echo esc_url($item['button_link']['url']); ?>" target="<?php echo esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
-                                <?php echo esc_html($item['button_text']); ?>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C0.447715 0 1.49012e-08 0.447715 1.49012e-08 1C1.49012e-08 1.55228 0.447715 2 1 2H8.51314L0.292893 10.2929C-0.0976311 10.6834 -0.0976311 11.3166 0.292893 11.7071C0.683417 12.0976 1.31658 12.0976 1.70711 11.7071L10 3.34093V11C10 11.5523 10.4477 12 11 12C11.5523 12 12 11.5523 12 11V1C12 0.447715 11.5523 0 11 0H1Z" fill="white"/>
-                                </svg>
+                                <a href="<?= esc_url($item['button_link']['url']); ?>" target="<?= esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
+                                    <?= esc_html($item['button_text']); ?>
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C0.447715 0 1.49012e-08 0.447715 1.49012e-08 1C1.49012e-08 1.55228 0.447715 2 1 2H8.51314L0.292893 10.2929C-0.0976311 10.6834 -0.0976311 11.3166 0.292893 11.7071C0.683417 12.0976 1.31658 12.0976 1.70711 11.7071L10 3.34093V11C10 11.5523 10.4477 12 11 12C11.5523 12 12 11.5523 12 11V1C12 0.447715 11.5523 0 11 0H1Z" fill="white" />
+                                    </svg>
                                 </a>
                             </div>
                         <?php endif; ?>
                     </div>
                     <div class="property-image">
                         <?php if (!empty($item['image_link']['url'])): ?>
-                            <a href="<?php echo esc_url($item['image_link']['url']); ?>" target="<?php echo esc_attr($item['image_link']['is_external'] ? '_blank' : '_self'); ?>">
-                                <img src="<?php echo esc_url($item['image']['url']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                            <a href="<?= esc_url($item['image_link']['url']); ?>" target="<?= esc_attr($item['image_link']['is_external'] ? '_blank' : '_self'); ?>">
+                                <img src="<?= esc_url($item['image']['url']); ?>" alt="<?= esc_attr($item['title']); ?>">
                             </a>
                         <?php else: ?>
-                            <img src="<?php echo esc_url($item['image']['url']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                            <img src="<?= esc_url($item['image']['url']); ?>" alt="<?= esc_attr($item['title']); ?>">
                         <?php endif; ?>
                     </div>
                 </div>

@@ -116,14 +116,13 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
         <style>
             .social-follow-section {
-                padding: 3.75rem 5rem;
                 text-align: center;
                 overflow-x: hidden;
             }
 
             .conteinerchenko {
-                max-width:1568px;
                 margin:0 auto;
+                padding: 0rem 5rem;
             }
 
             .social-follow-section h1 {
@@ -164,7 +163,6 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 font-size: 1rem;
                 font-family: "Inter Tight", sans-serif;
                 color: #52525B;
-                margin-bottom: 1.25rem;
                 text-align: left;
             }
 
@@ -188,10 +186,9 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
             .bottom-social-image img {
                 width: 100%;
-                object-fit: fit-content;
+                object-fit: cover;
                 height: auto;
                 max-height:556px;
-                border-radius: 0.5rem;
                 display: block;
                 image-rendering: auto;
                 transition: filter 0.3s;
@@ -206,11 +203,16 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 display:flex;
                 align-items:baseline;
                 flex-direction:column;
-            
             }
+            
             @media (max-width: 768px) {
                 .social-follow-section {
                     padding: 2rem 1rem;
+                }
+
+
+                .conteinerchenko {
+                    padding: 0;
                 }
 
                 .social-follow-section h1 {
@@ -262,7 +264,6 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 }
 
                 .bottom-social-image img {
-                    border-radius: 0.5rem;
                     width: 100%;
                     height: 200px;
                     object-fit: cover;

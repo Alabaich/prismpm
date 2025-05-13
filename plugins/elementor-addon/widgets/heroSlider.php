@@ -291,7 +291,6 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
-                font-size: 4rem;
                 font-weight: 700;
                 line-height: 1.1;
                 margin-bottom: 1.5rem;
@@ -305,7 +304,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 font-family: "Inter Tight", sans-serif;
                 max-width: 414px;
                 color: <?php echo esc_attr($settings['description_color']); ?>;
-                margin-bottom: 4.5rem;
+                margin-bottom: 1.5rem;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button {
