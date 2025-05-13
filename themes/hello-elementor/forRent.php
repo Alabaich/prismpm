@@ -356,6 +356,26 @@ $total_units = count($data);
         transform: scale(0.9);
     }
 
+    .wishlist-notification {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50px;
+        background-color: #81C784;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 1rem;
+    }
+
+    .wishlist-notification.show {
+        opacity: 1;
+    }
+
     .filters-container {
         display: flex;
         flex-wrap: wrap;
@@ -363,6 +383,14 @@ $total_units = count($data);
         margin-bottom: 2rem;
         margin-top: 2rem;
         align-items: flex-end;
+    }
+
+    .suite-price-section button:focus {
+        background-color: transparent;
+    }
+
+    .suite-price-section button {
+        color: transparent;
     }
 
     .filter-group {
@@ -665,6 +693,58 @@ $total_units = count($data);
 
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wishlistButtons = document.querySelectorAll('.wishlist');
+        console.log('Found wishlist buttons:', wishlistButtons.length);
+
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                console.log('Clicked wishlist!');
+
+                const link = this.closest('.suite-price-section')?.closest('.suite-content')?.parentNode;
+
+                if (link && link.tagName === 'A') {
+                    const href = link.getAttribute('href');
+                    const argIndex = href.indexOf('arg=');
+                    if (argIndex !== -1) {
+                        let unitId = href.substring(argIndex + 4);
+                        const ampersandIndex = unitId.indexOf('&');
+                        if (ampersandIndex !== -1) {
+                            unitId = unitId.substring(0, ampersandIndex);
+                        }
+                        console.log('Unit ID:', unitId);
+                        showWishlistMessage(unitId);
+                    } else {
+                        console.log('\'arg=\' not found in URL:', href);
+                    }
+                } else {
+                    console.log('Could not find the parent <a> tag.');
+                }
+            });
+        });
+
+        function showWishlistMessage(unitId) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('wishlist-notification');
+            messageDiv.textContent = `Suite ${unitId} added to favorites!`;
+            document.body.appendChild(messageDiv);
+
+            setTimeout(() => {
+                messageDiv.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+                setTimeout(() => {
+                    messageDiv.remove();
+                }, 500);
+            }, 2000);
+        }
+    });
+</script>
 
 
 <?php
