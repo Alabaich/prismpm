@@ -569,7 +569,34 @@ $total_units = count($data);
                     <div class="suite-info">
                         <div class="upperBuildingInfo">
                             <h3 class="suite-title">
-                                <?php echo $item['unit'] . ' - ' . $item['address'] . ', ' . $item['city'] . ', ' . $item['province'] . ' ' . $item['postal_code']; ?>
+                                <?php
+                                $bedrooms = isset($item['bed']) ? intval($item['bed']) : 0;
+                                $bedroom_text = '';
+                                if ($bedrooms > 0) {
+                                    $bedroom_text = $bedrooms . ' Bed';
+                                }
+                                $unit_info_parts = [];
+                                if ($bedrooms > 0) {
+                                    $unit_info_parts[] = $bedroom_text;
+                                }
+                                if (isset($item['unit'])) {
+                                    $unit_info_parts[] = $item['unit'];
+                                }
+                                if (isset($item['address'])) {
+                                    $unit_info_parts[] = $item['address'];
+                                }
+                                if (isset($item['city'])) {
+                                    $unit_info_parts[] = $item['city'];
+                                }
+                                if (isset($item['province'])) {
+                                    $unit_info_parts[] = $item['province'];
+                                }
+                                if (isset($item['postal_code'])) {
+                                    $unit_info_parts[] = $item['postal_code'];
+                                }
+
+                                echo implode(', ', array_filter($unit_info_parts));
+                                ?>
                             </h3>
                             <div class="suite-availability">
                                 <span class="availability-dot">●</span>
