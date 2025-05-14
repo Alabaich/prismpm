@@ -105,7 +105,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
 
             .land-acknowledgement-section {
                 width: 100%;
-                padding: 5rem 5rem;
+                padding: 1rem 1rem;
                 background: #093D5F0D;
             }
 

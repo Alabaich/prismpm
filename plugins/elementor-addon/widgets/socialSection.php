@@ -202,7 +202,6 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 filter: brightness(1.05);
             }
 
-
             .qwedas {
                 display: flex;
                 align-items: baseline;
@@ -212,6 +211,12 @@ class Elementor_socialSection extends \Elementor\Widget_Base
             .social-handle {
                 font-weight: 500;
                 color: #007bff;
+            }
+
+            .social-block-link i {
+                font-size: 1.25rem;
+                color: #000;
+                text-decoration: none !important;
             }
 
             @media (max-width: 768px) {
@@ -312,15 +317,12 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 </div>
             </div>
 
-
             <?php if (!empty($settings['bottom_image']['url'])): ?>
                 <div class="bottom-social-image">
                     <img src="<?php echo esc_url($settings['bottom_image']['url']); ?>" alt="Social Media Image" loading="lazy">
                 </div>
             <?php endif; ?>
         </div>
-
-
 
 <?php
     }
