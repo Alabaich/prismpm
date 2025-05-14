@@ -33,7 +33,12 @@ $conn = new mysqli("5.161.90.110", "readonly", "pass", "prismpm");
 $sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id, units.unit_of_area as area_sq_ft
         FROM units
         JOIN building ON building.id = units.building_id
-        LEFT JOIN media ON media.building_id = building.id
+        LEFT JOIN media ON (
+          media.building_id = building.id AND (
+            JSON_CONTAINS(media.share_unit, JSON_QUOTE(units.floorplan))
+            OR JSON_LENGTH(media.share_unit) = 0
+          )
+        )
         WHERE units.unit_status = 1
         AND units.building_id IN (" . implode(',', $building_ids_allowed) . ")";
 
