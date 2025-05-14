@@ -96,24 +96,29 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $cities = array_slice($settings['cities'], 0, 2); // Ограничиваем до 2
+        $cities = array_slice($settings['cities'], 0, 2);
 ?>
         <style>
+            .land-acknowledgement-section-wrapper {
+                margin: 5rem 5rem;
+            }
+
             .land-acknowledgement-section {
                 width: 100%;
                 padding: 5rem 5rem;
+                background: #093D5F0D;
             }
 
             .land-acknowledgement-section .section-heading {
                 text-align: center;
                 margin-bottom: 50px;
                 max-width: 488px;
-                margin:auto;
+                margin: auto;
             }
 
             .land-acknowledgement-section .section-heading h2 {
                 font-weight: 600;
-                font-size:52px;
+                font-size: 52px;
                 line-height: 1.1;
                 letter-spacing: 0em;
                 text-transform: capitalize;
@@ -143,7 +148,6 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 overflow: hidden;
                 align-items: flex-start;
                 gap: 1.5rem;
-                background: #093D5F0D;
             }
 
             .city-block img {
@@ -181,14 +185,19 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             }
 
             @media (max-width: 768px) {
+                .land-acknowledgement-section-wrapper {
+                    margin: 5rem 5%;
+                }
+
                 .city-columns {
                     flex-direction: column;
-                    align-items:center;
+                    align-items: center;
                     gap: 2rem;
                 }
 
                 .land-acknowledgement-section {
                     padding: 5rem 1rem;
+                    background: transparent;
                 }
 
                 .land-acknowledgement-section .section-heading h2 {
@@ -206,7 +215,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 }
 
                 .city-block {
-                    width:100%;
+                    width: 100%;
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
@@ -224,10 +233,13 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                     width: 100%;
                     padding: 1rem 0;
                     text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
                 }
 
                 .city-block-text h4 {
-                    font-size: 1.25rem;
+                    font-size: 1.5rem;
                 }
 
                 .city-block-text p {
@@ -236,27 +248,29 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             }
         </style>
 
-        <div class="land-acknowledgement-section">
-            <div class="section-heading">
-                <?php if (!empty($settings['main_title'])) : ?>
-                    <h2><?php echo esc_html($settings['main_title']); ?></h2>
-                <?php endif; ?>
+        <div class="land-acknowledgement-section-wrapper">
+            <div class="land-acknowledgement-section">
+                <div class="section-heading">
+                    <?php if (!empty($settings['main_title'])) : ?>
+                        <h2><?php echo esc_html($settings['main_title']); ?></h2>
+                    <?php endif; ?>
 
-                <?php if (!empty($settings['subtitle'])) : ?>
-                    <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
-                <?php endif; ?>
-            </div>
+                    <?php if (!empty($settings['subtitle'])) : ?>
+                        <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+                    <?php endif; ?>
+                </div>
 
-            <div class="city-columns">
-                <?php foreach ($cities as $city): ?>
-                    <div class="city-block">
-                        <img src="<?php echo esc_url($city['image']['url']); ?>" alt="<?php echo esc_attr($city['city']); ?>">
-                        <div class="city-block-text">
-                            <h4><?php echo esc_html($city['city']); ?></h4>
-                            <p><?php echo esc_html($city['description']); ?></p>
+                <div class="city-columns">
+                    <?php foreach ($cities as $city): ?>
+                        <div class="city-block">
+                            <img src="<?php echo esc_url($city['image']['url']); ?>" alt="<?php echo esc_attr($city['city']); ?>">
+                            <div class="city-block-text">
+                                <h4><?php echo esc_html($city['city']); ?></h4>
+                                <p><?php echo esc_html($city['description']); ?></p>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
 

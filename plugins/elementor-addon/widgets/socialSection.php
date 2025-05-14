@@ -121,7 +121,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
             }
 
             .conteinerchenko {
-                margin:0 auto;
+                margin: 0 auto;
                 padding: 0rem 5rem;
             }
 
@@ -152,9 +152,9 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 gap: 1.25rem;
                 border-radius: 0.5rem;
                 transition: all 0.3s ease;
-                padding-bottom:50px;
-                display:flex;
-                flex-direction:column;
+                padding-bottom: 50px;
+                display: flex;
+                flex-direction: column;
             }
 
             .social-block span {
@@ -166,20 +166,24 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 text-align: left;
             }
 
-            .social-block p {
+            .social-block-link {
                 font-family: "Inter Tight", sans-serif;
-                display:flex;
-                justify-items:baseline;
-                align-items:center;
-                color: #374151;
-                margin:0px;
                 display: flex;
+                justify-items: baseline;
+                align-items: center;
+                color: #374151;
+                margin: 0px;
                 align-items: center;
                 font-size: 1.125rem;
                 gap: 1rem;
+                text-decoration: none;
             }
 
-            .social-block i {
+            .social-block-link:hover {
+                text-decoration: underline;
+            }
+
+            .social-block-link i {
                 font-size: 1.25rem;
                 color: #000;
             }
@@ -188,7 +192,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 width: 100%;
                 object-fit: cover;
                 height: auto;
-                max-height:556px;
+                max-height: 556px;
                 display: block;
                 image-rendering: auto;
                 transition: filter 0.3s;
@@ -200,11 +204,16 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
 
             .qwedas {
-                display:flex;
-                align-items:baseline;
-                flex-direction:column;
+                display: flex;
+                align-items: baseline;
+                flex-direction: column;
             }
-            
+
+            .social-handle {
+                font-weight: 500;
+                color: #007bff;
+            }
+
             @media (max-width: 768px) {
                 .social-follow-section {
                     padding: 2rem 1rem;
@@ -244,21 +253,20 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
                 .social-block span {
                     font-size: 1rem;
-                    font-weight: 600;
+                    font-weight: 500;
                     margin-bottom: 0.25rem;
                     color: #111827;
                 }
 
-                .social-block p {
+                .social-block-link {
                     font-size: 0.95rem;
                     color: #374151;
                     margin: 0.2rem 0;
-                    display: flex;
                     align-items: center;
                     gap: 0.4rem;
                 }
 
-                .social-block i {
+                .social-block-link i {
                     color: #000;
                     font-size: 1rem;
                 }
@@ -274,26 +282,34 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
         <div class="social-follow-section">
             <div class='conteinerchenko'>
-            <h1><?php echo esc_html($settings['main_title']); ?></h1>
-            <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+                <h1><?php echo esc_html($settings['main_title']); ?></h1>
+                <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
 
-            <div class="social-follow-rows">
-                <?php foreach ($settings['socials'] as $social): ?>
-                    <div class="social-block">
-                        <span><?php echo esc_html($social['label']); ?></span>
-                        <div class='qwedas'>
-                            
-                        <?php if (!empty($social['facebook'])): ?>
-                            <p><i class="fab fa-facebook"></i> <?php echo esc_html($social['facebook']); ?></p>
-                        <?php endif; ?>
+                <div class="social-follow-rows">
+                    <?php foreach ($settings['socials'] as $social): ?>
+                        <div class="social-block">
+                            <span><?php echo esc_html($social['label']); ?></span>
+                            <div class='qwedas'>
 
-                        <?php if (!empty($social['instagram'])): ?>
-                            <p><i class="fab fa-instagram"></i> <?php echo esc_html($social['instagram']); ?></p>
-                        <?php endif; ?>
+                                <?php if (!empty($social['facebook'])):
+                                    $facebook_url = 'https://www.facebook.com/' . ltrim($social['facebook'], '@');
+                                ?>
+                                    <a href="<?php echo esc_url($facebook_url); ?>" target="_blank" class="social-block-link">
+                                        <i class="fab fa-facebook"></i> <span class="social-handle"><?php echo esc_html($social['facebook']); ?></span>
+                                    </a>
+                                <?php endif; ?>
+
+                                <?php if (!empty($social['instagram'])):
+                                    $instagram_url = 'https://www.instagram.com/' . ltrim($social['instagram'], '@');
+                                ?>
+                                    <a href="<?php echo esc_url($instagram_url); ?>" target="_blank" class="social-block-link">
+                                        <i class="fab fa-instagram"></i> <span class="social-handle"><?php echo esc_html($social['instagram']); ?></span>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
 
