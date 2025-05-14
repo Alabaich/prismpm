@@ -30,19 +30,9 @@ $price_order = $query_params['price_order'] ?? null;
 
 $conn = new mysqli("5.161.90.110", "readonly", "pass", "prismpm");
 
-$sql = "SELECT units.*, building.*, media.gallery, building.filename, units.id as unit_id, units.unit_of_area as area_sq_ft
+$sql = "SELECT units.*, building.*, units.id as unit_id, units.unit_of_area as area_sq_ft
         FROM units
         JOIN building ON building.id = units.building_id
-        LEFT JOIN (
-          SELECT *
-          FROM media
-          WHERE JSON_LENGTH(share_unit) = 0 OR JSON_VALID(share_unit)
-        ) AS media
-          ON media.building_id = building.id
-          AND (
-            JSON_CONTAINS(media.share_unit, JSON_QUOTE(units.floorplan))
-            OR JSON_LENGTH(media.share_unit) = 0
-          )
         WHERE units.unit_status = 1
         AND units.building_id IN (" . implode(',', $building_ids_allowed) . ")";
 
@@ -79,41 +69,48 @@ if ($price_order === 'asc') {
     $sql .= " ORDER BY units.market_rent DESC";
 }
 
-function decode_image_urls_from_row($row)
-{
-    $imgs = [];
-
-    $folder = $row['filename'];
-
-    foreach (json_decode($row['gallery'], true) as $gallery) {
-        $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
-    }
-
-    if (empty($imgs)) {
-        return "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
-    } else {
-        return $imgs[0];
-    }
-}
-
 if (!empty($params)) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $res = $stmt->get_result();
-    $data = [];
-    while ($row = $res->fetch_assoc()) {
-        $row['img'] = decode_image_urls_from_row($row);
-        $data[] = $row;
-    }
+    $data = $res->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 } else {
     $res = $conn->query($sql);
-    $data = [];
-    while ($row = $res->fetch_assoc()) {
-        $row['img'] = decode_image_urls_from_row($row);
-        $data[] = $row;
+    $data = $res->fetch_all(MYSQLI_ASSOC);
+}
+
+foreach ($data as &$unit) {
+    $media_sql = "SELECT media.gallery as m_gallery, media.share_unit
+                 FROM media
+                 WHERE media.building_id = ?
+                 AND (
+                     JSON_CONTAINS(media.share_unit, JSON_QUOTE(?))
+                     OR JSON_LENGTH(media.share_unit) = 0
+                 )
+                 ORDER BY JSON_LENGTH(media.share_unit) DESC
+                 LIMIT 1";
+    
+    $stmt = $conn->prepare($media_sql);
+    $stmt->bind_param("is", $unit['building_id'], $unit['floorplan']);
+    $stmt->execute();
+    $media_res = $stmt->get_result();
+    $media_row = $media_res->fetch_assoc();
+    $stmt->close();
+    
+    $imgs = [];
+    $folder = $unit['filename'];
+    
+    if ($media_row && !empty($media_row['m_gallery'])) {
+        foreach (json_decode($media_row['m_gallery'], true) as $gallery) {
+            $imgs[] = "https://floorplan.atriadevelopment.ca/$folder/gallery/$gallery";
+        }
     }
+    
+    $unit['img'] = empty($imgs) ? 
+        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" : 
+        $imgs[0];
 }
 
 $res_build = $conn->query("SELECT * FROM building WHERE id IN (" . implode(',', $building_ids_allowed) . ")");
@@ -133,7 +130,6 @@ foreach ($data as $item) {
         $seen_building_ids[] = $item['building_id'];
     }
 }
-
 
 $res_cities = $conn->query("SELECT DISTINCT city FROM building WHERE id IN (" . implode(',', $building_ids_allowed) . ")");
 $data_cities = [];
@@ -165,15 +161,6 @@ foreach ($data as $unit) {
 }
 sort($data_beds_filtered);
 
-// $unique_data = [];
-// $seen_unit_ids = [];
-// foreach ($data as $unit) {
-//     if (!in_array($unit['unit_id'], $seen_unit_ids)) {
-//         $unique_data[] = $unit;
-//         $seen_unit_ids[] = $unit['unit_id'];
-//     }
-// }
-// $data = $unique_data;
 $total_units = count($data);
 ?>
 
