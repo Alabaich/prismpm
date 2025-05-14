@@ -465,6 +465,11 @@ $total_units = count($data);
         background-image: url('data:image/svg+xml;utf8,<svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.6676 0.832926L6.33431 6.16626L1.00098 0.832926" stroke="%23093D5F" stroke-width="1.52381" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     }
 
+    .heart-icon path.filled {
+        fill: #ff0000;
+        stroke: #ff0000;
+    }
+
     @media (max-width: 768px) {
         .suite-item {
             flex-direction: column;
@@ -703,39 +708,36 @@ $total_units = count($data);
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const wishlistButtons = document.querySelectorAll('.wishlist');
-        console.log('Found wishlist buttons:', wishlistButtons.length);
 
-        wishlistButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                console.log('Clicked wishlist!');
+        function toggleWishlistItem(unitId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const index = wishlist.indexOf(unitId);
+            let added = false;
 
-                const link = this.closest('.suite-price-section')?.closest('.suite-content')?.parentNode;
+            if (index === -1) {
+                wishlist.push(unitId);
+                showWishlistMessage(unitId, 'added to', 'green');
+                added = true;
+            } else {
+                wishlist.splice(index, 1);
+                showWishlistMessage(unitId, 'removed from', 'red');
+                added = false;
+            }
 
-                if (link && link.tagName === 'A') {
-                    const href = link.getAttribute('href');
-                    const argIndex = href.indexOf('arg=');
-                    if (argIndex !== -1) {
-                        let unitId = href.substring(argIndex + 4);
-                        const ampersandIndex = unitId.indexOf('&');
-                        if (ampersandIndex !== -1) {
-                            unitId = unitId.substring(0, ampersandIndex);
-                        }
-                        console.log('Unit ID:', unitId);
-                        showWishlistMessage(unitId);
-                    } else {
-                        console.log('\'arg=\' not found in URL:', href);
-                    }
-                } else {
-                    console.log('Could not find the parent <a> tag.');
-                }
-            });
-        });
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            return added;
+        }
 
-        function showWishlistMessage(unitId) {
+        function isInWishlist(unitId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            return wishlist.includes(unitId);
+        }
+
+        function showWishlistMessage(unitId, action, color) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('wishlist-notification');
-            messageDiv.textContent = `Suite ${unitId} added to favorites!`;
+            messageDiv.textContent = `Suite ${unitId} ${action} favorites!`;
+            messageDiv.style.backgroundColor = color;
             document.body.appendChild(messageDiv);
 
             setTimeout(() => {
@@ -749,11 +751,71 @@ $total_units = count($data);
                 }, 500);
             }, 2000);
         }
+
+        function markWishlistItems() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const links = document.querySelectorAll('.suite-item');
+
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                const unitId = extractUnitIdFromHref(href);
+                const heartIconPath = link.querySelector('.wishlist .heart-icon path'); // Получаем path
+
+                if (unitId && wishlist.includes(unitId)) {
+                    if (heartIconPath) {
+                        heartIconPath.classList.add('filled');
+                    }
+                } else {
+                    if (heartIconPath) {
+                        heartIconPath.classList.remove('filled');
+                    }
+                }
+            });
+        }
+
+        function extractUnitIdFromHref(href) {
+            const argIndex = href.indexOf('arg=');
+            if (argIndex !== -1) {
+                let unitId = href.substring(argIndex + 4);
+                const ampersandIndex = unitId.indexOf('&');
+                if (ampersandIndex !== -1) {
+                    unitId = unitId.substring(0, ampersandIndex);
+                }
+                return unitId;
+            }
+            return null;
+        }
+
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const link = this.closest('.suite-item');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    const unitId = extractUnitIdFromHref(href);
+                    const heartIconPath = this.querySelector('.heart-icon path');
+
+                    if (unitId) {
+                        const wasAdded = toggleWishlistItem(unitId);
+                        if (heartIconPath) {
+                            if (wasAdded) {
+                                heartIconPath.classList.add('filled');
+                            } else {
+                                heartIconPath.classList.remove('filled');
+                            }
+                        }
+                        markWishlistItems();
+                    }
+                }
+            });
+        });
+
+        markWishlistItems();
     });
 </script>
 
-
 <?php
-
 get_footer();
 ?>
