@@ -156,15 +156,15 @@ foreach ($data as $unit) {
 }
 sort($data_beds_filtered);
 
-$unique_data = [];
-$seen_unit_ids = [];
-foreach ($data as $unit) {
-    if (!in_array($unit['unit_id'], $seen_unit_ids)) {
-        $unique_data[] = $unit;
-        $seen_unit_ids[] = $unit['unit_id'];
-    }
-}
-$data = $unique_data;
+// $unique_data = [];
+// $seen_unit_ids = [];
+// foreach ($data as $unit) {
+//     if (!in_array($unit['unit_id'], $seen_unit_ids)) {
+//         $unique_data[] = $unit;
+//         $seen_unit_ids[] = $unit['unit_id'];
+//     }
+// }
+// $data = $unique_data;
 $total_units = count($data);
 ?>
 
