@@ -83,13 +83,13 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
 
         <style>
             .commitment-section {
-                padding: 6rem 2rem;
+                padding: 6rem 0rem;
                 background-color: #fff;
             }
             .commitment-section__container {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 2rem;
 }
@@ -110,20 +110,22 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
                 max-width: 486px;    
                 line-height: 1.6;
                 color: #52525B;
-                margin-bottom: 2rem;
+                margin-bottom: 4rem;
                 margin-top: 0px
   font-family: "Inter Tight", sans-serif;
             }
 
             .commitment-section__button {
                 border: 1px solid white;
-                display: inline-flex;
+                display: flex;
                 align-items: center;
+                align-content:center;
+                justify-items:center;
                 padding: 0.75rem 1.5rem;
                 background: #093D5F;
                 color: white;
                 border-radius: 100px;
-                font-size: 0.95rem;
+                font-size: 1rem;
                 text-decoration: none;
                 transition: background 0.3s ease;
             }
@@ -137,17 +139,60 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
             .commitment-section__button:hover {
                 background: none;
                 border: 1px solid black;
+                gap:2rem;
             }
 
             .commitment-section__button .arrow {
                 margin-left: 0.5rem;
                 font-size: 1.1rem;
             }
+                        .buttonWrapper .btn {
+                                border: 1px solid white;
+                display: inline-flex;
+                align-items: center;
+                padding: 0.75rem 1.5rem;
+                                gap: 0.75rem;
+                background: #093D5F;
+                color: white;
+                border-radius: 100px;
+                font-size: 1rem;
+                text-decoration: none;
+                transition: background 0.3s ease;
+                transition: all 0.3s ease;
+            }
+
+
+            .buttonWrapper .btn:hover {
+                background: transparent;
+                transition: all 0.3s ease;
+                border: 1px solid black;
+                color:#2A2A2A;
+                gap:2rem;
+            }
+            
+            .buttonWrapper:hover {
+                background: transparent;
+                color:#2A2A2A;
+                border:black;
+                transition: all 0.3s ease;
+            }
+
+
+            .buttonWrapper .btn svg {
+                transition: all 0.3s ease;
+                rotate: -45deg;
+                width: 24px;
+                height: 24px;
+            }
 
 .commitment-section__image {
     flex: 1 1 40%;
     display: flex;
     justify-content: flex-end; 
+    max-height:442px;
+    min-height:442px;
+    max-width:800px;
+    min-width:800px;
 }
 
 .commitment-section__image img {
@@ -183,12 +228,14 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
                     <h2 class="commitment-section__title"><?php echo esc_html($settings['title']); ?></h2>
                     <p class="commitment-section__description"><?php echo esc_html($settings['description']); ?></p>
                     <?php if (!empty($settings['button_text'])) : ?>
-                        <button class="commitment-section__button">
-                        <a class="commitment-sectionLink" href="<?php echo esc_url($settings['button_link']['url']); ?>" target="_blank" rel="noopener">
-                            <?php echo esc_html($settings['button_text']); ?>
-                            <span class="arrow">→</span>
-                        </a>
-                        </button>
+                                        <div class="buttonWrapper">
+                    <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
+                        <?php echo esc_html($settings['button_text']); ?>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
                     <?php endif; ?>
                 </div>
                 <div class="commitment-section__image">

@@ -230,8 +230,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
         <style>
             .richTextContainer {
-                <?php if ($is_first_page): ?>padding-bottom: 240px;
-                padding-top: 240px;
+                <?php if ($is_first_page): ?>padding-bottom: 140px;
+                padding-top: 140px;
                 <?php endif; ?>
             }
 
@@ -251,7 +251,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
 
             .richTextContainer .richText p {
-                <?php if ($is_first_page): ?>padding-bottom: 60px;
+                <?php if ($is_first_page): ?>padding-bottom: 40px;
                 max-width: 464px;
                 <?php endif; ?>
             }
@@ -263,8 +263,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 background: #093D5F;
                 text-align: center;
-                padding-bottom: 202px;
-                padding-top: 202px;
+                padding-bottom: 140px;
+                padding-top: 140px;
             }
 
             .richText h2 {

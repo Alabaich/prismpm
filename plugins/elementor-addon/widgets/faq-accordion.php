@@ -214,6 +214,8 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
     }
     .faq-accordion.faq-first-page h2 {
         max-width: 31.25rem; /* 500px */
+                font-family: "Darker Grotesque", serif;
+
         text-align: center;
         margin: auto;
         font-size: 4.5rem; /* 72px */
@@ -232,6 +234,8 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
     }
     .faq-accordion h2 {
         font-size: 3.25rem; /* 52px */
+                font-family: "Darker Grotesque", serif;
+                color:#2A2A2A;
         font-weight: bold;
         margin: 0;
     }
@@ -239,8 +243,11 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         margin-bottom: 2.5rem; /* 40px */
     }
     .faq-category-title {
-        font-size: 2.5rem; /* 40px */
-        font-weight: bold;
+        font-size: 2rem; /* 40px */
+                font-family: "Darker Grotesque", serif;
+
+
+        font-weight: 500;
         color: #2A2A2A;
         margin-bottom: 1.25rem; /* 20px */
         text-transform: uppercase;
@@ -266,9 +273,13 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         width: 1.875rem; /* 30px */
     }
     .faq-item-question {
+                font-family: "Darker Grotesque", serif;
+                color:#2A2A2A;
+
+
         flex: 1;
-        font-size: 2rem; /* 32px */
-        font-weight: 600;
+        font-size: 1.5rem; /* 32px */
+        font-weight: 5;
         margin: 0;
         color: #2A2A2A;
     }
@@ -293,6 +304,8 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         font-size: 1.125rem; /* 18px */
         margin-left: 3.125rem; /* 50px */
         line-height: 140%;
+  font-family: "Inter Tight", sans-serif;
+
         color: #52525B;
     }
     .qwdsadqwdasdas {
