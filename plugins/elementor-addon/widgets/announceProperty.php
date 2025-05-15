@@ -201,9 +201,34 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 margin-bottom: 0.625rem;
             }
 
-            .coming-soon-section p.customSubtitle {
+            .coming-soon-section div.customSubtitle {
                 color: #52525B;
                 margin-bottom: 1.875rem;
+                text-align: left;
+            }
+
+            .coming-soon-section div.customSubtitle p:empty {
+                display: none;
+            }
+
+            .coming-soon-section div.customSubtitle p>br:only-child {
+                display: none;
+            }
+
+            .title-container .section-titles .customSubtitle a {
+                color: #093D5F;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                position: relative;
+                display: inline-block;
+            }
+
+            .title-container .section-titles .customSubtitle a:hover {
+                color: rgb(6, 91, 151);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 2px;
             }
 
             .coming-soon-section.first-page p {
@@ -335,26 +360,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .coming-soon-section.centered-header .section-titles {
                 align-items: center;
-            }
-
-            .title-container .section-titles .subtitle-content a {
-                color: #093D5F;
-                text-decoration: none;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                position: relative;
-                display: inline-block;
-            }
-
-            .title-container .section-titles .subtitle-content a:hover {
-                color: rgb(6, 91, 151);
-                text-decoration: underline;
-                text-underline-offset: 3px;
-                text-decoration-thickness: 2px;
-            }
-
-            .title-container .section-titles .subtitle-content a:hover::after {
-                width: 100%;
             }
 
             .coming-soon-section.centered-header .section-img {
@@ -489,7 +494,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .section-titles h1.customTitle,
-                .section-titles p.customSubtitle {
+                .section-titles div.customSubtitle {
                     margin-top: 0;
                     text-align: center;
                 }
@@ -509,12 +514,17 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         <div class="<?= implode(' ', $classes); ?>">
             <div class="title-container">
                 <div class="section-titles">
-                    <h1 class="flex customTitle">
-                        <?= esc_html($settings['section_title']); ?>
-                    </h1>
-                    <p class="flex customSubtitle">
-                        <?= wp_kses_post($settings['section_subtitle']); ?>
-                    </p>
+                    <h1 class="customTitle"> <?= esc_html($settings['section_title']); ?></h1>
+                    <?php
+                    $subtitle_html = $settings['section_subtitle'];
+                    $subtitle_html_cleaned = preg_replace('/<p\b[^>]*>(\s|&nbsp;|<br\s*\/?>)*<\/p>/im', '', $subtitle_html);
+                    $subtitle_html_cleaned = trim($subtitle_html_cleaned);
+                    $subtitle_html_processed = wp_kses_post($subtitle_html_cleaned);
+
+                    if (!empty($subtitle_html_processed)): ?>
+                        <div class="customSubtitle"> <?= $subtitle_html_processed; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <?php if (!empty($settings['section_image']['url'])) : ?>
                     <div class="section-img flex">

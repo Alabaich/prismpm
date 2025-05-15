@@ -112,7 +112,6 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             .land-acknowledgement-section .section-heading {
                 text-align: center;
                 margin-bottom: 50px;
-                max-width: 488px;
                 margin: auto;
             }
 
@@ -127,6 +126,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 color: #6B7280;
                 margin: 0 auto 3rem;
                 line-height: 1.6;
+                max-width: 488px;
             }
 
             .city-columns {
