@@ -197,23 +197,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 padding: 3.75rem 5rem;
             }
 
-            .coming-soon-section h1 {
+            .coming-soon-section h1.customTitle {
                 margin-bottom: 0.625rem;
-                font-size: 52px;
-                font-family: "Playfair Display", serif;
-                /* 10px */
             }
 
-            .coming-soon-section.first-page h1 {
-                font-size: 72px;
-            }
-
-            .coming-soon-section p {
-                font-family: "Inter Tight", sans-serif;
+            .coming-soon-section p.customSubtitle {
                 color: #52525B;
                 margin-bottom: 1.875rem;
-                font-size: 1rem;
-                /* 30px */
             }
 
             .coming-soon-section.first-page p {
@@ -225,42 +215,33 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 justify-content: space-between;
                 background: #f9f9f9;
                 padding: 1.25rem;
-                /* 20px */
                 border-radius: 0.75rem;
-                /* 12px */
                 margin-bottom: 1.25rem;
-                /* 20px */
                 flex-wrap: nowrap;
             }
 
             .coming-soon-section .property-content {
                 max-width: 100%;
                 min-width: 34.875rem;
-                /* 558px */
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-                /* 8px */
             }
 
             .coming-soon-section .property-content h3 {
                 font-size: 32px;
                 margin-bottom: 0.625rem;
-                /* 10px */
             }
 
             .coming-soon-section .property-content .metaq {
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2.5rem;
-                /* 40px */
                 font-size: 0.875rem;
-                /* 14px */
             }
 
             .coming-soon-section .property-image img {
                 border-radius: 0.25rem;
-                /* 8px */
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
@@ -278,7 +259,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 gap: 0.75rem 0;
-                /* 12px 0 */
                 font-family: "Inter Tight", sans-serif;
                 font-weight: 500;
             }
@@ -334,7 +314,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .section-img img {
                 max-width: 15rem;
-                /* 240px */
                 height: auto;
             }
 
@@ -499,11 +478,9 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     gap: 1rem;
                 }
 
-                .section-titles h1,
-                .coming-soon-section.first-page h1 {
-                    font-family: 'Darker Grotesque', sans-serif;
+                .section-titles h1.customTitle,
+                .coming-soon-section.first-page h1.customTitle {
                     font-weight: 600;
-                    font-size: 28px;
                     line-height: 90%;
                     text-align: center;
                     vertical-align: middle;
@@ -511,8 +488,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     margin-bottom: 1.5rem;
                 }
 
-                .section-titles h1,
-                .section-titles p {
+                .section-titles h1.customTitle,
+                .section-titles p.customSubtitle {
                     margin-top: 0;
                     text-align: center;
                 }
@@ -532,8 +509,12 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         <div class="<?= implode(' ', $classes); ?>">
             <div class="title-container">
                 <div class="section-titles">
-                    <h1 class="flex"><?= esc_html($settings['section_title']); ?></h1>
-                    <div class="flex subtitle-content"><?= wp_kses_post($settings['section_subtitle']); ?></div>
+                    <h1 class="flex customTitle">
+                        <?= esc_html($settings['section_title']); ?>
+                    </h1>
+                    <p class="flex customSubtitle">
+                        <?= wp_kses_post($settings['section_subtitle']); ?>
+                    </p>
                 </div>
                 <?php if (!empty($settings['section_image']['url'])) : ?>
                     <div class="section-img flex">

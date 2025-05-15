@@ -116,21 +116,15 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
                 padding: 6.25rem 1.25rem;
             }
 
-            .testimonial-section h2 {
-                font-family: "Playfair Display", serif;
-                font-size: 2.625rem;
+            .testimonial-section h1.customTitle {
                 font-weight: 600;
                 margin-bottom: 0.75rem;
             }
 
-            .testimonial-section h4 {
+            .testimonial-section p.customSubtitle {
                 color: #E0E0E0;
-                margin-bottom: 3.125rem;
-                margin-top: 0;
                 font-weight: 400;
                 margin: 0;
-                font-size: 1rem;
-                font-family: "Inter Tight", sans-serif;
                 margin-bottom: 1.5rem;
                 line-height: 1.6;
             }
@@ -191,9 +185,8 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
             }
 
             @media (max-width: 768px) {
-                .testimonial-section h2 {
+                .testimonial-section h1.customTitle {
                     font-weight: 600;
-                    font-size: 28px;
                     line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
@@ -206,8 +199,8 @@ class Elementor_testimonialsSection extends \Elementor\Widget_Base
 
 
         <div class="testimonial-section">
-            <h2><?php echo esc_html($settings['section_title']); ?></h2>
-            <h4><?php echo esc_html($settings['section_subtitle']); ?></h4>
+            <h1 class="customTitle"><?php echo esc_html($settings['section_title']); ?></h1>
+            <p class="customSubtitle"><?php echo esc_html($settings['section_subtitle']); ?></p>
 
             <div class="testimonial-grid">
                 <?php foreach ($settings['testimonials'] as $testimonial): ?>

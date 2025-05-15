@@ -196,8 +196,8 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                     <div class="hero-text-content">
                         <?php foreach ($settings['slides'] as $index => $slide): ?>
                             <div class="slide-content <?php echo $index === 0 ? 'active' : ''; ?>" data-slide-index="<?php echo esc_attr($index); ?>">
-                                <h1 class="hero-title"><?php echo esc_html($slide['slide_title']); ?></h1>
-                                <p class="hero-description"><?php echo esc_html($slide['slide_description']); ?></p>
+                                <h1 class="customTitle"><?php echo esc_html($slide['slide_title']); ?></h1>
+                                <p class="customSubtitle"><?php echo esc_html($slide['slide_description']); ?></p>
                                 <a href="<?php echo esc_url($slide['slide_button_link']['url']); ?>" class="hero-button">
                                     <?php echo esc_html($slide['slide_button_text']); ?>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" class="hero-button-icon">
@@ -290,7 +290,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 pointer-events: auto;
             }
 
-            #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
+            #hero-slider-<?php echo esc_attr($widget_id); ?> .customTitle {
                 font-weight: 700;
                 line-height: 1.1;
                 margin-bottom: 1.5rem;
@@ -299,12 +299,11 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 font-family: <?php echo esc_attr($settings['title_typography_font_family'] ?: 'Playfair Display'); ?>;
             }
 
-            #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-description {
-                font-size: 1rem;
-                font-family: "Inter Tight", sans-serif;
+            #hero-slider-<?php echo esc_attr($widget_id); ?> .customSubtitle {
                 max-width: 414px;
                 color: <?php echo esc_attr($settings['description_color']); ?>;
                 margin-bottom: 1.5rem;
+                text-align: left;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button {
@@ -413,7 +412,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                     height: 50vh;
                 }
 
-                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .customTitle {
                     font-size: 2.5rem;
                 }
             }
@@ -429,9 +428,8 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                     display: none !important;
                 }
 
-                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .customTitle {
                     font-weight: 600;
-                    font-size: 28px;
                     line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
@@ -459,13 +457,14 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                     text-align: center;
                 }
 
-                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-title {
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .customTitle {
                     padding-top: 0;
                 }
 
-                #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-description {
+                #hero-slider-<?php echo esc_attr($widget_id); ?> .customSubtitle {
                     max-width: 100%;
                     margin-left: auto;
+                    text-align: center;
                     margin-right: auto;
                     margin-bottom: 40px;
                 }

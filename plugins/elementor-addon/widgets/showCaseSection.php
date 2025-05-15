@@ -116,19 +116,15 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 margin: auto;
             }
 
-            .land-acknowledgement-section .section-heading h2 {
-                font-weight: 600;
-                font-size: 52px;
+            .land-acknowledgement-section .section-heading h1.customTitle {
                 line-height: 1.1;
                 letter-spacing: 0em;
                 text-transform: capitalize;
                 margin: 0 0 0.75rem 0;
-                font-family: "Playfair Display", serif;
             }
 
-            .land-acknowledgement-section .section-heading p {
+            .land-acknowledgement-section .section-heading p.customSubtitle {
                 color: #6B7280;
-                font-size: 1rem;
                 margin: 0 auto 3rem;
                 line-height: 1.6;
             }
@@ -200,9 +196,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                     background: transparent;
                 }
 
-                .land-acknowledgement-section .section-heading h2 {
-                    font-weight: 600;
-                    font-size: 28px;
+                .land-acknowledgement-section .section-heading h1.customTitle {
                     line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
@@ -210,7 +204,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                     color: #2a2a2a;
                 }
 
-                .land-acknowledgement-section .section-heading p {
+                .land-acknowledgement-section .section-heading p.customSubtitle {
                     max-width: 100%;
                 }
 
@@ -252,11 +246,11 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             <div class="land-acknowledgement-section">
                 <div class="section-heading">
                     <?php if (!empty($settings['main_title'])) : ?>
-                        <h2><?php echo esc_html($settings['main_title']); ?></h2>
+                        <h1 class="customTitle"><?php echo esc_html($settings['main_title']); ?></h1>
                     <?php endif; ?>
 
                     <?php if (!empty($settings['subtitle'])) : ?>
-                        <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+                        <p class="customSubtitle"><?php echo esc_html($settings['subtitle']); ?></p>
                     <?php endif; ?>
                 </div>
 

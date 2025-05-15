@@ -125,17 +125,14 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 padding: 0rem 5rem;
             }
 
-            .social-follow-section h1 {
-                font-size: 52px;
+            .social-follow-section h1.customTitle {
                 margin-bottom: 0.75rem;
                 font-weight: 600;
                 color: #111827;
-                font-family: "Playfair Display", serif;
             }
 
-            .social-follow-section .subtitle {
+            .social-follow-section p.customSubtitle {
                 color: #6B7280;
-                font-size: 1rem;
                 max-width: 420px;
                 margin: 0 auto 2rem;
                 line-height: 1.6;
@@ -229,10 +226,8 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                     padding: 0;
                 }
 
-                .social-follow-section h1 {
-                    font-family: "Playfair Display", serif;
+                .social-follow-section h1.customTitle {
                     font-weight: 600;
-                    font-size: 28px;
                     line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
@@ -240,9 +235,8 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                     color: #2a2a2a;
                 }
 
-                .social-follow-section .subtitle {
+                .social-follow-section p.customSubtitle {
                     max-width: 100%;
-                    font-size: 1rem;
                 }
 
                 .social-follow-rows {
@@ -287,8 +281,8 @@ class Elementor_socialSection extends \Elementor\Widget_Base
 
         <div class="social-follow-section">
             <div class='conteinerchenko'>
-                <h1><?php echo esc_html($settings['main_title']); ?></h1>
-                <p class="subtitle interTight"><?php echo esc_html($settings['subtitle']); ?></p>
+                <h1 class="customTitle"><?php echo esc_html($settings['main_title']); ?></h1>
+                <p class="customSubtitle"><?php echo esc_html($settings['subtitle']); ?></p>
 
                 <div class="social-follow-rows">
                     <?php foreach ($settings['socials'] as $social): ?>

@@ -236,11 +236,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
 
             .richTextContainer .richText h2 {
-                <?php if ($is_first_page): ?>font-size: 72px;
-                <?php endif; ?>
-            }
-
-            .richTextContainer .richText h2 {
                 <?php if ($use_no_background): ?>color: #2A2A2A;
                 <?php endif; ?>
             }
@@ -266,11 +261,9 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 padding: 8.5vh 2%;
             }
 
-            .richText h2 {
+            .richText h1.customTitle {
                 color: #FFFFFF;
-                font-family: "Playfair Display", serif;
                 max-width: 902px;
-                font-size: 52px;
                 line-height: 96%;
                 margin: 0px;
             }
@@ -389,9 +382,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     padding-right: 20px;
                 }
 
-                .richTextContainer .richText h2 {
+                .richTextContainer .richText h1.customTitle {
                     font-weight: 600;
-                    font-size: 24px;
                     line-height: 100%;
                     letter-spacing: 0%;
                     text-align: center;
@@ -399,12 +391,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     color: white;
                 }
 
-                .richText h1 {
-                    font-size: 30px;
-                }
-
-                .richText p {
-                    font-size: 14px;
+                .richText p.customSubtitle {
                     padding-top: 1rem;
                     padding-bottom: 2rem;
                 }
@@ -422,15 +409,15 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
             <?php if (!empty($settings['title'])) : ?>
                 <div class="richText">
-                    <h2>
+                    <h1 class="customTitle">
                         <?php echo esc_html($settings['title']); ?>
-                    </h2>
+                    </h1>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($settings['text'])) : ?>
                 <div class="richText">
-                    <p class='QWkdj'>
+                    <p class='customSubtitle'>
                         <?php echo esc_html($settings['text']); ?>
                     </p>
                 </div>

@@ -1,23 +1,29 @@
 <?php
-class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
+class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return 'propertyMapWidgetNew';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Property Map', 'elementor-addon');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-map-pin';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['basic'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->start_controls_section(
             'properties_section',
             [
@@ -135,9 +141,10 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
-        ?>
+?>
         <style>
             .propertiesContainer {
                 display: flex;
@@ -148,7 +155,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                 padding: 100px 80px;
                 width: 100%;
             }
-            
+
             .property-link-icon {
                 width: 40px;
                 height: 40px;
@@ -157,19 +164,16 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                 align-items: center;
                 justify-content: center;
             }
-            
+
             .property-link-icon img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
 
-            .propertiesContainer h3 {
-                font-size: 52px;
-                font-weight: 600;
+            .propertiesContainer h1.customTitle {
                 color: #2A2A2A;
                 margin: 0px;
-                font-family: "Playfair Display", serif;
             }
 
             .property-map-container {
@@ -344,11 +348,9 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                 color: white;
             }
 
-            .ffffwqdsad {
+            .propertiesContainer p.customSubtitle {
                 margin: auto;
                 text-align: center;
-                font-size: 1rem;
-                font-family: "Inter Tight", sans-serif;
                 margin-bottom: 1.5rem;
                 color: #6B7280;
                 max-width: 420px;
@@ -356,18 +358,18 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
             }
 
             .property-number-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #093D5F;
-            color: white;
-            border-radius: 50%;
-            font-family: "Inter Tight", sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-        }
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #093D5F;
+                color: white;
+                border-radius: 50%;
+                font-family: "Inter Tight", sans-serif;
+                font-weight: bold;
+                font-size: 18px;
+            }
 
             @media (max-width: 64rem) {
 
@@ -402,8 +404,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                     padding: 3.125rem 5%;
                 }
 
-                .propertiesContainer h3 {
-                    font-weight: 600;
+                .propertiesContainer h1.customTitle {
                     font-size: 28px;
                     line-height: 90%;
                     letter-spacing: 0%;
@@ -438,8 +439,7 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                     padding: 1.875rem 5%;
                 }
 
-                .propertiesContainer h3 {
-                    font-size: 1.875rem;
+                .propertiesContainer h1.customTitle {
                     text-align: center;
                 }
 
@@ -470,8 +470,8 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
         </style>
 
         <div class="propertiesContainer">
-            <h3><?php echo esc_html($settings['section_title']); ?></h3>
-            <p class='ffffwqdsad'><?php echo esc_html($settings['section_subtitle']); ?></p>
+            <h1 class='customTitle'><?php echo esc_html($settings['section_title']); ?></h1>
+            <p class='customSubtitle'><?php echo esc_html($settings['section_subtitle']); ?></p>
             <div class="property-map-container">
                 <div class="property-links">
                     <?php foreach ($settings['property_list'] as $index => $property) : ?>
@@ -485,9 +485,9 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base {
                             <?php echo $index === 0 ? 'data-active="true"' : ''; ?>>
 
                             <div class="property-link-inner">
-                            <div class="property-link-icon">
+                                <div class="property-link-icon">
                                     <?php if (!empty($property['number_icon']['url'])) : ?>
-                                        <img src="<?php echo esc_url($property['number_icon']['url']); ?>" 
+                                        <img src="<?php echo esc_url($property['number_icon']['url']); ?>"
                                             alt="Property <?php echo $index + 1; ?>"
                                             loading="lazy">
                                     <?php endif; ?>

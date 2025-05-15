@@ -115,22 +115,18 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 text-align: center;
             }
 
-            .blog-showcase h1 {
-                font-size: 52px;
+            .blog-showcase h1.customTitle {
                 color: #2A2A2A;
                 max-width: 584px;
                 margin: auto;
                 margin-bottom: 1.5rem;
                 margin-top: 0px;
-                font-family: "Playfair Display", serif;
             }
 
-            .blog-showcase .subtitle {
+            .blog-showcase p.customSubtitle {
                 color: #6B7280;
                 margin-top: 0px;
                 margin-bottom: 2.5rem;
-                font-size: 1rem;
-                font-family: "Inter Tight", sans-serif;
             }
 
             .featured-post {
@@ -281,19 +277,12 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                     padding: 4rem 1rem;
                 }
 
-                .blog-showcase h1 {
-                    font-family: 'Darker Grotesque', sans-serif;
-                    font-weight: 600;
-                    font-size: 28px;
+                .blog-showcase h1.customTitle {
                     line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
                     vertical-align: middle;
                     color: #2a2a2a;
-                }
-
-                .blog-showcase .subtitle {
-                    font-size: 1rem;
                 }
 
                 .featured-post {
@@ -311,8 +300,8 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
         </style>
 
         <div class="blog-showcase">
-            <h1><?php echo esc_html($settings['main_title']); ?></h1>
-            <p class="subtitle"><?php echo esc_html($settings['subtitle']); ?></p>
+            <h1 class="customTitle"><?php echo esc_html($settings['main_title']); ?></h1>
+            <p class="customSubtitle"><?php echo esc_html($settings['subtitle']); ?></p>
 
             <?php if (!empty($featured_posts)): ?>
                 <div class='sadqwd'>
