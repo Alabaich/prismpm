@@ -71,11 +71,33 @@ class Elementor_socialSection extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+            'facebook_url_override',
+            [
+                'label' => esc_html__('Facebook URL Override', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://facebook.com/yourpage', 'elementor-addon'),
+                'description' => esc_html__('Optional. If filled, this full URL will be used instead of the handle.', 'elementor-addon'),
+                'label_block' => true,
+            ]
+        );
+
+        $repeater->add_control(
             'instagram',
             [
                 'label' => esc_html__('Instagram Handle', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => '@georgestreetlofts',
+            ]
+        );
+
+        $repeater->add_control(
+            'instagram_url_override',
+            [
+                'label' => esc_html__('Instagram URL Override', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://instagram.com/yourprofile', 'elementor-addon'),
+                'description' => esc_html__('Optional. If filled, this full URL will be used instead of the handle.', 'elementor-addon'),
+                'label_block' => true,
             ]
         );
 
@@ -176,7 +198,7 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                 text-decoration: none;
             }
 
-            .social-block-link:hover {
+            .social-block-link:hover .social-handle {
                 text-decoration: underline;
             }
 
@@ -290,21 +312,59 @@ class Elementor_socialSection extends \Elementor\Widget_Base
                             <span><?php echo esc_html($social['label']); ?></span>
                             <div class='qwedas'>
 
-                                <?php if (!empty($social['facebook'])):
-                                    $facebook_url = 'https://www.facebook.com/' . ltrim($social['facebook'], '@');
-                                ?>
-                                    <a href="<?php echo esc_url($facebook_url); ?>" target="_blank" class="social-block-link">
-                                        <i class="fab fa-facebook"></i> <span class="social-handle"><?php echo esc_html($social['facebook']); ?></span>
-                                    </a>
-                                <?php endif; ?>
+                                <?php
+                                if (!empty($social['facebook']) || !empty($social['facebook_url_override']['url'])) {
+                                    $facebook_handle_text = !empty($social['facebook']) ? esc_html($social['facebook']) : '';
+                                    $facebook_url_to_use = '#';
+                                    $facebook_target = '_blank';
+                                    $facebook_rel = '';
 
-                                <?php if (!empty($social['instagram'])):
-                                    $instagram_url = 'https://www.instagram.com/' . ltrim($social['instagram'], '@');
+                                    if (!empty($social['facebook_url_override']['url'])) {
+                                        $facebook_url_to_use = $social['facebook_url_override']['url'];
+                                        $facebook_target = !empty($social['facebook_url_override']['is_external']) ? '_blank' : '_self';
+                                        $facebook_rel = !empty($social['facebook_url_override']['nofollow']) ? 'nofollow' : '';
+                                    } elseif (!empty($social['facebook'])) {
+                                        $handle = is_string($social['facebook']) ? $social['facebook'] : '';
+                                        $facebook_url_to_use = 'https://www.facebook.com/' . ltrim(esc_attr($handle), '@');
+                                    }
+
+                                    if ($facebook_url_to_use !== '#') {
+                                        echo '<a href="' . esc_url($facebook_url_to_use) . '" target="' . esc_attr($facebook_target) . '" ' . ($facebook_rel ? 'rel="' . esc_attr($facebook_rel) . '"' : '') . ' class="social-block-link">';
+                                        echo '<i class="fab fa-facebook"></i>';
+                                        if ($facebook_handle_text) {
+                                            echo '<span class="social-handle">' . $facebook_handle_text . '</span>';
+                                        }
+                                        echo '</a>';
+                                    }
+                                }
                                 ?>
-                                    <a href="<?php echo esc_url($instagram_url); ?>" target="_blank" class="social-block-link">
-                                        <i class="fab fa-instagram"></i> <span class="social-handle"><?php echo esc_html($social['instagram']); ?></span>
-                                    </a>
-                                <?php endif; ?>
+
+                                <?php
+                                if (!empty($social['instagram']) || !empty($social['instagram_url_override']['url'])) {
+                                    $instagram_handle_text = !empty($social['instagram']) ? esc_html($social['instagram']) : '';
+                                    $instagram_url_to_use = '#';
+                                    $instagram_target = '_blank';
+                                    $instagram_rel = '';
+
+                                    if (!empty($social['instagram_url_override']['url'])) {
+                                        $instagram_url_to_use = $social['instagram_url_override']['url'];
+                                        $instagram_target = !empty($social['instagram_url_override']['is_external']) ? '_blank' : '_self';
+                                        $instagram_rel = !empty($social['instagram_url_override']['nofollow']) ? 'nofollow' : '';
+                                    } elseif (!empty($social['instagram'])) {
+                                        $handle = is_string($social['instagram']) ? $social['instagram'] : '';
+                                        $instagram_url_to_use = 'https://www.instagram.com/' . ltrim(esc_attr($handle), '@');
+                                    }
+
+                                    if ($instagram_url_to_use !== '#') {
+                                        echo '<a href="' . esc_url($instagram_url_to_use) . '" target="' . esc_attr($instagram_target) . '" ' . ($instagram_rel ? 'rel="' . esc_attr($instagram_rel) . '"' : '') . ' class="social-block-link">';
+                                        echo '<i class="fab fa-instagram"></i>';
+                                        if ($instagram_handle_text) {
+                                            echo '<span class="social-handle">' . $instagram_handle_text . '</span>';
+                                        }
+                                        echo '</a>';
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

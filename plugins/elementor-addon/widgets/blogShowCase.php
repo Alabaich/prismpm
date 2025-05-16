@@ -249,7 +249,6 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
 
             .read-more-btn:hover svg {
                 transform: translateX(4px);
-                margin-left: 0.5rem;
             }
 
             .sadqwd {

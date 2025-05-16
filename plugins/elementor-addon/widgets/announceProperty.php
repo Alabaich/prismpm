@@ -301,28 +301,45 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .property-button {
                 margin-top: auto;
-                padding-bottom: 2rem;
-                transition: 0.3s ease;
             }
 
             .property-button a {
-                font-family: "Inter Tight", sans-serif;
                 display: inline-flex;
                 align-items: center;
-                background: #093D5F;
-                color: #fff;
-                padding: 18px 28px;
-                border-radius: 99999px;
-                font-weight: 500;
-                font-size: 1rem;
+                padding: 10px 20px;
                 text-decoration: none;
+                color: #fff;
+                background-color: #093D5F;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 16px;
+                font-weight: normal;
                 transition: all 0.3s ease;
+                border: 2px solid transparent;
+                border-radius: 99999px;
                 gap: 1rem;
-                transform: scale(1);
+            }
+
+            .property-button a svg path {
+                fill: #fff;
+                transition: fill 0.3s ease;
+            }
+
+            .property-button a:hover {
+                color: #093D5F;
+                background-color: #fff;
+                border-color: #093D5F;
+            }
+
+            .property-button a:hover svg path {
+                fill: #093D5F;
             }
 
             .property-button a svg {
                 transition: transform 0.3s ease;
+            }
+
+            .property-button a:hover svg {
+                transform: translateX(4px);
             }
 
             .title-container {
@@ -346,11 +363,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 display: flex;
             }
 
-            .property-button a:hover svg {
-                transform: translateX(4px);
-                margin-left: 0.5rem;
-            }
-
             .coming-soon-section.centered-header .title-container {
                 flex-direction: column;
                 align-items: center;
@@ -371,9 +383,9 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             }
 
 
-            .anounc-button-icon {
+            /* .anounc-button-icon {
                 rotate: -45deg;
-            }
+            } */
 
             @media (max-width: 768px) {
                 .coming-soon-section .property-card {
@@ -460,11 +472,12 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     display: flex;
                     justify-content: flex-start;
                     margin-bottom: 1rem;
+                    padding-bottom: 0;
                 }
 
                 .property-button a {
                     font-size: 1rem;
-                    padding: 0.625rem 1.25rem;
+                    padding: 10px 20px;
                 }
 
                 .section-img {
@@ -563,8 +576,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                             <div class="property-button">
                                 <a href="<?= esc_url($item['button_link']['url']); ?>" target="<?= esc_attr($item['button_link']['is_external'] ? '_blank' : '_self'); ?>">
                                     <?= esc_html($item['button_text']); ?>
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C0.447715 0 1.49012e-08 0.447715 1.49012e-08 1C1.49012e-08 1.55228 0.447715 2 1 2H8.51314L0.292893 10.2929C-0.0976311 10.6834 -0.0976311 11.3166 0.292893 11.7071C0.683417 12.0976 1.31658 12.0976 1.70711 11.7071L10 3.34093V11C10 11.5523 10.4477 12 11 12C11.5523 12 12 11.5523 12 11V1C12 0.447715 11.5523 0 11 0H1Z" fill="white" />
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="anounc-button-icon">
+                                        <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="white"/> {/* Убедись что fill="white" здесь, если кнопка темная */}
                                     </svg>
                                 </a>
                             </div>
