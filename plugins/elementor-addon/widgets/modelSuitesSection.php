@@ -156,10 +156,10 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
 
             .suite-card {
                 width: calc((100% - 4rem) / 3);
-                border: 1px solid #2A2A2A;
+                border: 1px solid #E0E0E0;
                 border-radius: 1rem;
                 overflow: hidden;
-                background: white;
+                background: #093D5F0D;
                 display: flex;
                 flex-direction: column;
                 transition: box-shadow 0.2s ease;
@@ -167,15 +167,20 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
             }
 
             .suite-card:hover {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .suite-image-wrapper {
+                padding: 1rem;
+                background-color: transparent;
             }
 
             .suite-card img {
-                border-bottom-left-radius: 1rem;
-                border-bottom-right-radius: 1rem;
                 width: 100%;
                 height: 300px;
                 object-fit: cover;
+                display: block;
+                border-radius: 0.5rem;
             }
 
             .suite-content {
@@ -200,7 +205,7 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
 
             .price {
                 font-weight: 600;
-                color: #2A2A2A;
+                color: #0F3D5F;
                 font-family: "Darker Grotesque", sans-serif;
                 font-size: 28px;
                 white-space: nowrap;
@@ -229,34 +234,30 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 margin-bottom: 0.5rem;
             }
 
-            .suite-availability .status {}
-
-            .suite-availability .status.available {}
-
             .suite-tags {
                 display: flex;
                 flex-wrap: wrap;
-                padding-bottom: 40px;
+                padding-bottom: 20px;
                 max-width: 380px;
                 gap: 0.5rem 1rem;
-                font-size: 14px;
+            }
+
+            .tag-item {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: white;
+                padding: 0.5rem 1rem;
+                border-radius: 999px;
+                border: 1px solid #e0e0e0;
+                font-size: 0.9rem;
                 font-weight: 500;
                 color: #2A2A2A;
             }
 
-            .askI {
-                display: inline-flex;
-                align-items: center;
-            }
-
-            .askI i {
-                font-size: 26px;
-                margin-right: 0.3rem;
-            }
-
-            .suite-details {
-                font-size: 14px;
-                color: #6B7280;
+            .tag-item i {
+                font-size: 18px;
+                line-height: 1;
             }
 
             .suite-footer {
@@ -267,52 +268,123 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
             }
 
             .btn-primary {
-                background-color: #0F3D5F;
-                color: white;
-                padding: 18px 32px;
-                border-radius: 999px;
-                text-decoration: none;
-                font-size: 14px;
                 display: inline-flex;
                 align-items: center;
-                gap: 0.5rem;
-                transition: opacity 0.3s ease, background-color 0.3s ease;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: #fff;
+                background-color: #093D5F;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 16px;
+                font-weight: normal;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                border-radius: 99999px;
+                gap: 1rem;
             }
 
             .btn-primary:hover {
-                opacity: 0.9;
-                color: white;
+                color: #093D5F;
+                background-color: #fff;
+                border-color: #093D5F;
+                opacity: 1;
+            }
+
+            .btn-primary .btn-primary-icon { 
+                width: 13px; 
+                height: 12px; 
+                transition: transform 0.3s ease;
+            }
+
+            .btn-primary .btn-primary-icon path { 
+                fill: #fff;
+                transition: fill 0.3s ease;
+            }
+
+            .btn-primary:hover .btn-primary-icon {
+                transform: translateX(4px); 
+            }
+
+            .btn-primary:hover .btn-primary-icon path {
+                fill: #093D5F;
             }
 
             .wishlist {
-                padding: 0;
                 background: none;
                 border: none;
-                font-size: 40px;
-                color: black;
                 cursor: pointer;
-                transition: color 0.3s ease;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                transition: transform 0.3s ease;
             }
 
             .wishlist:hover {
-                color: red;
-                background: none;
+                background-color: transparent;
+                transform: scale(1.1);
+            }
+
+            .wishlist:active {
+                transform: scale(0.9);
+            }
+
+            .wishlist .heart-icon {
+                width: 24px;
+                height: 24px;
+                color: gray;
+                transition: color 0.3s ease, fill 0.3s ease;
+            }
+
+            .wishlist .heart-icon path {
+                transition: fill 0.3s ease, stroke 0.3s ease;
+            }
+
+            .wishlist:hover .heart-icon {
+                color: #ff0000;
+            }
+
+            .wishlist .heart-icon path.filled {
+                fill: #ff0000;
+                stroke: #ff0000;
+            }
+
+            .wishlist-notification {
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 50px;
+                background-color: #81C784;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 1000;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                font-size: 1rem;
+            }
+
+            .wishlist-notification.show {
+                opacity: 1;
             }
 
             @media (max-width: 1024px) {
-                .suite-card {}
-
                 .suites-header h2 {
                     font-size: 44px;
                 }
-
                 .suite-title-price h3 {
                     font-size: 24px;
                     max-width: 220px;
                 }
-
                 .price {
                     font-size: 24px;
+                }
+                .btn-primary {
+                    font-size: 15px;
+                    padding: 9px 18px;
                 }
             }
 
@@ -323,50 +395,37 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                     gap: 1.5rem;
                     margin-bottom: 3rem;
                 }
-
                 .suites-header h2 {
                     font-size: 36px;
                 }
-
                 .show-moreq {
                     padding: 16px 24px;
                     font-size: 15px;
                 }
-
                 .suite-card {
                     width: 100%;
                     margin-bottom: 2rem;
                 }
-
                 .suite-card img {
                     height: 250px;
                 }
-
                 .suite-title-price h3 {
                     font-size: 22px;
                     max-width: none;
                 }
-
                 .price {
                     font-size: 22px;
                 }
-
                 .suite-tags {
                     padding-bottom: 20px;
                     max-width: 100%;
                 }
-
-                .askI i {
+                .tag-item i {
                     font-size: 22px;
                 }
-
                 .btn-primary {
-                    padding: 16px 28px;
-                    font-size: 13px;
-                }
-
-                .wishlist {
-                    font-size: 36px;
+                    padding: 10px 20px;
+                    font-size: 14px;
                 }
             }
 
@@ -374,46 +433,39 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 .suites-header h2 {
                     font-size: 30px;
                 }
-
                 .show-moreq {
                     width: 100%;
                     justify-content: center;
                 }
-
                 .suite-card img {
                     height: 220px;
                 }
-
                 .suite-title-price {
                     flex-direction: column;
                     align-items: flex-start;
                     gap: 0.5rem;
                 }
-
                 .suite-title-price h3 {
                     font-size: 20px;
                 }
-
                 .price {
                     font-size: 20px;
                     text-align: left;
                 }
-
                 .price span {
                     text-align: left;
                 }
-
                 .suite-footer {
                     flex-direction: column;
                     align-items: stretch;
                     gap: 1rem;
                 }
-
                 .btn-primary {
                     width: 100%;
                     justify-content: center;
+                    font-size: 14px;
+                    padding: 12px 20px;
                 }
-
                 .wishlist {
                     align-self: center;
                 }
@@ -438,8 +490,9 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 <?php foreach ($settings['suites_list'] as $key => $suite) : ?>
                     <div class="suite-card elementor-repeater-item-<?php echo esc_attr($suite['_id']); ?>">
                         <?php if (!empty($suite['image']['url'])) : ?>
-                            <img src="<?php echo esc_url($suite['image']['url']); ?>" alt="<?php echo esc_attr($suite['title']); // Используем заголовок как alt 
-                                                                                            ?>">
+                            <div class="suite-image-wrapper">
+                                <img src="<?php echo esc_url($suite['image']['url']); ?>" alt="<?php echo esc_attr($suite['title']); ?>">
+                            </div>
                         <?php endif; ?>
                         <div class="suite-content">
                             <div class="suite-title-price">
@@ -454,18 +507,18 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                                 if (!empty($suite['tags'])) {
                                     $tags = explode(',', $suite['tags']);
                                     $icons = [
-                                        '1 bedroom' => 'fa fa-bed',
-                                        '1 bathroom' => 'fa fa-bath',
+                                        '1 bedroom'    => 'fa fa-bed',
+                                        '1 bathroom'   => 'fa fa-bath',
                                         'Pet-friendly' => 'fa fa-paw',
-                                        '547.45' => 'fa fa-square',
+                                        '547.45'       => 'fa fa-square',
                                     ];
                                     foreach ($tags as $tag_raw) {
                                         $tag = trim($tag_raw);
                                         if (empty($tag)) continue;
                                         $icon_class = isset($icons[$tag]) ? $icons[$tag] : '';
-                                        echo '<span class="askI">';
+                                        echo '<span class="tag-item">';
                                         if (!empty($icon_class)) {
-                                            echo '<i class="' . esc_attr($icon_class) . '"></i> ';
+                                            echo '<i class="' . esc_attr($icon_class) . '"></i>';
                                         }
                                         echo esc_html($tag) . '</span>';
                                     }
@@ -478,16 +531,118 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                                     $nofollow = $suite['button_link']['nofollow'] ? ' rel="nofollow"' : '';
                                 ?>
                                     <a class="btn-primary" href="<?php echo esc_url($suite['button_link']['url']); ?>" <?php echo $target . $nofollow; ?>>
-                                        <?php echo esc_html($suite['button_text']); ?> <span>&rarr;</span>
+                                        <?php echo esc_html($suite['button_text']); ?>
+                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-primary-icon">
+                                            <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" />
+                                        </svg>
                                     </a>
                                 <?php endif; ?>
-                                <button class="wishlist">♡</button>
+                                <button class="wishlist" data-unit-id="<?php echo esc_attr($suite['_id']); ?>" aria-label="Add to wishlist">
+                                    <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const wishlistButtons = document.querySelectorAll('.wishlist');
+
+                function toggleWishlistItem(unitId) {
+                    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+                    const index = wishlist.indexOf(unitId);
+                    let added = false;
+
+                    if (index === -1) {
+                        wishlist.push(unitId);
+                        showWishlistMessage(unitId, 'added to', '#81C784');
+                        added = true;
+                    } else {
+                        wishlist.splice(index, 1);
+                        showWishlistMessage(unitId, 'removed from', '#F44336');
+                        added = false;
+                    }
+
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    return added;
+                }
+
+                function showWishlistMessage(unitId, action, color) {
+                    const existingNotification = document.querySelector('.wishlist-notification');
+                    if (existingNotification) {
+                        existingNotification.remove();
+                    }
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('wishlist-notification');
+                    const suiteCard = document.querySelector(`.suite-card .wishlist[data-unit-id="${unitId}"]`)?.closest('.suite-card');
+                    let displayName = unitId;
+                    if (suiteCard) {
+                        const titleElement = suiteCard.querySelector('.suite-title-price h3');
+                        if (titleElement && titleElement.textContent.trim() !== '') {
+                             displayName = `"${titleElement.textContent.trim()}"`;
+                        }
+                    }
+                    messageDiv.textContent = `Suite ${displayName} ${action} favorites!`;
+                    messageDiv.style.backgroundColor = color;
+                    document.body.appendChild(messageDiv);
+
+                    setTimeout(() => {
+                        messageDiv.classList.add('show');
+                    }, 10);
+
+                    setTimeout(() => {
+                        messageDiv.classList.remove('show');
+                        setTimeout(() => {
+                            messageDiv.remove();
+                        }, 500);
+                    }, 2000);
+                }
+
+                function markWishlistItems() {
+                    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    const allWishlistButtons = document.querySelectorAll('.wishlist');
+
+                    allWishlistButtons.forEach(button => {
+                        const unitId = button.dataset.unitId;
+                        const heartIconPath = button.querySelector('.heart-icon path');
+
+                        if (unitId && heartIconPath) {
+                            if (wishlist.includes(unitId)) {
+                                heartIconPath.classList.add('filled');
+                            } else {
+                                heartIconPath.classList.remove('filled');
+                            }
+                        }
+                    });
+                }
+
+                wishlistButtons.forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        const unitId = this.dataset.unitId;
+                        const heartIconPath = this.querySelector('.heart-icon path');
+
+                        if (unitId && heartIconPath) {
+                            const wasAdded = toggleWishlistItem(unitId);
+                            if (wasAdded) {
+                                heartIconPath.classList.add('filled');
+                            } else {
+                                heartIconPath.classList.remove('filled');
+                            }
+                        }
+                    });
+                });
+                markWishlistItems();
+            });
+        </script>
 
 <?php
     }
