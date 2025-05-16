@@ -290,19 +290,19 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 opacity: 1;
             }
 
-            .btn-primary .btn-primary-icon { 
-                width: 13px; 
-                height: 12px; 
+            .btn-primary .btn-primary-icon {
+                width: 13px;
+                height: 12px;
                 transition: transform 0.3s ease;
             }
 
-            .btn-primary .btn-primary-icon path { 
+            .btn-primary .btn-primary-icon path {
                 fill: #fff;
                 transition: fill 0.3s ease;
             }
 
             .btn-primary:hover .btn-primary-icon {
-                transform: translateX(4px); 
+                transform: translateX(4px);
             }
 
             .btn-primary:hover .btn-primary-icon path {
@@ -455,19 +455,23 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 .price span {
                     text-align: left;
                 }
+
                 .suite-footer {
-                    flex-direction: column;
-                    align-items: stretch;
+                    flex-direction: row;
+                    align-items: center;
                     gap: 1rem;
                 }
+
                 .btn-primary {
-                    width: 100%;
+                    flex-grow: 1;
+                    width: auto;
                     justify-content: center;
                     font-size: 14px;
-                    padding: 12px 20px;
+                    padding: 12px 15px;
                 }
+
                 .wishlist {
-                    align-self: center;
+                    flex-shrink: 0;
                 }
             }
         </style>
