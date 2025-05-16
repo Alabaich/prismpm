@@ -315,11 +315,23 @@ class Elementor_propertyMapWidgetNew extends \Elementor\Widget_Base
                 gap: 10px;
             }
 
-            .property-info .property-images img {
-                display: none;
+            .property-info {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
                 width: 100%;
-                border: 1px solid #ccc;
-                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            .property-info .property-images img {
+                display: block;
+                width: 100%;
+                aspect-ratio: 16/10;
+                object-fit: cover;
+                border-radius: 4px;
+                border: 1px solid #e0e0e0;
+                margin-bottom: 0;
             }
 
             .hidden {
