@@ -1,6 +1,5 @@
 <?php
 
-
 class Elementor_buildingPageAddition extends \Elementor\Widget_Base {
 
 public function get_name() {
@@ -26,10 +25,12 @@ protected function register_controls() {
         'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
     ]);
 
-    $this->add_control('main_title', [
-        'label' => esc_html__('Main Title', 'elementor-addon'),
-        'type' => \Elementor\Controls_Manager::TEXTAREA,
-        'default' => 'George Street Lofts Places You Right Where The City Lives And Breathes',
+    $this->add_control('main_title_image', [
+        'label' => esc_html__('Main Title Image', 'elementor-addon'),
+        'type' => \Elementor\Controls_Manager::MEDIA,
+        'default' => [
+            'url' => \Elementor\Utils::get_placeholder_image_src(),
+        ],
     ]);
 
     $this->add_control('about_title', [
@@ -69,11 +70,47 @@ protected function render() {
     $settings = $this->get_settings_for_display();
     ?>
 
+    <div class="aboutPropertyBlock">
+        <?php if (!empty($settings['main_title_image']['url'])) : ?>
+            <div class="logoImgDiv">
+                <img src="<?php echo esc_url($settings['main_title_image']['url']); ?>" alt="Main Title Image" >
+            </div>
+        <?php endif; ?>
+        <div class="aboutPropertyFlex">
+            <div class="aboutText">
+                <div class="aboutTextDiv">
+                    <h3><?php echo esc_html($settings['about_title']); ?></h3>
+                    <p class="wqhjashfjka"><?php echo esc_html($settings['about_text']); ?></p>
+                </div>
+                <ul class="featureList">
+                    <?php foreach ($settings['features_list'] as $item) : ?>
+                        <li><?php echo esc_html($item['feature']); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="aboutImage">
+                <?php if (!empty($settings['image']['url'])) : ?>
+                    <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="Property Image">
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
     <style>
+        .logoImgDiv {
+            max-width:140px;
+            min-width:140px;
+            margin:auto;
+            margin-bottom:2rem;
+        }
+        .logoImgDiv img{
+            width: 100%;
+            object-fit:cover;
+        }
         .aboutPropertyBlock {
             display:flex;
             flex-direction:column;
-            padding: 6rem 0rem;
+            padding: 4rem 0rem;
             font-family: "Inter Tight", sans-serif;
         }
 
@@ -151,19 +188,28 @@ protected function render() {
     margin:0;
     font-size:16px;
 }
-
+            .aboutImage {
+                flex: 1 1 50%;
+            }
 
         .aboutImage img {
-            max-width: 636px;
-            min-width: 636px;
-
-            max-height: 380px;
-            min-height: 380px;
+            width: 100%;
+            max-height:500px;
             border-radius: 0.5rem;
             object-fit: cover;
         }
 
         @media (max-width: 768px) {
+                    .aboutPropertyBlock {
+            padding: 2rem 0rem;
+        }
+                .logoImgDiv {
+            max-width:80px;
+            min-width:80px;
+            margin-bottom:1rem;
+        }
+                    .aboutImage img {
+        }
             .aboutPropertyFlex {
                 flex-direction: column;
             }
@@ -185,30 +231,16 @@ protected function render() {
             font-size:1rem;
             font-weight:500;
         }
+                .aboutTextDiv p {
+            font-size: 16px;
+            color: #52525B;
+            max-width:314px;
+        }
+        .aboutTextDiv {
+            margin:0 auto;
+        }
         }
     </style>
-
-    <div class="aboutPropertyBlock">
-        <h2><?php echo wp_kses_post($settings['main_title']); ?></h2>
-        <div class="aboutPropertyFlex">
-            <div class="aboutText">
-                <div class="aboutTextDiv">
-                    <h3><?php echo esc_html($settings['about_title']); ?></h3>
-                    <p class="wqhjashfjka"><?php echo esc_html($settings['about_text']); ?></p>
-                </div>
-                <ul class="featureList">
-                    <?php foreach ($settings['features_list'] as $item) : ?>
-                        <li><?php echo esc_html($item['feature']); ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <div class="aboutImage">
-                <?php if (!empty($settings['image']['url'])) : ?>
-                    <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="Property Image">
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
 
     <?php
 }

@@ -152,6 +152,15 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
                 'title_field' => '{{{ category_title }}}',
             ]
         );
+        $this->add_control(
+            'url',
+            [
+                'label' => esc_html__('Button URL', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'input_type' => 'url',
+                'placeholder' => esc_html__('https://your-link.com', 'elementor-addon'),
+            ]
+        );
 
         $this->add_control(
             'toggle_all_text',
@@ -180,7 +189,14 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
             <div class="qwdsa">
                 <h2>Frequently Asked Questions</h2>
                 <?php if (!empty($settings['toggle_all_text'])) : ?>
-                    <button class="qwdsadqwdasdas"><?php echo esc_html($settings['toggle_all_text']); ?></button>
+                                    <div class="buttonWrapperFaq">
+                    <a class="qwdsadqwdasdas btn" href="<?php echo esc_url($settings['url']); ?>">
+                        <?php echo esc_html($settings['toggle_all_text']); ?>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
                 <?php endif; ?>
             </div>
 
@@ -206,15 +222,45 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
         </div>
 
         <style>
+                        .buttonWrapperFaq .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                border-radius: 9999px;
+                background: #FFFFFF;;
+                padding: 1rem 2rem;
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #2A2A2A;
+                text-decoration: none;
+                font-family: "Inter Tight", Sans-serif;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid black;
+            }
+
+            .buttonWrapperFaq .btn:hover {
+                background: transparent;
+                duration:300;
+                border: 2px solid black;
+                gap:2rem;
+            }
+
+            .buttonWrapperFaq .btn svg {
+                transition: all 0.3s ease;
+                rotate: -45deg;
+                width: 24px;
+                height: 24px;
+            }
     .faq-accordion.faq-first-page .qwdsadqwdasdas {
         display: none;
     }
     .faq-accordion.faq-first-page {
-        padding-top: 11.25rem; /* 180px */
+        padding-top: 6rem; /* 180px */
     }
     .faq-accordion.faq-first-page h2 {
-        max-width: 31.25rem; /* 500px */
-                font-family: "Darker Grotesque", serif;
+        max-width: 1200px;
+                font-family: "Playfair Display", serif;
 
         text-align: center;
         margin: auto;
@@ -234,7 +280,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
     }
     .faq-accordion h2 {
         font-size: 3.25rem; /* 52px */
-                font-family: "Darker Grotesque", serif;
+                font-family: "Playfair Display", serif;
                 color:#2A2A2A;
         font-weight: bold;
         margin: 0;
@@ -244,7 +290,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
     }
     .faq-category-title {
         font-size: 2rem; /* 40px */
-                font-family: "Darker Grotesque", serif;
+                font-family: "Playfair Display", serif;
 
 
         font-weight: 500;
@@ -296,6 +342,11 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
     }
     .faq-item.active .faq-item-content {
         display: block;
+        background:#093D5F0D;
+
+    }
+        .faq-item.active .faq-item-header{
+        background:#093D5F0D;
     }
     .faq-item.active .faq-item-toggle {
         content: "−";
@@ -308,23 +359,14 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
 
         color: #52525B;
     }
-    .qwdsadqwdasdas {
-        padding: 1.25rem 3.625rem; /* 20px 58px */
-        border: 0.0625rem solid #000; /* 1px */
-        background: white;
-        border-radius: 62.4375rem; /* 999px */
-        cursor: pointer;
-        transition: background 0.3s ease;
-        color: #2A2A2A;
-    }
-    .qwdsadqwdasdas:hover {
-        background: #0e3c55;
-        color: white;
-    }
+
     @media (max-width: 768px) {
         .qwdsadqwdasdas {
             display:none;
         }
+            .faq-accordion.faq-first-page h2 {
+        max-width: 660px;
+    }
         .faq-accordion h2 {
             font-size:32px;
         }

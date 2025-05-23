@@ -39,6 +39,8 @@ function register_hello_world_widget( $widgets_manager ) {
      require_once(__DIR__ . '/widgets/faq-accordion.php');
      require_once(__DIR__ . '/widgets/contactUsSection.php');
      require_once(__DIR__ . '/widgets/propertyMapWidgetNew.php');
+     require_once(__DIR__ . '/widgets/fullScreenImage.php');
+
 
      $widgets_manager->register(new \Elementor_heroSlider());
      $widgets_manager->register(new \Elementor_richTextWithBackground());
@@ -57,7 +59,8 @@ function register_hello_world_widget( $widgets_manager ) {
      $widgets_manager->register(new \Elementor_faqAccordion());
      $widgets_manager->register(new \Elementor_contactUsSection());
      $widgets_manager->register(new \Elementor_propertyMapWidgetNew());
-	
+     $widgets_manager->register(new \Elementor_fullScreenImage());
+
 
 
     $widgets_manager->register( new \Elementor_switchSideImage() );

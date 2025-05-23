@@ -88,15 +88,14 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
             }
             .commitment-section__container {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
     gap: 2rem;
 }
 
 .commitment-section__text {
-    flex: 1 1 50%;
-    max-width: 600px;
+    flex: 1 1 40%;
+    width: 30%;
 }
 
             .commitment-section__title {
@@ -189,10 +188,7 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
     flex: 1 1 40%;
     display: flex;
     justify-content: flex-end; 
-    max-height:442px;
-    min-height:442px;
-    max-width:800px;
-    min-width:800px;
+    width: 60%;
 }
 
 .commitment-section__image img {
@@ -208,6 +204,12 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base {
                     text-align:center;
                 }
 
+                .commitment-section__text {
+    width: 100%;
+}
+.commitment-section__image {
+    width: 100%;
+}
                 .commitment-section__text, .commitment-section__image {
                     flex: 1 1 100%;
                     max-width: 100%;

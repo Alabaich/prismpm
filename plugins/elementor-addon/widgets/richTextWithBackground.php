@@ -230,8 +230,9 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
         <style>
             .richTextContainer {
-                <?php if ($is_first_page): ?>padding-bottom: 140px;
-                padding-top: 140px;
+                <?php if ($is_first_page): ?>
+                    padding-bottom: 140px;
+                    padding-top: 140px;
                 <?php endif; ?>
             }
 

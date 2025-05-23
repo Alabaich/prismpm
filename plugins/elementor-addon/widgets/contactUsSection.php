@@ -167,12 +167,15 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base {
 			}
 
 			.first-contact-section {
-				margin-top: 200px;
+				margin-top: 120px;
 			}
 			@media (max-width: 768px) {
 				.right-column h2, .right-column p {
 					text-align:center;
 				}
+							.first-contact-section {
+				margin-top: 40px;
+			}
 			}
 		</style>
 		<?php

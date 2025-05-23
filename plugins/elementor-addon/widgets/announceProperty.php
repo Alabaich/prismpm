@@ -218,6 +218,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .coming-soon-section.first-page p {
                 max-width: 500px;
+                text-align:center;
             }
 
             .coming-soon-section .property-card {
