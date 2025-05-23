@@ -243,7 +243,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
 
         <style>
             .faq-accordion-widget {
-                padding: 100px 80px;
+                padding: 80px 0px;
                 font-family: "Inter Tight", sans-serif;
             }
 
@@ -302,18 +302,17 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
             }
 
             .faq-view-all-button-wrapper .faq-view-all-button:hover {
-                background: #2A2A2A;
-                color: #FFFFFF;
+                background: #FFFFFF;
+                color: #2A2A2A;
                 border-color: #2A2A2A;
-                gap: 0.8rem;
-            }
-
-            .faq-view-all-button-wrapper .faq-view-all-button:hover .faq-button-icon {
-                transform: translateX(4px);
+                gap:0 2rem;
             }
 
             .faq-button-icon {
-                transition: transform 0.3s ease;
+                transition: all 0.3s ease;
+                rotate: -45deg;
+                width: 20px;
+                height: 20px;
             }
 
             .faq-category {
@@ -462,8 +461,7 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
 
             @media (min-width: 768px) and (max-width: 1024px) {
                 .faq-accordion-widget {
-                    padding-left: 2.5rem;
-                    padding-right: 2.5rem;
+                padding: 40px 0px;
                 }
             }
 
@@ -509,8 +507,8 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
                 }
 
                 .faq-accordion-widget {
-                    padding-left: 1rem;
-                    padding-right: 1rem;
+                padding: 20px 0px;
+
                 }
             }
 
@@ -538,7 +536,6 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
                 .faq-view-all-button-wrapper .faq-view-all-button {
                     padding: 0.5rem 1rem;
                     font-size: 0.85rem;
-                    width: 100%;
                     justify-content: center;
                 }
 
@@ -547,6 +544,8 @@ class Elementor_faqAccordion extends \Elementor\Widget_Base
                 }
 
                 .faq-view-all-button-wrapper {
+                    display:flex;
+                    justify-content:center;
                     width: 100%;
                 }
             }

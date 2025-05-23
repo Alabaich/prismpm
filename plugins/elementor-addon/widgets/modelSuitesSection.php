@@ -152,7 +152,7 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
             }
 
             .show-moreq {
-                padding: 20px 28px;
+                padding: 16px 24px;
                 font-family: "Inter Tight", sans-serif;
                 font-weight: 500;
                 border: 1px solid #000;
@@ -166,11 +166,14 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 transition: transform 0.3s ease, gap 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
                 box-sizing: border-box;
                 text-decoration: none;
+                width: 180px;
             }
 
             .show-moreq svg {
-                transition: transform 0.3s ease, stroke 0.3s ease;
-                stroke: currentColor;
+                transition: all 0.3s ease;
+                rotate: -45deg;
+                width: 24px;
+                height: 24px;
             }
 
             .show-moreq:hover {
@@ -178,10 +181,6 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 color: #2A2A2A;
                 gap: 0rem 2rem;
                 border-color: #000;
-            }
-
-            .show-moreq:hover svg {
-                transform: translateX(16px);
             }
 
             .suites-grid {
@@ -428,6 +427,9 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
             }
 
             @media (max-width: 1024px) {
+                            .model-suites {
+                padding-bottom: 4rem;
+            }
                 .suites-header h2 {
                     font-size: 44px;
                 }
@@ -469,8 +471,8 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
 
             @media (max-width: 767px) {
                 .suites-header {
-                    flex-direction: column;
-                    align-items: flex-start;
+                    align-items: center;
+                    justify-items:center;
                     gap: 1.5rem;
                     margin-bottom: 3rem;
                 }
@@ -481,6 +483,9 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
 
                 .show-moreq {
                     font-size: 15px;
+                    width: 160px;
+                padding: 14px 22px;
+
                 }
 
                 .suite-card {
@@ -524,13 +529,17 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
             }
 
             @media (max-width: 480px) {
+                                            .model-suites {
+                padding-bottom:2rem;
+            }
                 .suites-header h2 {
                     font-size: 30px;
                 }
 
                 .show-moreq {
-                    width: 100%;
                     justify-content: center;
+                                        width: 150px;
+                padding: 12px 20px;
                 }
 
                 .suite-card img {

@@ -422,7 +422,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     letter-spacing: 0%;
                     text-align: center;
                     vertical-align: middle;
-                    color: white;
                 }
 
                 .richText h1 {

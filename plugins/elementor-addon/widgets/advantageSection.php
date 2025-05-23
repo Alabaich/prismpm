@@ -159,7 +159,7 @@ class Elementor_AdvantageSection extends \Elementor\Widget_Base
 
         <style>
             .why-choose-prism-section {
-                padding: 100px 80px;
+                padding: 80px 0px;
                 background-color: #fff;
                 text-align: center;
             }
@@ -207,7 +207,7 @@ class Elementor_AdvantageSection extends \Elementor\Widget_Base
             }
 
             .why-choose-prism__card {
-                background-color: #093D5F0D;
+                background-color: #f9f9f9;
                 max-width: 31.875rem;
                 /* 510px */
                 padding: 2.5rem;
@@ -219,13 +219,13 @@ class Elementor_AdvantageSection extends \Elementor\Widget_Base
             .why-choose-prism__icon {
                 font-size: 3rem;
                 /* 48px */
-                color: #093D5F;
                 margin-bottom: 0.9375rem;
                 /* 15px */
+
             }
 
             .why-choose-prism__icon svg {
-                color: #093D5F;
+                fill: #093D5F;
 
                 width: 3rem;
                 /* 48px */
@@ -261,6 +261,11 @@ class Elementor_AdvantageSection extends \Elementor\Widget_Base
             }
 
             @media (max-width: 576px) {
+                            .why-choose-prism-section {
+                padding: 0px 80px;
+                background-color: #fff;
+                text-align: center;
+            }
                 .why-choose-prism__grid {
                     grid-template-columns: 1fr;
                     gap: 0.9375rem;
