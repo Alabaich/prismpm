@@ -40,6 +40,45 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'background_none',
+            [
+                'label' => esc_html__('No Background', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => 'Yes',
+                'label_off' => 'No',
+                'return_value' => 'yes',
+                'default' => 'no',
+                'description' => esc_html__('If enabled, no background color or image will be applied.', 'elementor-addon'),
+            ]
+        );
+
+        $this->add_control(
+            'is_first_page',
+            [
+                'label' => esc_html__('Is First Page?', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => 'Yes',
+                'label_off' => 'No',
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'background_image',
+            [
+                'label' => esc_html__('Background Image (for first page)', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => '',
+                ],
+                'condition' => [
+                    'is_first_page' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'title',
             [
                 'label' => esc_html__('Title', 'elementor-addon'),
@@ -117,12 +156,25 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'image_overlay_color',
+            [
+                'label' => esc_html__('Background Image Overlay Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'is_first_page' => 'yes',
+                    'background_none!' => 'yes',
+                    'background_image[url]!' => '',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'title_color',
             [
                 'label' => esc_html__('Title Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .richText h1' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .richText h2' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -167,13 +219,70 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
+        $is_first_page = $settings['is_first_page'] === 'yes';
+        $background_image_url = $settings['background_image']['url'] ?? '';
+        $use_no_background = $settings['background_none'] === 'yes';
+        $image_overlay_color_value = $settings['image_overlay_color'] ?? '';
+
+        $has_background_image = $is_first_page && !empty($background_image_url) && !$use_no_background;
+        $inline_style = '';
+
+        if ($use_no_background) {
+            $inline_style = 'background: none;';
+        } elseif ($has_background_image) {
+            $image_url_escaped = esc_url($background_image_url);
+            if (!empty($image_overlay_color_value)) {
+                $gradient = "linear-gradient(" . esc_attr($image_overlay_color_value) . ", " . esc_attr($image_overlay_color_value) . ")";
+                $inline_style = "background-image: " . $gradient . ", url('" . $image_url_escaped . "'); height: 80vh; background-size: cover; background-position: center;";
+            } else {
+                $inline_style = "background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('" . $image_url_escaped . "'); height: 80vh; background-size: cover; background-position: center;";
+            }
+        } else {
+            $inline_style = "background-color: #093D5F;";
+            if ($is_first_page && !$use_no_background) {
+                $inline_style .= " height: 100vh;";
+            }
+        }
+
         $alignment_class = '';
+        if ($is_first_page && (empty($background_image_url) || $use_no_background) ) {
+            $alignment_class = 'centered';
+        }
         if (!empty($settings['alignment'])) {
             $alignment_class = 'align-' . esc_attr($settings['alignment']);
         }
-?>
+
+    ?>
 
         <style>
+            .richTextContainer {
+                <?php if ($is_first_page): ?>
+                    padding-bottom: 140px;
+                    padding-top: 140px;
+                <?php endif; ?>
+            }
+
+            .richTextContainer .richText h2 {
+                <?php if ($is_first_page): ?>font-size: 72px;
+                <?php endif; ?>
+            }
+
+            .richTextContainer .richText h2 {
+                <?php if ($use_no_background): ?>color: #2A2A2A;
+                <?php endif; ?>
+            }
+
+            .richTextContainer .richText p {
+                <?php if ($use_no_background): ?>color: #52525B;
+                <?php endif; ?>
+            }
+
+            .richTextContainer .richText p {
+                <?php if ($is_first_page): ?>padding-bottom: 40px;
+                max-width: 464px;
+                <?php endif; ?>
+            }
+
             .richTextContainer {
                 display: flex;
                 flex-direction: column;
@@ -181,26 +290,23 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 background: #093D5F;
                 text-align: center;
-                padding-bottom: 150px;
-                padding-top: 150px;
+                padding-bottom: 140px;
+                padding-top: 140px;
             }
 
             .richText h2 {
                 color: #FFFFFF;
-                font-family: "Darker Grotesque", Sans-serif;
-                font-size: 34px;
-                font-weight: 600;
+                font-family: "Playfair Display", serif;
                 max-width: 902px;
+                font-size: 52px;
                 line-height: 96%;
                 margin: 0px;
-                padding-left: 10%;
-                padding-right: 10%;
             }
 
             .richText h4 {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
-                font-size: 14px;
+                font-size: 1rem;
                 font-weight: normal;
                 margin: 0px;
                 margin-bottom: 16px;
@@ -209,11 +315,12 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             .richText p {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
-                font-size: 14px;
+                font-size: 1rem;
                 font-weight: 400;
                 max-width: 614px;
-                margin-top: 16px;
-                margin-bottom: 60px;
+                margin: 0;
+                padding-top: 1.5rem;
+                padding-bottom: 70px;
             }
 
             .richTextText {
@@ -253,10 +360,23 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 border: 2px solid transparent;
             }
 
+            .buttonWrapper .btn {
+                <?php if ($use_no_background): ?>color: white;
+                background: #093D5F;
+                <?php endif; ?>
+            }
+
             .buttonWrapper .btn:hover {
                 background: transparent;
+                gap:2rem;
                 border-color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
                 color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
+            }
+
+            .buttonWrapper .btn:hover {
+                <?php if ($use_no_background): ?>color: white;
+                background: #093D5F;
+                <?php endif; ?>
             }
 
             .buttonWrapper .btn svg {
@@ -277,33 +397,47 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
 
             @media (max-width: 768px) {
+                .richTextContainer .richText h2 {
+                    <?php if ($is_first_page): ?>font-size: 28px;
+                    <?php endif; ?>
+                }
+
+                .richTextContainer {
+                    <?php if ($is_first_page): ?>padding-bottom: 0px;
+                    padding-top: 0px;
+                    <?php endif; ?>
+                }
+
                 .richTextContainer {
                     padding-bottom: 50px;
-                    padding-top: 50px;
+                    padding-top: 100px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+
+                .richTextContainer .richText h2 {
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: white;
                 }
 
                 .richText h1 {
                     font-size: 30px;
                 }
 
-                .richText h2 {
-                    font-size: 30px;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .richText h2 {
-                    font-size: 22px;
-                }
-
                 .richText p {
                     font-size: 14px;
-                    padding: 0;
+                    padding-top: 1rem;
+                    padding-bottom: 2rem;
                 }
             }
         </style>
 
-        <div class="richTextContainer <?php echo esc_attr($alignment_class); ?>">
+        <div class="richTextContainer <?php echo esc_attr($alignment_class); ?>" style="<?php echo esc_attr($inline_style); ?>">
             <?php if (!empty($settings['uppertitle'])) : ?>
                 <div class="richText">
                     <h4>
@@ -321,8 +455,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             <?php endif; ?>
 
             <?php if (!empty($settings['text'])) : ?>
-                <div class="richText richTextText">
-                    <p>
+                <div class="richText">
+                    <p class='QWkdj'>
                         <?php echo esc_html($settings['text']); ?>
                     </p>
                 </div>
@@ -340,6 +474,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             <?php endif; ?>
         </div>
 
-<?php
+    <?php
     }
 }
