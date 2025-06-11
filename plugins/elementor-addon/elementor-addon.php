@@ -45,6 +45,10 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/fullScreenImage.php');
 
 
+
+
+
+
     require_once(__DIR__ . '/widgets/proudSection.php');
     require_once(__DIR__ . '/widgets/communityLifeSection.php');
     require_once(__DIR__ . '/widgets/neighborhoodsSection.php');
@@ -61,7 +65,19 @@ function register_hello_world_widget($widgets_manager)
 
 
 
+    require_once(__DIR__ . '/widgets/announcePropertyRow.php');
+    require_once(__DIR__ . '/widgets/gridGallery.php');
+    require_once(__DIR__ . '/widgets/scoreAnimatedSection.php');
 
+    $widgets_manager->register(new \Elementor_announcePropertyRow());
+    $widgets_manager->register(new \Elementor_gridGallery());
+    $widgets_manager->register(new \Elementor_scoreAnimatedSection());
+    
+
+
+
+
+    
     $widgets_manager->register(new \Elementor_heroSlider());
     $widgets_manager->register(new \Elementor_richTextWithBackground());
     $widgets_manager->register(new \Elementor_heroImage());
