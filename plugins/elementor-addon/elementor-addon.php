@@ -42,7 +42,24 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/contactUsSection.php');
     require_once(__DIR__ . '/widgets/propertyMapWidgetNew.php');
     require_once(__DIR__ . '/widgets/FullWidthSuitesSection.php');
-     require_once(__DIR__ . '/widgets/fullScreenImage.php');
+    require_once(__DIR__ . '/widgets/fullScreenImage.php');
+
+
+    require_once(__DIR__ . '/widgets/proudSection.php');
+    require_once(__DIR__ . '/widgets/communityLifeSection.php');
+    require_once(__DIR__ . '/widgets/neighborhoodsSection.php');
+    require_once(__DIR__ . '/widgets/historySection.php');
+    require_once(__DIR__ . '/widgets/infoSection.php');
+    require_once(__DIR__ . '/widgets/discoverSection.php');
+
+    $widgets_manager->register(new \Elementor_proudSection());
+    $widgets_manager->register(new \Elementor_communityLifeSection());
+    $widgets_manager->register(new \Elementor_neighborhoodsSection());
+    $widgets_manager->register(new \Elementor_historySection());
+    $widgets_manager->register(new \Elementor_infoSection());
+    $widgets_manager->register(new \Elementor_discoverSection());
+
+
 
 
     $widgets_manager->register(new \Elementor_heroSlider());
