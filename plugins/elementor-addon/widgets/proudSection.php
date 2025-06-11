@@ -99,7 +99,7 @@ class Elementor_proudSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <section class="proud-peterborough-section pageWidth">
+        <section class="proud-peterborough-section pageWidthProud">
             <div class="proud-peterborough__container">
                 <div class="aligtextcont">
                     <h2 class="proud-peterborough__title"><?php echo esc_html($settings['main_title']); ?></h2>
@@ -117,18 +117,18 @@ class Elementor_proudSection extends \Elementor\Widget_Base
         </section>
 
         <style>
-                                                .pageWidth{
+                                                .pageWidthProud{
     width: 100%;
     padding: 25px 10%;
 }
 @media screen and (max-width: 1600px) {
- .pageWidth{
+ .pageWidthProud{
   width: 100%;
   padding: 25px;
 }
 }
 @media screen and (max-width: 768px) {
- .pageWidth{
+ .pageWidthProud{
   width: 100%;
   padding: 15px;
 }

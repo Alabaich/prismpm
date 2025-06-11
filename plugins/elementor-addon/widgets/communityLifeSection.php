@@ -190,7 +190,7 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <section class="community-lifestyle-section pageWidth">
+        <section class="community-lifestyle-section pageWidthCommLife">
             <div class="community-lifestyle__container">
                 <h2 class="community-lifestyle__main-title"><?php echo esc_html($settings['main_title']); ?></h2>
                 <p class="community-lifestyle__main-description"><?php echo esc_html($settings['main_description']); ?></p>
@@ -228,18 +228,18 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
         </script>
 
         <style>
-            .pageWidth{
+            .pageWidthCommLife{
     width: 100%;
     padding: 25px 10%;
 }
 @media screen and (max-width: 1600px) {
- .pageWidth{
+ .pageWidthCommLife{
   width: 100%;
   padding: 25px;
 }
 }
 @media screen and (max-width: 768px) {
- .pageWidth{
+ .pageWidthCommLife{
   width: 100%;
   padding: 15px;
 }

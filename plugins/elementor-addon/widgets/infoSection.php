@@ -68,7 +68,7 @@ class Elementor_infoSection extends \Elementor\Widget_Base
         $image_url = $settings['image']['url'];
 ?>
         <section class="did-you-know-section">
-            <div class="pageWidth ff">
+            <div class="pageWidthinf ff">
                 <div class="did-you-know__content">
                     <h1 class="did-you-know__title"><?php echo esc_html($settings['title']); ?></h1>
                     <p class="did-you-know__description"><?php echo esc_html($settings['description']); ?></p>
@@ -96,20 +96,20 @@ class Elementor_infoSection extends \Elementor\Widget_Base
                 justify-content:space-between;
             }
 
-            .pageWidth {
+            .pageWidthinf {
                 width: 100%;
                 padding: 25px 10%;
             }
 
             @media screen and (max-width: 1600px) {
-                .pageWidth {
+                .pageWidthinf {
                     width: 100%;
                     padding: 25px;
                 }
             }
 
             @media screen and (max-width: 768px) {
-                .pageWidth {
+                .pageWidthinf {
                     width: 100%;
                     padding: 15px;
                 }

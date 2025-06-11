@@ -170,7 +170,7 @@ class Elementor_neighborhoodsSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
     ?>
-        <section class="neighborhoods-section pageWidth">
+        <section class="neighborhoods-section pageWidthneib">
             <div class="neighborhoods__container">
                 <h2 class="neighborhoods__title"><?php echo esc_html($settings['main_title']); ?></h2>
                 <p class="neighborhoods__description"><?php echo esc_html($settings['description']); ?></p>
@@ -208,18 +208,18 @@ class Elementor_neighborhoodsSection extends \Elementor\Widget_Base
             .neighborhoods-section {
                 text-align: center;
             }
-                                    .pageWidth{
+                                    .pageWidthneib{
     width: 100%;
     padding: 25px 10%;
 }
 @media screen and (max-width: 1600px) {
- .pageWidth{
+ .pageWidthneib{
   width: 100%;
   padding: 25px;
 }
 }
 @media screen and (max-width: 768px) {
- .pageWidth{
+ .pageWidthneib{
   width: 100%;
   padding: 15px;
 }

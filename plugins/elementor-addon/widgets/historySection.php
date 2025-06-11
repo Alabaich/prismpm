@@ -116,7 +116,7 @@ class Elementor_historySection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <section class="rich-history-section pageWidth">
+        <section class="rich-history-section pageWidthHis">
             <div class="rich-history__container">
                 <h2 class="rich-history__title"><?php echo esc_html($settings['main_title']); ?></h2>
                 <p class="rich-history__description"><?php echo esc_html($settings['description']); ?></p>
@@ -137,20 +137,20 @@ class Elementor_historySection extends \Elementor\Widget_Base
         </section>
 
         <style>
-            .pageWidth {
+            .pageWidthHis {
                 width: 100%;
                 padding: 25px 10%;
             }
 
             @media screen and (max-width: 1600px) {
-                .pageWidth {
+                .pageWidthHis {
                     width: 100%;
                     padding: 25px;
                 }
             }
 
             @media screen and (max-width: 768px) {
-                .pageWidth {
+                .pageWidthHis {
                     width: 100%;
                     padding: 15px;
                 }
@@ -272,7 +272,7 @@ class Elementor_historySection extends \Elementor\Widget_Base
             }
 
             @media screen and (max-width: 768px) {
-                .pageWidth {
+                .pageWidthHis {
                     padding: 15px;
                 }
 

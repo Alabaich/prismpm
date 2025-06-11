@@ -121,7 +121,7 @@ class Elementor_discoverSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <section class="discover-peterborough-section pageWidth">
+        <section class="discover-peterborough-section pageWidthDisc">
             <div class="">
                 <div class="discover-peterborough__header">
                     <h2 class="discover-peterborough__title"><?php echo esc_html($settings['main_title']); ?></h2>
@@ -147,18 +147,18 @@ class Elementor_discoverSection extends \Elementor\Widget_Base
         </section>
 
         <style>
-                        .pageWidth{
+                        .pageWidthDisc{
     width: 100%;
     padding: 25px 10%;
 }
 @media screen and (max-width: 1600px) {
- .pageWidth{
+ .pageWidthDisc{
   width: 100%;
   padding: 25px;
 }
 }
 @media screen and (max-width: 768px) {
- .pageWidth{
+ .pageWidthDisc{
   width: 100%;
   padding: 15px;
 }
