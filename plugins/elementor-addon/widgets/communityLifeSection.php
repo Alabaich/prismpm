@@ -222,7 +222,6 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
             </div>
         </section>
 
-        <!-- Hidden script tag with event data -->
         <script id="community-lifestyle-data" type="application/json">
             <?php echo wp_json_encode($settings['events']); ?>
         </script>
@@ -369,28 +368,28 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
 
             .community-lifestyle__images-container {
                 background-color: #F5F7FA;
-                padding: 0; /* Remove all padding */
+                padding: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                height: 100%; /* Match the height of the left column */
+                height: 100%;
             }
 
             .community-lifestyle__images {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: repeat(2, auto);
-                gap: 2%; /* Only gap between images, no top/bottom padding */
+                gap: 2%;
                 width: 100%;
-                height: 100%; /* Fill the container */
-                overflow: hidden; /* Prevent overflow */
+                height: 100%;
+                overflow: hidden; 
             }
 
             .community-lifestyle__images img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 8px; /* Rounded corners for all images */
+                border-radius: 8px;
                 border: 1px solid #e0e0e0;
             }
 
@@ -441,7 +440,6 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
                 const leftColumn = document.querySelector('.community-lifestyle__left-column');
                 let activeItem = null;
 
-                // Set the height of the images container to match the left column height
                 function updateImageContainerHeight() {
                     const leftColumnHeight = leftColumn.offsetHeight;
                     imagesWrapper.style.height = `${leftColumnHeight}px`;
@@ -450,7 +448,6 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
                 updateImageContainerHeight();
                 window.addEventListener('resize', updateImageContainerHeight);
 
-                // Load event data from the hidden script tag
                 const eventData = JSON.parse(document.getElementById('community-lifestyle-data').textContent);
 
                 menuItems.forEach(item => {
