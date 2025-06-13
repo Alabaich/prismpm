@@ -68,10 +68,13 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/announcePropertyRow.php');
     require_once(__DIR__ . '/widgets/gridGallery.php');
     require_once(__DIR__ . '/widgets/scoreAnimatedSection.php');
+    require_once(__DIR__ . '/widgets/gridGallery12.php');
+
 
     $widgets_manager->register(new \Elementor_announcePropertyRow());
     $widgets_manager->register(new \Elementor_gridGallery());
     $widgets_manager->register(new \Elementor_scoreAnimatedSection());
+    $widgets_manager->register(new \Elementor_gridGallery12());
     
 
 
