@@ -75,6 +75,23 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_gridGallery());
     $widgets_manager->register(new \Elementor_scoreAnimatedSection());
     $widgets_manager->register(new \Elementor_gridGallery12());
+
+
+
+    require_once(__DIR__ . '/widgets/testimNew.php');
+    require_once(__DIR__ . '/widgets/forRentSection.php');
+    require_once(__DIR__ . '/widgets/videoTourSection.php');
+    require_once(__DIR__ . '/widgets/welcomeSection.php');
+    require_once(__DIR__ . '/widgets/buildFeaturesSection.php');
+    require_once(__DIR__ . '/widgets/neibWalkSection.php');
+
+    $widgets_manager->register(new \Elementor_testimNew());
+    $widgets_manager->register(new \Elementor_forRentSection());
+    $widgets_manager->register(new \Elementor_videoTourSection());
+    $widgets_manager->register(new \Elementor_welcomeSection());
+    $widgets_manager->register(new \Elementor_buildFeaturesSection());
+    $widgets_manager->register(new \Elementor_neibWalkSection());
+    
     
 
 
