@@ -137,6 +137,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     grid-template-columns: repeat(5, 1fr); 
                     gap: 50px; 
                     justify-content:center;
+                    align-items:baseline;
                     width: 100%;
                 }
 
@@ -152,8 +153,10 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .feature-card .icon-block svg {
-                    width: 50%; 
-                    height: 50%; 
+                    width: 100%; 
+                    height: 100%;
+                    max-width:120px;
+                    max-height:120px; 
                 }
 
                 .features-unique .feature-card .feature-name {
