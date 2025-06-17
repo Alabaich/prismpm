@@ -134,6 +134,8 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
         <style>
             .pageWidthVT {
                 padding: 25px 10%;
+                background:#F7F9FA;
+
                 width: 100%; 
             }
             @media screen and (max-width: 1600px) {
@@ -155,7 +157,6 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
             }
 
             .pageWidthVT .tour-showcase .tour-card {
-                background-color: #FFFFFF;
                 border-radius: 8px;
                 overflow: hidden;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

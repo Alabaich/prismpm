@@ -152,12 +152,12 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 20px 10%;
             }
 
             .welcome-header img {
-                height: 54px;
-                width: 160px;
+                object-fit:content;
+                height:100%;
+                width: auto;
             }
 
             .welcome-header nav {

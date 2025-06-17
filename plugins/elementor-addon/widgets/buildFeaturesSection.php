@@ -157,6 +157,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .feature-card .feature-name {
+                    padding-top:20px;
                     margin: 0;
                     color:#1A1A1A;
                     font:bold;

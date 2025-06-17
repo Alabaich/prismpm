@@ -113,7 +113,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
         </div>
         <style>
             .pageWidthAnSc {
-                padding: 25px 10%;
+                padding: 100px 10%;
                 width: 100%;
             }
             @media screen and (max-width: 1600px) {
@@ -133,7 +133,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
             .score-section h2 {
                 margin:0;
                 color:white;
-                padding-bottom:40px;
+                padding-bottom:70px;
             }
 
             .score-section .score-container {
@@ -142,8 +142,8 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 4rem;
                 margin:0;
-                padding-bottom:3rem;
                 flex-wrap: wrap;
+                padding-bottom:70px;
             }
 
             .score-circle {
