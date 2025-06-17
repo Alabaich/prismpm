@@ -204,7 +204,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
 
             .welcome-content .text-content {
-                max-width: 40%;
+                width: 50%;
                 text-align: left;
                 align-items: flex-start;
                 justify-content:flex-start;
@@ -233,6 +233,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-content .score-value {
                 justify-content: flex-end;
                 flex-direction: column;
+                align-items:flex-end;
                 font-size: 30rem;
                 width: 60%;
                 font-weight: bold;
