@@ -52,6 +52,21 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
             ]
         );
 
+        $repeater->add_control(
+            'tour_link',
+            [
+                'label' => esc_html__('Tour Link', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'elementor-addon'),
+                'show_external' => true,
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                ],
+            ]
+        );
+
         $this->add_control(
             'tours',
             [
@@ -62,18 +77,22 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
                     [
                         'tour_title' => '80 Bond - F3; 3BR',
                         'image' => ['url' => ''],
+                        'tour_link' => ['url' => '', 'is_external' => true, 'nofollow' => true],
                     ],
                     [
                         'tour_title' => '80 Bond - F3; 3BR',
                         'image' => ['url' => ''],
+                        'tour_link' => ['url' => '', 'is_external' => true, 'nofollow' => true],
                     ],
                     [
                         'tour_title' => '80 Bond - F3; 3BR',
                         'image' => ['url' => ''],
+                        'tour_link' => ['url' => '', 'is_external' => true, 'nofollow' => true],
                     ],
                     [
                         'tour_title' => '80 Bond - F3; 3BR',
                         'image' => ['url' => ''],
+                        'tour_link' => ['url' => '', 'is_external' => true, 'nofollow' => true],
                     ],
                 ],
                 'title_field' => '{{{ tour_title }}}',
@@ -93,16 +112,19 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
                     <?php foreach ($settings['tours'] as $tour) : ?>
                         <div class="tour-card">
                             <?php if (!empty($tour['image']['url'])) : ?>
-                                <div class="tour-card-image" style="background-image: url('<?php echo esc_url($tour['image']['url']); ?>');">
-                                    <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg>
-                                </div>
+                                <a href="<?php echo esc_url($tour['tour_link']['url']); ?>" target="_blank" <?php echo $tour['tour_link']['nofollow'] ? 'rel="nofollow"' : ''; ?> class="tour-link">
+                                    <div class="tour-card-image" style="background-image: url('<?php echo esc_url($tour['image']['url']); ?>');">
+                                        <div class="image-overlay"></div>
+                                        <div class="tour-card-text">
+                                            <h5 class="tour-card-title"><?php echo esc_html($tour['tour_title']); ?></h5>
+                                            <p class="tour-card-subtitle">Explore 3D space</p>
+                                        </div>
+                                        <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg>
+                                    </div>
+                                </a>
                             <?php endif; ?>
-                            <div class="tour-card-text">
-                                <h3 class="tour-card-title"><?php echo esc_html($tour['tour_title']); ?></h3>
-                                <p class="tour-card-subtitle">Explore 3D space</p>
-                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -111,7 +133,8 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
 
         <style>
             .pageWidthVT {
-                padding: 25px 10%; 
+                padding: 25px 10%;
+                width: 100%; 
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthVT {
@@ -126,7 +149,6 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
 
             .pageWidthVT .tour-showcase .tour-grid {
                 width: 100%; 
-                margin-top: 1rem;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 20px;
@@ -137,19 +159,56 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
                 border-radius: 8px;
                 overflow: hidden;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+
+            .pageWidthVT .tour-showcase .tour-link {
+                text-decoration: none;
+                color: inherit;
+                display: block;
             }
 
             .pageWidthVT .tour-showcase .tour-card-image {
                 background-size: cover;
                 background-position: center;
                 position: relative;
-                height: 200px;
+                height: 300px;
                 width: 100%;
+            }
+
+            .pageWidthVT .tour-showcase .image-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.3); 
+            }
+
+            .pageWidthVT .tour-showcase .tour-card-text {
+                position: absolute;
+                top: 66%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: #FFFFFF;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .pageWidthVT .tour-showcase .tour-card-title {
+                margin: 0 0 10px;
+                font-weight: bold;
+            }
+
+            .pageWidthVT .tour-showcase .tour-card-subtitle {
+                margin: 0;
+                font-size: 0.9rem;
             }
 
             .pageWidthVT .tour-showcase .play-icon {
                 position: absolute;
-                top: 50%;
+                top: 44%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 width: 40px;
@@ -159,26 +218,6 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
 
             .pageWidthVT .tour-showcase .tour-card:hover .play-icon {
                 transform: translate(-50%, -50%) scale(1.2);
-                width: 48px;
-                height: 48px;
-            }
-
-            .pageWidthVT .tour-showcase .tour-card-text {
-                padding: 10px;
-                text-align: center;
-            }
-
-            .pageWidthVT .tour-showcase .tour-card-title {
-                margin: 0 0 5px;
-                color: #2A2A2A;
-                font-weight: bold;
-                font-size: 1rem;
-            }
-
-            .pageWidthVT .tour-showcase .tour-card-subtitle {
-                margin: 0;
-                color: #6B7280;
-                font-size: 0.9rem;
             }
 
             @media (max-width: 991px) {

@@ -177,44 +177,90 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 }
 
                 .neighborhood-unique .title-block {
-                    font-size: 1.5rem;
-                    margin-bottom: 1.5rem;
+                    margin: 0;
+                    padding-bottom: 25px;
                 }
 
                 .neighborhood-unique .grid-layout {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-                    gap: 1.875rem;
-                    margin: 0 auto;
-                    width: 90%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    width: 100%;
+                    align-items: baseline;
+                    padding-top: 25px;
                 }
 
                 .neighborhood-unique .category-card {
-                    background: #fff;
-                    padding: 1rem;
-                    border-radius: 4px;
-                    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 300px;
                 }
 
                 .neighborhood-unique .category-card .icon-block {
-                    font-size: 2rem;
-                    color: <?php echo esc_attr($settings['icon_color']); ?>;
-                    margin-bottom: 0.5rem;
+                    fill: <?php echo esc_attr($settings['icon_color']); ?>; /* Use fill for SVG icons */
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .neighborhood-unique .category-card .icon-block svg {
+                    width: 100px; /* Uniform size */
+                    height: 120px; /* Uniform size */
                 }
 
                 .neighborhood-unique .category-card .category-name {
-                    font-size: 1.1rem;
-                    margin-bottom: 0.5rem;
+                    margin: 0;
+                    font-weight: bold;
+                    padding-top: 10px;
+                    padding-bottom: 25px;
                 }
 
-                .neighborhood-unique .category-card .sub-item {
-                    font-size: 0.9rem;
-                    margin: 0.25rem 0;
+                .neighborhood-unique .category-card .sub-itemNeib {
+                    margin:0;
+                    line-height: 1.2;
+
+                }
+                .gapperch {
+                    padding-bottom:20px;
+                    gap:40px;
+                    display:flex;
+                    flex-direction:column;
+                }
+
+                .neighborhood-unique .category-card .sub-itemNeib h5 {
+                    font-weight: bold;
+                    font-size:18px; 
+                    margin: 0;
+                    background:#F7F9FA;
+                    padding:10px 0;
+                }
+
+                .neighborhood-unique .category-card .sub-itemNeib div {
+                    padding-top:20px;
+                    margin: 0;
+                    color: #1A1A1A;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    gap:10px;
+                    font-family:"Playfair Display";
+                }
+                .neighborhood-unique .category-card .sub-itemNeib div span {
+                    font-weight:bold;
+                    font-size:4rem;
+                }
+                .subTextWalk {
+                    margin:0;
                 }
 
                 @media (max-width: 768px) {
                     .neighborhood-unique .grid-layout {
-                        grid-template-columns: 1fr;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .neighborhood-unique .category-card {
+                        width: 100%;
+                        max-width: 15rem;
                     }
                 }
             </style>
@@ -226,10 +272,15 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                         <div class="icon-block">
                             <?php \Elementor\Icons_Manager::render_icon($item['category_icon'], ['aria-hidden' => 'true']); ?>
                         </div>
-                        <h3 class="category-name"><?php echo esc_html($item['category_name']); ?></h3>
-                        <?php foreach ($item['sub_items'] as $sub_item): ?>
-                            <p class="sub-item"><?php echo esc_html($sub_item['sub_item_name']); ?> <br> <?php echo esc_html($sub_item['sub_item_distance']); ?> Minute Walk</p>
+                        <h4 class="category-name"><?php echo esc_html($item['category_name']); ?></h4>
+                        <div class="gapperch">
+                                                    <?php foreach ($item['sub_items'] as $sub_item): ?>
+                            <div class="sub-itemNeib">
+                                <h5><?php echo esc_html($sub_item['sub_item_name']); ?></h5>
+                                <div><span><?php echo esc_html($sub_item['sub_item_distance']); ?></span> <p class="subTextWalk">Minute <br/> Walk</p></div>
+                            </div>
                         <?php endforeach; ?>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>

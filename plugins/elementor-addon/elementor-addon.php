@@ -84,6 +84,10 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/welcomeSection.php');
     require_once(__DIR__ . '/widgets/buildFeaturesSection.php');
     require_once(__DIR__ . '/widgets/neibWalkSection.php');
+    require_once(__DIR__ . '/widgets/residentLoveSection.php');
+    require_once(__DIR__ . '/widgets/propertyGridSec.php');
+
+
 
     $widgets_manager->register(new \Elementor_testimNew());
     $widgets_manager->register(new \Elementor_forRentSection());
@@ -91,9 +95,12 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_welcomeSection());
     $widgets_manager->register(new \Elementor_buildFeaturesSection());
     $widgets_manager->register(new \Elementor_neibWalkSection());
-    
-    
+    $widgets_manager->register(new \Elementor_residentLoveSection());
+    $widgets_manager->register(new \Elementor_propertyGridSec());
 
+
+    
+    
 
 
 

@@ -127,39 +127,50 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .title-block {
-                    font-size: 1.5rem;
-                    margin-bottom: 1.5rem;
+                    padding-bottom: 25px;
+                    margin: 0;
                 }
 
                 .features-unique .grid-layout {
+                    padding-top: 25px;
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-                    gap:25px;
-                    margin: 0 auto;
+                    grid-template-columns: repeat(5, 1fr); 
+                    gap: 50px; 
+                    justify-content:center;
                     width: 100%;
                 }
 
                 .features-unique .feature-card {
-                    background: #fff;
-                    padding: 1rem;
-                    border-radius: 4px;
-                    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
                 }
 
                 .features-unique .feature-card .icon-block {
-                    font-size: 2rem;
-                    color: <?php echo esc_attr($settings['icon_color']); ?>;
-                    margin-bottom: 0.5rem;
+                    font-size: 1.5rem; 
+                    fill: <?php echo esc_attr($settings['icon_color']); ?>;
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .features-unique .feature-card .icon-block svg {
+                    width: 50%; 
+                    height: 50%; 
                 }
 
                 .features-unique .feature-card .feature-name {
-                    font-size: 1rem;
                     margin: 0;
+                    color:#1A1A1A;
+                    font:bold;
+                }
+
+                @media (max-width: 1200px) {
+                    .features-unique .grid-layout {
+                        grid-template-columns: repeat(3, 1fr); 
+                    }
                 }
 
                 @media (max-width: 768px) {
                     .features-unique .grid-layout {
-                        grid-template-columns: 1fr;
+                        grid-template-columns: 1fr; 
                     }
                 }
             </style>
@@ -171,7 +182,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                         <div class="icon-block">
                             <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
                         </div>
-                        <p class="feature-name"><?php echo esc_html($feature['feature_name']); ?></p>
+                        <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
                     </div>
                 <?php endforeach; ?>
             </div>
