@@ -284,6 +284,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 font-weight: 500;
                 text-align:left;
                 margin: 0;
+                max-width:300px;
             }
 
             .pageWidthFR .rent-display .rent-card-price {
