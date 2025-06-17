@@ -125,7 +125,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 'default' => [
                     [
                         'property_title' => '1 Bed Loft in Downtown Peterborough',
-                        'price' => '$2,250/month',
+                        'price' => '$2,250',
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
@@ -133,7 +133,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                     ],
                     [
                         'property_title' => '1 Bed Loft in Downtown Peterborough',
-                        'price' => '$2,250/month',
+                        'price' => '$2,250',
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
@@ -141,7 +141,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                     ],
                     [
                         'property_title' => '1 Bed Loft in Downtown Peterborough',
-                        'price' => '$2,250/month',
+                        'price' => '$2,250',
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
@@ -170,9 +170,9 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                 <?php if (!empty($property['image']['url'])) : ?>
                                     <div class="rent-card-image" style="background-image: url('<?php echo esc_url($property['image']['url']); ?>');"></div>
                                 <?php endif; ?>
-                                <div class="suite-title-priceRent" style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
+                                <div class="suite-title-priceRent" style="display: flex; justify-content: space-between; align-items: center;">
                                     <h5 class="rent-card-title"><?php echo esc_html($property['property_title']); ?></h5>
-                                    <p class="rent-card-price"><?php echo esc_html($property['price']); ?></p>
+                                    <p class="rent-card-price"><?php echo esc_html($property['price']); ?> <br/><span>month</span></p>
                                 </div>
                                 <div class="rent-card-details">
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
@@ -199,12 +199,14 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                     <span class="rent-status-dot"></span>
                                     <span class="rent-status-text"><?php echo esc_html($property['available']); ?></span>
                                 </div>
-                                <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
+                                <div style="display:flex; flex-direction:column; gap:10px;">
+                                                                    <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
                                     Explore Now <span class="arrow" style="transform: rotate(-45deg);">→</span>
                                 </a>
                                 <a href="#" class="rent-button view-button" style="color: <?php echo $accent_color; ?>; border-color: <?php echo $accent_color; ?>;">
                                     Book a Viewing <span class="arrow" style="transform: rotate(-45deg);">→</span>
                                 </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -276,6 +278,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-card-title {
+  font-family: "Darker Grotesque", sans-serif;
+
                 color: #1A1A1A;
                 font-weight: 500;
                 text-align:left;
@@ -283,10 +287,19 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-card-price {
+  font-family: "Playfair Display";
+  display:flex;
+  flex-direction:column;
                 margin: 0;
                 color: #2A2A2A;
                 font-weight: bold;
-                font-size: 1.2rem;
+                font-size: 30px;
+                justify-content:center;
+            }
+                        .pageWidthFR .rent-display .rent-card-price span {
+                font-size: 1rem;
+                color:#2C2C2C;
+                font-weight:400;
             }
 
             .pageWidthFR .rent-display .rent-card-details {
@@ -303,7 +316,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 0.5rem;
                 background:#F7F9FA;
-                padding: 6px 12px;
+                padding: 12px;
                 border-radius: 999px;
                 font-size: 1rem;
                 font-weight: 500;
@@ -322,7 +335,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 padding-bottom:30px;
                 color: #2A2A2A;
                 font-size: 1rem;
-                font-family:"Playfair Display"
+  font-family: "Inter Tight", sans-serif;
+
             }
 
             .pageWidthFR .rent-display .rent-status-dot {
@@ -336,8 +350,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
   font-family: "Inter Tight", sans-serif;
   font-size:1rem;
                 display: inline-block;
-                padding: 10px 20px;
-                margin: 5px 0;
+                padding: 16px 0;
+                margin:0;
                 border-radius: 9999px;
                 text-decoration: none;
                 font-weight: bold;
