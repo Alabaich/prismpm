@@ -49,14 +49,11 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'score_value',
+            'score_image',
             [
-                'label' => esc_html__('Score Value', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 80,
-                'min' => 0,
-                'max' => 100,
-                'step' => 1,
+                'label' => esc_html__('Score Image', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => ['url' => ''],
             ]
         );
 
@@ -65,9 +62,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Header Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => '',
-                ],
+                'default' => ['url' => ''],
             ]
         );
 
@@ -86,15 +81,6 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 'label' => esc_html__('Title Text Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#1a3c5e',
-            ]
-        );
-
-        $this->add_control(
-            'score_color',
-            [
-                'label' => esc_html__('Score Text Color', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#6d8299',
             ]
         );
 
@@ -159,14 +145,14 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
 
             .welcome-header.active {
                 position: fixed;
-                top: 60px;
+                top: 100px;
             }
 
             .welcome-header .pageWidthNewHead {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding:20px 10%;
+                padding: 20px 10%;
             }
 
             .welcome-header img {
@@ -177,7 +163,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header nav {
                 display: flex;
                 justify-content: center;
-                align-items:center;
+                align-items: center;
                 gap: 2rem;
             }
 
@@ -185,7 +171,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: #fff;
                 text-decoration: none;
                 font-size: 1rem;
-                font-family:"Playfair Display";
+                font-family: "Playfair Display";
             }
 
             .welcome-header nav .button {
@@ -193,8 +179,8 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: #1A1A1A;
                 border-radius: 66px;
                 text-decoration: none;
-                font-weight:500;
-                padding:10px 20px;
+                font-weight: 500;
+                padding: 10px 20px;
             }
 
             .welcome-content {
@@ -207,7 +193,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 width: 50%;
                 text-align: left;
                 align-items: flex-start;
-                justify-content:flex-start;
+                justify-content: flex-start;
                 display: flex;
                 flex-direction: column;
                 gap: 25px;
@@ -216,7 +202,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-content .text-content h1 {
                 color: <?php echo esc_attr($settings['title_color']); ?>;
                 margin: 0;
-                padding-bottom:25px;
+                padding-bottom: 25px;
             }
 
             .welcome-content .text-content p {
@@ -231,20 +217,27 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
 
             .welcome-content .score-value {
+                width: 40%;
+                overflow: hidden;
+                margin-bottom: -6%;
                 justify-content: flex-end;
-                flex-direction: column;
-                align-items:flex-end;
-                font-size: 30rem;
-                width: 60%;
-                font-weight: bold;
-                color: <?php echo esc_attr($settings['score_color']); ?>;
-                line-height: 0.8;
+                align-items: flex-end;
+                display: flex;
+                z-index: -10;
+            }
+
+            .welcome-content .score-value img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
             }
 
             @media (max-width: 768px) {
                 .welcome-content {
                     flex-direction: column;
                     text-align: center;
+                    padding-top: 100px;
                 }
                 .welcome-content .text-content {
                     max-width: 100%;
@@ -256,8 +249,8 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                     max-height: 40px;
                 }
                 .welcome-content .score-value {
-                    font-size: 15rem;
-                    margin-top: -50px;
+                    width: 100%;
+                    margin-bottom: -5%;
                 }
             }
         </style>
@@ -278,6 +271,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 </nav>
             </div>
         </div>
+
         <div class="pageWidthNewHead">
             <div class="welcome-section" id="welcome-section-<?php echo esc_attr($this->get_id()); ?>">
                 <div class="welcome-content">
@@ -290,7 +284,11 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <div class="score-value"><?php echo esc_html($settings['score_value']); ?></div>
+                    <div class="score-value">
+                        <?php if (!empty($settings['score_image']['url'])) : ?>
+                            <img src="<?php echo esc_url($settings['score_image']['url']); ?>" alt="Score Image">
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -304,7 +302,6 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
 
                 function checkScrollDirection() {
                     var currentScrollY = window.scrollY;
-                    var rect = section.getBoundingClientRect();
                     var sectionBottom = sectionTop + section.offsetHeight;
                     var scrollDown = currentScrollY > lastScrollY;
                     var scrollUp = currentScrollY < lastScrollY;
