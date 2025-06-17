@@ -108,7 +108,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
             <style>
                 .pageWidthBdF {
                     width: 100%;
-                    padding: 25px 10%;
+                    padding: 100px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthBdF {

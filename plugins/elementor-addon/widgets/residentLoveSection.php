@@ -123,7 +123,7 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
             <style>
                 .pageWidthResLove {
                     width: 100%;
-                    padding: 25px 10%;
+                    padding: 80px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthResLove {
@@ -144,7 +144,6 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     margin: 0;
                     color: #fff;
                     padding-bottom: 25px;
-                    padding-top:25px;
                 }
                 .resident-love-section .grid-layout {
                     display: grid;
@@ -152,7 +151,6 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     gap: 25px;
                     width: 100%;
                     padding-top: 25px;
-                    padding-bottom:25px;
                 }
                 .resident-love-section .testimonial-card {
                     color: #FFFFFF;
