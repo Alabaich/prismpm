@@ -145,7 +145,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
 
             .welcome-header.active {
                 position: fixed;
-                top: 100px;
+                top: 90px;
             }
 
             .welcome-header .pageWidthNewHead {
@@ -155,7 +155,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
 
             .welcome-header img {
-                object-fit:content;
+                object-fit:contain;
                 height:100%;
                 width: auto;
             }
