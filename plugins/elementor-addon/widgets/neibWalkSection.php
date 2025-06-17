@@ -159,6 +159,7 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 .pageWidthNWS {
                     width: 100%;
                     padding: 25px 10%;
+                    padding-bottom:100px;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthNWS {
