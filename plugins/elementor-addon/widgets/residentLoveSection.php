@@ -180,7 +180,6 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     font-size: 1rem;
                     margin: 0;
                     position: relative;
-                    padding-bottom:25px;
                     z-index: 1;
                 }
                 .resident-love-section .testimonial-author p::before {
