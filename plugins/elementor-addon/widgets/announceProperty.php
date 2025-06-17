@@ -48,7 +48,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Title', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Properties Coming Soon',
+                'default' => 'Find Your Perfect Home!',
             ]
         );
 
@@ -57,9 +57,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Subtitle', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => 'Explore more properties and details at Atriadevelopment.ca',
+                'default' => 'Explore more properties and details at AtriaDevelopment.ca',
             ]
         );
+
         $this->add_control(
             'section_image',
             [
@@ -180,7 +181,12 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 'label' => esc_html__('Properties', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'default' => [],
+                'default' => [
+                    ['title' => '80 Bond', 'address' => '80 Bond St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
+                    ['title' => '100 Bond', 'address' => '100 Bond St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
+                    ['title' => 'Lof', 'address' => 'Lof St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
+                    ['title' => 'George Street Lofts', 'address' => 'George St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
+                ],
             ]
         );
 
@@ -193,9 +199,21 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 ?>
 
         <style>
-            /* Base Desktop Styles */
+                        .coming-soon-section {
+                padding: 25px 10%;
+                width: 100%; 
+            }
+            @media screen and (max-width: 1600px) {
+                .coming-soon-section {
+                    padding: 25px;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                .coming-soon-section {
+                    padding: 15px;
+                }
+            }
             .coming-soon-section {
-                padding: 3.75rem 5rem;
             }
 
             .coming-soon-section h1.customTitle {
@@ -234,7 +252,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             }
 
             .coming-soon-section.first-page div.customSubtitle {
-                /* text-align: left by default, center on specific breakpoints */
+                text-align: center;
             }
 
             .coming-soon-section .property-card {
@@ -249,27 +267,21 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             }
 
             .coming-soon-section .property-content {
-                /* Text content on the LEFT for Desktop */
                 width: 55%;
-                /* Adjust as needed */
                 flex-grow: 1;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
                 order: 1;
-                /* DOM order is content then image, so this is natural order */
             }
 
             .coming-soon-section .property-image {
-                /* Image on the RIGHT for Desktop */
                 width: 45%;
-                /* Adjust as needed */
                 max-width: 586px;
                 flex-shrink: 0;
                 display: flex;
                 align-items: center;
                 order: 2;
-                /* DOM order is content then image, so this is natural order */
             }
 
             .coming-soon-section .property-image img {
@@ -396,7 +408,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 padding-top: 6rem;
             }
 
-
             /* Tablet / iPad Air specific styles */
             @media (min-width: 769px) and (max-width: 821px) {
                 .coming-soon-section {
@@ -438,9 +449,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-content {
-                    /* Content below image on tablet */
                     order: 2;
-                    /* Explicitly after image */
                     width: 100%;
                     max-width: 100%;
                     min-width: 0;
@@ -449,7 +458,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-image {
-                    /* Image on top on tablet */
                     order: 1;
                     width: 100%;
                     max-width: 100%;
@@ -481,7 +489,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
                 .metaq div {
                     flex-direction: column;
-                    /* Stack label/value in each meta item */
                     align-items: flex-start;
                     gap: 0.25rem;
                     padding: 0 0.5rem;
@@ -567,9 +574,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-content {
-                    /* Content below image on mobile */
                     order: 2;
-                    /* Explicitly after image */
                     min-width: auto;
                     width: 100%;
                     text-align: center;
@@ -577,7 +582,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-image {
-                    /* Image on top on mobile */
                     order: 1;
                     width: 100%;
                     max-width: 100%;
@@ -612,16 +616,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .metaq div {
-                    /* Styles for individual meta item (label + value) */
                     display: flex;
-                    /* Re-add flex for inner structure */
                     flex-direction: column;
                     align-items: flex-start;
                     gap: 0.25rem;
                 }
 
                 .metaq div h6 {
-                    /* Label */
                     margin: 0;
                     color: #6B7280;
                     font-size: 0.875rem;
@@ -629,7 +630,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .metaq div span {
-                    /* Value (e.g., Address) */
                     font-size: 1rem;
                     color: #2A2A2A;
                     text-align: left;
@@ -682,7 +682,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     <?php
                     if (!empty($settings['section_subtitle'])) {
                         $subtitle_html = $settings['section_subtitle'];
-                        $subtitle_html_cleaned = preg_replace('/<p\b[^>]*>(\s|&nbsp;|<br\s*\/?>)*<\/p>/im', '', $subtitle_html);
+                        $subtitle_html_cleaned = preg_replace('/<p\b[^>]*>(\s| |<br\s*\/?>)*<\/p>/im', '', $subtitle_html);
                         $subtitle_html_cleaned = trim($subtitle_html_cleaned);
                         $subtitle_html_processed = wp_kses_post($subtitle_html_cleaned);
 
@@ -715,7 +715,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 <?php foreach ($settings['properties'] as $item_index => $item): ?>
                     <div class="property-card elementor-repeater-item-<?= esc_attr($item['_id']); ?>">
 
-                        <div class="property-content"> <?php if (!empty($item['title'])): ?>
+                        <div class="property-content">
+                            <?php if (!empty($item['title'])): ?>
                                 <h3><?= esc_html($item['title']); ?></h3>
                             <?php endif; ?>
 
@@ -758,13 +759,14 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                         </div>
 
                         <?php if (!empty($item['image']['url'])): ?>
-                            <div class="property-image"> <?php
-                                                            $property_img_url = $item['image']['url'];
-                                                            $property_img_alt = !empty($item['title']) ? esc_attr($item['title']) : 'Property Image';
-                                                            if (!empty($item['image_link']['url'])):
-                                                                $target_item_img = !empty($item['image_link']['is_external']) ? '_blank' : '_self';
-                                                                $nofollow_item_img = !empty($item['image_link']['nofollow']) ? 'nofollow' : '';
-                                                            ?>
+                            <div class="property-image">
+                                <?php
+                                $property_img_url = $item['image']['url'];
+                                $property_img_alt = !empty($item['title']) ? esc_attr($item['title']) : 'Property Image';
+                                if (!empty($item['image_link']['url'])):
+                                    $target_item_img = !empty($item['image_link']['is_external']) ? '_blank' : '_self';
+                                    $nofollow_item_img = !empty($item['image_link']['nofollow']) ? 'nofollow' : '';
+                                ?>
                                     <a href="<?= esc_url($item['image_link']['url']); ?>" target="<?= esc_attr($target_item_img); ?>" <?= $nofollow_item_img ? 'rel="' . esc_attr($nofollow_item_img) . '"' : ''; ?>>
                                         <img src="<?= esc_url($property_img_url); ?>" alt="<?= $property_img_alt; ?>">
                                     </a>

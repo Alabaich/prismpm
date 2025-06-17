@@ -68,12 +68,39 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/announcePropertyRow.php');
     require_once(__DIR__ . '/widgets/gridGallery.php');
     require_once(__DIR__ . '/widgets/scoreAnimatedSection.php');
+    require_once(__DIR__ . '/widgets/gridGallery12.php');
+
 
     $widgets_manager->register(new \Elementor_announcePropertyRow());
     $widgets_manager->register(new \Elementor_gridGallery());
     $widgets_manager->register(new \Elementor_scoreAnimatedSection());
-    
+    $widgets_manager->register(new \Elementor_gridGallery12());
 
+
+
+    require_once(__DIR__ . '/widgets/testimNew.php');
+    require_once(__DIR__ . '/widgets/forRentSection.php');
+    require_once(__DIR__ . '/widgets/videoTourSection.php');
+    require_once(__DIR__ . '/widgets/welcomeSection.php');
+    require_once(__DIR__ . '/widgets/buildFeaturesSection.php');
+    require_once(__DIR__ . '/widgets/neibWalkSection.php');
+    require_once(__DIR__ . '/widgets/residentLoveSection.php');
+    require_once(__DIR__ . '/widgets/propertyGridSec.php');
+
+
+
+    $widgets_manager->register(new \Elementor_testimNew());
+    $widgets_manager->register(new \Elementor_forRentSection());
+    $widgets_manager->register(new \Elementor_videoTourSection());
+    $widgets_manager->register(new \Elementor_welcomeSection());
+    $widgets_manager->register(new \Elementor_buildFeaturesSection());
+    $widgets_manager->register(new \Elementor_neibWalkSection());
+    $widgets_manager->register(new \Elementor_residentLoveSection());
+    $widgets_manager->register(new \Elementor_propertyGridSec());
+
+
+    
+    
 
 
 
