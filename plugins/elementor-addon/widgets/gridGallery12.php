@@ -58,7 +58,7 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
 <div class="uniquebuilder">
     <style>
         .uniquebuilder {
-            padding: 25px 10%;
+            padding: 100px 10%;
             width: 100%
         }
         @media screen and (max-width: 1600px) {
@@ -72,13 +72,13 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
         }
         .uniquebuilder .gallery-exhibit { text-align: center; }
         .uniquebuilder .gallery-header h2.customTitle {
-            margin: 0 0 1rem;
-            color: #2a2a2a;
+            margin: 0 0 25px;
+            color: #000000;
         }
         .uniquebuilder .gallery-header p.customSubtitle {
             color: #6b7280;
-            margin: 0 0 2.5rem;
-            max-width: 550px;
+            margin: 0 0 50px;
+            max-width: 580px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
@@ -101,12 +101,12 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
         .uniquebuilder .gallery-row-1 .gallery-item,
         .uniquebuilder .gallery-row-3 .gallery-item {
             width: 50%;
-            height: 300px;
+            height: 500px;
         }
         .uniquebuilder .gallery-row-2 .gallery-item,
         .uniquebuilder .gallery-row-4 .gallery-item {
             width: 25%;
-            height: 200px;
+            height: 380px;
         }
         .uniquebuilder .gallery-item img {
             width: 100%;

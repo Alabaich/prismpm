@@ -191,9 +191,9 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'button_color',
+            'button_background_color',
             [
-                'label' => esc_html__('Button Color', 'elementor-addon'),
+                'label' => esc_html__('Button Background Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .buttonWrapper .btn' => 'background-color: {{VALUE}};',
@@ -202,12 +202,58 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'button_hover_color',
+            'button_text_color',
             [
-                'label' => esc_html__('Button Hover Color', 'elementor-addon'),
+                'label' => esc_html__('Button Text Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .buttonWrapper .btn' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .buttonWrapper .btn svg' => 'stroke: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_border_color',
+            [
+                'label' => esc_html__('Button Border Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .buttonWrapper .btn' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_background_color',
+            [
+                'label' => esc_html__('Button Hover Background Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .buttonWrapper .btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_text_color',
+            [
+                'label' => esc_html__('Button Hover Text Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .buttonWrapper .btn:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .buttonWrapper .btn:hover svg' => 'stroke: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_border_color',
+            [
+                'label' => esc_html__('Button Hover Border Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .buttonWrapper .btn:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -245,7 +291,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         }
 
         $alignment_class = '';
-        if ($is_first_page && (empty($background_image_url) || $use_no_background) ) {
+        if ($is_first_page && (empty($background_image_url) || $use_no_background)) {
             $alignment_class = 'centered';
         }
         if (!empty($settings['alignment'])) {
@@ -303,6 +349,12 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 margin: 0px;
             }
 
+            <?php if (empty($settings['text'])): ?>
+                .richText h2 {
+                    margin-bottom: 60px;
+                }
+            <?php endif; ?>
+
             .richText h4 {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
@@ -347,36 +399,18 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 0.75rem;
                 border-radius: 9999px;
-                background: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
                 padding: 1rem 2rem;
                 font-size: 1.125rem;
                 font-weight: 500;
-                color: #2A2A2A;
                 text-decoration: none;
                 font-family: "Inter Tight", Sans-serif;
-                border: none;
+                border: 2px solid;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                border: 2px solid transparent;
-            }
-
-            .buttonWrapper .btn {
-                <?php if ($use_no_background): ?>color: white;
-                background: #093D5F;
-                <?php endif; ?>
             }
 
             .buttonWrapper .btn:hover {
-                background: transparent;
-                gap:2rem;
-                border-color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
-                color: <?php echo esc_attr($settings['button_color'] ?: '#FFFFFF'); ?>;
-            }
-
-            .buttonWrapper .btn:hover {
-                <?php if ($use_no_background): ?>color: white;
-                background: #093D5F;
-                <?php endif; ?>
+                gap: 2rem;
             }
 
             .buttonWrapper .btn svg {

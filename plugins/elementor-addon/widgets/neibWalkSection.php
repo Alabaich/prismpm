@@ -211,8 +211,8 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 .neighborhood-unique .category-card .category-name {
                     margin: 0;
                     font-weight: bold;
-                    padding-top: 10px;
-                    padding-bottom: 25px;
+                    padding-top: 30px;
+                    padding-bottom: 50px;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib {
