@@ -298,6 +298,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
 
             .pageWidthFR .rent-display .tag-item {
                 display: inline-flex;
+  font-family: "Inter Tight", sans-serif;
+
                 align-items: center;
                 gap: 0.5rem;
                 background:#F7F9FA;
@@ -331,12 +333,13 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-button {
+  font-family: "Inter Tight", sans-serif;
+  font-size:1rem;
                 display: inline-block;
                 padding: 10px 20px;
                 margin: 5px 0;
                 border-radius: 9999px;
                 text-decoration: none;
-                font-size: 0.9rem;
                 font-weight: bold;
                 width: 100%;
                 text-align: center;
