@@ -216,13 +216,13 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
 
         <style>
             .pageWidthFR {
-                padding: 25px 10%;
+                padding: 30px 10%;
                 width: 100%;
                 background: #F7F9FA;
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthFR {
-                    padding: 25px;
+                    padding: 30px;
                 }
             }
             @media screen and (max-width: 768px) {
