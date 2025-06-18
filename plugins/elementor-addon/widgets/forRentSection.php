@@ -200,12 +200,20 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                     <span class="rent-status-text"><?php echo esc_html($property['available']); ?></span>
                                 </div>
                                 <div style="display:flex; flex-direction:column; gap:10px;">
-                                                                    <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
-                                    Explore Now <span class="arrow" style="transform: rotate(-45deg);">→</span>
-                                </a>
-                                <a href="#" class="rent-button view-button" style="color: <?php echo $accent_color; ?>; border-color: <?php echo $accent_color; ?>;">
-                                    Book a Viewing <span class="arrow" style="transform: rotate(-45deg);">→</span>
-                                </a>
+                                    <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
+                                        Explore Now <span class="arrow" style="margin-left:10px;">
+                                            <svg width="11" height="10" viewBox="0 0 11 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10.1221 0C10.582 0.000175951 10.9549 0.373029 10.9551 0.833008V9.16699C10.9549 9.62697 10.582 9.99982 10.1221 10C9.66194 10 9.28826 9.62708 9.28809 9.16699V2.7832L2.37793 9.75586C2.05249 10.0813 1.52466 10.0813 1.19922 9.75586C0.873783 9.43042 0.873782 8.90259 1.19922 8.57715L8.04883 1.66699H1.78809C1.328 1.66682 0.955078 1.29314 0.955078 0.833008C0.955254 0.373029 1.32811 0.000175823 1.78809 0H10.1221Z"/>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="rent-button view-button" style="color: <?php echo $accent_color; ?>; border-color: <?php echo $accent_color; ?>;">
+                                        Book a Viewing <span class="arrow" style="margin-left:10px;">
+                                            <svg width="11" height="10" viewBox="0 0 11 10" fill="<?php echo $accent_color; ?>" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10.1221 0C10.582 0.000175951 10.9549 0.373029 10.9551 0.833008V9.16699C10.9549 9.62697 10.582 9.99982 10.1221 10C9.66194 10 9.28826 9.62708 9.28809 9.16699V2.7832L2.37793 9.75586C2.05249 10.0813 1.52466 10.0813 1.19922 9.75586C0.873783 9.43042 0.873782 8.90259 1.19922 8.57715L8.04883 1.66699H1.78809C1.328 1.66682 0.955078 1.29314 0.955078 0.833008C0.955254 0.373029 1.32811 0.000175823 1.78809 0H10.1221Z"/>
+                                            </svg>
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -278,8 +286,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-card-title {
-  font-family: "Darker Grotesque", sans-serif;
-
+                font-family: "Darker Grotesque", sans-serif;
                 color: #1A1A1A;
                 font-weight: 500;
                 text-align:left;
@@ -288,16 +295,16 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-card-price {
-  font-family: "Playfair Display";
-  display:flex;
-  flex-direction:column;
+                font-family: "Playfair Display";
+                display:flex;
+                flex-direction:column;
                 margin: 0;
                 color: #2A2A2A;
                 font-weight: bold;
                 font-size: 30px;
                 justify-content:center;
             }
-                        .pageWidthFR .rent-display .rent-card-price span {
+            .pageWidthFR .rent-display .rent-card-price span {
                 font-size: 1rem;
                 color:#2C2C2C;
                 font-weight:400;
@@ -312,8 +319,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
 
             .pageWidthFR .rent-display .tag-item {
                 display: inline-flex;
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
                 align-items: center;
                 gap: 0.5rem;
                 background:#F7F9FA;
@@ -336,8 +342,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 padding-bottom:30px;
                 color: #2A2A2A;
                 font-size: 1rem;
-  font-family: "Inter Tight", sans-serif;
-
+                font-family: "Inter Tight", sans-serif;
             }
 
             .pageWidthFR .rent-display .rent-status-dot {
@@ -348,8 +353,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-button {
-  font-family: "Inter Tight", sans-serif;
-  font-size:1rem;
+                font-family: "Inter Tight", sans-serif;
+                font-size:1rem;
                 display: inline-block;
                 padding: 16px 0;
                 margin:0;
