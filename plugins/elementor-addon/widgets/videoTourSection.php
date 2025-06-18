@@ -133,14 +133,15 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
 
         <style>
             .pageWidthVT {
-                padding: 25px 10%;
+                padding: 20px 10%;
                 background:#F7F9FA;
                 padding-bottom:100px;
                 width: 100%; 
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthVT {
-                    padding: 25px;
+                    padding: 20px;
+                padding-bottom:100px;
                 }
             }
             @media screen and (max-width: 768px) {

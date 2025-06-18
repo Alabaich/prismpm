@@ -41,6 +41,15 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'section_subtitle',
+            [
+                'label' => esc_html__('Section Subtitle', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor.',
+            ]
+        );
+
+        $this->add_control(
             'section_background_color',
             [
                 'label' => esc_html__('Section Background Color', 'elementor-addon'),
@@ -123,11 +132,11 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
             <style>
                 .pageWidthResLove {
                     width: 100%;
-                    padding: 80px 10%;
+                    padding: 100px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthResLove {
-                        padding: 25px;
+                        padding:100px 25px;
                     }
                 }
                 @media screen and (max-width: 768px) {
@@ -143,6 +152,15 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                 .resident-love-section .title-block {
                     margin: 0;
                     color: #fff;
+                    padding-bottom: 24px;
+                }
+                .resident-love-section .subtitle-block {
+                    margin: 0 auto;
+                    color: #fff;
+                    max-width:460px;
+                    color:#FFFFFFCC;
+                }
+                .resident-love-section .title-subtitle {
                     padding-bottom: 25px;
                 }
                 .resident-love-section .grid-layout {
@@ -230,7 +248,10 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     }
                 }
             </style>
-            <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
+            <div class="title-subtitle">
+                <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
+                <p class="subtitle-block"><?php echo esc_html($settings['section_subtitle']); ?></p>
+            </div>
             <div class="grid-layout">
                 <?php foreach ($settings['testimonials'] as $testimonial): ?>
                     <div class="testimonial-card">

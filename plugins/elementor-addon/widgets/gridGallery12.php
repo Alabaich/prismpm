@@ -58,11 +58,11 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
 <div class="uniquebuilder">
     <style>
         .uniquebuilder {
-            padding: 100px 10%;
+            padding: 120px 10%;
             width: 100%
         }
         @media screen and (max-width: 1600px) {
-            .uniquebuilder { padding: 25px; }
+            .uniquebuilder { padding:100px 25px; }
         }
         @media screen and (max-width: 768px) {
             .uniquebuilder { padding: 15px; }

@@ -117,7 +117,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 width: 100%;
             }
             @media screen and (max-width: 1600px) {
-                .pageWidthAnSc { padding: 25px; }
+                .pageWidthAnSc { padding:100px 25px; }
             }
             @media screen and (max-width: 768px) {
                 .pageWidthAnSc { padding: 15px; }
@@ -165,7 +165,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 border-radius: 50%;
                 padding: 0px;
                 box-sizing: border-box;
-                background: conic-gradient(gray 360deg, transparent 0deg);
+                background: conic-gradient(rgba(255, 255, 255, 0.2) 360deg, transparent 0deg);
                 -webkit-mask: radial-gradient(farthest-side, transparent calc(90%), black calc(90%));
                 mask: radial-gradient(farthest-side, transparent calc(90%), black calc(90%));
                 transition: background 2s ease-in-out;
@@ -223,7 +223,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 function animate() {
                     current += increment;
                     if (current >= maxDeg) current = maxDeg;
-                    ring.style.background = `conic-gradient(white ${current}deg, gray ${current}deg 360deg)`;
+                    ring.style.background = `conic-gradient(white ${current}deg, rgba(255, 255, 255, 0.2) ${current}deg 360deg)`;
                     if (current < maxDeg) requestAnimationFrame(animate);
                 }
 
