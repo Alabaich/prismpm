@@ -119,11 +119,13 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 .pageWidthBdF {
                     width: 100%;
                     padding: 50px 10%;
+                    padding-top:100px;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthBdF {
                         width: 100%;
                         padding: 50px 25px;
+                    padding-top:100px;
                     }
                 }
                 @media screen and (max-width: 768px) {
@@ -137,7 +139,8 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     display: flex;
                     flex-wrap: wrap;
                     width: <?php echo $main_image ? 'calc(100% - 560px)' : '100%'; ?>;
-                    align-items:baseline;
+                    align-items: baseline;
+                    gap: 50px;
                 }
 
                 .features-unique {
@@ -149,21 +152,21 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
 
                 .features-unique .title-block {
                     flex: 0 0 100%;
-                    padding-bottom: 44px;
+                    padding-bottom: 50px;
                     font-family: "Playfair Display", serif;
                     font-size: 52px;
                     font-weight: 600;
                     margin: 0;
-                    text-align:center;
+                    text-align: center;
                 }
 
                 .features-unique .feature-card {
-                    flex: 0 0 calc(<?php echo 100 / $columns; ?>%);
+                    flex: 0 0 calc(<?php echo 100 / $columns; ?>% - (50px * (<?php echo $columns; ?> - 1) / <?php echo $columns; ?>));
                     display: flex;
                     flex-direction: column;
                     text-align: center;
-                    align-items:center;
-                    gap:20px;
+                    align-items: center;
+                    gap: 20px;
                 }
 
                 .features-unique .feature-card .icon-block {
@@ -176,7 +179,6 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 .features-unique .feature-card .icon-block svg {
                     width: 100%;
                     height: 120px;
-                    padding-top:16px;
                 }
 
                 .features-unique .feature-card .feature-name {
@@ -196,26 +198,26 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
 
                 <?php if ($main_image): ?>
                     .justifaichik {
-                        display:flex;
-                        justify-content:space-between;
+                        display: flex;
+                        justify-content: space-between;
                     }
                     .textAdditiImg {
-                        font-family:"Playfair Display";
-                        gap:10px;
-                        display:flex;
-                        flex-direction:column;
-                        padding-top:30px;
+                        font-family: "Playfair Display";
+                        gap: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        padding-top: 30px;
                     }
-                    .textAdditiImg p{
-                        margin:0;
-                        color:#757575;
-                        font-size:16px;
+                    .textAdditiImg p {
+                        margin: 0;
+                        color: #757575;
+                        font-size: 16px;
                     }
-                    .textAdditiImg h4{
-                        margin:0;
-                        font-size:30px;
-                        font-weight:600;
-                    color: <?php echo esc_attr($settings['icon_color']); ?>;
+                    .textAdditiImg h4 {
+                        margin: 0;
+                        font-size: 30px;
+                        font-weight: 600;
+                        color: <?php echo esc_attr($settings['icon_color']); ?>;
                     }
                     .features-unique .AlignImgWithText .main-image {
                         display: block;
@@ -228,11 +230,14 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     }
                 <?php endif; ?>
 
-                .features-unique .feature-container.centered-last-row .feature-card:last-child {
-                    margin-left: auto;
-                    margin-right: auto;
-                    flex: 0 0 calc(<?php echo 100 / $columns; ?>%);
-                }
+                <?php if ($item_count % $columns > 1): ?>
+                    .features-unique .feature-container.centered-last-row {
+                        justify-content: center;
+                    }
+                    .features-unique .feature-container.centered-last-row .feature-card {
+                        flex: 0 0 calc((100% / <?php echo $columns; ?>) - (50px * (<?php echo $columns; ?> - 1) / <?php echo $columns; ?>));
+                    }
+                <?php endif; ?>
 
                 @media (max-width: 1200px) {
                     .features-unique .feature-container {
@@ -273,27 +278,27 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
 
             <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
             <div class="justifaichik">
-                            <div class="feature-container<?php echo ($item_count % $columns) ? ' centered-last-row' : ''; ?>">
-                <?php foreach ($features as $feature): ?>
-                    <div class="feature-card">
-                        <div class="icon-block">
-                            <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
+                <div class="feature-container<?php echo ($item_count % $columns > 1) ? ' centered-last-row' : ''; ?>">
+                    <?php foreach ($features as $feature): ?>
+                        <div class="feature-card">
+                            <div class="icon-block">
+                                <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
+                            </div>
+                            <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
                         </div>
-                        <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <?php if ($main_image): ?>
-                <div class ="AlignImgWithText">
-                    <div class="main-image">
-                        <img src="<?php echo esc_url($main_image); ?>" alt="Main Feature Image">
-                    </div>
-                    <div class ="textAdditiImg">
-                        <h4>Complementary membership</h4>
-                        <p>To pool and gym equipment</p>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
+                <?php if ($main_image): ?>
+                    <div class="AlignImgWithText">
+                        <div class="main-image">
+                            <img src="<?php echo esc_url($main_image); ?>" alt="Main Feature Image">
+                        </div>
+                        <div class="textAdditiImg">
+                            <h4>Complementary membership</h4>
+                            <p>To pool and gym equipment</p>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 <?php
