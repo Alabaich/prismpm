@@ -306,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var lastScrollY = window.scrollY;
     var sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
-    // Обработчик кликов по ссылкам
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault(); 
