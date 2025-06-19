@@ -133,19 +133,21 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
                 position: sticky;
-                top: 0;
+                top: 130px;
                 width: 100%;
                 left: 0;
                 z-index: 99;
-                transition: top 0.3s ease, position 0.3s ease;
+                transition: opacity 0.3s ease, transform 0.6s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transform: translateY(-40%); /* Сдвиг вверх */
             }
 
             .welcome-header.active {
                 position: fixed;
                 top: 90px;
+                transform: translateY(0); /* Возврат на место */
             }
 
             .welcome-header .pageWidthNewHead {
@@ -155,8 +157,8 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
 
             .welcome-header img {
-                object-fit:contain;
-                height:100%;
+                object-fit: contain;
+                height: 100%;
                 width: auto;
             }
 
@@ -171,7 +173,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: #fff;
                 text-decoration: none;
                 font-size: 1rem;
-font-family: "Playfair Display", serif;
+                font-family: "Playfair Display", serif;
             }
 
             .welcome-header nav .button {
@@ -187,7 +189,7 @@ font-family: "Playfair Display", serif;
                 display: flex;
                 justify-content: space-between;
                 padding-top: 100px;
-                padding-bottom:25px;
+                padding-bottom: 25px;
             }
 
             .welcome-content .text-content {
@@ -197,7 +199,7 @@ font-family: "Playfair Display", serif;
                 justify-content: flex-start;
                 display: flex;
                 flex-direction: column;
-font-family: "Playfair Display";
+                font-family: "Playfair Display";
                 gap: 25px;
             }
 
@@ -205,9 +207,9 @@ font-family: "Playfair Display";
                 color: <?php echo esc_attr($settings['title_color']); ?>;
                 margin: 0;
                 padding-bottom: 25px;
-                font-size:68px;
-                font-weight:600;
-                max-width:700px;
+                font-size: 68px;
+                font-weight: 600;
+                max-width: 700px;
             }
 
             .welcome-content .text-content p {
@@ -215,7 +217,7 @@ font-family: "Playfair Display";
                 font-size: 1.125rem;
                 margin: 0;
                 line-height: 1.1;
-                max-width:580px;
+                max-width: 580px;
             }
 
             .welcome-content .additional-texts p {
@@ -313,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(href);
             if (target) {
                 const headerHeight = header.offsetHeight; 
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - (headerHeight + 50);
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
