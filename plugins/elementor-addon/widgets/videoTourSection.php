@@ -140,7 +140,7 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthVT {
-                    padding: 20px;
+                    padding: 20px 25px;
                 padding-bottom:100px;
                 }
             }
@@ -196,16 +196,18 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
                 color: #FFFFFF;
                 width: 100%;
                 box-sizing: border-box;
+                font-family:"Playfair Display", serif;
             }
 
             .pageWidthVT .tour-showcase .tour-card-title {
                 margin: 0 0 10px;
-                font-weight: bold;
+                font-weight: 600;
+                font-size:22px;
             }
 
             .pageWidthVT .tour-showcase .tour-card-subtitle {
                 margin: 0;
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
             .pageWidthVT .tour-showcase .play-icon {

@@ -58,7 +58,7 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
     protected function render() {
         $settings = $this->get_settings_for_display();
         ?>
-        <div class="score-section pageWidthAnSc">
+        <div class="score-section pageWidthAnSc" id="score-section-<?php echo esc_attr($this->get_id()); ?>">
             <?php if (!empty($settings['section_title'])): ?>
                 <h2><?php echo esc_html($settings['section_title']); ?></h2>
             <?php endif; ?>
@@ -73,7 +73,6 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
 <path d="M86 76.0004C84.8331 76.0004 84.1116 75.4492 83 75.0004L68 70.0004C67.0821 69.6849 66 68.9379 66 68.0004V54.0004C66 53.2739 66.3796 52.4136 67 52.0004C67.6181 51.5827 68.292 51.7471 69 52.0004L89 59.0004C93.5916 60.8532 95.7619 66.6882 94 71.0004C93.096 73.2064 91.2739 74.1095 89 75.0004C87.9115 75.4314 87.1462 76.0004 86 76.0004ZM71 66.0004L84 71.0004C85.1785 71.4736 86.9392 71.4247 88 71.0004C89.1024 70.5694 89.5641 70.0645 90 69.0004C90.851 66.9187 90.2116 64.8957 88 64.0004L71 57.0004V66.0004Z" fill="white"/>
 <path d="M57.0001 30C61.7488 30 66.0001 34.4687 66.0001 39V87L85.0001 105C86.1799 106.091 86.8206 108.443 87.0001 110C91.1805 146.268 91.0001 143.336 91.0001 144C91.0001 147.267 88.494 150.748 85.0001 151C84.8297 151.013 85.1684 151 85.0001 151C81.6359 151 78.3548 148.245 78.0001 145L75.0001 115C74.8274 113.423 74.1981 112.1 73.0001 111C68.8926 107.221 58.8923 98.3382 52.0001 92L40.0001 124C39.6864 124.826 38.6184 125.349 38.0001 126L17.0001 148C15.7135 149.599 13.9641 151 12.0001 151C10.6226 151 9.18218 149.855 8.00014 149C5.96794 147.529 5.57279 145.239 6.00014 143C6.17745 142.069 6.36366 141.807 7.00014 141L28.0001 119C28.7116 118.241 28.7069 116.983 29.0001 116L38.0001 87V47C32.4082 51.1322 29.755 53.7397 28.0001 55C26.5635 56.0303 24.9888 57.2842 25.0001 59V72C25.0183 75.4337 22.5985 77.987 19.0001 78C15.4449 78 12.0183 75.4641 12.0001 72V53C11.991 51.3276 12.6203 50.0325 14.0001 49L38.0001 31C38.9276 30.3037 39.8204 30 41.0001 30H57.0001ZM57.0001 26H41.0001C38.8088 26 36.7209 26.7072 35.0001 28L12.0001 45C9.49967 46.8763 7.98423 49.9654 8.00014 53V72C8.03197 77.7916 12.9308 82 19.0001 82C22.0007 81.9892 24.9179 81.0043 27.0001 79C29.0801 76.9957 30.0161 74.8199 30.0001 72V59C30.0001 58.6594 29.716 58.2039 30.0001 58C30.6616 57.525 31.7204 56.9284 33.0001 56V87L25.0001 115C24.8956 115.347 24.2525 115.731 24.0001 116L3.00014 138C2.91603 138.091 3.07743 137.902 3.00014 138C1.95904 139.319 1.30474 141.386 1.00014 143C0.247727 146.941 1.64724 150.575 5.00014 153C6.94596 154.406 9.56559 155 12.0001 155C15.4053 155 18.8838 153.529 21.0001 151L42.0001 129C43.0231 127.924 43.4841 126.364 44.0001 125L54.0001 100L70.0001 114C70.4252 114.39 69.9388 115.438 70.0001 116L74.0001 145C74.5934 150.449 79.2627 155 85.0001 155C85.282 155 85.7137 155.02 86.0001 155C91.7944 154.584 96.0001 149.542 96.0001 144C96.007 143.631 95.5616 141.835 95.0001 137C94.4319 132.113 93.6414 123.227 92.0001 109C91.7046 106.445 90.9346 103.79 89.0001 102L70.0001 86V39C70.0001 32.0848 64.247 26 57.0001 26Z" fill="white"/>
 </svg>
-
                             </span>
                         </div>
                         <span class="score-value">
@@ -97,7 +96,6 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
 <path d="M79 6H62C60.2807 6 59 4.656 59 3C59 1.344 60.2807 0 62 0H79C80.7193 0 82 1.344 82 3C82 4.656 80.7193 6 79 6Z" fill="white"/>
 <path d="M132 15H128C126.832 15 125 14.1241 125 13C125 11.8759 126.832 11 128 11H132C133.684 11 135 9.61812 135 8C135 6.38188 133.684 5 132 5H113C111.832 5 111 4.12415 111 3C111 1.87585 111.832 1 113 1H132C136.017 1 139 4.13968 139 8C139 11.8603 136.017 15 132 15Z" fill="white"/>
 </svg>
-
                             </span>
                         </div>
                         <span class="score-value">
@@ -112,38 +110,43 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
             <?php endif; ?>
         </div>
         <style>
+            @import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600&family=Inter+Tight:wght@400&family=Playfair+Display&display=swap");
+
             .pageWidthAnSc {
                 padding: 100px 10%;
                 width: 100%;
             }
             @media screen and (max-width: 1600px) {
-                .pageWidthAnSc { padding:100px 25px; }
+                .pageWidthAnSc { padding: 100px 25px; }
             }
             @media screen and (max-width: 768px) {
                 .pageWidthAnSc { padding: 15px; }
             }
             .animateStoryTale {
-                color:white;
-                font-size:1.375rem;
+                color: white;
+                font-size: 1.375rem;
                 max-width: 80%;
-                margin:0 auto;
+                margin: 0 auto;
+                font-family: "Playfair Display", serif;
             }
 
-            .score-section { text-align: center; background:#093D5F; }
+            .score-section { text-align: center; background: #093D5F; }
             .score-section h2 {
-                margin:0;
-                color:white;
-                padding-bottom:70px;
+                margin: 0;
+                color: white;
+                padding-bottom: 70px;
+                font-size:52px;
+                font-family: "Playfair Display", serif;
             }
 
             .score-section .score-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 4rem;
-                margin:0;
+                gap: 50px;
+                margin: 0;
                 flex-wrap: wrap;
-                padding-bottom:70px;
+                padding-bottom: 50px;
             }
 
             .score-circle {
@@ -155,7 +158,6 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
-                margin-bottom: 1rem;
             }
 
             .score-ring {
@@ -163,31 +165,38 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
-                padding: 0px;
                 box-sizing: border-box;
-                background: conic-gradient(rgba(255, 255, 255, 0.2) 360deg, transparent 0deg);
-                -webkit-mask: radial-gradient(farthest-side, transparent calc(90%), black calc(90%));
-                mask: radial-gradient(farthest-side, transparent calc(90%), black calc(90%));
-                transition: background 2s ease-in-out;
+                background: conic-gradient(white 0deg, rgba(255, 255, 255, 0.2) 0deg 360deg);
+                -webkit-mask: radial-gradient(farthest-side, transparent calc(90%), #fff calc(90%));
+                mask: radial-gradient(farthest-side, transparent calc(80%),transparent calc(90%), #fff calc(96%));
+                transition: background 4s ease-out; /* Установлена длительность 4 секунды */
             }
 
             .score-section .icon {
                 font-size: 6rem;
                 z-index: 1;
+                display:flex;
+                object-fit:cover;
+                align-self:center;
             }
 
             .score-value {
+                padding-top:20px;
                 color: white;
-                font-size: 3.25rem;
+                font-size: 3.25rem; 
                 z-index: 1;
+                display: flex;
+                gap: 10px;
+                font-family: "Playfair Display", serif;
+            }
+            .score-value span {
                 display:flex;
-                align-items:center;
-                justify-content:center;
-                gap:10px;
-                font-family: "Playfair Display"
+                align-self:flex-end;
             }
             .score-valueText {
-                font-size:1.375rem;
+                font-size: 1.375rem;
+                display:flex;
+                align-self:flex-end;
             }
 
             .score-item {
@@ -211,24 +220,40 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
 
         <script>
         document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll('.score-item').forEach(item => {
-                const score = parseInt(item.getAttribute('data-score')) || 0;
-                const ring = item.querySelector('.score-ring');
-                const duration = 3000;
-                const frames = 60;
-                const maxDeg = score * 3.6;
-                let current = 0;
-                const increment = maxDeg / (duration / (1000 / frames));
+            const section = document.getElementById('score-section-<?php echo esc_js($this->get_id()); ?>');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.score-item').forEach(item => {
+                            const score = parseInt(item.getAttribute('data-score')) || 0;
+                            const ring = item.querySelector('.score-ring');
+                            const duration = 4000; // Длительность анимации 4 секунды
+                            const startTime = performance.now();
 
-                function animate() {
-                    current += increment;
-                    if (current >= maxDeg) current = maxDeg;
-                    ring.style.background = `conic-gradient(white ${current}deg, rgba(255, 255, 255, 0.2) ${current}deg 360deg)`;
-                    if (current < maxDeg) requestAnimationFrame(animate);
-                }
+                            function animate(currentTime) {
+                                const progress = Math.min((currentTime - startTime) / duration, 1);
+                                const maxDeg = score * 3.6;
+                                const currentDeg = maxDeg * easeInOutQuad(progress);
 
-                requestAnimationFrame(animate);
-            });
+                                ring.style.background = `conic-gradient(white ${currentDeg}deg, rgba(255, 255, 255, 0.2) ${currentDeg}deg 360deg)`;
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
+                                }
+                            }
+
+                            // Функция для плавного перехода
+                            function easeInOutQuad(t) {
+                                return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                            }
+
+                            requestAnimationFrame(animate);
+                        });
+                        observer.unobserve(entry.target); // Останавливаем наблюдение после первой анимации
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(section);
         });
         </script>
         <?php

@@ -154,19 +154,17 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <div class="neighborhood-unique pageWidthNWS">
+        <div class="neighborhood-unique pageWidthNWS" id="NeighbourhoodSec">
             <style>
                 .pageWidthNWS {
                     width: 100%;
-                    padding: 20px 10%;
+                    padding: 50px 10%;
                     padding-bottom:100px;
-                    padding-top:0px;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthNWS {
                         width: 100%;
-                        padding:20px 25px;
-                    padding-top:0px;
+                        padding:50px 25px;
                     padding-bottom:100px;
                     }
                 }
@@ -178,11 +176,14 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 }
                 .neighborhood-unique {
                     text-align: center;
+                font-family: "Playfair Display", serif;
                 }
 
                 .neighborhood-unique .title-block {
                     margin: 0;
                     padding-bottom: 25px;
+                    font-size:52px;
+                    font-weight:600;
                 }
 
                 .neighborhood-unique .grid-layout {
@@ -208,15 +209,17 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 }
 
                 .neighborhood-unique .category-card .icon-block svg {
-                    width: 100px; /* Uniform size */
-                    height: 120px; /* Uniform size */
+                    width:100%;
+                    height:120px;
                 }
 
                 .neighborhood-unique .category-card .category-name {
                     margin: 0;
-                    font-weight: bold;
+                    font-weight: 600;
+                    font-size:30px;
                     padding-top: 30px;
                     padding-bottom: 50px;
+                    color:#1A1A1A;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib {
@@ -225,14 +228,14 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
 
                 }
                 .gapperch {
-                    padding-bottom:20px;
                     gap:40px;
                     display:flex;
                     flex-direction:column;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib h5 {
-                    font-weight: bold;
+                    font-weight: 600;
+                    color:#1A1A1A;
                     font-size:18px; 
                     margin: 0;
                     background:#F7F9FA;
@@ -248,13 +251,17 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                     justify-content:center;
                     gap:10px;
                     font-family:"Playfair Display";
+                    height:auto;
                 }
-                .neighborhood-unique .category-card .sub-itemNeib div span {
-                    font-weight:bold;
-                    font-size:4rem;
+                .neighborhood-unique .category-card .sub-itemNeib .checkerSpan {
+                    margin:0;
+                    font-weight:600;
+                    font-size:68px;
                 }
                 .subTextWalk {
                     margin:0;
+                    font-weight:500;
+                    font-size:16px;
                 }
 
                 @media (max-width: 768px) {
@@ -281,7 +288,7 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                                                     <?php foreach ($item['sub_items'] as $sub_item): ?>
                             <div class="sub-itemNeib">
                                 <h5><?php echo esc_html($sub_item['sub_item_name']); ?></h5>
-                                <div><span><?php echo esc_html($sub_item['sub_item_distance']); ?></span> <p class="subTextWalk">Minute <br/> Walk</p></div>
+                                <div><p class = "checkerSpan"><?php echo esc_html($sub_item['sub_item_distance']); ?></p> <p class="subTextWalk">Minute <br/> Walk</p></div>
                             </div>
                         <?php endforeach; ?>
                         </div>
