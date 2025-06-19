@@ -19,6 +19,8 @@ wp-*.php
 index.php
 xmlrpc.php
 
+/prismpm/plugins/elementor/
+
 /wp-content/uploads/
 /wp-content/upgrade/
 /wp-content/backup-db/
