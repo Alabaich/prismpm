@@ -132,7 +132,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
 
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
-                position: absolute;
+                position: sticky;
                 top: 0;
                 width: 100%;
                 left: 0;
@@ -171,7 +171,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: #fff;
                 text-decoration: none;
                 font-size: 1rem;
-                font-family: "Playfair Display";
+font-family: "Playfair Display", serif;
             }
 
             .welcome-header nav .button {
@@ -186,7 +186,8 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-content {
                 display: flex;
                 justify-content: space-between;
-                padding-top: 172px;
+                padding-top: 100px;
+                padding-bottom:25px;
             }
 
             .welcome-content .text-content {
@@ -196,6 +197,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 justify-content: flex-start;
                 display: flex;
                 flex-direction: column;
+font-family: "Playfair Display";
                 gap: 25px;
             }
 
@@ -203,6 +205,9 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: <?php echo esc_attr($settings['title_color']); ?>;
                 margin: 0;
                 padding-bottom: 25px;
+                font-size:68px;
+                font-weight:600;
+                max-width:700px;
             }
 
             .welcome-content .text-content p {
@@ -210,6 +215,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 font-size: 1.125rem;
                 margin: 0;
                 line-height: 1.1;
+                max-width:580px;
             }
 
             .welcome-content .additional-texts p {
@@ -261,11 +267,11 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                     <img src="<?php echo esc_url($settings['header_image']['url']); ?>" alt="Header Image">
                 <?php endif; ?>
                 <nav>
-                    <a href="#">About</a>
-                    <a href="#">Amenities</a>
-                    <a href="#">Suites</a>
-                    <a href="#">Neighbourhood</a>
-                    <a href="#">Gallery</a>
+                    <a href="#AboutSec">About</a>
+                    <a href="#AmenitiesSec">Amenities</a>
+                    <a href="#SuitesSec">Suites</a>
+                    <a href="#NeighbourhoodSec">Neighbourhood</a>
+                    <a href="#GallerySec">Gallery</a>
                     <a href="#" class="button">Schedule a tour</a>
                     <a href="#" class="button">Apply</a>
                 </nav>
@@ -294,35 +300,52 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
         </div>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var section = document.getElementById('welcome-section-<?php echo esc_js($this->get_id()); ?>');
-                var header = document.getElementById('welcome-header-<?php echo esc_js($this->get_id()); ?>');
-                var lastScrollY = window.scrollY;
-                var sectionTop = section.getBoundingClientRect().top + window.scrollY;
+document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('welcome-section-<?php echo esc_js($this->get_id()); ?>');
+    var header = document.getElementById('welcome-header-<?php echo esc_js($this->get_id()); ?>');
+    var lastScrollY = window.scrollY;
+    var sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
-                function checkScrollDirection() {
-                    var currentScrollY = window.scrollY;
-                    var sectionBottom = sectionTop + section.offsetHeight;
-                    var scrollDown = currentScrollY > lastScrollY;
-                    var scrollUp = currentScrollY < lastScrollY;
-                    var isPastSection = currentScrollY > sectionBottom;
-
-                    if (isPastSection && scrollDown) {
-                        header.classList.add('active');
-                    } else if (scrollUp && currentScrollY <= sectionTop) {
-                        header.classList.remove('active');
-                    }
-
-                    lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-                }
-
-                window.addEventListener('scroll', checkScrollDirection);
-                window.addEventListener('resize', function() {
-                    sectionTop = section.getBoundingClientRect().top + window.scrollY;
-                    checkScrollDirection();
+    // Обработчик кликов по ссылкам
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const href = this.getAttribute('href');
+            const target = document.querySelector(href);
+            if (target) {
+                const headerHeight = header.offsetHeight; 
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - (headerHeight + 50);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
-                checkScrollDirection();
-            });
+            }
+        });
+    });
+
+    function checkScrollDirection() {
+        var currentScrollY = window.scrollY;
+        var sectionBottom = sectionTop + section.offsetHeight;
+        var scrollDown = currentScrollY > lastScrollY;
+        var scrollUp = currentScrollY < lastScrollY;
+        var isPastSection = currentScrollY > sectionBottom;
+
+        if (isPastSection && scrollDown) {
+            header.classList.add('active');
+        } else if (scrollUp && currentScrollY <= sectionTop) {
+            header.classList.remove('active');
+        }
+
+        lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+    }
+
+    window.addEventListener('scroll', checkScrollDirection);
+    window.addEventListener('resize', function() {
+        sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        checkScrollDirection();
+    });
+    checkScrollDirection();
+});
         </script>
 <?php
     }

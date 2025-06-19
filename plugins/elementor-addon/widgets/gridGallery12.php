@@ -55,10 +55,10 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
     protected function render() {
         $settings = $this->get_settings_for_display();
 ?>
-<div class="uniquebuilder">
+<div class="uniquebuilder" id="GallerySec">
     <style>
         .uniquebuilder {
-            padding: 120px 10%;
+            padding: 100px 10%;
             width: 100%
         }
         @media screen and (max-width: 1600px) {
@@ -74,14 +74,18 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
         .uniquebuilder .gallery-header h2.customTitle {
             margin: 0 0 25px;
             color: #000000;
+            font-family:"Playfair Display";
+            font-size:52px;
+            font-weight:600;
         }
         .uniquebuilder .gallery-header p.customSubtitle {
-            color: #6b7280;
+            color: #4D4D4D;
             margin: 0 0 50px;
             max-width: 580px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
+            font-family:"Playfair Display";
+            font-size:16px;
         }
         .uniquebuilder .gallery-grid {
             display: grid;

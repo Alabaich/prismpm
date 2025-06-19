@@ -128,7 +128,7 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <div class="resident-love-section pageWidthResLove">
+        <div class="resident-love-section pageWidthResLove" id="AboutSec">
             <style>
                 .pageWidthResLove {
                     width: 100%;
@@ -148,17 +148,20 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     background-color: <?php echo esc_attr($settings['section_background_color']); ?>;
                     color: #fff;
                     text-align: center;
+                    font-family:"Playfair Display";
                 }
                 .resident-love-section .title-block {
                     margin: 0;
                     color: #fff;
                     padding-bottom: 24px;
+                    font-size:52px;
+                    font-weight:600;
                 }
                 .resident-love-section .subtitle-block {
                     margin: 0 auto;
-                    color: #fff;
                     max-width:460px;
                     color:#FFFFFFCC;
+                    font-size:16px;
                 }
                 .resident-love-section .title-subtitle {
                     padding-bottom: 25px;

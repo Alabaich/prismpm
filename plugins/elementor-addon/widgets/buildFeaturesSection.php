@@ -39,6 +39,17 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'main_image',
+            [
+                'label' => esc_html__('Main Image', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => ['url' => ''],
+                'label_block' => true,
+                'description' => esc_html__('Upload an image to display on the right side (640px x 380px).'),
+            ]
+        );
+
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
@@ -69,20 +80,15 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
-                    ['feature_name' => 'Bike Storage', 'feature_icon' => ['value' => 'fas fa-bicycle', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Stainless Steel Appliances', 'feature_icon' => ['value' => 'fas fa-utensils', 'library' => 'fa-solid']],
-                    ['feature_name' => 'EV Charging', 'feature_icon' => ['value' => 'fas fa-charging-station', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Fully Equipped Gym', 'feature_icon' => ['value' => 'fas fa-dumbbell', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Smart Unit Phone Control', 'feature_icon' => ['value' => 'fas fa-mobile-alt', 'library' => 'fa-solid']],
-                    ['feature_name' => '24/7 Security', 'feature_icon' => ['value' => 'fas fa-shield-alt', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Lobby Lounge with Fireplace', 'feature_icon' => ['value' => 'fas fa-fire', 'library' => 'fa-solid']],
-                    ['feature_name' => '9 ft or Higher Ceilings', 'feature_icon' => ['value' => 'fas fa-ruler-vertical', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Parcel Lockers', 'feature_icon' => ['value' => 'fas fa-box', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Dog Wash Station', 'feature_icon' => ['value' => 'fas fa-paw', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Party Room', 'feature_icon' => ['value' => 'fas fa-glass-cheers', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Business Centre', 'feature_icon' => ['value' => 'fas fa-briefcase', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Rooftop Terrace', 'feature_icon' => ['value' => 'fas fa-umbrella-beach', 'library' => 'fa-solid']],
-                    ['feature_name' => 'Storage Lockers', 'feature_icon' => ['value' => 'fas fa-archive', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Luxury vinyl plank flooring throughout excluding bathroom(s)', 'feature_icon' => ['value' => 'fas fa-home', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Ceiling heights 10’ to 15’ (except in bathrooms, as per plan)', 'feature_icon' => ['value' => 'fas fa-ruler-vertical', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Bell Fibre Unlimited high-speed internet included at a promotional rate', 'feature_icon' => ['value' => 'fas fa-wifi', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Suites feature City Link smart unit controls', 'feature_icon' => ['value' => 'fas fa-mobile-alt', 'library' => 'fa-solid']],
+                    ['feature_name' => 'In-suite laundry featuring Whirlpool front-loading washer and dryer', 'feature_icon' => ['value' => 'fas fa-washing-machine', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Flat white paint on all walls', 'feature_icon' => ['value' => 'fas fa-paint-brush', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Individually controlled heating and air conditioning with in-suite heat pumps', 'feature_icon' => ['value' => 'fas fa-thermometer-half', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Ceramic tile flooring in bathrooms', 'feature_icon' => ['value' => 'fas fa-tint', 'library' => 'fa-solid']],
+                    ['feature_name' => 'Semi-gloss finish on all interior door frames, trim and baseboards', 'feature_icon' => ['value' => 'fas fa-paint-roller', 'library' => 'fa-solid']],
                 ],
                 'title_field' => '{{{ feature_name }}}',
             ]
@@ -103,17 +109,21 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $features = $settings['features'];
+        $main_image = !empty($settings['main_image']['url']) ? $settings['main_image']['url'] : '';
+        $item_count = count($features);
+        $columns = ($item_count >= 10 && !$main_image) ? 5 : 3; // 3 колонки по умолчанию, 5 если 10+ элементов и нет изображения
 ?>
-        <div class="features-unique pageWidthBdF">
+        <div class="features-unique pageWidthBdF" id="AmenitiesSec">
             <style>
                 .pageWidthBdF {
                     width: 100%;
-                    padding: 120px 10%;
+                    padding: 50px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthBdF {
                         width: 100%;
-                        padding:100px 25px;
+                        padding: 50px 25px;
                     }
                 }
                 @media screen and (max-width: 768px) {
@@ -122,66 +132,149 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                         padding: 15px;
                     }
                 }
+
+                .features-unique .feature-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: <?php echo $main_image ? 'calc(100% - 560px)' : '100%'; ?>;
+                    align-items:baseline;
+                }
+
                 .features-unique {
-                    text-align: center;
+                    text-align: left;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
                 }
 
                 .features-unique .title-block {
-                    padding-bottom: 25px;
+                    flex: 0 0 100%;
+                    padding-bottom: 44px;
+                    font-family: "Playfair Display", serif;
+                    font-size: 52px;
+                    font-weight: 600;
                     margin: 0;
-                }
-
-                .features-unique .grid-layout {
-                    padding-top: 25px;
-                    display: grid;
-                    grid-template-columns: repeat(5, 1fr); 
-                    gap: 50px; 
-                    justify-content:center;
-                    align-items:baseline;
-                    width: 100%;
+                    text-align:center;
                 }
 
                 .features-unique .feature-card {
+                    flex: 0 0 calc(<?php echo 100 / $columns; ?>%);
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    align-items:center;
+                    gap:20px;
                 }
 
                 .features-unique .feature-card .icon-block {
-                    font-size: 1.5rem; 
                     fill: <?php echo esc_attr($settings['icon_color']); ?>;
-                    margin-bottom: 10px;
                     display: flex;
                     justify-content: center;
+                    align-items: center;
                 }
 
                 .features-unique .feature-card .icon-block svg {
-                    width: 100%; 
-                    height: 100%;
-                    max-width:120px;
-                    max-height:120px; 
+                    width: 100%;
+                    height: 120px;
+                    padding-top:16px;
                 }
 
                 .features-unique .feature-card .feature-name {
-                    padding-top:20px;
                     margin: 0;
-                    color:#1A1A1A;
-                    font:bold;
+                    color: #1A1A1A;
+                    font-weight: 600;
+                    font-size: 30px;
+                    font-family: "Playfair Display", serif;
+                    line-height: 100%;
+                }
+
+                .features-unique .main-image {
+                    display: none;
+                    flex: 0 0 560px;
+                    height: 320px;
+                }
+
+                <?php if ($main_image): ?>
+                    .justifaichik {
+                        display:flex;
+                        justify-content:space-between;
+                    }
+                    .textAdditiImg {
+                        font-family:"Playfair Display";
+                        gap:10px;
+                        display:flex;
+                        flex-direction:column;
+                        padding-top:30px;
+                    }
+                    .textAdditiImg p{
+                        margin:0;
+                        color:#757575;
+                        font-size:16px;
+                    }
+                    .textAdditiImg h4{
+                        margin:0;
+                        font-size:30px;
+                        font-weight:600;
+                    color: <?php echo esc_attr($settings['icon_color']); ?>;
+                    }
+                    .features-unique .AlignImgWithText .main-image {
+                        display: block;
+                    }
+                    .features-unique .AlignImgWithText .main-image img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 8px;
+                    }
+                <?php endif; ?>
+
+                .features-unique .feature-container.centered-last-row .feature-card:last-child {
+                    margin-left: auto;
+                    margin-right: auto;
+                    flex: 0 0 calc(<?php echo 100 / $columns; ?>%);
                 }
 
                 @media (max-width: 1200px) {
-                    .features-unique .grid-layout {
-                        grid-template-columns: repeat(3, 1fr); 
+                    .features-unique .feature-container {
+                        width: 100%;
+                    }
+                    .features-unique .feature-card {
+                        flex: 0 0 calc(33.33% - 33.33px);
+                    }
+                    .features-unique .main-image {
+                        display: none;
+                    }
+                    .features-unique {
+                        text-align: center;
+                    }
+                    .features-unique .title-block {
+                        text-align: center;
                     }
                 }
 
                 @media (max-width: 768px) {
-                    .features-unique .grid-layout {
-                        grid-template-columns: 1fr; 
+                    .features-unique .feature-container {
+                        width: 100%;
+                    }
+                    .features-unique .feature-card {
+                        flex: 0 0 100%;
+                    }
+                    .features-unique .main-image {
+                        display: none;
+                    }
+                    .features-unique {
+                        text-align: center;
+                    }
+                    .features-unique .title-block {
+                        text-align: center;
                     }
                 }
             </style>
 
             <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
-            <div class="grid-layout">
-                <?php foreach ($settings['features'] as $feature): ?>
+            <div class="justifaichik">
+                            <div class="feature-container<?php echo ($item_count % $columns) ? ' centered-last-row' : ''; ?>">
+                <?php foreach ($features as $feature): ?>
                     <div class="feature-card">
                         <div class="icon-block">
                             <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
@@ -189,6 +282,18 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                         <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
                     </div>
                 <?php endforeach; ?>
+            </div>
+            <?php if ($main_image): ?>
+                <div class ="AlignImgWithText">
+                    <div class="main-image">
+                        <img src="<?php echo esc_url($main_image); ?>" alt="Main Feature Image">
+                    </div>
+                    <div class ="textAdditiImg">
+                        <h4>Complementary membership</h4>
+                        <p>To pool and gym equipment</p>
+                    </div>
+                </div>
+            <?php endif; ?>
             </div>
         </div>
 <?php

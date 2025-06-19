@@ -106,6 +106,14 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 'default' => 'Pet-friendly',
             ]
         );
+                $repeater->add_control(
+            'sqf',
+            [
+                'label' => esc_html__('SqFeet', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '547.45',
+            ]
+        );
 
         $repeater->add_control(
             'available',
@@ -129,6 +137,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
+                        'sqf' => '547.45',
                         'available' => 'available',
                     ],
                     [
@@ -137,6 +146,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
+                        'sqf' => '547.45',
                         'available' => 'available',
                     ],
                     [
@@ -145,6 +155,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                         'bedrooms' => '1 bedroom',
                         'bathrooms' => '1 bathroom',
                         'pet_friendly' => 'Pet-friendly',
+                        'sqf' => '547.45',
                         'available' => 'available',
                     ],
                 ],
@@ -160,7 +171,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $accent_color = esc_attr($settings['accent_color']);
     ?>
-        <section class="pageWidthFR">
+        <section class="pageWidthFR" id="SuitesSec">
             <div class="rent-display">
                 <div class="rent-container">
                     <h2 class="rent-title"><?php echo esc_html($settings['main_title']); ?></h2>
@@ -174,30 +185,37 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                     <h5 class="rent-card-title"><?php echo esc_html($property['property_title']); ?></h5>
                                     <p class="rent-card-price"><?php echo esc_html($property['price']); ?> <br/><span>month</span></p>
                                 </div>
+                                                                <div class="rent-card-status">
+                                    <span class="rent-status-dot"></span>
+                                    <span class="rent-status-text"><?php echo esc_html($property['available']); ?></span>
+                                </div>
                                 <div class="rent-card-details">
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
                                         <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 1.5L11.25 4.5H14.625L12.375 7.5L13.5 10.5L10.5 9L7.5 10.5L8.625 7.5L6.375 4.5H9.75L9 1.5Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9 1.5L11.25 4.5H14.625L12.375 7.5L13.5 10.5L10.5 9L7.5 10.5L8.625 7.5L6.375 4.5H9.75L9 1.5Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <?php echo esc_html($property['bedrooms']); ?>
                                     </span>
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
                                         <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M3 6H15V15C15 16.1 14.1 17 13 17H5C3.9 17 3 16.1 3 15V6Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M7.5 3H10.5V6H7.5V3Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3 6H15V15C15 16.1 14.1 17 13 17H5C3.9 17 3 16.1 3 15V6Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.5 3H10.5V6H7.5V3Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <?php echo esc_html($property['bathrooms']); ?>
                                     </span>
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
                                         <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 3.75C7.071 3.75 5.5 5.321 5.5 7.25C5.5 9.179 7.071 10.75 9 10.75C10.929 10.75 12.5 9.179 12.5 7.25C12.5 5.321 10.929 3.75 9 3.75ZM9 3.75C10.656 3.75 12 5.094 12 6.75C12 8.406 10.656 9.75 9 9.75C7.344 9.75 6 8.406 6 6.75C6 5.094 7.344 3.75 9 3.75ZM9 12.75C6.514 12.75 0 14.321 0 16.75V17.25H18V16.75C18 14.321 11.486 12.75 9 12.75Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9 3.75C7.071 3.75 5.5 5.321 5.5 7.25C5.5 9.179 7.071 10.75 9 10.75C10.929 10.75 12.5 9.179 12.5 7.25C12.5 5.321 10.929 3.75 9 3.75ZM9 3.75C10.656 3.75 12 5.094 12 6.75C12 8.406 10.656 9.75 9 9.75C7.344 9.75 6 8.406 6 6.75C6 5.094 7.344 3.75 9 3.75ZM9 12.75C6.514 12.75 0 14.321 0 16.75V17.25H18V16.75C18 14.321 11.486 12.75 9 12.75Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <?php echo esc_html($property['pet_friendly']); ?>
                                     </span>
-                                </div>
-                                <div class="rent-card-status">
-                                    <span class="rent-status-dot"></span>
-                                    <span class="rent-status-text"><?php echo esc_html($property['available']); ?></span>
+                                    <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
+                                        <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.33333 0.75H2.58333C2.0971 0.75 1.63079 0.943154 1.28697 1.28697C0.943154 1.63079 0.75 2.0971 0.75 2.58333V5.33333M17.25 5.33333V2.58333C17.25 2.0971 17.0568 1.63079 16.713 1.28697C16.3692 0.943154 15.9029 0.75 15.4167 0.75H12.6667M12.6667 17.25H15.4167C15.9029 17.25 16.3692 17.0568 16.713 16.713C17.0568 16.3692 17.25 15.9029 17.25 15.4167V12.6667M0.75 12.6667V15.4167C0.75 15.9029 0.943154 16.3692 1.28697 16.713C1.63079 17.0568 2.0971 17.25 2.58333 17.25H5.33333" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                                        <?php echo esc_html($property['sqf']); ?>
+                                    </span>
                                 </div>
                                 <div style="display:flex; flex-direction:column; gap:10px;">
                                     <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
@@ -227,10 +245,12 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 padding: 30px 10%;
                 width: 100%;
                 background: #F7F9FA;
+                padding-top:100px;
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthFR {
-                    padding: 30px;
+                    padding: 30px 25px;
+                padding-top:100px;
                 }
             }
             @media screen and (max-width: 768px) {
@@ -241,7 +261,6 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
 
             .pageWidthFR .rent-display .rent-grid {
                 width: 100%;
-                margin-top: 1rem;
             }
 
             .pageWidthFR .rent-display {
@@ -251,7 +270,10 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             .pageWidthFR .rent-display .rent-title {
                 margin: 0;
                 color: #1A1A1A;
-                padding: 50px 0;
+                padding-bottom:50px;
+font-family: "Playfair Display";
+font-size:52px;
+font-weight:600;
             }
 
             .pageWidthFR .rent-display .rent-grid {
@@ -274,7 +296,7 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 border-radius: 8px;
                 height: 280px;
                 width: 100%;
-                margin-bottom: 30px;
+                margin-bottom: 32px;
             }
 
             .pageWidthFR .rent-display .suite-title-priceRent {
@@ -286,9 +308,10 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-card-title {
-                font-family: "Darker Grotesque", sans-serif;
+                font-family: "Playfair Display";
                 color: #1A1A1A;
                 font-weight: 500;
+                font-size:22px;
                 text-align:left;
                 margin: 0;
                 max-width:300px;
@@ -314,16 +337,17 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 display: flex;
                 flex-wrap:wrap;
                 gap: 10px;
-                padding-bottom:25px;
+                padding-bottom:40px;
             }
 
             .pageWidthFR .rent-display .tag-item {
                 display: inline-flex;
-                font-family: "Inter Tight", sans-serif;
+                font-family: "Playfair Display", serif;
+
                 align-items: center;
                 gap: 0.5rem;
                 background:#F7F9FA;
-                padding: 12px;
+                padding: 15px;
                 border-radius: 999px;
                 font-size: 1rem;
                 font-weight: 500;
@@ -339,10 +363,11 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                 display: flex;
                 align-items: center;
                 gap: 8px;
-                padding-bottom:30px;
+                padding-bottom:25px;
                 color: #2A2A2A;
                 font-size: 1rem;
-                font-family: "Inter Tight", sans-serif;
+                font-family: "Playfair Display", serif;
+
             }
 
             .pageWidthFR .rent-display .rent-status-dot {
@@ -353,7 +378,8 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             }
 
             .pageWidthFR .rent-display .rent-button {
-                font-family: "Inter Tight", sans-serif;
+                font-family: "Playfair Display", serif;
+
                 font-size:1rem;
                 display: inline-block;
                 padding: 16px 0;
