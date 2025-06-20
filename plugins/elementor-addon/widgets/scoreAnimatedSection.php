@@ -268,6 +268,9 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                         .animateStoryTale {
                 font-size: 18px;
             }
+                        .animateStoryTale {
+                max-width: 100%;
+            }
         }
         </style>
 

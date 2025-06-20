@@ -221,16 +221,16 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 }
 
                 .neighborhood-unique .category-card .category-name {
-                    margin: 0;
-                    font-weight: 600;
-                    font-size: 30px; 
-                    padding-top: 30px;
-                    padding-bottom: 50px;
-                    color: #1A1A1A;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
+margin: 0;
+        font-weight: 600;
+        font-size: 30px; 
+        padding-top: 30px;
+        padding-bottom: 50px;
+        color: #1A1A1A;
+        display: flex;
+        align-items: baseline; 
+        justify-content: center;
+        text-align: center;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib {
@@ -295,7 +295,7 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                         font-size: 24px;
                     }
                     .neighborhood-unique .category-card .category-name {
-                        font-size: 18px; malheureusement
+                        font-size: 18px;
                         padding: 16px 0; 
                     }
                     .neighborhood-unique .category-card .sub-itemNeib h5 {
