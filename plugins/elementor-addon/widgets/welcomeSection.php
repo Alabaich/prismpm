@@ -147,7 +147,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
                 position: sticky;
-                top: 126px;
+                top: 128px;
                 width: 100%;
                 left: 0;
                 z-index: 99;
@@ -300,13 +300,19 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                             .welcome-content .score-value {
                     width: 80%;
                     margin:0 auto;
-                    margin-bottom:-20%;
+                    margin-bottom:-16%;
                 }
                 .welcome-content {
                     gap:40px;
                 }
                             .welcome-header {
-                top: 110px;
+                top: 122px;
+            }
+                        .welcome-header nav a {
+                font-size: 14px;
+            }
+                        .welcome-header nav .button {
+                padding: 6px 12px;
             }
             }
         </style>
