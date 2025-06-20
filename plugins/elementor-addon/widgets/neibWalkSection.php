@@ -158,32 +158,30 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
             <style>
                 .pageWidthNWS {
                     width: 100%;
-                    padding: 50px 10%;
-                    padding-bottom:100px;
+                    padding: 100px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthNWS {
                         width: 100%;
-                        padding:50px 25px;
-                    padding-bottom:100px;
+                        padding: 100px 25px;
                     }
                 }
                 @media screen and (max-width: 768px) {
                     .pageWidthNWS {
                         width: 100%;
-                        padding: 15px;
+                        padding: 60px 15px;
                     }
                 }
                 .neighborhood-unique {
                     text-align: center;
-                font-family: "Playfair Display", serif;
+                    font-family: "Playfair Display", serif;
                 }
 
                 .neighborhood-unique .title-block {
                     margin: 0;
-                    padding-bottom: 25px;
-                    font-size:52px;
-                    font-weight:600;
+                    padding-bottom: 70px;
+                    font-size: 52px;
+                    font-weight: 600;
                 }
 
                 .neighborhood-unique .grid-layout {
@@ -191,88 +189,117 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                     flex-wrap: wrap;
                     justify-content: space-between;
                     width: 100%;
-                    align-items: baseline;
-                    padding-top: 25px;
+                    align-items: baseline; /* Выравнивание по базовой линии для десктопа */
                 }
 
                 .neighborhood-unique .category-card {
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: flex-start;
                     width: 300px;
+                    min-height: 400px; /* Фиксированная минимальная высота */
+                    margin-bottom: 20px;
                 }
 
                 .neighborhood-unique .category-card .icon-block {
-                    fill: <?php echo esc_attr($settings['icon_color']); ?>; /* Use fill for SVG icons */
+                    fill: <?php echo esc_attr($settings['icon_color']); ?>;
                     display: flex;
                     justify-content: center;
                 }
 
                 .neighborhood-unique .category-card .icon-block svg {
-                    width:100%;
-                    height:120px;
+                    width: 100%;
+                    height: 80px;
                 }
 
                 .neighborhood-unique .category-card .category-name {
                     margin: 0;
                     font-weight: 600;
-                    font-size:30px;
+                    font-size: 30px; /* Фиксированный размер шрифта */
                     padding-top: 30px;
                     padding-bottom: 50px;
-                    color:#1A1A1A;
+                    color: #1A1A1A;
+                    height: 100px; /* Фиксированная высота заголовка */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib {
-                    margin:0;
+                    margin: 0;
                     line-height: 1.2;
-
+                    flex-grow: 1; /* Заполняет оставшееся пространство */
                 }
+
                 .gapperch {
-                    gap:40px;
-                    display:flex;
-                    flex-direction:column;
+                    gap: 40px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end; /* Выравнивание содержимого по нижнему краю */
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib h5 {
                     font-weight: 600;
-                    color:#1A1A1A;
-                    font-size:18px; 
+                    color: #1A1A1A;
+                    font-size: 18px;
                     margin: 0;
-                    background:#F7F9FA;
-                    padding:10px 0;
+                    background: #F7F9FA;
+                    padding: 10px 0;
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib div {
-                    padding-top:20px;
+                    padding-top: 20px;
                     margin: 0;
                     color: #1A1A1A;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    gap:10px;
-                    font-family:"Playfair Display";
-                    height:auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    font-family: "Playfair Display";
+                    height: auto;
                 }
+
                 .neighborhood-unique .category-card .sub-itemNeib .checkerSpan {
-                    margin:0;
-                    font-weight:600;
-                    font-size:68px;
+                    margin: 0;
+                    font-weight: 600;
+                    font-size: 68px;
                 }
+
                 .subTextWalk {
-                    margin:0;
-                    font-weight:500;
-                    font-size:16px;
+                    margin: 0;
+                    font-weight: 500;
+                    font-size: 16px;
                 }
 
                 @media (max-width: 768px) {
                     .neighborhood-unique .grid-layout {
-                        flex-direction: column;
-                        align-items: center;
+                        align-items: center; 
+                        justify-content: center;
+                        gap:40px;
+                        width: 100%;
                     }
                     .neighborhood-unique .category-card {
-                        width: 100%;
-                        max-width: 15rem;
+                        width: 160px;
                     }
+                    .neighborhood-unique .title-block {
+                        padding-bottom: 40px;
+                        font-size: 24px;
+                    }
+                    .neighborhood-unique .category-card .category-name {
+                        font-size: 18px; 
+                        padding: 16px 0; 
+                    }
+                                    .neighborhood-unique .category-card .sub-itemNeib h5 {
+                    font-size: 16px;
+                }
+                
+                .subTextWalk {
+                    font-size: 14px;
+                }
+                                .neighborhood-unique .category-card .sub-itemNeib .checkerSpan {
+                    font-size: 32px;
+                }
                 }
             </style>
 
@@ -285,12 +312,12 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                         </div>
                         <h4 class="category-name"><?php echo esc_html($item['category_name']); ?></h4>
                         <div class="gapperch">
-                                                    <?php foreach ($item['sub_items'] as $sub_item): ?>
-                            <div class="sub-itemNeib">
-                                <h5><?php echo esc_html($sub_item['sub_item_name']); ?></h5>
-                                <div><p class = "checkerSpan"><?php echo esc_html($sub_item['sub_item_distance']); ?></p> <p class="subTextWalk">Minute <br/> Walk</p></div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php foreach ($item['sub_items'] as $sub_item): ?>
+                                <div class="sub-itemNeib">
+                                    <h5><?php echo esc_html($sub_item['sub_item_name']); ?></h5>
+                                    <div><p class="checkerSpan"><?php echo esc_html($sub_item['sub_item_distance']); ?></p> <p class="subTextWalk">Minute <br/> Walk</p></div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

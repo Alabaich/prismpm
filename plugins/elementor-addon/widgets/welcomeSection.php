@@ -111,12 +111,12 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
         <style>
             .pageWidthNewHead {
                 width: 100%;
-                padding: 25px 10%;
+                padding: 100px 10%;
                 box-sizing: border-box;
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthNewHead {
-                    padding: 25px;
+                    padding:100px 25px;
                 }
             }
             @media screen and (max-width: 768px) {
@@ -124,7 +124,21 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                     padding: 15px;
                 }
             }
-
+            .welcome-header .pageWidthNewHead {
+                width: 100%;
+                padding: 25px 10%;
+                box-sizing: border-box;
+            }
+            @media screen and (max-width: 1600px) {
+                .welcome-header .pageWidthNewHead {
+                    padding:25px;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                .welcome-header .pageWidthNewHead {
+                    padding: 15px;
+                }
+            }
             .welcome-section {
                 text-align: center;
                 position: relative;
@@ -133,19 +147,21 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
                 position: sticky;
-                top: 0;
+                top: 130px;
                 width: 100%;
                 left: 0;
                 z-index: 99;
-                transition: top 0.3s ease, position 0.3s ease;
+                transition: opacity 0.3s ease, transform 0.6s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transform: translateY(-40%); /* Сдвиг вверх */
             }
 
             .welcome-header.active {
                 position: fixed;
                 top: 90px;
+                transform: translateY(0); /* Возврат на место */
             }
 
             .welcome-header .pageWidthNewHead {
@@ -155,8 +171,8 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
 
             .welcome-header img {
-                object-fit:contain;
-                height:100%;
+                object-fit: contain;
+                height: 100%;
                 width: auto;
             }
 
@@ -171,7 +187,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 color: #fff;
                 text-decoration: none;
                 font-size: 1rem;
-font-family: "Playfair Display", serif;
+                font-family: "Playfair Display", serif;
             }
 
             .welcome-header nav .button {
@@ -186,8 +202,6 @@ font-family: "Playfair Display", serif;
             .welcome-content {
                 display: flex;
                 justify-content: space-between;
-                padding-top: 100px;
-                padding-bottom:25px;
             }
 
             .welcome-content .text-content {
@@ -197,7 +211,7 @@ font-family: "Playfair Display", serif;
                 justify-content: flex-start;
                 display: flex;
                 flex-direction: column;
-font-family: "Playfair Display";
+                font-family: "Playfair Display";
                 gap: 25px;
             }
 
@@ -205,9 +219,9 @@ font-family: "Playfair Display";
                 color: <?php echo esc_attr($settings['title_color']); ?>;
                 margin: 0;
                 padding-bottom: 25px;
-                font-size:68px;
-                font-weight:600;
-                max-width:700px;
+                font-size: 68px;
+                font-weight: 600;
+                max-width: 700px;
             }
 
             .welcome-content .text-content p {
@@ -215,7 +229,7 @@ font-family: "Playfair Display";
                 font-size: 1.125rem;
                 margin: 0;
                 line-height: 1.1;
-                max-width:580px;
+                max-width: 580px;
             }
 
             .welcome-content .additional-texts p {
@@ -225,7 +239,7 @@ font-family: "Playfair Display";
             .welcome-content .score-value {
                 width: 40%;
                 overflow: hidden;
-                margin-bottom: -6%;
+                margin-bottom: -10%;
                 justify-content: flex-end;
                 align-items: flex-end;
                 display: flex;
@@ -238,25 +252,58 @@ font-family: "Playfair Display";
                 object-fit: contain;
                 display: block;
             }
+            .butNavGApEtc {
+                display:flex;
+                align-items:center;
+                gap:8px;
+            }
 
             @media (max-width: 768px) {
                 .welcome-content {
                     flex-direction: column;
                     text-align: center;
-                    padding-top: 100px;
                 }
+                .skritich {
+                    display:none;
+                }
+                            .butNavGApEtc {
+                gap: 4px;
+            }
                 .welcome-content .text-content {
-                    max-width: 100%;
                 }
                 .welcome-header.active {
-                    top: 50px;
+                    top: 80px;
                 }
                 .welcome-header img {
                     max-height: 40px;
                 }
                 .welcome-content .score-value {
                     width: 100%;
-                    margin-bottom: -5%;
+                }
+            .welcome-content .text-content p {
+                    width: 100%;
+                    font-size:14px;
+
+            }
+            .welcome-content .text-content h1 {
+                    width: 100%;
+                    padding-bottom:16px;
+                    font-size:24px;
+            }
+                        .welcome-content .text-content {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+            }
+                            .welcome-content .score-value {
+                    width: 80%;
+                    margin:0 auto;
+                    margin-bottom:-20%;
+                }
+                .welcome-content {
+                    gap:40px;
                 }
             }
         </style>
@@ -267,13 +314,15 @@ font-family: "Playfair Display";
                     <img src="<?php echo esc_url($settings['header_image']['url']); ?>" alt="Header Image">
                 <?php endif; ?>
                 <nav>
-                    <a href="#AboutSec">About</a>
-                    <a href="#AmenitiesSec">Amenities</a>
-                    <a href="#SuitesSec">Suites</a>
-                    <a href="#NeighbourhoodSec">Neighbourhood</a>
-                    <a href="#GallerySec">Gallery</a>
-                    <a href="#" class="button">Schedule a tour</a>
+                    <a class ="skritich" href="#AboutSec">About</a>
+                    <a class ="skritich" href="#AmenitiesSec">Amenities</a>
+                    <a class ="skritich" href="#SuitesSec">Suites</a>
+                    <a class ="skritich" href="#NeighbourhoodSec">Neighbourhood</a>
+                    <a class ="skritich" href="#GallerySec">Gallery</a>
+                    <div class ="butNavGApEtc">
+                                            <a href="#" class="button">Schedule a tour</a>
                     <a href="#" class="button">Apply</a>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -313,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(href);
             if (target) {
                 const headerHeight = header.offsetHeight; 
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - (headerHeight + 50);
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'

@@ -133,20 +133,21 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
 
         <style>
             .pageWidthVT {
-                padding: 20px 10%;
+                padding: 0px 10%;
                 background:#F7F9FA;
                 padding-bottom:100px;
                 width: 100%; 
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthVT {
-                    padding: 20px 25px;
+                    padding: 0px 25px;
                 padding-bottom:100px;
                 }
             }
             @media screen and (max-width: 768px) {
                 .pageWidthVT {
-                    padding: 15px;
+                    padding:0 15px;
+                padding-bottom:60px;
                 }
             }
 
@@ -233,7 +234,15 @@ class Elementor_videoTourSection extends \Elementor\Widget_Base
             @media (max-width: 576px) {
                 .pageWidthVT .tour-showcase .tour-grid {
                     grid-template-columns: 1fr;
+                    gap: 10px;
                 }
+                            .pageWidthVT .tour-showcase .tour-card-image {
+                height: 240px;
+            }
+                        .pageWidthVT .tour-showcase .play-icon {
+                top: 40%;
+                left: 50%;
+            }
             }
         </style>
     <?php
