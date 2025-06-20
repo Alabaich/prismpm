@@ -41,8 +41,8 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
     protected function register_controls()
     {
         $this->start_controls_section('content_section', ['label' => esc_html__('Gallery Content', 'elementor-addon'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
-        $this->add_control('title', ['label' => esc_html__('Title', 'elementor-addon'), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => esc_html__('Gallery', 'elementor-addon')]);
-        $this->add_control('subtitle', ['label' => esc_html__('Subtitle', 'elementor-addon'), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => esc_html__('Why Residents Love Living Here', 'elementor-addon')]);
+        $this->add_control('title', ['label' => esc_html__('Title', 'elementor-addon'), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => esc_html__('Explore Our Gallery', 'elementor-addon')]);
+        $this->add_control('subtitle', ['label' => esc_html__('Subtitle', 'elementor-addon'), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => esc_html__('Insights, updates, and ideas to keep you ahead', 'elementor-addon')]);
 
         $repeater = new \Elementor\Repeater();
         $repeater->add_control('image', ['label' => esc_html__('Image', 'elementor-addon'), 'type' => \Elementor\Controls_Manager::MEDIA, 'default' => ['url' => \Elementor\Utils::get_placeholder_image_src()]]);

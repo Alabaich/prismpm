@@ -1,5 +1,4 @@
 <?php
-
 class Elementor_announceProperty extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -93,6 +92,23 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+            'logo',
+            [
+                'label' => esc_html__('Property Logo (SVG Code)', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'description' => esc_html__('Paste your full SVG code here.', 'elementor-addon'),
+            ]
+        );
+
+        $repeater->add_control(
+            'logo_link',
+            [
+                'label' => esc_html__('Property Logo Link', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+            ]
+        );
+
+        $repeater->add_control(
             'address',
             [
                 'label' => esc_html__('Address', 'elementor-addon'),
@@ -142,9 +158,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Image', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
             ]
         );
 
@@ -181,6 +194,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 'label' => esc_html__('Properties', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
+                'title_field' => '{{{ title }}}',
                 'default' => [
                     ['title' => '80 Bond', 'address' => '80 Bond St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
                     ['title' => '100 Bond', 'address' => '100 Bond St, Toronto', 'developer' => 'Atria Development', 'label_left' => 'TBI', 'value_left' => '', 'launch_date' => '', 'image' => ['url' => ''], 'image_link' => [], 'button_text' => 'Pre-Register', 'button_link' => []],
@@ -199,9 +213,9 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 ?>
 
         <style>
-                        .coming-soon-section {
+            .coming-soon-section {
                 padding: 25px 10%;
-                width: 100%; 
+                width: 100%;
             }
             @media screen and (max-width: 1600px) {
                 .coming-soon-section {
@@ -212,8 +226,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 .coming-soon-section {
                     padding: 15px;
                 }
-            }
-            .coming-soon-section {
             }
 
             .coming-soon-section h1.customTitle {
@@ -349,11 +361,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 gap: 1rem;
             }
 
-            .property-button a svg path {
-                fill: currentColor;
-                transition: fill 0.3s ease;
-            }
-
             .property-button a:hover {
                 color: #093D5F;
                 background-color: #fff;
@@ -362,6 +369,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .property-button a svg {
                 transition: transform 0.3s ease;
+                width: 16px;
+                height: 16px;
             }
 
             .property-button a:hover svg {
@@ -408,125 +417,24 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 padding-top: 6rem;
             }
 
-            /* Tablet / iPad Air specific styles */
-            @media (min-width: 769px) and (max-width: 821px) {
-                .coming-soon-section {
-                    padding: 2rem 1.5rem;
-                    align-items: center;
-                }
-
-                .title-container,
-                .coming-soon-section.centered-header .title-container {
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    gap: 1rem;
-                    width: 100%;
-                }
-
-                .section-titles,
-                .coming-soon-section.centered-header .section-titles {
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .coming-soon-section.first-page p,
-                .coming-soon-section div.customSubtitle {
-                    text-align: center;
-                }
-
-                .section-img,
-                .coming-soon-section.centered-header .section-img {
-                    display: none;
-                }
-
-                .coming-soon-section .property-card {
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-                    padding: 1.25rem;
-                    gap: 0;
-                }
-
-                .coming-soon-section .property-content {
-                    order: 2;
-                    width: 100%;
-                    max-width: 100%;
-                    min-width: 0;
-                    flex: 0 0 auto;
-                    text-align: center;
-                }
-
-                .coming-soon-section .property-image {
-                    order: 1;
-                    width: 100%;
-                    max-width: 100%;
-                    min-width: 0;
-                    flex: 0 0 auto;
-                    margin-bottom: 1.5rem;
-                }
-
-                .coming-soon-section .property-image img {
-                    width: 100%;
-                    height: auto;
-                    max-height: 350px;
-                    object-fit: cover;
-                    border-radius: 0.5rem;
-                }
-
-                .coming-soon-section .property-content h3 {
-                    text-align: center;
-                    font-size: 28px;
-                    margin-bottom: 1rem;
-                }
-
-                .coming-soon-section .property-content .metaq {
-                    grid-template-columns: 1fr;
-                    gap: 1rem;
-                    margin-bottom: 1.5rem;
-                    text-align: left;
-                }
-
-                .metaq div {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 0.25rem;
-                    padding: 0 0.5rem;
-                }
-
-                .metaq div h6 {
-                    font-size: 0.9rem;
-                    color: #6B7280;
-                    margin: 0;
-                }
-
-                .metaq div span {
-                    font-size: 1.1rem;
-                    color: #2A2A2A;
-                    text-align: left;
-                    width: 100%;
-                }
-
-                .property-button {
-                    margin-top: auto;
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                    text-align: center;
-                }
-
-                .property-button a {
-                    font-size: 1rem;
-                }
+            .titleWithLogo {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
             }
 
-            /* Mobile styles ( <= 768px ) */
+            .titleWithLogo h3 {
+                margin-bottom: 0;
+            }
+
+            .titleWithLogo svg {
+                height: 40px;
+                width: auto;
+            }
+
             @media (max-width: 768px) {
                 .coming-soon-section {
-                    padding: 2rem 1rem;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
+                    padding: 4rem 1rem;
                 }
 
                 .title-container,
@@ -599,12 +507,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
 
                 .coming-soon-section .property-content h3 {
-                    font-family: 'Darker Grotesque', sans-serif;
-                    font-weight: 600;
                     font-size: 26px;
-                    line-height: 1.1;
                     text-align: center;
-                    color: #2a2a2a;
                     margin-bottom: 1rem;
                 }
 
@@ -617,9 +521,12 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
                 .metaq div {
                     display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
                     gap: 0.25rem;
+                    border-bottom: 1px solid #eee;
+                    padding: 0.5rem 0;
                 }
 
                 .metaq div h6 {
@@ -632,10 +539,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 .metaq div span {
                     font-size: 1rem;
                     color: #2A2A2A;
-                    text-align: left;
-                    width: 100%;
-                    overflow-wrap: break-word;
-                    word-break: break-word;
+                    text-align: right;
+                    width: auto;
                     font-weight: 500;
                 }
 
@@ -656,19 +561,11 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
         <?php
         $classes = ['coming-soon-section'];
-        $is_placeholder_image = false;
-        if (!empty($settings['section_image']['url'])) {
-            if (empty($settings['section_image']['id']) && $settings['section_image']['url'] === \Elementor\Utils::get_placeholder_image_src()) {
-                $is_placeholder_image = true;
-            }
-        } else {
-            $is_placeholder_image = true;
-        }
+        $is_placeholder_image = empty($settings['section_image']['id']) && (!isset($settings['section_image']['url']) || $settings['section_image']['url'] === \Elementor\Utils::get_placeholder_image_src());
 
         if ($is_placeholder_image) {
             $classes[] = 'centered-header';
         }
-
         if ($settings['is_first_page'] === 'yes') {
             $classes[] = 'first-page';
         }
@@ -676,81 +573,84 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
         <div class="<?= implode(' ', $classes); ?>">
             <div class="title-container">
                 <div class="section-titles">
-                    <?php if (!empty($settings['section_title'])): ?>
+                    <?php if (!empty($settings['section_title'])) : ?>
                         <h1 class="customTitle"><?= esc_html($settings['section_title']); ?></h1>
                     <?php endif; ?>
                     <?php
                     if (!empty($settings['section_subtitle'])) {
-                        $subtitle_html = $settings['section_subtitle'];
-                        $subtitle_html_cleaned = preg_replace('/<p\b[^>]*>(\s| |<br\s*\/?>)*<\/p>/im', '', $subtitle_html);
-                        $subtitle_html_cleaned = trim($subtitle_html_cleaned);
-                        $subtitle_html_processed = wp_kses_post($subtitle_html_cleaned);
-
-                        if (!empty($subtitle_html_processed)) {
-                            echo '<div class="customSubtitle">' . $subtitle_html_processed . '</div>';
-                        }
+                        echo '<div class="customSubtitle">' . wp_kses_post($settings['section_subtitle']) . '</div>';
                     }
                     ?>
                 </div>
                 <?php if (!$is_placeholder_image && !empty($settings['section_image']['url'])) : ?>
                     <div class="section-img flex">
                         <?php
-                        $section_img_url = $settings['section_image']['url'];
-                        $section_img_alt = esc_attr($settings['section_title']);
-                        if (!empty($settings['section_image_link']['url'])):
-                            $target_section_img = !empty($settings['section_image_link']['is_external']) ? '_blank' : '_self';
-                            $nofollow_section_img = !empty($settings['section_image_link']['nofollow']) ? 'nofollow' : '';
+                        if (!empty($settings['section_image_link']['url'])) {
+                            $this->add_link_attributes('section_image_link', $settings['section_image_link']);
+                            echo '<a ' . $this->get_render_attribute_string('section_image_link') . '>';
+                        }
+                        echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'full', 'section_image');
+                        if (!empty($settings['section_image_link']['url'])) {
+                            echo '</a>';
+                        }
                         ?>
-                            <a href="<?= esc_url($settings['section_image_link']['url']); ?>" target="<?= esc_attr($target_section_img); ?>" <?= $nofollow_section_img ? 'rel="' . esc_attr($nofollow_section_img) . '"' : ''; ?>>
-                                <img src="<?= esc_url($section_img_url); ?>" alt="<?= $section_img_alt; ?>" />
-                            </a>
-                        <?php else: ?>
-                            <img src="<?= esc_url($section_img_url); ?>" alt="<?= $section_img_alt; ?>" />
-                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>
 
             <?php if (!empty($settings['properties'])) : ?>
-                <?php foreach ($settings['properties'] as $item_index => $item): ?>
+                <?php foreach ($settings['properties'] as $item) : ?>
                     <div class="property-card elementor-repeater-item-<?= esc_attr($item['_id']); ?>">
 
                         <div class="property-content">
-                            <?php if (!empty($item['title'])): ?>
-                                <h3><?= esc_html($item['title']); ?></h3>
-                            <?php endif; ?>
+                            <div class="titleWithLogo">
+                                <?php if (!empty($item['title'])) : ?>
+                                    <h3><?= esc_html($item['title']); ?></h3>
+                                <?php endif; ?>
+                                <?php if (!empty($item['logo'])) :
+                                ?>
+                                    <?php
+                                    $logo_tag = $item['logo'];
+                                    if (!empty($item['logo_link']['url'])) {
+                                        $this->add_link_attributes('logo_link_' . $item['_id'], $item['logo_link']);
+                                        echo '<a ' . $this->get_render_attribute_string('logo_link_' . $item['_id']) . '>' . $logo_tag . '</a>';
+                                    } else {
+                                        echo $logo_tag;
+                                    }
+                                    ?>
+                                <?php endif; ?>
+                            </div>
 
                             <div class="metaq">
-                                <?php if (!empty($item['address'])): ?>
+                                <?php if (!empty($item['address'])) : ?>
                                     <div>
                                         <h6>Address:</h6> <span><?= esc_html($item['address']); ?></span>
                                     </div>
                                 <?php endif; ?>
-                                <?php if (!empty($item['developer'])): ?>
+                                <?php if (!empty($item['developer'])) : ?>
                                     <div>
                                         <h6>Developer:</h6> <span><?= esc_html($item['developer']); ?></span>
                                     </div>
                                 <?php endif; ?>
-                                <?php if (!empty($item['label_left']) || !empty($item['value_left'])): ?>
+                                <?php if (!empty($item['label_left']) || !empty($item['value_left'])) : ?>
                                     <div>
                                         <h6><?= esc_html($item['label_left']); ?>:</h6> <span><?= esc_html($item['value_left']); ?></span>
                                     </div>
                                 <?php endif; ?>
-                                <?php if (!empty($item['launch_date'])): ?>
+                                <?php if (!empty($item['launch_date'])) : ?>
                                     <div>
                                         <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
 
-                            <?php if (!empty($item['button_text']) && !empty($item['button_link']['url'])):
-                                $target_button = !empty($item['button_link']['is_external']) ? '_blank' : '_self';
-                                $nofollow_button = !empty($item['button_link']['nofollow']) ? 'nofollow' : '';
+                            <?php if (!empty($item['button_text']) && !empty($item['button_link']['url'])) :
+                                $this->add_link_attributes('button_link_' . $item['_id'], $item['button_link']);
                             ?>
                                 <div class="property-button">
-                                    <a href="<?= esc_url($item['button_link']['url']); ?>" target="<?= esc_attr($target_button); ?>" <?= $nofollow_button ? 'rel="' . esc_attr($nofollow_button) . '"' : ''; ?>>
+                                    <a <?= $this->get_render_attribute_string('button_link_' . $item['_id']); ?>>
                                         <?= esc_html($item['button_text']); ?>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="anounc-button-icon" aria-hidden="true">
+                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                             <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
                                         </svg>
                                     </a>
@@ -758,29 +658,24 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                             <?php endif; ?>
                         </div>
 
-                        <?php if (!empty($item['image']['url'])): ?>
+                        <?php if (!empty($item['image']['url'])) : ?>
                             <div class="property-image">
                                 <?php
-                                $property_img_url = $item['image']['url'];
-                                $property_img_alt = !empty($item['title']) ? esc_attr($item['title']) : 'Property Image';
-                                if (!empty($item['image_link']['url'])):
-                                    $target_item_img = !empty($item['image_link']['is_external']) ? '_blank' : '_self';
-                                    $nofollow_item_img = !empty($item['image_link']['nofollow']) ? 'nofollow' : '';
+                                if (!empty($item['image_link']['url'])) {
+                                    $this->add_link_attributes('property_image_link_' . $item['_id'], $item['image_link']);
+                                    echo '<a ' . $this->get_render_attribute_string('property_image_link_' . $item['_id']) . '>';
+                                }
+                                echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($item, 'full', 'image');
+                                if (!empty($item['image_link']['url'])) {
+                                    echo '</a>';
+                                }
                                 ?>
-                                    <a href="<?= esc_url($item['image_link']['url']); ?>" target="<?= esc_attr($target_item_img); ?>" <?= $nofollow_item_img ? 'rel="' . esc_attr($nofollow_item_img) . '"' : ''; ?>>
-                                        <img src="<?= esc_url($property_img_url); ?>" alt="<?= $property_img_alt; ?>">
-                                    </a>
-                                <?php else: ?>
-                                    <img src="<?= esc_url($property_img_url); ?>" alt="<?= $property_img_alt; ?>">
-                                <?php endif; ?>
                             </div>
                         <?php endif; ?>
-
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
 <?php
     }
 }
