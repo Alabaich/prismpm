@@ -153,6 +153,10 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
                         display: none;
                     }
 
+                    .linked-gallery-container {
+                        gap: 40px;
+                    }
+
                     .linked-gallery-container .gallery-header {
                         gap: 15px;
                     }
