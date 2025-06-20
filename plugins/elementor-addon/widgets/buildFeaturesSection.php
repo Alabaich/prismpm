@@ -112,26 +112,26 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
         $features = $settings['features'];
         $main_image = !empty($settings['main_image']['url']) ? $settings['main_image']['url'] : '';
         $item_count = count($features);
-        $columns = ($item_count >= 10 && !$main_image) ? 5 : 3; // 3 колонки по умолчанию, 5 если 10+ элементов и нет изображения
+        $columns = ($item_count >= 10 && !$main_image) ? 5 : 3; // 3 columns by default, 5 if 10+ items and no image
+        $full_rows = floor($item_count / $columns);
+        $remaining_items = $item_count % $columns;
 ?>
         <div class="features-unique pageWidthBdF" id="AmenitiesSec">
             <style>
                 .pageWidthBdF {
                     width: 100%;
-                    padding: 50px 10%;
-                    padding-top:100px;
+                    padding: 100px 10%;
                 }
                 @media screen and (max-width: 1600px) {
                     .pageWidthBdF {
                         width: 100%;
-                        padding: 50px 25px;
-                    padding-top:100px;
+                        padding: 100px 25px;
                     }
                 }
                 @media screen and (max-width: 768px) {
                     .pageWidthBdF {
                         width: 100%;
-                        padding: 15px;
+                        padding: 60px 15px;
                     }
                 }
 
@@ -140,7 +140,17 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     flex-wrap: wrap;
                     width: <?php echo $main_image ? 'calc(100% - 560px)' : '100%'; ?>;
                     align-items: baseline;
-                    gap: 50px;
+                    justify-content: space-between; /* Space between for full rows */
+                    gap: 20px;
+                }
+
+                .features-unique .last-row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: <?php echo $main_image ? 'calc(100% - 560px)' : '100%'; ?>;
+                    align-items: baseline;
+                    justify-content: center; /* Center for the last row */
+                    gap: 20px;
                 }
 
                 .features-unique {
@@ -152,7 +162,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
 
                 .features-unique .title-block {
                     flex: 0 0 100%;
-                    padding-bottom: 50px;
+                    padding-bottom: 70px;
                     font-family: "Playfair Display", serif;
                     font-size: 52px;
                     font-weight: 600;
@@ -161,12 +171,12 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .feature-card {
-                    flex: 0 0 calc(<?php echo 100 / $columns; ?>% - (50px * (<?php echo $columns; ?> - 1) / <?php echo $columns; ?>));
+                    flex: 0 0 calc(<?php echo 100 / $columns; ?>% - (20px * (<?php echo $columns; ?> - 1) / <?php echo $columns; ?>));
                     display: flex;
                     flex-direction: column;
                     text-align: center;
                     align-items: center;
-                    gap: 20px;
+                    gap: 10px;
                 }
 
                 .features-unique .feature-card .icon-block {
@@ -177,17 +187,20 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .feature-card .icon-block svg {
-                    width: 100%;
-                    height: 120px;
+                    width: 100%; 
+                    height: 80px;
+                    object-fit: contain;
                 }
 
                 .features-unique .feature-card .feature-name {
                     margin: 0;
                     color: #1A1A1A;
                     font-weight: 600;
-                    font-size: 30px;
+                    font-size: 30px; 
                     font-family: "Playfair Display", serif;
-                    line-height: 100%;
+                    line-height: 120%;
+                    padding: 0 10px;
+                    word-wrap: break-word;
                 }
 
                 .features-unique .main-image {
@@ -195,11 +208,18 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     flex: 0 0 560px;
                     height: 320px;
                 }
+                                    .justifaichik {
+                                        gap:20px;
+                        display: flex;
+                        flex-direction:column;
+                    }
 
                 <?php if ($main_image): ?>
                     .justifaichik {
                         display: flex;
                         justify-content: space-between;
+                        flex-direction:row;
+                        gap:20px;
                     }
                     .textAdditiImg {
                         font-family: "Playfair Display";
@@ -211,11 +231,11 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     .textAdditiImg p {
                         margin: 0;
                         color: #757575;
-                        font-size: 16px;
+                        font-size: 14px;
                     }
                     .textAdditiImg h4 {
                         margin: 0;
-                        font-size: 30px;
+                        font-size: 24px;
                         font-weight: 600;
                         color: <?php echo esc_attr($settings['icon_color']); ?>;
                     }
@@ -228,23 +248,29 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                         object-fit: cover;
                         border-radius: 8px;
                     }
-                <?php endif; ?>
-
-                <?php if ($item_count % $columns > 1): ?>
-                    .features-unique .feature-container.centered-last-row {
-                        justify-content: center;
+                    @media (max-width: 768px) {
+                        .justifaichik {
+                            gap:32px!important;
+                        }
+                                            .textAdditiImg {
+                        padding-top: 16px;
                     }
-                    .features-unique .feature-container.centered-last-row .feature-card {
-                        flex: 0 0 calc((100% / <?php echo $columns; ?>) - (50px * (<?php echo $columns; ?> - 1) / <?php echo $columns; ?>));
+                        .textAdditiImg h4 {
+                        font-size: 16px;
+                    }
+                                        .textAdditiImg p {
+                        font-size: 12px;
+                    }
                     }
                 <?php endif; ?>
 
                 @media (max-width: 1200px) {
-                    .features-unique .feature-container {
+                    .features-unique .feature-container,
+                    .features-unique .last-row {
                         width: 100%;
                     }
                     .features-unique .feature-card {
-                        flex: 0 0 calc(33.33% - 33.33px);
+                        flex: 0 0 calc(33.33% - 13.33px);
                     }
                     .features-unique .main-image {
                         display: none;
@@ -258,11 +284,16 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 @media (max-width: 768px) {
-                    .features-unique .feature-container {
+                    .features-unique .feature-container,
+                    .features-unique .last-row {
                         width: 100%;
                     }
                     .features-unique .feature-card {
-                        flex: 0 0 100%;
+                        flex: 0 0 calc(50% - 10px);
+                        min-width: 150px;
+                    }
+                    .features-unique .feature-card .feature-name {
+                        font-size: 16px;
                     }
                     .features-unique .main-image {
                         display: none;
@@ -272,22 +303,50 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     }
                     .features-unique .title-block {
                         text-align: center;
+                        padding-bottom: 40px;
+                        font-size: 28px;
+                    }
+                    .justifaichik {
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+                    .features-unique .AlignImgWithText .main-image {
+                        flex: 0 0 100%;
+                        height: 200px;
                     }
                 }
             </style>
 
             <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
             <div class="justifaichik">
-                <div class="feature-container<?php echo ($item_count % $columns > 1) ? ' centered-last-row' : ''; ?>">
-                    <?php foreach ($features as $feature): ?>
+                <div class="feature-container">
+                    <?php
+                    $full_items = $full_rows * $columns;
+                    for ($i = 0; $i < $full_items; $i++) {
+                        $feature = $features[$i];
+                    ?>
                         <div class="feature-card">
                             <div class="icon-block">
                                 <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
                             </div>
                             <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
                         </div>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </div>
+                <?php if ($remaining_items > 0): ?>
+                    <div class="last-row">
+                        <?php for ($i = $full_items; $i < $item_count; $i++) {
+                            $feature = $features[$i];
+                        ?>
+                            <div class="feature-card">
+                                <div class="icon-block">
+                                    <?php \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']); ?>
+                                </div>
+                                <h4 class="feature-name"><?php echo esc_html($feature['feature_name']); ?></h4>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php endif; ?>
                 <?php if ($main_image): ?>
                     <div class="AlignImgWithText">
                         <div class="main-image">

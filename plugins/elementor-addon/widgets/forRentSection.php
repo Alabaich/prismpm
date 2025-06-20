@@ -220,14 +220,14 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                 <div style="display:flex; flex-direction:column; gap:10px;">
                                     <a href="#" class="rent-button explore-button" style="background-color: <?php echo $accent_color; ?>; color: #FFFFFF;">
                                         Explore Now <span class="arrow" style="margin-left:10px;">
-                                            <svg width="11" height="10" viewBox="0 0 11 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                                            <svg width="12" height="12" viewBox="0 0 11 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M10.1221 0C10.582 0.000175951 10.9549 0.373029 10.9551 0.833008V9.16699C10.9549 9.62697 10.582 9.99982 10.1221 10C9.66194 10 9.28826 9.62708 9.28809 9.16699V2.7832L2.37793 9.75586C2.05249 10.0813 1.52466 10.0813 1.19922 9.75586C0.873783 9.43042 0.873782 8.90259 1.19922 8.57715L8.04883 1.66699H1.78809C1.328 1.66682 0.955078 1.29314 0.955078 0.833008C0.955254 0.373029 1.32811 0.000175823 1.78809 0H10.1221Z"/>
                                             </svg>
                                         </span>
                                     </a>
                                     <a href="#" class="rent-button view-button" style="color: <?php echo $accent_color; ?>; border-color: <?php echo $accent_color; ?>;">
                                         Book a Viewing <span class="arrow" style="margin-left:10px;">
-                                            <svg width="11" height="10" viewBox="0 0 11 10" fill="<?php echo $accent_color; ?>" xmlns="http://www.w3.org/2000/svg">
+                                            <svg width="12" height="12" viewBox="0 0 11 10" fill="<?php echo $accent_color; ?>" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M10.1221 0C10.582 0.000175951 10.9549 0.373029 10.9551 0.833008V9.16699C10.9549 9.62697 10.582 9.99982 10.1221 10C9.66194 10 9.28826 9.62708 9.28809 9.16699V2.7832L2.37793 9.75586C2.05249 10.0813 1.52466 10.0813 1.19922 9.75586C0.873783 9.43042 0.873782 8.90259 1.19922 8.57715L8.04883 1.66699H1.78809C1.328 1.66682 0.955078 1.29314 0.955078 0.833008C0.955254 0.373029 1.32811 0.000175823 1.78809 0H10.1221Z"/>
                                             </svg>
                                         </span>
@@ -242,21 +242,23 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
 
         <style>
             .pageWidthFR {
-                padding: 30px 10%;
+                padding: 100px 10%;
                 width: 100%;
                 background: #F7F9FA;
-                padding-top:100px;
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthFR {
-                    padding: 30px 25px;
-                padding-top:100px;
+                    padding: 100px 25px;
                 }
             }
             @media screen and (max-width: 768px) {
                 .pageWidthFR {
-                    padding: 15px;
+                    padding: 60px 15px;
                 }
+                .pageWidthFR .rent-display .rent-title {
+                font-size:24px;
+                padding-bottom:40px;
+                }   
             }
 
             .pageWidthFR .rent-display .rent-grid {
@@ -270,10 +272,10 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
             .pageWidthFR .rent-display .rent-title {
                 margin: 0;
                 color: #1A1A1A;
-                padding-bottom:50px;
-font-family: "Playfair Display";
-font-size:52px;
-font-weight:600;
+                padding-bottom:70px;
+                font-family: "Playfair Display";
+                font-size:52px;
+                font-weight:600;
             }
 
             .pageWidthFR .rent-display .rent-grid {
@@ -310,7 +312,7 @@ font-weight:600;
             .pageWidthFR .rent-display .rent-card-title {
                 font-family: "Playfair Display";
                 color: #1A1A1A;
-                font-weight: 500;
+                font-weight: 600;
                 font-size:22px;
                 text-align:left;
                 margin: 0;
@@ -343,7 +345,6 @@ font-weight:600;
             .pageWidthFR .rent-display .tag-item {
                 display: inline-flex;
                 font-family: "Playfair Display", serif;
-
                 align-items: center;
                 gap: 0.5rem;
                 background:#F7F9FA;
@@ -355,8 +356,8 @@ font-weight:600;
             }
 
             .pageWidthFR .rent-display .tag-icon-svg {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
             .pageWidthFR .rent-display .rent-card-status {
@@ -404,7 +405,7 @@ font-weight:600;
                 background-color: #f0f0f0;
             }
 
-            .pageWidthFR .rent-display .rent-button .arrow {
+            .pageWidthFR .rent-display .rent-button .arrow svg {
                 display: inline-block;
                 transition: transform 0.3s ease;
                 font-size: 20px;
@@ -415,7 +416,39 @@ font-weight:600;
                     grid-template-columns: repeat(2, 1fr);
                 }
             }
-
+            @media screen and (max-width: 768px) {
+                .pageWidthFR {
+                    padding: 60px 15px;
+                }
+                .pageWidthFR .rent-display .rent-title {
+                font-size:24px;
+                padding-bottom:40px;
+                }   
+                            .pageWidthFR .rent-display .rent-card {
+                padding: 16px;
+            }
+                        .pageWidthFR .rent-display .rent-card-image {
+                height: 200px;
+                margin-bottom: 16px;
+            }
+                        .pageWidthFR .rent-display .suite-title-priceRent {
+                padding-bottom:16px;
+            }
+                        .pageWidthFR .rent-display .rent-card-status {
+                gap: 6px;
+                padding-bottom:16px;
+            }
+                        .pageWidthFR .rent-display .rent-card-title {
+                max-width:240px;
+            }
+                        .pageWidthFR .rent-display .rent-card-details {
+                gap: 8px;
+                padding-bottom:20px;
+            }
+                        .pageWidthFR .rent-display .rent-button {
+                font-size:14px;
+            }
+            }
             @media (max-width: 576px) {
                 .pageWidthFR .rent-display .rent-grid {
                     grid-template-columns: 1fr;

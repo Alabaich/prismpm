@@ -141,7 +141,7 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                 }
                 @media screen and (max-width: 768px) {
                     .pageWidthResLove {
-                        padding: 15px;
+                        padding: 60px 15px;
                     }
                 }
                 .resident-love-section {
@@ -164,14 +164,13 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                     font-size:16px;
                 }
                 .resident-love-section .title-subtitle {
-                    padding-bottom: 25px;
+                    padding-bottom: 70px;
                 }
                 .resident-love-section .grid-layout {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
                     gap: 25px;
                     width: 100%;
-                    padding-top: 25px;
                 }
                 .resident-love-section .testimonial-card {
                     color: #FFFFFF;
@@ -239,11 +238,34 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
                 }
                 @media (max-width: 768px) {
                     .resident-love-section .title-block {
-                        font-size: 1.2rem;
+                        font-size: 24px;
+                        padding-bottom:16px;
                     }
+                                    .resident-love-section .title-subtitle {
+                    padding-bottom: 40px;
+                }
                     .resident-love-section .grid-layout {
                         grid-template-columns: 1fr;
                     }
+                                    .resident-love-section .testimonial-author img {
+                    height: 200px;
+                }
+                                .resident-love-section .testimonial-author .qwdqd {
+                    font-size: 14px;
+                }
+                                .resident-love-section .testimonial-author-info .name {
+                    font-size:18px;
+                }
+                                .resident-love-section .testimonial-author {
+                    gap: 16px;
+                }
+                              .resident-love-section .testimonial-author-info .building {
+                    font-size: 14px;
+                }
+                                .resident-love-section .testimonial-footer {
+
+                    gap: 16px;
+                }
                 }
                 @media (min-width: 768px) and (max-width: 1024px) {
                     .resident-love-section .grid-layout {
