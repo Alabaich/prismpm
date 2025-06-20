@@ -191,22 +191,28 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                                 </div>
                                 <div class="rent-card-details">
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
-                                        <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 1.5L11.25 4.5H14.625L12.375 7.5L13.5 10.5L10.5 9L7.5 10.5L8.625 7.5L6.375 4.5H9.75L9 1.5Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
+                                        <svg class="tag-icon-svg" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 5V18M3 15H20M20 18V13C20 11.9599 20.2026 11.3972 20 11C19.8218 10.6506 19.3497 10.178 19 10C18.6024 9.79757 18.0411 10 17 10H11V15M7 12V12M8 12C8 12.5128 7.51331 12 7 12C6.48669 12 6 12.5128 6 12C6 11.4872 6.48669 11 7 11C7.51331 11 8 11.4872 8 12Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
                                         <?php echo esc_html($property['bedrooms']); ?>
                                     </span>
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
-                                        <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M3 6H15V15C15 16.1 14.1 17 13 17H5C3.9 17 3 16.1 3 15V6Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M7.5 3H10.5V6H7.5V3Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
+                                        <svg class="tag-icon-svg" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 5C10.7565 5.27805 10 6.70444 10 8H15C15 6.77309 14.1443 5.34267 13 5C13.2198 4.52715 14.4324 4 15 4C15.7732 4 16 5.24688 16 6V11H4V13H5V16C5 17.1296 5.8402 18 7 18H15C16.1598 18 17 17.1296 17 16V13H18V11H17V6C17 4.49377 16.5464 3 15 3C13.6699 3 12.2855 3.78881 12 5ZM6 13H16V16C16 16.3765 15.3866 17 15 17H7C6.6134 17 6 16.3765 6 16V13ZM12 6C12.5182 6 13.758 6.59241 14 7H11C11.242 6.59241 11.4818 6 12 6Z" fill="#1A1A1A"/>
+</svg>
+
                                         <?php echo esc_html($property['bathrooms']); ?>
                                     </span>
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
-                                        <svg class="tag-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 3.75C7.071 3.75 5.5 5.321 5.5 7.25C5.5 9.179 7.071 10.75 9 10.75C10.929 10.75 12.5 9.179 12.5 7.25C12.5 5.321 10.929 3.75 9 3.75ZM9 3.75C10.656 3.75 12 5.094 12 6.75C12 8.406 10.656 9.75 9 9.75C7.344 9.75 6 8.406 6 6.75C6 5.094 7.344 3.75 9 3.75ZM9 12.75C6.514 12.75 0 14.321 0 16.75V17.25H18V16.75C18 14.321 11.486 12.75 9 12.75Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
+                                        <svg class="tag-icon-svg" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.00004 15C3.79246 17.6492 5.49178 20 8.00004 20H13C15.8197 20 17.4671 17.9517 17 15C16.507 11.9017 13.9667 9 11 9C7.78258 9 4.26816 11.5992 4.00004 15Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 7C11.3807 7 12 6.38071 12 5C12 3.61929 11.3807 2 10 2C8.61927 2 7 3.61929 7 5C7 6.38071 8.61927 7 10 7Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 8C17.1046 8 18 7.10457 18 6C18 4.89543 17.1046 4 16 4C14.8955 4 14 4.89543 14 6C14 7.10457 14.8955 8 16 8Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20 12C20.8284 12 21 11.8284 21 11C21 10.1715 20.8284 9 20 9C19.1716 9 18 10.1715 18 11C18 11.8284 19.1716 12 20 12Z" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4 10C5.10457 10 6 9.10456 6 8C6 6.89544 5.10457 6 4 6C2.89543 6 2 6.89544 2 8C2 9.10456 2.89543 10 4 10Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
                                         <?php echo esc_html($property['pet_friendly']); ?>
                                     </span>
                                     <span class="tag-item" style="border-color: <?php echo $accent_color; ?>;">
