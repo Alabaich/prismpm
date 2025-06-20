@@ -230,6 +230,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 }
             }
 
+            .coming-soon-section.first-page .section-titles {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
             .coming-soon-section h1.customTitle {
                 margin-bottom: 0.625rem;
             }
