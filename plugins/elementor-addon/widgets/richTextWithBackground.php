@@ -302,9 +302,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
         <style>
             .richTextContainer {
-                <?php if ($is_first_page): ?>
-                    padding-bottom: 140px;
-                    padding-top: 140px;
+                <?php if ($is_first_page): ?>padding-bottom: 140px;
+                padding-top: 140px;
                 <?php endif; ?>
             }
 
@@ -352,9 +351,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             <?php if (empty($settings['text'])): ?>.richText h2 {
                 margin-bottom: 60px;
             }
-            <?php endif; ?>
-            
-            .richText h4 {
+
+            <?php endif; ?>.richText h4 {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
                 font-size: 1rem;
@@ -459,8 +457,13 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     text-transform: capitalize;
                 }
 
+                @media (max-width: 768px) {
+                    .richTextContainer.richTextContainer-first-page-mobile {
+                        height: 40vh !important;
+                    }
+                }
+
                 .richTextContainer {
-                    height: 40vh !important;
                     padding-top: 60px !important;
                     padding-bottom: 60px !important;
                 }
