@@ -86,23 +86,22 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
                 }
 
                 .linked-gallery-container h2 {
-                    margin: 0 0 25px;
-                    color: #000000;
                     font-family: "Playfair Display", serif;
-                    font-size: 52px;
                     font-weight: 600;
+                    font-size: 3rem;
+                    line-height: 1.2;
+                    margin: 0;
                 }
 
                 .linked-gallery-container p {
-                    color: #4D4D4D;
-                    max-width: 580px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    font-family: "Playfair Display", serif;
-                    font-size: 16px;
+                    font-family: "Inter Tight", sans-serif;
+                    color: #6B7280;
+                    line-height: 1.6;
+                    font-size: 1rem;
+                    margin: 0;
                 }
 
-                .desktop-grid {
+                .linked-gallery-container .desktop-grid {
                     display: grid;
                     grid-template-rows: repeat(4, auto);
                     gap: 20px;
@@ -115,40 +114,50 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
                     gap: 20px;
                 }
 
-                .desktop-grid-item {
+                .linked-gallery-container .desktop-grid-item {
                     overflow: hidden;
                     border-radius: 8px;
                 }
 
-                .desktop-grid-row-1 .desktop-grid-item,
-                .desktop-grid-row-3 .desktop-grid-item {
+                .linked-gallery-container .desktop-grid-row-1 .desktop-grid-item,
+                .linked-gallery-container .desktop-grid-row-3 .desktop-grid-item {
                     flex: 1 1 50%;
                     height: 500px;
                 }
 
-                .desktop-grid-row-2 .desktop-grid-item,
-                .desktop-grid-row-4 .desktop-grid-item {
+                .linked-gallery-container .desktop-grid-row-2 .desktop-grid-item,
+                .linked-gallery-container .desktop-grid-row-4 .desktop-grid-item {
                     flex: 1 1 25%;
                     height: 380px;
                 }
 
-                .desktop-grid-item img {
+                .linked-gallery-container .desktop-grid-item img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     display: block;
                 }
 
-                .mobile-slider-wrapper {
+                .linked-gallery-container .mobile-slider-wrapper {
                     display: none;
                 }
 
+                .linked-gallery-container .gallery-header {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                }
+
                 @media (max-width: 768px) {
-                    .desktop-grid {
+                    .linked-gallery-container .desktop-grid {
                         display: none;
                     }
 
-                    .mobile-slider-wrapper {
+                    .linked-gallery-container .gallery-header {
+                        gap: 15px;
+                    }
+
+                    .linked-gallery-container .mobile-slider-wrapper {
                         display: block;
                         position: relative;
                     }
