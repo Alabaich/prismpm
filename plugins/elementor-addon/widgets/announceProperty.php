@@ -594,7 +594,8 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
                 .property-button a {
                     font-size: 0.95rem;
-                    padding: 10px 18px;
+                    width: 100%;
+                    justify-content: center;
                 }
             }
         </style>
