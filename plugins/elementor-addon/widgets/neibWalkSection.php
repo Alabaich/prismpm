@@ -198,7 +198,7 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                     flex-wrap: wrap;
                     justify-content: space-between;
                     width: 100%;
-                    align-items: baseline; /* Выравнивание по базовой линии для десктопа */
+                    align-items: baseline; 
                 }
 
                 .neighborhood-unique .category-card {
@@ -206,17 +206,17 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                     flex-direction: column;
                     justify-content: flex-start;
                     width: 300px;
-                    min-height: 400px; /* Фиксированная минимальная высота */
+                    min-height: 400px; 
                     margin-bottom: 20px;
                 }
 
                 .neighborhood-unique .category-card .icon-block {
-                    fill: <?php echo esc_attr($settings['icon_color']); ?>;
                     display: flex;
                     justify-content: center;
                 }
 
                 .neighborhood-unique .category-card .icon-block svg {
+                    fill: <?php echo esc_attr($settings['icon_color']); ?>;
                     width: 100%;
                     height: 80px;
                 }
@@ -224,11 +224,10 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 .neighborhood-unique .category-card .category-name {
                     margin: 0;
                     font-weight: 600;
-                    font-size: 30px; /* Фиксированный размер шрифта */
+                    font-size: 30px; 
                     padding-top: 30px;
                     padding-bottom: 50px;
                     color: #1A1A1A;
-                    height: 100px; /* Фиксированная высота заголовка */
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -238,14 +237,14 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 .neighborhood-unique .category-card .sub-itemNeib {
                     margin: 0;
                     line-height: 1.2;
-                    flex-grow: 1; /* Заполняет оставшееся пространство */
+                    flex-grow: 1; 
                 }
 
                 .gapperch {
                     gap: 40px;
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-end; /* Выравнивание содержимого по нижнему краю */
+                    justify-content: flex-end; 
                 }
 
                 .neighborhood-unique .category-card .sub-itemNeib h5 {

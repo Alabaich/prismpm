@@ -126,12 +126,12 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
             .welcome-header .pageWidthNewHead {
                 width: 100%;
-                padding: 25px 10%;
+                padding: 20px 10%;
                 box-sizing: border-box;
             }
             @media screen and (max-width: 1600px) {
                 .welcome-header .pageWidthNewHead {
-                    padding:25px;
+                    padding:20px;
                 }
             }
             @media screen and (max-width: 768px) {

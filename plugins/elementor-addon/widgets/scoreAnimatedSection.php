@@ -52,6 +52,15 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
             'step' => 1,
         ]);
 
+        $this->add_control(
+            'section_background_color',
+            [
+                'label' => esc_html__('Section Background Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#093D5F',
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -130,7 +139,10 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                 font-family: "Playfair Display", serif;
             }
 
-            .score-section { text-align: center; background: #093D5F; }
+            .score-section { 
+                text-align: center; 
+                background: <?php echo esc_attr($settings['section_background_color']); ?>;
+            }
             .score-section h2 {
                 margin: 0;
                 color: white;
@@ -282,7 +294,6 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
                                 }
                             }
 
-                            // Функция для плавного перехода
                             function easeInOutQuad(t) {
                                 return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
                             }
@@ -300,3 +311,4 @@ class Elementor_scoreAnimatedSection extends \Elementor\Widget_Base
         <?php
     }
 }
+?>
