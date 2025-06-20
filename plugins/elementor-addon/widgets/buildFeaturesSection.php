@@ -141,7 +141,6 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     width: <?php echo $main_image ? 'calc(100% - 560px)' : '100%'; ?>;
                     align-items: baseline;
                     justify-content: space-between; /* Space between for full rows */
-                    gap: 20px;
                 }
 
                 .features-unique .last-row {
@@ -177,6 +176,7 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     text-align: center;
                     align-items: center;
                     gap: 10px;
+                    padding-bottom:32px;
                 }
 
                 .features-unique .feature-card .icon-block {
@@ -214,6 +214,9 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                     }
 
                 <?php if ($main_image): ?>
+                                                        .features-unique .feature-container {
+                    gap: 20px;
+                }
                     .justifaichik {
                         display: flex;
                         justify-content: space-between;
@@ -260,6 +263,10 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                                         .textAdditiImg p {
                         font-size: 12px;
                     }
+                                    .features-unique .feature-card {
+                    gap: 10px;
+                    padding-bottom:16px;
+                }
                     }
                 <?php endif; ?>
 
@@ -313,6 +320,9 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                         flex: 0 0 100%;
                         height: 200px;
                     }
+                                    .features-unique .feature-container {
+                    gap: 20px;
+                }
                 }
             </style>
 
