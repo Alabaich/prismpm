@@ -112,7 +112,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             .show-case-section {
                 width: 100%;
                 padding: 100px 25px;
-                background: #FFFFFF;
+                background: #F7F9FA;
             }
 
             .show-case-section .section-heading {
