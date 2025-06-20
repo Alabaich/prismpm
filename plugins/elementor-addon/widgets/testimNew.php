@@ -211,8 +211,7 @@ class Elementor_testimNew extends \Elementor\Widget_Base
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
                 gap: 20px;
-                margin: 0 auto;
-                width: 90%;
+                width: 100%;
             }
 
             .testimonial-unique .card-item {
