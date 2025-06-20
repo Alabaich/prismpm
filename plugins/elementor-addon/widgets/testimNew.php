@@ -161,20 +161,20 @@ class Elementor_testimNew extends \Elementor\Widget_Base
         <style>
             .pageWidthTestim {
                 width: 100%;
-                padding: 25px 10%;
+                padding: 100px 10%;
             }
 
             @media screen and (max-width: 1600px) {
                 .pageWidthTestim {
                     width: 100%;
-                    padding: 25px;
+                    padding: 100px 25px;
                 }
             }
 
             @media screen and (max-width: 768px) {
                 .pageWidthTestim {
                     width: 100%;
-                    padding: 15px;
+                    padding: 60px 15px;
                 }
             }
 
@@ -184,7 +184,7 @@ class Elementor_testimNew extends \Elementor\Widget_Base
                 text-align: center;
                 display: flex;
                 flex-direction: column;
-                gap: 50px;
+                gap: 70px;
             }
 
             .testimonial-unique .titleContainer {
@@ -293,16 +293,14 @@ class Elementor_testimNew extends \Elementor\Widget_Base
 
             @media (max-width: 768px) {
                 .testimonial-unique .title-block {
-                    font-family: Playfair Display;
+                    font-family: "Playfair Display", serif;
                     font-weight: 600;
-                    font-size: 24px;
-                    text-align: center;
-                    vertical-align: middle;
-                    text-transform: capitalize;
+                    font-size: 3rem;
+                    line-height: 1.2;
                 }
 
                 .testimonial-unique {
-                    gap: 20px;
+                    gap: 50px;
                 }
 
                 .testimonial-unique .titleContainer {
@@ -310,10 +308,10 @@ class Elementor_testimNew extends \Elementor\Widget_Base
                 }
 
                 .testimonial-unique .subtitle-block {
-                    font-family: Playfair Display;
-                    font-weight: 400;
-                    font-size: 14px;
-                    text-align: center;
+                    font-family: "Inter Tight", sans-serif;
+                    line-height: 1.6;
+                    font-size: 1rem;
+                    margin: 0;
                 }
 
                 .testimonial-unique .card-item {

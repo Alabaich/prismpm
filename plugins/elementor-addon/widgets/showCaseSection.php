@@ -61,22 +61,20 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
-            'description',
+            'address',
             [
-                'label' => esc_html__('Description', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => 'Oshawa, one of Canada’s fastest-growing cities...',
+                'label' => esc_html__('Address', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '200 Bond St E, Oshawa',
             ]
         );
 
         $repeater->add_control(
-            'image',
+            'description',
             [
-                'label' => esc_html__('Image', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
+                'label' => esc_html__('Description', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => 'Oshawa, one of Canada’s fastest-growing cities, lies within the lands covered by the Williams Treaties and continues to be home to diverse Indigenous communities.',
             ]
         );
 
@@ -86,7 +84,19 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 'label' => esc_html__('Cities', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'default' => [],
+                'title_field' => '{{{ city }}}',
+                'default' => [
+                    [
+                        'city' => 'Oshawa',
+                        'address' => '200 Bond St E, Oshawa',
+                        'description' => 'Oshawa, one of Canada’s fastest-growing cities, lies within the lands covered by the Williams Treaties and continues to be home to diverse Indigenous communities.',
+                    ],
+                    [
+                        'city' => 'Peterborough',
+                        'address' => '200 Bond St E, Oshawa',
+                        'description' => 'Peterborough is located on Treaty 20 territory, home to a rich Indigenous history and culture.Peterborough is located on Treaty 20 territory, home to a rich Indigenous history and culture.',
+                    ],
+                ],
             ]
         );
 
@@ -96,229 +106,179 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $cities_to_display = array_slice($settings['cities'], 0, 2);
+        $cities_to_display = $settings['cities'];
 ?>
         <style>
-            .land-acknowledgement-section-wrapper {
-                margin: 3rem 5rem;
-            }
-
-            .land-acknowledgement-section {
+            .show-case-section {
                 width: 100%;
-                padding: 1rem 1rem;
-                background: #f9f9f9;
+                padding: 100px 25px;
+                background: #FFFFFF;
             }
 
-            .land-acknowledgement-section .section-heading {
+            .show-case-section .section-heading {
                 text-align: center;
-                margin-bottom: 50px;
-                margin: auto;
+                margin: 0 auto 70px auto;
+                max-width: 600px;
             }
 
-            .land-acknowledgement-section .section-heading h1.customTitle {
-                line-height: 1.1;
-                letter-spacing: 0em;
-                text-transform: capitalize;
-                margin: 0 0 0.75rem 0;
+            .show-case-section .section-heading .customTitle {
+                font-family: "Playfair Display", serif;
+                font-weight: 600;
+                font-size: 3rem;
+                line-height: 1.2;
+                margin: 0 0 1rem 0;
             }
 
-            .land-acknowledgement-section .section-heading p.customSubtitle {
+            .show-case-section .section-heading .customSubtitle {
+                font-family: "Inter Tight", sans-serif;
                 color: #6B7280;
-                margin: 0 auto 3rem;
                 line-height: 1.6;
-                max-width: 488px;
+                font-size: 1rem;
+                margin: 0;
             }
 
             .city-columns {
                 display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                gap: 35px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem 4rem;
+                max-width: 1200px;
+                margin: 0 auto;
             }
 
             .city-block {
-                display: flex;
-                flex-direction: row;
-                width: calc(50% - 17.5px);
-                border-radius: 0.5rem;
-                overflow: hidden;
-                align-items: flex-start;
-                gap: 1.5rem;
-            }
-
-            .city-block img {
-                width: 377px;
-                height: 426px;
-                object-fit: fit-content;
-                border-radius: 0.5rem 0 0 0.5rem;
-            }
-
-            .city-block-text {
-                width: 55%;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+                flex: 1;
+                min-width: 300px;
+                max-width: 450px;
+                text-align: left;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                box-sizing: border-box;
+                gap: 25px;
             }
 
-            .city-block-text h4 {
-                margin-bottom: 1rem;
-                color: #111827;
-                font-size: 30px;
-                margin: 0 0 0.5rem 0;
-                line-height: 1.2;
-            }
-
-            .city-block-text p {
-                font-family: "Inter Tight", sans-serif;
-                font-weight: 400;
-                font-size: 1rem;
-                letter-spacing: -0.01em;
-                color: #52525B;
+            .city-block h4 {
+                font-family: "Playfair Display", serif;
+                font-size: 2.25rem;
+                font-weight: 600;
                 margin: 0;
-                line-height: 1.6;
-                padding-right: 10px;
             }
 
-            @media (max-width: 767px) { /* Изменен breakpoint с 768px на 767px */
-                .land-acknowledgement-section-wrapper {
-                    margin: 0rem 5%;
-                }
+            .city-address {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-family: "Inter Tight", sans-serif;
+                font-weight: 500;
+                color: #374151;
+                margin: 0;
+            }
 
+            .city-block .city-address .address-text {
+                font-family: "Playfair Display", serif;
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 120%;
+                vertical-align: middle;
+            }
+
+            .city-address .address-icon svg {
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+            }
+
+            .city-block .city-description {
+                font-family: "Inter Tight", sans-serif;
+                color: #6B7280;
+                line-height: 1.7;
+                margin: 0;
+            }
+
+            @media (max-width: 767px) {
                 .city-columns {
                     flex-direction: column;
                     align-items: center;
-                    gap: 2rem;
+                    gap: 3rem;
                 }
 
-                .land-acknowledgement-section {
-                    padding: 3rem 1rem;
-                    background: transparent;
-                }
-
-                .land-acknowledgement-section .section-heading h1.customTitle {
-                    line-height: 90%;
-                    letter-spacing: 0%;
-                    text-align: center;
-                    vertical-align: middle;
-                    color: #2a2a2a;
-                }
-
-                .land-acknowledgement-section .section-heading p.customSubtitle {
-                    max-width: 100%;
+                .show-case-section .section-heading {
+                    margin: 0 auto 50px auto;
                 }
 
                 .city-block {
-                    width: 100%;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    gap: 1rem;
-                    padding-top: 10px;
-                }
-
-                .city-block img {
-                    height: 200px;
-                    object-fit: cover;
-                    border-radius: 0.5rem;
-                    width: 100%; /* Добавлено для мобильных, чтобы изображение не было фиксированной ширины */
-                }
-
-                .city-block-text {
-                    width: 100%;
-                    padding: 1rem 0;
-                    text-align: center;
+                    flex: 1;
+                    min-width: 300px;
+                    max-width: 450px;
+                    text-align: left;
                     display: flex;
                     flex-direction: column;
-                    gap: 15px;
-                    height: auto; /* Сброс высоты для мобильных */
-                    justify-content: flex-start; /* Сброс justify-content */
+                    gap: 10px;
                 }
 
-                .city-block-text h4 {
-                    font-size: 1.5rem;
+                .show-case-section {
+                    width: 100%;
+                    padding: 60px 25px;
+                    background: #FFFFFF;
                 }
 
-                .city-block-text p {
-                    font-size: 1rem;
-                    padding-right: 0; /* Сброс padding-right для мобильных */
-                }
-            }
-
-            /* Стили ТОЛЬКО для iPad (портретная и альбомная ориентация) */
-            @media (min-width: 768px) and (max-width: 1024px) {
-                .land-acknowledgement-section-wrapper {
-                    margin: 4rem 2rem; /* Небольшая коррекция отступов для iPad */
-                }
-                .land-acknowledgement-section {
-                    padding: 2rem; /* Небольшая коррекция отступов для iPad */
-                }
-                 .city-columns {
-                    gap: 2rem; /* Отступ между двумя блоками городов на iPad */
-                }
                 .city-block {
-                    flex-direction: column; /* Изображение и текст теперь друг под другом */
-                    align-items: stretch;   /* Дочерние элементы растягиваются на всю ширину .city-block */
-                    width: calc(50% - 1rem); /* Каждый блок города занимает почти половину, учитывая gap */
-                    gap: 0; /* Убираем gap между img и text-block, т.к. они теперь один над другим */
-                    /* background-color и box-shadow не добавляем, оставляем как в вашем коде */
+                    text-align: center;
                 }
-                .city-block img {
-                    width: 100%; /* Изображение на всю ширину карточки .city-block */
-                    height: 280px; /* Примерная высота для изображения на iPad, можно настроить */
-                    object-fit: cover; /* Чтобы изображение красиво заполняло область */
-                    border-radius: 0.5rem 0.5rem 0 0; /* Закругляем только верхние углы изображения */
-                }
-                .city-block-text {
-                    width: 100%; /* Текстовый блок на всю ширину под изображением */
-                    height: auto; /* Высота по контенту */
-                    padding: 1.5rem; /* Добавляем отступы вокруг текста для читабельности */
-                    justify-content: flex-start; /* Текст начинается сверху */
-                     /* font-family, font-weight, font-size, letter-spacing, color, line-height остаются из ваших базовых стилей */
-                }
-                .city-block-text h4 {
-                    /* font-size, color, line-height остаются из ваших базовых стилей, можно переопределить при необходимости */
-                     margin: 0 0 0.75rem 0; /* Отступ под заголовком города */
-                }
-                 .city-block-text p {
-                    padding-right: 0; /* Сбрасываем spezifischen padding-right, т.к. текст теперь на всю ширину */
+
+                .city-address {
+                    justify-content: center;
                 }
             }
         </style>
 
-        <div class="land-acknowledgement-section-wrapper">
-            <div class="land-acknowledgement-section">
-                <div class="section-heading">
-                    <?php if (!empty($settings['main_title'])) : ?>
-                        <h1 class="customTitle"><?php echo esc_html($settings['main_title']); ?></h1>
-                    <?php endif; ?>
+        <div class="show-case-section">
+            <div class="section-heading">
+                <?php if (!empty($settings['main_title'])) : ?>
+                    <h1 class="customTitle"><?php echo esc_html($settings['main_title']); ?></h1>
+                <?php endif; ?>
 
-                    <?php if (!empty($settings['subtitle'])) : ?>
-                        <p class="customSubtitle"><?php echo esc_html($settings['subtitle']); ?></p>
-                    <?php endif; ?>
-                </div>
+                <?php if (!empty($settings['subtitle'])) : ?>
+                    <p class="customSubtitle"><?php echo esc_html($settings['subtitle']); ?></p>
+                <?php endif; ?>
+            </div>
 
-                <?php if (!empty($cities_to_display)) : ?>
+            <?php if (!empty($cities_to_display)) : ?>
                 <div class="city-columns">
                     <?php foreach ($cities_to_display as $city): ?>
-                        <div class="city-block">
-                            <?php if (!empty($city['image']['url'])) : ?>
-                            <img src="<?php echo esc_url($city['image']['url']); ?>" alt="<?php echo esc_attr($city['city']); ?>">
-                            <?php endif; ?>
-                            <div class="city-block-text">
+                        <div class="city-block elementor-repeater-item-<?= esc_attr($city['_id']); ?>">
+
+                            <?php if (!empty($city['city'])) : ?>
                                 <h4><?php echo esc_html($city['city']); ?></h4>
-                                <p><?php echo esc_html($city['description']); ?></p>
-                            </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($city['address'])) : ?>
+                                <div class="city-address">
+                                    <span class="address-icon">
+                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_1396_6488)">
+                                                <path d="M21.5 9.99316C21.5 16.9932 12.5 22.9932 12.5 22.9932C12.5 22.9932 3.5 16.9932 3.5 9.99316C3.5 7.60622 4.44821 5.31703 6.13604 3.6292C7.82387 1.94138 10.1131 0.993164 12.5 0.993164C14.8869 0.993164 17.1761 1.94138 18.864 3.6292C20.5518 5.31703 21.5 7.60622 21.5 9.99316Z" stroke="#093D5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12.5 12.9932C14.1569 12.9932 15.5 11.65 15.5 9.99316C15.5 8.33631 14.1569 6.99316 12.5 6.99316C10.8431 6.99316 9.5 8.33631 9.5 9.99316C9.5 11.65 10.8431 12.9932 12.5 12.9932Z" stroke="#093D5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_1396_6488">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 -0.00683594)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </span>
+                                    <span class="address-text"><?php echo esc_html($city['address']); ?></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($city['description'])) : ?>
+                                <p class="city-description"><?php echo esc_html($city['description']); ?></p>
+                            <?php endif; ?>
+
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <?php endif; ?>
-            </div>
+            <?php endif; ?>
         </div>
-
 <?php
     }
 }

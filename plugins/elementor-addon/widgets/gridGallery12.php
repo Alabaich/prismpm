@@ -68,6 +68,9 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
                     padding: 100px 10%;
                     width: 100%;
                     text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 70px;
                 }
 
                 @media screen and (max-width: 1600px) {
@@ -78,7 +81,7 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
 
                 @media screen and (max-width: 768px) {
                     .linked-gallery-container {
-                        padding: 15px;
+                        padding: 60px 15px;
                     }
                 }
 
@@ -92,7 +95,6 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
 
                 .linked-gallery-container p {
                     color: #4D4D4D;
-                    margin: 0 0 50px;
                     max-width: 580px;
                     margin-left: auto;
                     margin-right: auto;
