@@ -216,7 +216,6 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                 }
 
                 .neighborhood-unique .category-card .icon-block svg {
-                    fill: <?php echo esc_attr($settings['icon_color']); ?> !important;
                     width: 100%;
                     height: 80px;
                 }

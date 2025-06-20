@@ -186,7 +186,6 @@ class Elementor_buildFeaturesSection extends \Elementor\Widget_Base
                 }
 
                 .features-unique .feature-card .icon-block svg {
-                    fill: <?php echo esc_attr($settings['icon_color']); ?> !important;
                     width: 100%; 
                     height: 80px;
                     object-fit: contain;
