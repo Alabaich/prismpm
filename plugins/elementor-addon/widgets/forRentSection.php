@@ -448,6 +448,12 @@ class Elementor_forRentSection extends \Elementor\Widget_Base
                         .pageWidthFR .rent-display .rent-button {
                 font-size:14px;
             }
+                        .pageWidthFR .rent-display .rent-card-price {
+                font-size: 22px;
+            }
+                        .pageWidthFR .rent-display .rent-card-price span {
+                font-size: 14px;
+            }
             }
             @media (max-width: 576px) {
                 .pageWidthFR .rent-display .rent-grid {
