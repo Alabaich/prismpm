@@ -434,6 +434,28 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 width: auto;
             }
 
+            .properties-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .coming-soon-section.first-page .property-card {
+                flex-direction: column;
+                margin-bottom: 0;
+            }
+
+            .coming-soon-section.first-page .property-image {
+                order: 1;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .coming-soon-section.first-page .property-content {
+                order: 2;
+                width: 100%;
+            }
+
             @media (max-width: 768px) {
                 .coming-soon-section {
                     padding: 4rem 1rem;
@@ -451,6 +473,10 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 .titleWithLogo svg {
                     height: 40px;
                     width: 70px;
+                }
+
+                .properties-grid {
+                    grid-template-columns: 1fr;
                 }
 
                 .section-titles,
@@ -606,81 +632,83 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
             </div>
 
             <?php if (!empty($settings['properties'])) : ?>
-                <?php foreach ($settings['properties'] as $item) : ?>
-                    <div class="property-card elementor-repeater-item-<?= esc_attr($item['_id']); ?>">
+                <div class="<?php if ($settings['is_first_page'] === 'yes') echo 'properties-grid'; ?>">
+                    <?php foreach ($settings['properties'] as $item) : ?>
+                        <div class="property-card elementor-repeater-item-<?= esc_attr($item['_id']); ?>">
 
-                        <div class="property-content">
-                            <div class="titleWithLogo">
-                                <?php if (!empty($item['title'])) : ?>
-                                    <h3><?= esc_html($item['title']); ?></h3>
-                                <?php endif; ?>
-                                <?php if (!empty($item['logo'])) :
+                            <div class="property-content">
+                                <div class="titleWithLogo">
+                                    <?php if (!empty($item['title'])) : ?>
+                                        <h3><?= esc_html($item['title']); ?></h3>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['logo'])) :
+                                    ?>
+                                        <?php
+                                        $logo_tag = $item['logo'];
+                                        if (!empty($item['logo_link']['url'])) {
+                                            $this->add_link_attributes('logo_link_' . $item['_id'], $item['logo_link']);
+                                            echo '<a ' . $this->get_render_attribute_string('logo_link_' . $item['_id']) . '>' . $logo_tag . '</a>';
+                                        } else {
+                                            echo $logo_tag;
+                                        }
+                                        ?>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="metaq">
+                                    <?php if (!empty($item['address'])) : ?>
+                                        <div>
+                                            <h6>Address:</h6> <span><?= esc_html($item['address']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['developer'])) : ?>
+                                        <div>
+                                            <h6>Developer:</h6> <span><?= esc_html($item['developer']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['label_left']) || !empty($item['value_left'])) : ?>
+                                        <div>
+                                            <h6><?= esc_html($item['label_left']); ?>:</h6> <span><?= esc_html($item['value_left']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['launch_date'])) : ?>
+                                        <div>
+                                            <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <?php if (!empty($item['button_text']) && !empty($item['button_link']['url'])) :
+                                    $this->add_link_attributes('button_link_' . $item['_id'], $item['button_link']);
                                 ?>
+                                    <div class="property-button">
+                                        <a <?= $this->get_render_attribute_string('button_link_' . $item['_id']); ?>>
+                                            <?= esc_html($item['button_text']); ?>
+                                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <?php if (!empty($item['image']['url'])) : ?>
+                                <div class="property-image">
                                     <?php
-                                    $logo_tag = $item['logo'];
-                                    if (!empty($item['logo_link']['url'])) {
-                                        $this->add_link_attributes('logo_link_' . $item['_id'], $item['logo_link']);
-                                        echo '<a ' . $this->get_render_attribute_string('logo_link_' . $item['_id']) . '>' . $logo_tag . '</a>';
-                                    } else {
-                                        echo $logo_tag;
+                                    if (!empty($item['image_link']['url'])) {
+                                        $this->add_link_attributes('property_image_link_' . $item['_id'], $item['image_link']);
+                                        echo '<a ' . $this->get_render_attribute_string('property_image_link_' . $item['_id']) . '>';
+                                    }
+                                    echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($item, 'full', 'image');
+                                    if (!empty($item['image_link']['url'])) {
+                                        echo '</a>';
                                     }
                                     ?>
-                                <?php endif; ?>
-                            </div>
-
-                            <div class="metaq">
-                                <?php if (!empty($item['address'])) : ?>
-                                    <div>
-                                        <h6>Address:</h6> <span><?= esc_html($item['address']); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($item['developer'])) : ?>
-                                    <div>
-                                        <h6>Developer:</h6> <span><?= esc_html($item['developer']); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($item['label_left']) || !empty($item['value_left'])) : ?>
-                                    <div>
-                                        <h6><?= esc_html($item['label_left']); ?>:</h6> <span><?= esc_html($item['value_left']); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($item['launch_date'])) : ?>
-                                    <div>
-                                        <h6>Estimated Launch:</h6> <span><?= esc_html($item['launch_date']); ?></span>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-
-                            <?php if (!empty($item['button_text']) && !empty($item['button_link']['url'])) :
-                                $this->add_link_attributes('button_link_' . $item['_id'], $item['button_link']);
-                            ?>
-                                <div class="property-button">
-                                    <a <?= $this->get_render_attribute_string('button_link_' . $item['_id']); ?>>
-                                        <?= esc_html($item['button_text']); ?>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                            <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
-                                        </svg>
-                                    </a>
                                 </div>
                             <?php endif; ?>
                         </div>
-
-                        <?php if (!empty($item['image']['url'])) : ?>
-                            <div class="property-image">
-                                <?php
-                                if (!empty($item['image_link']['url'])) {
-                                    $this->add_link_attributes('property_image_link_' . $item['_id'], $item['image_link']);
-                                    echo '<a ' . $this->get_render_attribute_string('property_image_link_' . $item['_id']) . '>';
-                                }
-                                echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($item, 'full', 'image');
-                                if (!empty($item['image_link']['url'])) {
-                                    echo '</a>';
-                                }
-                                ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
         </div>
 <?php
