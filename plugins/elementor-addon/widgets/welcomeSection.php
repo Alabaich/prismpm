@@ -147,7 +147,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
                 position: sticky;
-                top: 130px;
+                top: 126px;
                 width: 100%;
                 left: 0;
                 z-index: 99;
@@ -305,6 +305,9 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 .welcome-content {
                     gap:40px;
                 }
+                            .welcome-header {
+                top: 110px;
+            }
             }
         </style>
 
