@@ -457,10 +457,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     text-transform: capitalize;
                 }
 
-                @media (max-width: 768px) {
-                    .richTextContainer.richTextContainer-first-page-mobile {
-                        height: 40vh !important;
-                    }
+                .richTextContainer.richTextContainer-first-page-mobile {
+                    height: 40vh !important;
                 }
 
                 .richTextContainer {
