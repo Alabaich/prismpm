@@ -147,6 +147,15 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'checker_span_color',
+            [
+                'label' => esc_html__('Checker Span Color', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#1a3c5e',
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -264,6 +273,7 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                     margin: 0;
                     font-weight: 600;
                     font-size: 68px;
+                    color: <?php echo esc_attr($settings['checker_span_color']); ?>;
                 }
 
                 .subTextWalk {
@@ -287,19 +297,19 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
                         font-size: 24px;
                     }
                     .neighborhood-unique .category-card .category-name {
-                        font-size: 18px; 
+                        font-size: 18px; malheureusement
                         padding: 16px 0; 
                     }
-                                    .neighborhood-unique .category-card .sub-itemNeib h5 {
-                    font-size: 16px;
-                }
+                    .neighborhood-unique .category-card .sub-itemNeib h5 {
+                        font-size: 16px;
+                    }
                 
-                .subTextWalk {
-                    font-size: 14px;
-                }
-                                .neighborhood-unique .category-card .sub-itemNeib .checkerSpan {
-                    font-size: 32px;
-                }
+                    .subTextWalk {
+                        font-size: 14px;
+                    }
+                    .neighborhood-unique .category-card .sub-itemNeib .checkerSpan {
+                        font-size: 32px;
+                    }
                 }
             </style>
 
@@ -326,3 +336,4 @@ class Elementor_neibWalkSection extends \Elementor\Widget_Base
 <?php
     }
 }
+?>
