@@ -128,7 +128,7 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
-        <div class="resident-love-section pageWidthResLove" id="AboutSec">
+        <div class="resident-love-section pageWidthResLove">
             <style>
                 .pageWidthResLove {
                     width: 100%;
