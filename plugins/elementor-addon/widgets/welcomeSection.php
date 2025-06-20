@@ -147,7 +147,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             .welcome-header {
                 background-color: <?php echo esc_attr($settings['header_color']); ?>;
                 position: sticky;
-                top: 128px;
+                top: 127px;
                 width: 100%;
                 left: 0;
                 z-index: 99;
@@ -155,13 +155,13 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transform: translateY(-40%); /* Сдвиг вверх */
+                transform: translateY(-40%); 
             }
 
             .welcome-header.active {
                 position: fixed;
                 top: 90px;
-                transform: translateY(0); /* Возврат на место */
+                transform: translateY(0); 
             }
 
             .welcome-header .pageWidthNewHead {
@@ -306,7 +306,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                     gap:40px;
                 }
                             .welcome-header {
-                top: 122px;
+                top: 104px;
             }
                         .welcome-header nav a {
                 font-size: 14px;
