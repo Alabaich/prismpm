@@ -217,11 +217,13 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 padding: 25px 10%;
                 width: 100%;
             }
+
             @media screen and (max-width: 1600px) {
                 .coming-soon-section {
                     padding: 25px;
                 }
             }
+
             @media screen and (max-width: 768px) {
                 .coming-soon-section {
                     padding: 15px;
@@ -444,6 +446,11 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                     text-align: center;
                     gap: 1rem;
                     width: 100%;
+                }
+
+                .titleWithLogo svg {
+                    height: 40px;
+                    width: 70px;
                 }
 
                 .section-titles,

@@ -141,14 +141,14 @@ class Elementor_heroImage extends \Elementor\Widget_Base
             }
 
             .years-section .right .big-number {
-                font-family: "ES Rebond Grotesque TRIAL", sans-serif;
-                font-size: 400px;
-                color: #d3dde5;
-                font-weight: 500;
-                line-height: 106%;
-                position: relative;
+                font-family: "Playfair Display", serif;
+                font-weight: 600;
                 font-style: italic;
-                margin: 0;
+                font-size: 36rem;
+                line-height: 100%;
+                letter-spacing: -6%;
+                text-align: center;
+                color: #DECDB7;
             }
 
             .years-section .right .text {
@@ -185,7 +185,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 }
 
                 .years-section .right .big-number {
-                    font-size: 250px;
+                    font-size: 22rem;
                 }
 
                 .years-section .right .text {
@@ -195,6 +195,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
             }
 
             @media (max-width: 768px) {
+
                 .years-section .left,
                 .years-section .right {
                     height: 50vh;
@@ -206,6 +207,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
             }
 
             @media (max-width: 480px) {
+
                 .years-section .left,
                 .years-section .right {
                     height: 50vh;
@@ -217,7 +219,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 }
 
                 .years-section .right .big-number {
-                    font-size: 250px;
+                    font-size: 22rem;
                 }
             }
         </style>
