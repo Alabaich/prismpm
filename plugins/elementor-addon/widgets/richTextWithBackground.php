@@ -298,7 +298,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             $alignment_class = 'align-' . esc_attr($settings['alignment']);
         }
 
-    ?>
+?>
 
         <style>
             .richTextContainer {
@@ -349,12 +349,11 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 margin: 0px;
             }
 
-            <?php if (empty($settings['text'])): ?>
-                .richText h2 {
-                    margin-bottom: 60px;
-                }
+            <?php if (empty($settings['text'])): ?>.richText h2 {
+                margin-bottom: 60px;
+            }
             <?php endif; ?>
-
+            
             .richText h4 {
                 color: #E0E0E0;
                 font-family: "Inter Tight", Sans-serif;
@@ -450,13 +449,24 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 }
 
                 .richTextContainer .richText h2 {
+                    font-family: Playfair Display;
                     font-weight: 600;
-                    font-size: 24px;
-                    line-height: 100%;
+                    font-size: 32px;
+                    line-height: 90%;
                     letter-spacing: 0%;
                     text-align: center;
                     vertical-align: middle;
-                    color: white;
+                    text-transform: capitalize;
+                }
+
+                .richTextContainer {
+                    height: 40vh !important;
+                    padding-top: 60px !important;
+                    padding-bottom: 60px !important;
+                }
+
+                .richText h2 {
+                    margin-bottom: 40px;
                 }
 
                 .richText h1 {
@@ -508,6 +518,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             <?php endif; ?>
         </div>
 
-    <?php
+<?php
     }
 }
