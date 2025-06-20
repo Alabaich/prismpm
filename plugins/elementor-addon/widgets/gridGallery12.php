@@ -214,7 +214,7 @@ class Elementor_gridGallery12 extends \Elementor\Widget_Base
             </div>
 
             <?php if (!empty($images) && is_array($images)): ?>
-                <div class="desktop-grid">
+                <div class="desktop-grid" id="GallerySec">
                     <?php
                     $image_cursor = 0;
                     $rows_structure = [2, 4, 2, 4];
