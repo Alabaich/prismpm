@@ -336,9 +336,9 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             </div>
         </div>
 
-        <div class="pageWidthNewHead">
+        <div class="pageWidthNewHead" id="AboutSec">
             <div class="welcome-section" id="welcome-section-<?php echo esc_attr($this->get_id()); ?>">
-                <div class="welcome-content">
+                <div class="welcome-content" >
                     <div class="text-content">
                         <h1><?php echo esc_html($settings['section_title']); ?></h1>
                         <p><?php echo esc_html($settings['section_subtitle']); ?></p>
