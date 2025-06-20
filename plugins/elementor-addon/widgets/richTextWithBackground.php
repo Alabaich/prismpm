@@ -258,6 +258,33 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'mobile_height',
+            [
+                'label' => esc_html__('Mobile Height (vh)', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['vh'],
+                'range' => [
+                    'vh' => [
+                        'min' => 20,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'vh',
+                    'size' => 40,
+                ],
+                'selectors' => [
+                    '(mobile){{WRAPPER}} .richTextContainer.is-first-page-mobile' => 'height: {{SIZE}}{{UNIT}} !important;',
+                ],
+                'condition' => [
+                    'is_first_page' => 'yes',
+                ],
+                'description' => esc_html__('Set the container height on mobile devices when "Is First Page?" is enabled.', 'elementor-addon'),
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -290,13 +317,14 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             }
         }
 
-        $alignment_class = '';
-        if ($is_first_page && (empty($background_image_url) || $use_no_background)) {
-            $alignment_class = 'centered';
-        }
+        $container_classes = [];
         if (!empty($settings['alignment'])) {
-            $alignment_class = 'align-' . esc_attr($settings['alignment']);
+            $container_classes[] = 'align-' . esc_attr($settings['alignment']);
         }
+        if ($is_first_page) {
+            $container_classes[] = 'is-first-page-mobile';
+        }
+        $alignment_class = implode(' ', $container_classes);
 
 ?>
 
@@ -457,10 +485,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                     text-transform: capitalize;
                 }
 
-                .richTextContainer.richTextContainer-first-page-mobile {
-                    height: 40vh !important;
-                }
-
                 .richTextContainer {
                     padding-top: 60px !important;
                     padding-bottom: 60px !important;
@@ -511,7 +535,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 <div class="buttonWrapper">
                     <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
                         <?php echo esc_html($settings['textForButton']); ?>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
                     </a>
