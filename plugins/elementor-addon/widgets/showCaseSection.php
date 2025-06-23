@@ -78,6 +78,25 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             ]
         );
 
+        $repeater->add_control(
+            'button_text',
+            [
+                'label' => esc_html__('Button Text', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Learn More',
+            ]
+        );
+
+        $repeater->add_control(
+            'button_link',
+            [
+                'label' => esc_html__('Button Link', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => 'https://your-link.com',
+            ]
+        );
+
+
         $this->add_control(
             'cities',
             [
@@ -90,11 +109,15 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                         'city' => 'Oshawa',
                         'address' => '200 Bond St E, Oshawa',
                         'description' => 'Oshawa, one of Canada’s fastest-growing cities, lies within the lands covered by the Williams Treaties and continues to be home to diverse Indigenous communities.',
+                        'button_text' => 'Learn More',
+                        'button_link' => ['url' => '#'],
                     ],
                     [
                         'city' => 'Peterborough',
                         'address' => '200 Bond St E, Oshawa',
                         'description' => 'Peterborough is located on Treaty 20 territory, home to a rich Indigenous history and culture.Peterborough is located on Treaty 20 territory, home to a rich Indigenous history and culture.',
+                        'button_text' => 'Learn More',
+                        'button_link' => ['url' => '#'],
                     ],
                 ],
             ]
@@ -193,6 +216,44 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 line-height: 1.7;
                 margin: 0;
             }
+            
+            .city-block .property-button {
+                margin-top: auto;
+                padding-top: 1rem;
+                text-align: left;
+            }
+
+            .city-block .property-button a {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: #fff;
+                background-color: #093D5F;
+                font-family: "Graphik Medium", Sans-serif;
+                font-size: 16px;
+                font-weight: normal;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                border-radius: 99999px;
+                gap: 1rem;
+            }
+
+            .city-block .property-button a:hover {
+                color: #093D5F;
+                background-color: #fff;
+                border-color: #093D5F;
+            }
+
+            .city-block .property-button a svg {
+                transition: transform 0.3s ease;
+                width: 16px;
+                height: 16px;
+            }
+
+            .city-block .property-button a:hover svg {
+                transform: translateX(4px);
+            }
 
             @media (max-width: 767px) {
                 .city-columns {
@@ -227,6 +288,9 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
 
                 .city-address {
                     justify-content: center;
+                }
+                .city-block .property-button {
+                    text-align: center;
                 }
             }
         </style>
@@ -273,8 +337,20 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                             <?php if (!empty($city['description'])) : ?>
                                 <p class="city-description"><?php echo esc_html($city['description']); ?></p>
                             <?php endif; ?>
-
-                        </div>
+                            
+                            <?php if (!empty($city['button_text']) && !empty($city['button_link']['url'])) :
+                                $this->add_link_attributes('button_link_' . $city['_id'], $city['button_link']);
+                            ?>
+                                <div class="property-button">
+                                    <a <?= $this->get_render_attribute_string('button_link_' . $city['_id']); ?>>
+                                        <?= esc_html($city['button_text']); ?>
+                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
