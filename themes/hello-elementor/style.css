@@ -1,5 +1,5 @@
 /*
-	Theme Name: Hello Elementor
+	Theme Name: Test Theme
 	Theme URI: https://elementor.com/hello-theme/?utm_source=wp-themes&utm_campaign=theme-uri&utm_medium=wp-dash
 	Description: Hello Elementor is a lightweight and minimalist WordPress theme that was built specifically to work seamlessly with the Elementor site builder plugin. The theme is free, open-source, and designed for users who want a flexible, easy-to-use, and customizable website. The theme, which is optimized for performance, provides a solid foundation for users to build their own unique designs using the Elementor drag-and-drop site builder. Its simplicity and flexibility make it a great choice for both beginners and experienced Web Creators.
 	Author: Elementor Team
@@ -73,15 +73,6 @@ h6 {
   color: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-p {
-  font-family: "Darker Grotesque", sans-serif;
-}
-
 h1 {
   font-weight: 600;
   font-size: 3rem;
@@ -131,6 +122,7 @@ p {
   letter-spacing: 0;
   text-align: center;
   vertical-align: middle;
+  font-family: "Inter Tight", sans-serif;
 }
 
 p.interTight {
@@ -141,10 +133,11 @@ p.interTight {
   letter-spacing: -0.01em;
   vertical-align: middle;
 }
+
 a {
   font-family: "Inter Tight", sans-serif;
-  
 }
+
 a.btnDef {
   font-family: "Inter Tight", sans-serif;
   font-weight: 500;

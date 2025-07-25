@@ -275,7 +275,7 @@ class Elementor_residentLoveSection extends \Elementor\Widget_Base
             </style>
             <div class="title-subtitle">
                 <h2 class="title-block"><?php echo esc_html($settings['section_title']); ?></h2>
-                <p class="subtitle-block"><?php echo esc_html($settings['section_subtitle']); ?></p>
+                <p class="subtitle-block customSubtitle"><?php echo esc_html($settings['section_subtitle']); ?></p>
             </div>
             <div class="grid-layout">
                 <?php foreach ($settings['testimonials'] as $testimonial): ?>

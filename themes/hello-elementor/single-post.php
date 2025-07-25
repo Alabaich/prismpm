@@ -238,7 +238,6 @@ if (have_posts()) :
             <?php the_content(); ?>
         </div>
 
-        <!-- Advantages (извлечение из контента или ручной ввод) -->
         <?php
         $content = get_the_content();
         $advantages_block = '';
@@ -262,7 +261,6 @@ if (have_posts()) :
             </div>
         <?php endif; ?>
 
-        <!-- Considerations (извлечение из контента или ручной ввод) -->
         <?php
         $considerations_block = '';
         if (preg_match('/<h2>Key Considerations<\/h2>(.*?)(?:<h2>|$)/s', $content, $matches)) {

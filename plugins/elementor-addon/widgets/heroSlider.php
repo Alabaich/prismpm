@@ -208,107 +208,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
             ]
         );
         $this->end_controls_section();
-        
-        $this->start_controls_section(
-            'section_style_button',
-            [
-                'label' => esc_html__('Button', 'elementor-addon'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'button_typography',
-                'label' => esc_html__('Button Typography', 'elementor-addon'),
-                'selector' => '{{WRAPPER}} .hero-button',
-            ]
-        );
-        $this->start_controls_tabs('button_style_tabs');
-        $this->start_controls_tab(
-            'button_normal_tab',
-            [
-                'label' => esc_html__('Normal', 'elementor-addon'),
-            ]
-        );
-        $this->add_control(
-            'button_text_color',
-            [
-                'label' => esc_html__('Text Color', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .hero-button .hero-button-icon path' => 'fill: {{VALUE}};'
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_bg_color',
-            [
-                'label' => esc_html__('Background Color', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#093D5F',
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_border_color',
-            [
-                'label' => esc_html__('Border Color', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'transparent', 
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->end_controls_tab();
-        $this->start_controls_tab(
-            'button_hover_tab',
-            [
-                'label' => esc_html__('Hover', 'elementor-addon'),
-            ]
-        );
-        $this->add_control(
-            'button_text_color_hover',
-            [
-                'label' => esc_html__('Text Color Hover', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#093D5F',
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button:hover' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .hero-button:hover .hero-button-icon path' => 'fill: {{VALUE}};'
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_hover_bg_color',
-            [
-                'label' => esc_html__('Background Hover', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button:hover' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_hover_border_color',
-            [
-                'label' => esc_html__('Border Hover Color', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#093D5F',
-                'selectors' => [
-                    '{{WRAPPER}} .hero-button:hover' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->end_controls_tab();
-        $this->end_controls_tabs();
-        $this->end_controls_section();
+
 
         $this->start_controls_section(
             'section_style_navigation', 
@@ -589,6 +489,8 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 margin-top: 1rem;
                 align-self: flex-start;
                 cursor: pointer;
+                color: #ffffff;
+                background-color: #093D5F;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button .hero-button-icon {
@@ -596,9 +498,16 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 display: inline-block;
                 line-height: 1;
             }
+
+            #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button:hover {
+                color: #093D5F;
+                background-color: #ffffff;
+                border-color: #093D5F;
+            }
+
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button .hero-button-icon path {
-                transition: fill 0.3s ease;
                 fill: currentColor;
+                transition: fill 0.3s ease;
             }
 
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button:hover .hero-button-icon {

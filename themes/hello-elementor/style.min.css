@@ -35,15 +35,33 @@ h6 {
   line-height: 1.2;
   color: inherit;
 }
-p {
-  font-family: "Darker Grotesque", sans-serif;
-}
 
 h1,
 h2,
 h3,
 h4 {
   font-family: "Playfair Display", serif;
+}
+
+h1.customTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.customSubtitle {
+  font-family: "Inter Tight", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  h1.customTitle {
+    font-size: 1.875rem;
+  }
 }
 
 h1 {

@@ -11,7 +11,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
         flex-wrap: wrap;
         gap: 20px;
     }
@@ -27,7 +27,9 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        gap: 10px;
         justify-content: flex-end;
+        align-items: center;
     }
 
     .tag-list a {
@@ -333,7 +335,11 @@
             if ($tags) :
                 echo '<ul class="tag-list">';
 
-                echo '<li><a href="' . esc_url(get_permalink(get_option('page_for_posts'))) . '">All</a></li>';
+                $blog_page_url = get_permalink(get_option('page_for_posts'));
+                if (empty($blog_page_url)) {
+                    $blog_page_url = home_url('/');
+                }
+                echo '<li><a href="' . esc_url($blog_page_url) . '">All</a></li>';
 
                 foreach ($tags as $tag) {
                     $active_class = get_queried_object_id() == $tag->term_id ? 'active-tag' : '';

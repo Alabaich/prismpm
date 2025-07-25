@@ -335,7 +335,7 @@ class Elementor_testimNew extends \Elementor\Widget_Base
 
             <div class="titleContainer">
                 <h1 class="title-block"><?php echo esc_html($settings['section_title']); ?></h1>
-                <p class="subtitle-block"><?php echo esc_html($settings['section_subtitle']); ?></p>
+                <p class="subtitle-block customSubtitle"><?php echo esc_html($settings['section_subtitle']); ?></p>
             </div>
 
 

@@ -326,6 +326,41 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         }
         $alignment_class = implode(' ', $container_classes);
 
+        if ($is_first_page) {
+            echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('is-first-page');
+        });
+    </script>";
+        }
+
+        if ($is_first_page) {
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('is-first-page');
+            
+            const firstBlock = document.querySelector('.is-first-page-mobile');
+            if (!firstBlock) return;
+            
+            const firstBlockHeight = firstBlock.offsetHeight;
+            
+            function checkScroll() {
+                if (window.scrollY > firstBlockHeight * 0.8) {
+                    document.body.classList.remove('is-first-page');
+                    document.body.classList.add('scrolled-past-first');
+                } else {
+                    document.body.classList.add('is-first-page');
+                    document.body.classList.remove('scrolled-past-first');
+                }
+            }
+            
+            checkScroll();
+            
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>";
+}
+
 ?>
 
         <style>
@@ -354,6 +389,30 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 <?php if ($is_first_page): ?>padding-bottom: 40px;
                 max-width: 464px;
                 <?php endif; ?>
+            }
+
+            <style>.is-first-page~.headr {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .is-first-page~.headr .headr-nav a {
+                color: #fff;
+            }
+
+            .is-first-page~.headr .btn.phone {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .is-first-page~.headr .btn.email {
+                background: #fff;
+                color: #0e3c55;
+            }
+
+            .is-first-page~.headr .site-logo img {
+                filter: brightness(0) invert(1);
             }
 
             .richTextContainer {
