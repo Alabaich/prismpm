@@ -142,13 +142,12 @@
 
 		.newsletter-header h4 {
 			color: #0e3c55;
-			margin-bottom: 0.5rem;
 			font-family: Playfair Display;
 			font-weight: 600;
+			margin: 0;
 			font-size: 30px;
 			line-height: 100%;
 			letter-spacing: 0%;
-
 		}
 
 		.newsletter-form {
