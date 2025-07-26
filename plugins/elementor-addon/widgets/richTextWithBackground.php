@@ -493,10 +493,6 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 transition: all 0.3s ease;
             }
 
-            .buttonWrapper .btn:hover {
-                gap: 2rem;
-            }
-
             .buttonWrapper .btn svg {
                 transition: all 0.3s ease;
                 rotate: -45deg;

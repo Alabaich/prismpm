@@ -382,10 +382,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                 height: 16px;
             }
 
-            .property-button a:hover svg {
-                transform: translateX(4px);
-            }
-
             .title-container {
                 display: flex;
                 justify-content: space-between;

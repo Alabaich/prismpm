@@ -357,10 +357,6 @@ class Elementor_modelSuitesSection extends \Elementor\Widget_Base
                 transition: fill 0.3s ease;
             }
 
-            .btn-primary:hover .btn-primary-icon {
-                transform: translateX(4px);
-            }
-
             .btn-primary:hover .btn-primary-icon path {
                 fill: #093D5F;
             }

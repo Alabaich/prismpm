@@ -283,10 +283,6 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
                 transition: transform 0.3s ease;
             }
 
-            .read-more-btn:hover svg {
-                transform: translateX(4px);
-            }
-
             @media (max-width: 767px) {
                 .blog-showcase {
                     padding: 4rem 1rem;

@@ -510,10 +510,6 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                 transition: fill 0.3s ease;
             }
 
-            #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-button:hover .hero-button-icon {
-                transform: translateX(4px);
-            }
-
             #hero-slider-<?php echo esc_attr($widget_id); ?> .hero-navigation {
                 display: flex;
                 align-items: center;

@@ -123,7 +123,7 @@
 			max-width: 100% !important;
 			margin: 0;
 			box-sizing: border-box;
-			margin-top: 40px;
+			margin-top: 150px;
 		}
 
 		.newsletter-section {
@@ -408,7 +408,7 @@
 
 		@media (max-width: 768px) {
 			.newsletter-section {
-				margin: -3rem auto 2rem;
+				margin: -10rem auto 2rem;
 				padding: 1.5rem;
 			}
 
@@ -498,6 +498,10 @@
 			.footer-contact-buttons {
 				flex-direction: column;
 				align-items: center;
+			}
+
+			.site-footer .newsletter-section .newsletter-container .newsletter-form button {
+				justify-content: center;
 			}
 		}
 	</style>

@@ -216,7 +216,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 line-height: 1.7;
                 margin: 0;
             }
-            
+
             .city-block .property-button {
                 margin-top: auto;
                 padding-top: 1rem;
@@ -247,12 +247,8 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
 
             .city-block .property-button a svg {
                 transition: transform 0.3s ease;
-                width: 16px;
-                height: 16px;
-            }
-
-            .city-block .property-button a:hover svg {
-                transform: translateX(4px);
+                width: 20px;
+                height: 20px;
             }
 
             @media (max-width: 767px) {
@@ -289,6 +285,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                 .city-address {
                     justify-content: center;
                 }
+
                 .city-block .property-button {
                     text-align: center;
                 }
@@ -337,20 +334,20 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                             <?php if (!empty($city['description'])) : ?>
                                 <p class="city-description"><?php echo esc_html($city['description']); ?></p>
                             <?php endif; ?>
-                            
+
                             <?php if (!empty($city['button_text']) && !empty($city['button_link']['url'])) :
                                 $this->add_link_attributes('button_link_' . $city['_id'], $city['button_link']);
                             ?>
                                 <div class="property-button">
                                     <a <?= $this->get_render_attribute_string('button_link_' . $city['_id']); ?>>
                                         <?= esc_html($city['button_text']); ?>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                            <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.167 5C14.627 5.00018 14.9998 5.37303 15 5.83301V14.167C14.9998 14.627 14.627 14.9998 14.167 15C13.7069 15 13.3332 14.6271 13.333 14.167V7.7832L6.42285 14.7559C6.09741 15.0813 5.56958 15.0813 5.24414 14.7559C4.9187 14.4304 4.9187 13.9026 5.24414 13.5771L12.0938 6.66699H5.83301C5.37292 6.66682 5 6.29314 5 5.83301C5.00018 5.37303 5.37303 5.00018 5.83301 5H14.167Z" fill="currentColor" />
                                         </svg>
                                     </a>
                                 </div>
                             <?php endif; ?>
-                            </div>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
