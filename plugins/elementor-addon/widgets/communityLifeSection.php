@@ -315,17 +315,14 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
             }
 
             .community-lifestyle__number {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
                 color: #093D5F;
                 width: 40px;
                 height: 40px;
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                background-color: #093D5F;
-                color: white;
-                border-radius: 50%;
-                font-family: "Inter Tight", sans-serif;
+                justify-content: center;;
+                font-family: "Playfair Display", sans-serif;
                 font-weight: bold;
             }
 
@@ -367,7 +364,6 @@ class Elementor_communityLifeSection extends \Elementor\Widget_Base
             }
 
             .community-lifestyle__images-container {
-                background-color: #F5F7FA;
                 padding: 0;
                 display: flex;
                 align-items: center;

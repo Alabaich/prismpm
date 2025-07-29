@@ -149,6 +149,7 @@ class Elementor_heroImage extends \Elementor\Widget_Base
                 letter-spacing: -6%;
                 text-align: center;
                 color: #DECDB7;
+                margin-bottom: 160px;
             }
 
             .years-section .right .text {

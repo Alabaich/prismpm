@@ -38,7 +38,12 @@
 				</div>
 				<div class="footer-col">
 					<h4>Leasing Inquiries</h4>
-					<p>80 Bond<br>100 Bond<br>Y Lofts</p>
+					<p>
+						<a href="https://prismpm.ca/80-bond/">80 Bond</a><br>
+						<a href="https://prismpm.ca/100-bond/">100 Bond</a><br>
+						<a href="https://prismpm.ca/y-lofts/">Y Lofts</a><br>
+						<a href="https://prismpm.ca/george-street-lofts/">George Street Lofts</a>
+					</p>
 				</div>
 				<div class="footer-col">
 					<h4>Location</h4>
@@ -51,17 +56,30 @@
 					<h4>Contacts</h4>
 					<p><a href="mailto:lease@prismpm.ca">lease@prismpm.ca</a><br>289-797-1604</p>
 				</div>
-				<div class="footer-col">
+				<div class="footer-col office-hours">
 					<h4>Office Hours</h4>
-					<p>
-						Mon. 9:00 am – 5:00 pm<br>
-						Tue. 9:00 am – 5:00 pm<br>
-						Wed. 9:00 am – 5:00 pm<br>
-						Thu. 9:00 am – 8:00 pm<br>
-						Fri. 9:00 am – 5:00 pm<br>
-						Sat. 10:00 am – 2:00 pm<br>
-						Sun. by appointment only
-					</p>
+					<div class="hours-grid">
+						<div class="day">Mon.</div>
+						<div class="hours">9:00 am – 5:00 pm</div>
+
+						<div class="day">Tue.</div>
+						<div class="hours">9:00 am – 5:00 pm</div>
+
+						<div class="day">Wed.</div>
+						<div class="hours">9:00 am – 5:00 pm</div>
+
+						<div class="day">Thu.</div>
+						<div class="hours">9:00 am – 8:00 pm</div>
+
+						<div class="day">Fri.</div>
+						<div class="hours">9:00 am – 5:00 pm</div>
+
+						<div class="day">Sat.</div>
+						<div class="hours">10:00 am – 2:00 pm</div>
+
+						<div class="day">Sun.</div>
+						<div class="hours">by appointment only</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -502,6 +520,33 @@
 
 			.site-footer .newsletter-section .newsletter-container .newsletter-form button {
 				justify-content: center;
+			}
+		}
+
+		.office-hours .hours-grid {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 0.5rem 1rem;
+			align-items: baseline;
+		}
+
+		.office-hours .day {
+			font-weight: 500;
+			white-space: nowrap;
+			color: #fff;
+		}
+
+		.office-hours .hours {
+			color: #fff;
+		}
+
+		@media (max-width: 768px) {
+			.office-hours .hours-grid {
+				grid-template-columns: 60px 1fr;
+			}
+
+			.footer-copyright-row {
+				text-align: center;
 			}
 		}
 	</style>
