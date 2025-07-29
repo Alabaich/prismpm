@@ -214,7 +214,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
         <style>
             .coming-soon-section {
-                padding: 25px 10%;
+                padding: 100px 10%;
                 width: 100%;
             }
 
@@ -378,8 +378,6 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             .property-button a svg {
                 transition: transform 0.3s ease;
-                width: 16px;
-                height: 16px;
             }
 
             .title-container {
@@ -688,7 +686,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
                                     <div class="property-button">
                                         <a <?= $this->get_render_attribute_string('button_link_' . $item['_id']); ?>>
                                             <?= esc_html($item['button_text']); ?>
-                                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="hqwdasdicon">
                                                 <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
                                             </svg>
                                         </a>

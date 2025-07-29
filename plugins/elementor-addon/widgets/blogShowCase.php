@@ -114,8 +114,15 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
 
         <style>
             .blog-showcase {
-                padding: 4rem 5rem;
+                padding: 100px 10%;
                 text-align: center;
+            }
+
+            @media screen and (max-width: 1600px) {
+                .blog-showcase {
+                    padding: 100px 25px;
+                    text-align: center;
+                }
             }
 
             .blog-showcase h1.customTitle {
@@ -328,7 +335,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
 
             @media (min-width: 768px) and (max-width: 1024px) {
                 .blog-showcase {
-                    padding: 3.75rem 5rem;
+                    padding: 3.75rem 25px;
                 }
 
                 .sadqwd {

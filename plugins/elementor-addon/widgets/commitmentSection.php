@@ -160,8 +160,8 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base
                 border: 1px solid white;
                 display: inline-flex;
                 align-items: center;
-                padding: 0.75rem 1.5rem;
-                gap: 0.75rem;
+                padding: 10px 20px;
+                gap: 1rem;
                 background: #093D5F;
                 color: white;
                 border-radius: 100px;
@@ -177,7 +177,6 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base
                 transition: all 0.3s ease;
                 border: 1px solid black;
                 color: #2A2A2A;
-                gap: 2rem;
             }
 
             .buttonWrapper:hover {
@@ -190,9 +189,6 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base
 
             .buttonWrapper .btn svg {
                 transition: all 0.3s ease;
-                rotate: -45deg;
-                width: 24px;
-                height: 24px;
             }
 
             .commitment-section__image {
@@ -205,9 +201,7 @@ class Elementor_commitmentSection extends \Elementor\Widget_Base
             .commitment-section__image img {
                 max-width: 100%;
                 height: 100%;
-                /* Изменено с auto для заполнения высоты */
                 object-fit: cover;
-                /* Добавлено для сохранения пропорций при height: 100% */
                 border-radius: 10px;
                 display: block;
             }

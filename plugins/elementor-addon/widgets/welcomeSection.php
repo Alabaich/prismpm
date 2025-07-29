@@ -116,7 +116,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
             }
             @media screen and (max-width: 1600px) {
                 .pageWidthNewHead {
-                    padding:100px 25px;
+                    padding: 100px 25px;
                 }
             }
             @media screen and (max-width: 768px) {
@@ -155,13 +155,13 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transform: translateY(-40%); 
+                transform: translateY(-40%);
             }
 
             .welcome-header.active {
                 position: fixed;
                 top: 74px;
-                transform: translateY(0); 
+                transform: translateY(0);
             }
 
             .welcome-header .pageWidthNewHead {
@@ -266,13 +266,11 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 .skritich {
                     display:none;
                 }
-                            .butNavGApEtc {
-                gap: 4px;
-            }
-                .welcome-content .text-content {
+                .butNavGApEtc {
+                    gap: 4px;
                 }
                 .welcome-header.active {
-                    top: 80px;
+                    top: 77px;
                 }
                 .welcome-header img {
                     max-height: 40px;
@@ -280,24 +278,24 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 .welcome-content .score-value {
                     width: 100%;
                 }
-            .welcome-content .text-content p {
+                .welcome-content .text-content p {
                     width: 100%;
                     font-size:14px;
 
-            }
-            .welcome-content .text-content h1 {
+                }
+                .welcome-content .text-content h1 {
                     width: 100%;
                     padding-bottom:16px;
                     font-size:24px;
-            }
-                        .welcome-content .text-content {
-                width: 100%;
-                text-align: center;
-                align-items: center;
-                justify-content: center;
-                gap: 16px;
-            }
-                            .welcome-content .score-value {
+                }
+                .welcome-content .text-content {
+                    width: 100%;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 16px;
+                }
+                .welcome-content .score-value {
                     width: 80%;
                     margin:0 auto;
                     margin-bottom:-16%;
@@ -305,15 +303,15 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                 .welcome-content {
                     gap:40px;
                 }
-                            .welcome-header {
-                top: 104px;
-            }
-                        .welcome-header nav a {
-                font-size: 14px;
-            }
-                        .welcome-header nav .button {
-                padding: 6px 12px;
-            }
+                .welcome-header {
+                    top: 104px;
+                }
+                .welcome-header nav a {
+                    font-size: 14px;
+                }
+                .welcome-header nav .button {
+                    padding: 6px 12px;
+                }
             }
         </style>
 
@@ -323,14 +321,14 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
                     <img src="<?php echo esc_url($settings['header_image']['url']); ?>" alt="Header Image">
                 <?php endif; ?>
                 <nav>
-                    <a class ="skritich" href="#AboutSec">About</a>
-                    <a class ="skritich" href="#AmenitiesSec">Amenities</a>
-                    <a class ="skritich" href="#SuitesSec">Suites</a>
-                    <a class ="skritich" href="#NeighbourhoodSec">Neighbourhood</a>
-                    <a class ="skritich" href="#GallerySec">Gallery</a>
-                    <div class ="butNavGApEtc">
-                                            <a href="#" class="button">Schedule a tour</a>
-                    <a href="#" class="button">Apply</a>
+                    <a class="skritich" href="#AboutSec">About</a>
+                    <a class="skritich" href="#AmenitiesSec">Amenities</a>
+                    <a class="skritich" href="#SuitesSec">Suites</a>
+                    <a class="skritich" href="#NeighbourhoodSec">Neighbourhood</a>
+                    <a class="skritich" href="#GallerySec">Gallery</a>
+                    <div class="butNavGApEtc">
+                        <a href="#" class="button">Schedule a tour</a>
+                        <a href="#" class="button">Apply</a>
                     </div>
                 </nav>
             </div>
@@ -338,7 +336,7 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
 
         <div class="pageWidthNewHead" id="AboutSec">
             <div class="welcome-section" id="welcome-section-<?php echo esc_attr($this->get_id()); ?>">
-                <div class="welcome-content" >
+                <div class="welcome-content">
                     <div class="text-content">
                         <h1><?php echo esc_html($settings['section_title']); ?></h1>
                         <p><?php echo esc_html($settings['section_subtitle']); ?></p>
@@ -358,51 +356,55 @@ class Elementor_welcomeSection extends \Elementor\Widget_Base
         </div>
 
         <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var section = document.getElementById('welcome-section-<?php echo esc_js($this->get_id()); ?>');
-    var header = document.getElementById('welcome-header-<?php echo esc_js($this->get_id()); ?>');
-    var lastScrollY = window.scrollY;
-    var sectionTop = section.getBoundingClientRect().top + window.scrollY;
+            document.addEventListener('DOMContentLoaded', function() {
+                var section = document.getElementById('welcome-section-<?php echo esc_js($this->get_id()); ?>');
+                var header = document.getElementById('welcome-header-<?php echo esc_js($this->get_id()); ?>');
+                var lastScrollY = window.scrollY;
+                var sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            const href = this.getAttribute('href');
-            const target = document.querySelector(href);
-            if (target) {
-                const headerHeight = header.offsetHeight; 
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                document.querySelectorAll('#welcome-header-<?php echo esc_js($this->get_id()); ?> nav a').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const href = this.getAttribute('href');
+                        if (href.startsWith('#')) {
+                            const target = document.querySelector(href);
+                            if (target) {
+                                const headerHeight = header.offsetHeight;
+                                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        } else {
+                            window.location.href = href;
+                        }
+                    });
                 });
-            }
-        });
-    });
 
-    function checkScrollDirection() {
-        var currentScrollY = window.scrollY;
-        var sectionBottom = sectionTop + section.offsetHeight;
-        var scrollDown = currentScrollY > lastScrollY;
-        var scrollUp = currentScrollY < lastScrollY;
-        var isPastSection = currentScrollY > sectionBottom;
+                function checkScrollDirection() {
+                    var currentScrollY = window.scrollY;
+                    var sectionBottom = sectionTop + section.offsetHeight;
+                    var scrollDown = currentScrollY > lastScrollY;
+                    var scrollUp = currentScrollY < lastScrollY;
+                    var isPastSection = currentScrollY > sectionBottom;
 
-        if (isPastSection && scrollDown) {
-            header.classList.add('active');
-        } else if (scrollUp && currentScrollY <= sectionTop) {
-            header.classList.remove('active');
-        }
+                    if (isPastSection && scrollDown) {
+                        header.classList.add('active');
+                    } else if (scrollUp && currentScrollY <= sectionTop) {
+                        header.classList.remove('active');
+                    }
 
-        lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-    }
+                    lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+                }
 
-    window.addEventListener('scroll', checkScrollDirection);
-    window.addEventListener('resize', function() {
-        sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        checkScrollDirection();
-    });
-    checkScrollDirection();
-});
+                window.addEventListener('scroll', checkScrollDirection);
+                window.addEventListener('resize', function() {
+                    sectionTop = section.getBoundingClientRect().top + window.scrollY;
+                    checkScrollDirection();
+                });
+                checkScrollDirection();
+            });
         </script>
 <?php
     }
