@@ -170,7 +170,7 @@ class Elementor_BlogShowCase extends \Elementor\Widget_Base
             .featured-post img {
                 width: 100%;
                 border-radius: 0.5rem;
-                object-fit: cover;
+                object-fit: fill;
                 height: 400px;
                 margin-bottom: 1rem;
             }
