@@ -74,7 +74,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Address 2', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => '', // Оставляем пустым по умолчанию
+                'default' => '',
                 'placeholder' => 'Enter a second address (optional)',
             ]
         );
