@@ -70,6 +70,16 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+            'address_two',
+            [
+                'label' => esc_html__('Address 2', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '',
+                'placeholder' => 'Enter a second address (optional)',
+            ]
+        );
+
+        $repeater->add_control(
             'description',
             [
                 'label' => esc_html__('Description', 'elementor-addon'),
@@ -330,6 +340,26 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                                     <span class="address-text"><?php echo esc_html($city['address']); ?></span>
                                 </div>
                             <?php endif; ?>
+
+                            <?php if (!empty($city['address_two'])) : ?>
+                                <div class="city-address">
+                                    <span class="address-icon">
+                                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_1396_6488)">
+                                                <path d="M21.5 9.99316C21.5 16.9932 12.5 22.9932 12.5 22.9932C12.5 22.9932 3.5 16.9932 3.5 9.99316C3.5 7.60622 4.44821 5.31703 6.13604 3.6292C7.82387 1.94138 10.1131 0.993164 12.5 0.993164C14.8869 0.993164 17.1761 1.94138 18.864 3.6292C20.5518 5.31703 21.5 7.60622 21.5 9.99316Z" stroke="#093D5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12.5 12.9932C14.1569 12.9932 15.5 11.65 15.5 9.99316C15.5 8.33631 14.1569 6.99316 12.5 6.99316C10.8431 6.99316 9.5 8.33631 9.5 9.99316C9.5 11.65 10.8431 12.9932 12.5 12.9932Z" stroke="#093D5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_1396_6488">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 -0.00683594)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </span>
+                                    <span class="address-text"><?php echo esc_html($city['address_two']); ?></span>
+                                </div>
+                            <?php endif; ?>
+
 
                             <?php if (!empty($city['description'])) : ?>
                                 <p class="city-description"><?php echo esc_html($city['description']); ?></p>

@@ -335,7 +335,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
         }
 
         if ($is_first_page) {
-    echo "<script>
+            echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('is-first-page');
             
@@ -359,7 +359,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
             window.addEventListener('scroll', checkScroll);
         });
     </script>";
-}
+        }
 
 ?>
 
@@ -483,7 +483,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 0.75rem;
                 border-radius: 9999px;
-                padding: 1rem 2rem;
+                padding: 10px 20px;
                 font-size: 1.125rem;
                 font-weight: 500;
                 text-decoration: none;
@@ -495,9 +495,7 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
 
             .buttonWrapper .btn svg {
                 transition: all 0.3s ease;
-                rotate: -45deg;
-                width: 24px;
-                height: 24px;
+                stroke: none !important;
             }
 
             @media (max-width: 1200px) {
@@ -590,8 +588,8 @@ class Elementor_richTextWithBackground extends \Elementor\Widget_Base
                 <div class="buttonWrapper">
                     <a href="<?php echo esc_url($settings['url']); ?>" class="btn">
                         <?php echo esc_html($settings['textForButton']); ?>
-                        <svg width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="hqwdasdicon">
+                            <path d="M11.5 -0.0078125C12.0523 -0.0078125 12.5 0.439903 12.5 0.992188V10.9922C12.5 11.5445 12.0523 11.9922 11.5 11.9922C10.9477 11.9922 10.5 11.5445 10.5 10.9922V3.33203L2.20703 11.6992C1.81651 12.0897 1.18349 12.0897 0.792969 11.6992C0.402446 11.3087 0.402445 10.6757 0.792969 10.2852L9.0127 1.99219H1.5C0.947715 1.99219 0.5 1.54447 0.5 0.992188C0.5 0.439903 0.947715 -0.0078125 1.5 -0.0078125H11.5Z" fill="currentColor" />
                         </svg>
                     </a>
                 </div>
