@@ -354,7 +354,7 @@ class Elementor_heroSlider extends \Elementor\Widget_Base {
                                 if (!empty($slide['slide_button_text']) && !empty($slide['slide_button_link']['url'])) {
                                     $this->add_link_attributes('button-' . $index, $slide['slide_button_link']);
                                     ?>
-                                    <a <?php echo $this->get_render_attribute_string('button-' . $index); ?> class="hero-button">
+                                    <a <?php echo $this->get_render_attribute_string('button-' . $index); ?> class="hero-button" target="_blank" rel="noopener noreferrer">
                                         <?php echo esc_html($slide['slide_button_text']); ?>
                                         <?php echo $announce_property_svg; ?>
                                     </a>
