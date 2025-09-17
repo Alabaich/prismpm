@@ -405,9 +405,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                                             
                     <div class="show-case-section-disclamer">
                         <div class="inner-show-case-disclamer">
-
-                            <?php echo esc_html($settings['disclamer']); ?>
-                        
+			                <?php echo $settings['item_description']; ?>   
                         </div>
 
                     </div>
