@@ -389,7 +389,8 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
-                    <?php if (!empty($settings['disclamer'])) : ?>
+                </div>
+                <?php if (!empty($settings['disclamer'])) : ?>
                     <style>
                         .show-case-section-disclamer{
                             display: flex;
@@ -405,12 +406,11 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                                             
                     <div class="show-case-section-disclamer">
                         <div class="inner-show-case-disclamer">
-			                <?php echo $settings['item_description']; ?>   
+			                <?php echo $settings['disclamer']; ?>   
                         </div>
 
                     </div>
                     <?php endif; ?>
-                </div>
             <?php endif; ?>
         </div>
 <?php
