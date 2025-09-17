@@ -397,10 +397,23 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                             width: 100%;
                             justify-content: center;
                             align-items: center;
+                            padding-top: 25px;
                         }
 
                         .inner-show-case-disclamer{
                             max-width: 800px;
+                        }
+
+                        
+                        .inner-show-case-disclamer p{
+                            font-style: italic;
+                            color: #6B7280;
+                        }
+
+                        .inner-show-case-disclamer a{
+                            font-style: italic;
+                            color: blue;
+                            text-decoration: underline;
                         }
                     </style>
                                             
