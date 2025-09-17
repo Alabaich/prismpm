@@ -220,7 +220,7 @@ class Elementor_announceProperty extends \Elementor\Widget_Base
 
             @media screen and (max-width: 1600px) {
                 .coming-soon-section {
-                    padding: 25px;
+                    padding: 100px 25px;
                 }
             }
 

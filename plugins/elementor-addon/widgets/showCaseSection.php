@@ -49,6 +49,16 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             ]
         );
 
+		$this->add_control(
+			'disclamer',
+			[
+				'label' => esc_html__( 'Disclamer', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => esc_html__( 'Disclamer', 'textdomain' ),
+				'placeholder' => esc_html__( 'Type the disclamer here', 'textdomain' ),
+			]
+		);
+
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
@@ -74,7 +84,7 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Address 2', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => '',
+                'default' => '', // Оставляем пустым по умолчанию
                 'placeholder' => 'Enter a second address (optional)',
             ]
         );
@@ -379,6 +389,11 @@ class Elementor_showCaseSection extends \Elementor\Widget_Base
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
+                    <div class="show-case-section-disclamer">
+                        <?php if (!empty($settings['disclamer'])) : ?>
+                            <p class="disclamer"><?php echo esc_html($settings['disclamer']); ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
