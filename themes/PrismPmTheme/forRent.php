@@ -4,31 +4,6 @@
 Template Name: Units
 */
 
-
-
-// Simple connection test with the correct credentials from Ben
-
-$servername = "localhost"; // Use localhost because the website and DB are on the same server
-$username = "wp_9nvvg";
-$password = "UtHSX%7zV&84!0*";
-$dbname = "wp_prism_prod";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-echo "Connection Successful!";
-
-$conn->close();
-
-die();
-?>
-
-<?php
-
 get_header();
 
 function custom_add_query_arg($key, $value)
@@ -54,7 +29,11 @@ $baths = $query_params['baths'] ?? null;
 $beds = $query_params['beds'] ?? null;
 $price_order = $query_params['price_order'] ?? null;
 
-$conn = new mysqli("5.161.90.110", "readonly", "pass", "prismpm");
+$servername = "localhost:3306";
+$username = "alex";
+$password = "0Va57i&5k";
+$dbname = "db_rental_units";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 $sql = "SELECT units.*, building.*, units.id as unit_id, units.unit_of_area as area_sq_ft
         FROM units
