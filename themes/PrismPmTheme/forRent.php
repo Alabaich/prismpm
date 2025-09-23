@@ -1,12 +1,33 @@
 <?php
 
-echo "Website Server IP: " . $_SERVER['SERVER_ADDR'];
-echo "<br>";
-echo "Database Host IP: " . gethostbyname('vps.betabeta.dynamichosting.cloud');
-die(); // This stops the rest of the page from loading
 /*
 Template Name: Units
 */
+
+
+
+// Simple connection test with the correct credentials from Ben
+
+$servername = "localhost"; // Use localhost because the website and DB are on the same server
+$username = "wp_9nvvg";
+$password = "UtHSX%7zV&84!0*";
+$dbname = "wp_prism_prod";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connection Successful!";
+
+$conn->close();
+
+die();
+?>
+
+<?php
 
 get_header();
 
