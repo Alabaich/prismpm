@@ -126,7 +126,7 @@
 					<?php echo $footer_nav_menu; ?>
 				</div>
 				<div class="footer-copyright-row">
-					©2025 by Prism Property Management. All rights reserved. Designed by Enjoyable Agency.
+					©2025 by Prism Property Management. All rights reserved. Design & Development: Enjoyable Design Inc.
 				</div>
 			</div>
 		</div>
