@@ -44,6 +44,16 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'form_shortcode',
+            [
+                'label' => esc_html__('WPForms Shortcode', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'placeholder' => '[wpforms id="123"]',
+            ]
+        );
+
+
         $this->end_controls_section();
     }
 
@@ -51,41 +61,7 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $first_class = ($settings['is_first_section'] === 'yes') ? 'first-contact-section' : '';
-?>
-        <section class="contact-us-section elementor-contact-section <?= esc_attr($first_class) ?>">
-            <div class="contact-container">
-                <div class="left-column">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2869.582801139585!2d-78.85953908449699!3d43.89759627911457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d5025e39310767%3A0x3a643e7878579347!2s80%20Bond%20St%20E%2C%20Oshawa%2C%20ON%20L1G%200E6%2C%20Canada!5e0!3m2!1sen!2sus!4v1620310503001!5m2!1sen!2sus"
-                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                    <div class="contact-info">
-                        <div><strong>Address</strong><br>80 Bond St E<br>Oshawa ON L1G 0E6</div>
-                        <div><strong>E-mail</strong><br>customercare@prismpm.ca<br>lease@prismpm.ca</div>
-                        <div><strong>Phone</strong><br>289-797-1604</div>
-                    </div>
-                </div>
-                <div class="right-column">
-                    <h2>Contact Us</h2>
-                    <p>fill out the contact form and we`ll get back to you as soon as possible</p>
-                    <form class="contact-form">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="text" name="phone" placeholder="Phone" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <textarea name="message" placeholder="Message" required></textarea>
-                        <div class="submit-row">
-                            <button type="submit">
-                                Submit
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.167 5C14.627 5.00018 14.9998 5.37303 15 5.83301V14.167C14.9998 14.627 14.627 14.9998 14.167 15C13.7069 15 13.3332 14.6271 13.333 14.167V7.7832L6.42285 14.7559C6.09741 15.0813 5.56958 15.0813 5.24414 14.7559C4.9187 14.4304 4.9187 13.9026 5.24414 13.5771L12.0938 6.66699H5.83301C5.37292 6.66682 5 6.29314 5 5.83301C5.00018 5.37303 5.37303 5.00018 5.83301 5H14.167Z" fill="currentColor" />
-                                </svg>
-                            </button>
-                            <small>By clicking the Contact us button you agree to our<br><a href="#">Privacy Policy terms</a></small>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+        ?>
 
         <style>
             .contact-us-section {
@@ -321,6 +297,54 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
                 }
             }
         </style>
-<?php
+
+
+        <section class="contact-us-section elementor-contact-section <?= esc_attr($first_class) ?>">
+            <div class="contact-container">
+                <div class="left-column">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2869.582801139585!2d-78.85953908449699!3d43.89759627911457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d5025e39310767%3A0x3a643e7878579347!2s80%20Bond%20St%20E%2C%20Oshawa%2C%20ON%20L1G%200E6%2C%20Canada!5e0!3m2!1sen!2sus!4v1620310503001!5m2!1sen!2sus"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+
+
+                    <div class="contact-info">
+                        <div><strong>Address</strong><br>80 Bond St E<br>Oshawa ON L1G 0E6</div>
+                        <div><strong>E-mail</strong><br>customercare@prismpm.ca<br>lease@prismpm.ca</div>
+                        <div><strong>Phone</strong><br>289-797-1604</div>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <?php if (!empty($settings['form_shortcode'])): ?>
+                        <div class="form-wrapper">
+                            <?php echo do_shortcode($settings['form_shortcode']); ?>
+                        </div>
+                    <?php endif; ?>
+                    <h2>Contact Us</h2>
+                    <p>fill out the contact form and we`ll get back to you as soon as possible</p>
+                    <form class="contact-form">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="text" name="phone" placeholder="Phone" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <textarea name="message" placeholder="Message" required></textarea>
+                        <div class="submit-row">
+                            <button type="submit">
+                                Submit
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14.167 5C14.627 5.00018 14.9998 5.37303 15 5.83301V14.167C14.9998 14.627 14.627 14.9998 14.167 15C13.7069 15 13.3332 14.6271 13.333 14.167V7.7832L6.42285 14.7559C6.09741 15.0813 5.56958 15.0813 5.24414 14.7559C4.9187 14.4304 4.9187 13.9026 5.24414 13.5771L12.0938 6.66699H5.83301C5.37292 6.66682 5 6.29314 5 5.83301C5.00018 5.37303 5.37303 5.00018 5.83301 5H14.167Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </button>
+                            <small>By clicking the Contact us button you agree to our<br><a href="#">Privacy Policy
+                                    terms</a></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <?php
     }
 }
