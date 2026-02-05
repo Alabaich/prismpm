@@ -296,6 +296,78 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
                     justify-content: center;
                 }
             }
+
+            div.wpforms-container-full .wpforms-form .wpforms-field .wpforms-field-row:last-child,
+            div.wpforms-container-full .wpforms-form .wpforms-field .wpforms-field-row:only-child,
+            div.wpforms-container-full input[type=date],
+            div.wpforms-container-full input[type=datetime],
+            div.wpforms-container-full input[type=datetime-local],
+            div.wpforms-container-full input[type=email],
+            div.wpforms-container-full input[type=month],
+            div.wpforms-container-full input[type=number],
+            div.wpforms-container-full input[type=password],
+            div.wpforms-container-full input[type=range],
+            div.wpforms-container-full input[type=search],
+            div.wpforms-container-full input[type=tel],
+            div.wpforms-container-full input[type=text],
+            div.wpforms-container-full input[type=time],
+            div.wpforms-container-full input[type=url],
+            div.wpforms-container-full input[type=week],
+            div.wpforms-container-full select,
+            div.wpforms-container-full textarea,
+            .wp-core-ui div.wpforms-container-full input[type=date],
+            .wp-core-ui div.wpforms-container-full input[type=datetime],
+            .wp-core-ui div.wpforms-container-full input[type=datetime-local],
+            .wp-core-ui div.wpforms-container-full input[type=email],
+            .wp-core-ui div.wpforms-container-full input[type=month],
+            .wp-core-ui div.wpforms-container-full input[type=number],
+            .wp-core-ui div.wpforms-container-full input[type=password],
+            .wp-core-ui div.wpforms-container-full input[type=range],
+            .wp-core-ui div.wpforms-container-full input[type=search],
+            .wp-core-ui div.wpforms-container-full input[type=tel],
+            .wp-core-ui div.wpforms-container-full input[type=text],
+            .wp-core-ui div.wpforms-container-full input[type=time],
+            .wp-core-ui div.wpforms-container-full input[type=url],
+            .wp-core-ui div.wpforms-container-full input[type=week],
+            .wp-core-ui div.wpforms-container-full select,
+            .wp-core-ui div.wpforms-container-full textarea {
+                min-width: 100%;
+            }
+
+            .wpforms-container .wpforms-field, .wp-core-ui div.wpforms-container .wpforms-field{
+                padding: 0;
+            }
+
+            div.wpforms-container-full input[type=submit]:not(:hover):not(:active),
+            div.wpforms-container-full button[type=submit]:not(:hover):not(:active),
+            div.wpforms-container-full .wpforms-page-button:not(:hover):not(:active),
+            .wp-core-ui div.wpforms-container-full input[type=submit]:not(:hover):not(:active),
+            .wp-core-ui div.wpforms-container-full button[type=submit]:not(:hover):not(:active),
+            .wp-core-ui div.wpforms-container-full .wpforms-page-button:not(:hover):not(:active) {
+                background: #0e3c55;
+                color: #fff;
+                border: 2px solid #0e3c55;
+                padding: 12px 30px;
+                border-radius: 30px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-family: "Inter Tight", sans-serif;
+                font-size: 1rem;
+            }
+
+            .wpforms-submit::after {
+                content: "";
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.167 5C14.627 5.00018 14.9998 5.37303 15 5.83301V14.167C14.9998 14.627 14.627 14.9998 14.167 15C13.7069 15 13.3332 14.6271 13.333 14.167V7.7832L6.42285 14.7559C6.09741 15.0813 5.56958 15.0813 5.24414 14.7559C4.9187 14.4304 4.9187 13.9026 5.24414 13.5771L12.0938 6.66699H5.83301C5.37292 6.66682 5 6.29314 5 5.83301C5.00018 5.37303 5.37303 5.00018 5.83301 5H14.167Z' fill='black'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
         </style>
 
 
@@ -315,14 +387,15 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
                     </div>
                 </div>
                 <div class="right-column">
+                    <h2>Contact Us</h2>
+                    <p>fill out the contact form and we`ll get back to you as soon as possible</p>
                     <?php if (!empty($settings['form_shortcode'])): ?>
                         <div class="form-wrapper">
                             <?php echo do_shortcode($settings['form_shortcode']); ?>
                         </div>
                     <?php endif; ?>
-                    <h2>Contact Us</h2>
-                    <p>fill out the contact form and we`ll get back to you as soon as possible</p>
-                    <form class="contact-form">
+
+                    <!-- <form class="contact-form">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="text" name="phone" placeholder="Phone" required>
                         <input type="email" name="email" placeholder="Email" required>
@@ -336,10 +409,11 @@ class Elementor_contactUsSection extends \Elementor\Widget_Base
                                         fill="currentColor" />
                                 </svg>
                             </button>
-                            <small>By clicking the Contact us button you agree to our<br><a href="#">Privacy Policy
-                                    terms</a></small>
+                            
                         </div>
-                    </form>
+                    </form> -->
+                    <small>By clicking the Contact us button you agree to our<br><a href="#">Privacy Policy
+                                    terms</a></small>
                 </div>
             </div>
         </section>
